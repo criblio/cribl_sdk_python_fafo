@@ -1,0 +1,8 @@
+# DeleteProductsUsersCacheByProductRequest
+
+
+## Fields
+
+| Field                                                                                                                      | Type                                                                                                                       | Required                                                                                                                   | Description                                                                                                                |
+| -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
+| `product`                                                                                                                  | [models.DeleteProductsUsersCacheByProductPathParamProduct](../models/deleteproductsuserscachebyproductpathparamproduct.md) | :heavy_check_mark:                                                                                                         | product by which to filter members                                                                                         |

@@ -1,0 +1,14 @@
+# BulletinMessage
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `id`                                                                         | *str*                                                                        | :heavy_check_mark:                                                           | N/A                                                                          |
+| `text`                                                                       | *str*                                                                        | :heavy_check_mark:                                                           | N/A                                                                          |
+| `severity`                                                                   | [Optional[models.Severity]](../models/severity.md)                           | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `title`                                                                      | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `time`                                                                       | *Optional[float]*                                                            | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `group`                                                                      | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `metadata`                                                                   | List[[models.BulletinMessageMetadata](../models/bulletinmessagemetadata.md)] | :heavy_minus_sign:                                                           | N/A                                                                          |

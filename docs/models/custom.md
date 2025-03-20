@@ -1,0 +1,12 @@
+# Custom
+
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `system`                                                                           | [Optional[models.InputSystemMetricsSystem]](../models/inputsystemmetricssystem.md) | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `cpu`                                                                              | [Optional[models.CPU]](../models/cpu.md)                                           | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `memory`                                                                           | [Optional[models.InputSystemMetricsMemory]](../models/inputsystemmetricsmemory.md) | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `network`                                                                          | [Optional[models.Network]](../models/network.md)                                   | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `disk`                                                                             | [Optional[models.Disk]](../models/disk.md)                                         | :heavy_minus_sign:                                                                 | N/A                                                                                |

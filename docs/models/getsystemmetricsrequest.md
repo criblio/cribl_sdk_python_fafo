@@ -1,0 +1,13 @@
+# GetSystemMetricsRequest
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `wp`                                                                          | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | worker process to query, this would work only on a worker node                |
+| `num_buckets`                                                                 | *Optional[float]*                                                             | :heavy_minus_sign:                                                            | buckets in the past to include in the query results                           |
+| `earliest`                                                                    | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | earliest time to query against                                                |
+| `latest`                                                                      | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | latest time to query against                                                  |
+| `metric_name_filter`                                                          | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | can be a regex or an array of metric names                                    |
+| `filter_expr`                                                                 | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | a js expression to apply against the metrics returned (can filter dimensions) |

@@ -1,0 +1,63 @@
+# InputWizInputType
+
+
+## Values
+
+| Name                     | Value                    |
+| ------------------------ | ------------------------ |
+| `SPLUNK`                 | splunk                   |
+| `SPLUNK_HEC`             | splunk_hec               |
+| `SYSLOG`                 | syslog                   |
+| `TCPJSON`                | tcpjson                  |
+| `GRAFANA`                | grafana                  |
+| `LOKI`                   | loki                     |
+| `HTTP`                   | http                     |
+| `HTTP_RAW`               | http_raw                 |
+| `FIREHOSE`               | firehose                 |
+| `ELASTIC`                | elastic                  |
+| `KAFKA`                  | kafka                    |
+| `CONFLUENT_CLOUD`        | confluent_cloud          |
+| `MSK`                    | msk                      |
+| `KINESIS`                | kinesis                  |
+| `EVENTHUB`               | eventhub                 |
+| `AZURE_BLOB`             | azure_blob               |
+| `METRICS`                | metrics                  |
+| `SQS`                    | sqs                      |
+| `S3`                     | s3                       |
+| `S3_INVENTORY`           | s3_inventory             |
+| `SNMP`                   | snmp                     |
+| `CROWDSTRIKE`            | crowdstrike              |
+| `TCP`                    | tcp                      |
+| `RAW_UDP`                | raw_udp                  |
+| `NETFLOW`                | netflow                  |
+| `OFFICE365_SERVICE`      | office365_service        |
+| `OFFICE365_MGMT`         | office365_mgmt           |
+| `OFFICE365_MSG_TRACE`    | office365_msg_trace      |
+| `PROMETHEUS`             | prometheus               |
+| `EDGE_PROMETHEUS`        | edge_prometheus          |
+| `PROMETHEUS_RW`          | prometheus_rw            |
+| `APPSCOPE`               | appscope                 |
+| `GOOGLE_PUBSUB`          | google_pubsub            |
+| `OPEN_TELEMETRY`         | open_telemetry           |
+| `MODEL_DRIVEN_TELEMETRY` | model_driven_telemetry   |
+| `DATADOG_AGENT`          | datadog_agent            |
+| `WEF`                    | wef                      |
+| `WIZ`                    | wiz                      |
+| `ZSCALER_HEC`            | zscaler_hec              |
+| `DATAGEN`                | datagen                  |
+| `CRIBL`                  | cribl                    |
+| `CRIBLMETRICS`           | criblmetrics             |
+| `CRIBL_HTTP`             | cribl_http               |
+| `CRIBL_TCP`              | cribl_tcp                |
+| `WIN_EVENT_LOGS`         | win_event_logs           |
+| `SYSTEM_METRICS`         | system_metrics           |
+| `WINDOWS_METRICS`        | windows_metrics          |
+| `SYSTEM_STATE`           | system_state             |
+| `KUBE_METRICS`           | kube_metrics             |
+| `KUBE_LOGS`              | kube_logs                |
+| `KUBE_EVENTS`            | kube_events              |
+| `EXEC`                   | exec                     |
+| `SPLUNK_SEARCH`          | splunk_search            |
+| `FILE`                   | file                     |
+| `JOURNAL_FILES`          | journal_files            |
+| `SECURITY_LAKE`          | security_lake            |

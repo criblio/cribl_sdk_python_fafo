@@ -1,0 +1,13 @@
+# EventBreakerRuleset
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `id`                                                                     | *str*                                                                    | :heavy_check_mark:                                                       | N/A                                                                      |
+| `lib`                                                                    | [Optional[models.Library]](../models/library.md)                         | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `description`                                                            | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `tags`                                                                   | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `min_raw_length`                                                         | *Optional[float]*                                                        | :heavy_minus_sign:                                                       | The  minimum number of characters in _raw to determine which rule to use |
+| `rules`                                                                  | List[[models.Rules](../models/rules.md)]                                 | :heavy_minus_sign:                                                       | A list of rules that will be applied, in order, to the input data stream |

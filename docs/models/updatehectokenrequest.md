@@ -1,0 +1,10 @@
+# UpdateHecTokenRequest
+
+
+## Fields
+
+| Field                                                                                    | Type                                                                                     | Required                                                                                 | Description                                                                              |
+| ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
+| `description`                                                                            | *Optional[str]*                                                                          | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `enabled`                                                                                | *Optional[bool]*                                                                         | :heavy_minus_sign:                                                                       | N/A                                                                                      |
+| `metadata`                                                                               | List[[models.UpdateHecTokenRequestMetadata](../models/updatehectokenrequestmetadata.md)] | :heavy_minus_sign:                                                                       | N/A                                                                                      |

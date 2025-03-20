@@ -1,0 +1,9 @@
+# GetSingleProductUsageBreakdownResponseV5
+
+
+## Fields
+
+| Field                                                                                            | Type                                                                                             | Required                                                                                         | Description                                                                                      |
+| ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------ |
+| `items`                                                                                          | List[[models.SingleProductUsageBreakdownItemV5](../models/singleproductusagebreakdownitemv5.md)] | :heavy_check_mark:                                                                               | N/A                                                                                              |
+| `count`                                                                                          | *float*                                                                                          | :heavy_check_mark:                                                                               | N/A                                                                                              |

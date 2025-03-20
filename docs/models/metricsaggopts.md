@@ -1,0 +1,13 @@
+# MetricsAggOpts
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `aggs`                                                                         | [models.AggregationMgrOptions](../models/aggregationmgroptions.md)             | :heavy_check_mark:                                                             | N/A                                                                            |
+| `always_bounds`                                                                | *Optional[bool]*                                                               | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `earliest`                                                                     | [Optional[models.MetricsAggOptsEarliest]](../models/metricsaggoptsearliest.md) | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `latest`                                                                       | [Optional[models.MetricsAggOptsLatest]](../models/metricsaggoptslatest.md)     | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `metrics`                                                                      | [Optional[models.MetricsStore]](../models/metricsstore.md)                     | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `where`                                                                        | *Optional[str]*                                                                | :heavy_minus_sign:                                                             | N/A                                                                            |

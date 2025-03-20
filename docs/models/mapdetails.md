@@ -1,0 +1,14 @@
+# MapDetails
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `latitude_field`                                                             | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `longitude_field`                                                            | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `map_source_id`                                                              | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `map_type`                                                                   | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `name_field`                                                                 | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `point_scale`                                                                | [Optional[models.ChartConfigPointScale]](../models/chartconfigpointscale.md) | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `value_field`                                                                | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |

@@ -1,0 +1,14 @@
+# SearchQuery2
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `earliest`                                                               | [Nullable[models.SearchQueryEarliest]](../models/searchqueryearliest.md) | :heavy_check_mark:                                                       | N/A                                                                      |
+| `latest`                                                                 | [Nullable[models.SearchQueryLatest]](../models/searchquerylatest.md)     | :heavy_check_mark:                                                       | N/A                                                                      |
+| `query`                                                                  | *Nullable[str]*                                                          | :heavy_check_mark:                                                       | N/A                                                                      |
+| `type`                                                                   | [models.SearchQuery2Type](../models/searchquery2type.md)                 | :heavy_check_mark:                                                       | N/A                                                                      |
+| `parent_search_id`                                                       | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `sample_rate`                                                            | *Optional[float]*                                                        | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `timezone`                                                               | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |

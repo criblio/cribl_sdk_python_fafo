@@ -1,0 +1,14 @@
+# AssignedSandboxAssignmentDTO
+
+
+## Fields
+
+| Field                                                                | Type                                                                 | Required                                                             | Description                                                          |
+| -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| `organization_id`                                                    | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `workspace_id`                                                       | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `state`                                                              | [models.State](../models/state.md)                                   | :heavy_check_mark:                                                   | N/A                                                                  |
+| `user_id`                                                            | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `course_id`                                                          | *str*                                                                | :heavy_check_mark:                                                   | N/A                                                                  |
+| `assigned_at`                                                        | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |
+| `expires_at`                                                         | [date](https://docs.python.org/3/library/datetime.html#date-objects) | :heavy_check_mark:                                                   | N/A                                                                  |

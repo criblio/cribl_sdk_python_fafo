@@ -1,0 +1,18 @@
+# Container
+
+
+## Fields
+
+| Field                                                          | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `command`                                                      | [models.Command](../models/command.md)                         | :heavy_check_mark:                                             | N/A                                                            |
+| `created`                                                      | *float*                                                        | :heavy_check_mark:                                             | N/A                                                            |
+| `id`                                                           | *str*                                                          | :heavy_check_mark:                                             | N/A                                                            |
+| `image`                                                        | *str*                                                          | :heavy_check_mark:                                             | N/A                                                            |
+| `name`                                                         | *str*                                                          | :heavy_check_mark:                                             | N/A                                                            |
+| `status`                                                       | *str*                                                          | :heavy_check_mark:                                             | N/A                                                            |
+| `type`                                                         | [models.ContainerType](../models/containertype.md)             | :heavy_check_mark:                                             | N/A                                                            |
+| `containerd`                                                   | [Optional[models.ContainerdInfo]](../models/containerdinfo.md) | :heavy_minus_sign:                                             | N/A                                                            |
+| `docker`                                                       | [Optional[models.DockerInfo]](../models/dockerinfo.md)         | :heavy_minus_sign:                                             | N/A                                                            |
+| `ips`                                                          | List[*str*]                                                    | :heavy_minus_sign:                                             | N/A                                                            |
+| `ports`                                                        | List[[models.ContainerPort](../models/containerport.md)]       | :heavy_minus_sign:                                             | N/A                                                            |

@@ -1,0 +1,14 @@
+# AppscopeConfig
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `cribl`                                                                  | [Optional[models.AppscopeConfigCribl]](../models/appscopeconfigcribl.md) | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `event`                                                                  | [Optional[models.Event]](../models/event.md)                             | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `libscope`                                                               | [Optional[models.Libscope]](../models/libscope.md)                       | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `metric`                                                                 | [Optional[models.Metric]](../models/metric.md)                           | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `payload`                                                                | [Optional[models.Payload]](../models/payload.md)                         | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `protocol`                                                               | List[[models.Protocol](../models/protocol.md)]                           | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `tags`                                                                   | List[[models.Tags](../models/tags.md)]                                   | :heavy_minus_sign:                                                       | N/A                                                                      |

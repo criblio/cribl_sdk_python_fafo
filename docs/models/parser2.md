@@ -1,0 +1,14 @@
+# Parser2
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `mode`                                                                       | [models.ParserMode](../models/parsermode.md)                                 | :heavy_check_mark:                                                           | N/A                                                                          |
+| `src_field`                                                                  | *str*                                                                        | :heavy_check_mark:                                                           | N/A                                                                          |
+| `type`                                                                       | [models.EventBreakerRuleParserType](../models/eventbreakerruleparsertype.md) | :heavy_check_mark:                                                           | N/A                                                                          |
+| `dst_field`                                                                  | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `pattern`                                                                    | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `pattern_list`                                                               | List[[models.PatternList](../models/patternlist.md)]                         | :heavy_minus_sign:                                                           | N/A                                                                          |
+| `source`                                                                     | *Optional[str]*                                                              | :heavy_minus_sign:                                                           | N/A                                                                          |

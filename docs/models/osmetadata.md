@@ -1,0 +1,27 @@
+# OsMetadata
+
+
+## Fields
+
+| Field                                                      | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `arch`                                                     | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `cpu_count`                                                | *float*                                                    | :heavy_check_mark:                                         | N/A                                                        |
+| `cpu_speed_mhz`                                            | *float*                                                    | :heavy_check_mark:                                         | N/A                                                        |
+| `cpu_type`                                                 | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `gid`                                                      | *float*                                                    | :heavy_check_mark:                                         | N/A                                                        |
+| `homedir`                                                  | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `hostname`                                                 | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `interfaces`                                               | [models.NetworkInterfaces](../models/networkinterfaces.md) | :heavy_check_mark:                                         | N/A                                                        |
+| `machine_id`                                               | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `memory`                                                   | *float*                                                    | :heavy_check_mark:                                         | N/A                                                        |
+| `os_id`                                                    | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `os_name`                                                  | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `os_version`                                               | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `os_version_id`                                            | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `platform`                                                 | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `release`                                                  | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `timezone`                                                 | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `timezone_offset`                                          | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `uid`                                                      | *float*                                                    | :heavy_check_mark:                                         | N/A                                                        |
+| `username`                                                 | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |

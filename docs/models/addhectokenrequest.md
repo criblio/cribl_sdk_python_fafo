@@ -1,0 +1,11 @@
+# AddHecTokenRequest
+
+
+## Fields
+
+| Field                                                                              | Type                                                                               | Required                                                                           | Description                                                                        |
+| ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| `token`                                                                            | *str*                                                                              | :heavy_check_mark:                                                                 | N/A                                                                                |
+| `description`                                                                      | *Optional[str]*                                                                    | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `enabled`                                                                          | *Optional[bool]*                                                                   | :heavy_minus_sign:                                                                 | N/A                                                                                |
+| `metadata`                                                                         | List[[models.AddHecTokenRequestMetadata](../models/addhectokenrequestmetadata.md)] | :heavy_minus_sign:                                                                 | N/A                                                                                |

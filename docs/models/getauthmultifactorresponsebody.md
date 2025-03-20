@@ -1,0 +1,11 @@
+# GetAuthMultiFactorResponseBody
+
+a list of MultiFactorAuthSchema objects
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `count`                                                                  | *Optional[int]*                                                          | :heavy_minus_sign:                                                       | number of items present in the items array                               |
+| `items`                                                                  | List[[models.MultiFactorAuthSchema](../models/multifactorauthschema.md)] | :heavy_minus_sign:                                                       | N/A                                                                      |

@@ -1,0 +1,13 @@
+# Invoice
+
+
+## Fields
+
+| Field                                                      | Type                                                       | Required                                                   | Description                                                |
+| ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- | ---------------------------------------------------------- |
+| `id`                                                       | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `from_date`                                                | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `to_date`                                                  | *str*                                                      | :heavy_check_mark:                                         | N/A                                                        |
+| `total_credits`                                            | *float*                                                    | :heavy_check_mark:                                         | N/A                                                        |
+| `products`                                                 | List[[models.InvoiceProduct](../models/invoiceproduct.md)] | :heavy_check_mark:                                         | N/A                                                        |
+| `status`                                                   | [models.Status](../models/status.md)                       | :heavy_check_mark:                                         | N/A                                                        |
