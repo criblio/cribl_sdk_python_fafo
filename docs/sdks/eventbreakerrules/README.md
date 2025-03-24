@@ -20,12 +20,15 @@ Get a list of Event Breaker Ruleset objects
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.event_breaker_rules.list_event_breaker_ruleset()
@@ -59,12 +62,15 @@ Create Event Breaker Ruleset
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.event_breaker_rules.create_event_breaker_ruleset(id="<id>")
@@ -104,12 +110,15 @@ Get Event Breaker Ruleset by ID
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.event_breaker_rules.get_event_breaker_ruleset_by_id(id="<id>")
@@ -144,12 +153,15 @@ Update Event Breaker Ruleset
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.event_breaker_rules.update_event_breaker_ruleset_by_id(id_param="<value>", id="<id>")
@@ -190,12 +202,15 @@ Delete Event Breaker Ruleset
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.event_breaker_rules.delete_event_breaker_ruleset_by_id(id="<id>")

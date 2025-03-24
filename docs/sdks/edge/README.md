@@ -34,12 +34,15 @@ Attach AppScope to a process running on the edge host
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.create_edge_appscope_processes(pid="<id>")
@@ -74,12 +77,15 @@ Get a detailed list of scoped processes running on the edge host
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_appscope_processes()
@@ -113,12 +119,15 @@ Detach AppScope from a process running on the edge host
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.delete_edge_appscope_processes_by_pid(pid="<id>")
@@ -153,12 +162,15 @@ Get details of a scoped process running on the edge host
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_appscope_processes_by_pid(pid="<id>")
@@ -193,12 +205,15 @@ Update AppScope configuration for a process running on the edge host
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.update_edge_appscope_processes_by_pid(pid="<id>")
@@ -233,12 +248,15 @@ Get list of configured collectors
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_events_collectors()
@@ -272,12 +290,15 @@ Get details about a file on the edge host.
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_fileinspect()
@@ -311,12 +332,15 @@ Get a directory listing of the given path
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_ls_by_path(path="/net")
@@ -351,12 +375,15 @@ Data for the Map View for Edge Fleets (Leader only)
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.create_products_edge_map_query()
@@ -390,12 +417,15 @@ Get the host's metadata structure
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_metadata()
@@ -429,12 +459,15 @@ Ingest a specified file through a specified pipeline to a specified destination 
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.create_edge_file_ingest()
@@ -474,12 +507,15 @@ Get some number of bytes from the file at the given path
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_file_sample(path="/System")
@@ -515,12 +551,15 @@ Make a request to the K8s API logs endpoint
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.create_edge_kube_logs()
@@ -554,12 +593,15 @@ Make a GET request to the K8s API
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_kube_proxy()
@@ -594,12 +636,15 @@ Get details for a single container on the edge host. Add stream=true to get a st
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_containers_by_id(id="<id>")
@@ -634,12 +679,15 @@ Get a detailed list of containers running on the edge host.
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_containers()
@@ -673,12 +721,15 @@ list log files
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_logs()
@@ -716,12 +767,15 @@ Get details of a process running on the edge host
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_processes_by_pid(pid="<id>")
@@ -756,12 +810,15 @@ Get a detailed list of processes running on the edge host
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.edge.get_edge_processes()

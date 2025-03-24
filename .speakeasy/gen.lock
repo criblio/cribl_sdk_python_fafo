@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4e47635b-372e-4905-92a7-4edd996fc886
 management:
-  docChecksum: 6f003595947bfc4d975ba51175d73b38
+  docChecksum: 61202b49eb07a4c09a03bcebf5b1919c
   docVersion: 1.0.0
-  speakeasyVersion: 1.523.0
+  speakeasyVersion: 1.523.1
   generationVersion: 2.559.0
-  releaseVersion: 0.1.0
-  configChecksum: 3b06607eeda901545a31f7c27526dd02
+  releaseVersion: 0.2.0
+  configChecksum: 70074b7441dde4b58440fa2ed1cffefa
 features:
   python:
     additionalDependencies: 1.0.0
@@ -23,12 +23,12 @@ features:
     flattening: 3.1.1
     globalSecurity: 3.0.3
     globalSecurityCallbacks: 1.0.0
-    globalSecurityFlattening: 1.0.0
     globalServerURLs: 3.1.0
     inputOutputModels: 3.0.0
     methodArguments: 1.0.2
     methodServerURLs: 3.1.1
     nullables: 1.0.1
+    oauth2ClientCredentials: 1.1.2
     responseFormat: 1.0.1
     retries: 3.0.2
     sdkHooks: 1.0.1
@@ -2673,6 +2673,7 @@ generatedFiles:
   - docs/models/schedule.md
   - docs/models/scheduletype.md
   - docs/models/schemalibentry.md
+  - docs/models/schemeclientoauth.md
   - docs/models/scriptlibentry.md
   - docs/models/searchaggmode.md
   - docs/models/searchauditmetrics.md
@@ -3071,6 +3072,7 @@ generatedFiles:
   - scripts/publish.sh
   - src/cribl/__init__.py
   - src/cribl/_hooks/__init__.py
+  - src/cribl/_hooks/clientcredentials.py
   - src/cribl/_hooks/sdkhooks.py
   - src/cribl/_hooks/types.py
   - src/cribl/_version.py
@@ -3896,6 +3898,7 @@ generatedFiles:
   - src/cribl/models/savedqueryschedule.py
   - src/cribl/models/savessearchrunmode.py
   - src/cribl/models/schemalibentry.py
+  - src/cribl/models/schemeclientoauth.py
   - src/cribl/models/scriptlibentry.py
   - src/cribl/models/searchaggmode.py
   - src/cribl/models/searchauditmetrics.py

@@ -20,12 +20,15 @@ Get a list of PolicyRule objects
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.policies.list_policy_rule()
@@ -59,12 +62,15 @@ Create PolicyRule
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.policies.create_policy_rule(id="<id>", template=[
@@ -107,12 +113,15 @@ Get PolicyRule by ID
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.policies.get_policy_rule_by_id(id="<id>")
@@ -147,12 +156,15 @@ Update PolicyRule
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.policies.update_policy_rule_by_id(id_param="<value>", id="<id>", template=[
@@ -196,12 +208,15 @@ Delete PolicyRule
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.policies.delete_policy_rule_by_id(id="<id>")

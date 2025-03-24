@@ -20,12 +20,15 @@ Get a list of NotificationTarget objects
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.notification_targets.list_notification_target()
@@ -59,12 +62,15 @@ Create NotificationTarget
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.notification_targets.create_notification_target(id="<id>", type_="<value>")
@@ -100,12 +106,15 @@ Get NotificationTarget by ID
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.notification_targets.get_notification_target_by_id(id="<id>")
@@ -140,12 +149,15 @@ Update NotificationTarget
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.notification_targets.update_notification_target_by_id(id_param="<value>", id="<id>", type_="<value>")
@@ -182,12 +194,15 @@ Delete NotificationTarget
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.notification_targets.delete_notification_target_by_id(id="<id>")

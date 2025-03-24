@@ -21,12 +21,15 @@ Get effective bundle version for given Group
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.groups.get_groups_config_version_by_id(id="<id>")
@@ -67,7 +70,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.groups.create_products_groups_by_product(product=cribl.CreateProductsGroupsByProductPathParamProduct.EDGE, config_version="<value>", id="<id>")
@@ -127,7 +132,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.groups.get_products_groups_by_product(product=cribl.GetProductsGroupsByProductPathParamProduct.STREAM)
@@ -163,12 +170,15 @@ Deploy commits for a Fleet or Worker Group
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.groups.update_groups_deploy_by_id(id="<id>", version="<value>")
@@ -204,12 +214,15 @@ Get a specific ConfigGroup object
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.groups.get_groups_by_id(id="<id>")
@@ -245,12 +258,15 @@ ACL of members with permissions for resources in this Group
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.groups.get_groups_acl_by_id(id="<id>")

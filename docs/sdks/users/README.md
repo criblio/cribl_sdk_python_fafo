@@ -24,12 +24,15 @@ Get a list of User objects
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.list_user()
@@ -63,12 +66,15 @@ Create User
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.create_user(disabled=False, email="Angela26@gmail.com", first="<value>", id="<id>", last="<value>", username="Caleigh.Maggio-Littel24")
@@ -112,12 +118,15 @@ Get User by ID
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.get_user_by_id(id="<id>")
@@ -152,12 +161,15 @@ Update User properties – admin use only
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.update_user_by_id(id_param="<value>", disabled=False, email="Johanna.Kerluke33@yahoo.com", first="<value>", id="<id>", last="<value>", username="Janessa73")
@@ -200,12 +212,15 @@ Delete User
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.delete_user_by_id(id="<id>")
@@ -240,12 +255,15 @@ Update User except for their roles
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.update_user_info_by_id(id_param="<value>", disabled=False, email="Jermey_Paucek18@gmail.com", first="<value>", id="<id>", last="<value>", username="Stacy_Nitzsche8")
@@ -295,7 +313,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.get_products_users_acl_by_product_and_id(product=cribl.PathParamProduct.STREAM, id="<id>")
@@ -338,7 +358,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.get_products_users_by_product(product=cribl.GetProductsUsersByProductPathParamProduct.LAKE)
@@ -380,7 +402,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.users.delete_products_users_cache_by_product(product=cribl.DeleteProductsUsersCacheByProductPathParamProduct.STREAM)

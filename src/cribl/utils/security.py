@@ -67,6 +67,21 @@ def get_security_from_env(security: Any, security_class: Any) -> Optional[BaseMo
     if os.getenv("CRIBL_BEARER_AUTH"):
         security_dict["bearer_auth"] = os.getenv("CRIBL_BEARER_AUTH")
 
+    if os.getenv("CRIBL_CLIENT_ID"):
+        security_dict.setdefault("client_oauth", {})["client_id"] = os.getenv(
+            "CRIBL_CLIENT_ID"
+        )
+
+    if os.getenv("CRIBL_CLIENT_SECRET"):
+        security_dict.setdefault("client_oauth", {})["client_secret"] = os.getenv(
+            "CRIBL_CLIENT_SECRET"
+        )
+
+    if os.getenv("CRIBL_TOKEN_URL"):
+        security_dict.setdefault("client_oauth", {})["token_url"] = os.getenv(
+            "CRIBL_TOKEN_URL"
+        )
+
     return security_class(**security_dict) if security_dict else None
 
 

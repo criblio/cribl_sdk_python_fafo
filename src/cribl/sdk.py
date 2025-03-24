@@ -100,7 +100,7 @@ from cribl.versioning import Versioning
 from cribl.workers import Workers
 from cribl.workspaces import Workspaces
 import httpx
-from typing import Any, Callable, Dict, Optional, Union, cast
+from typing import Callable, Dict, Optional, Union, cast
 import weakref
 
 
@@ -286,7 +286,9 @@ class Cribl(BaseSDK):
 
     def __init__(
         self,
-        bearer_auth: Optional[Union[Optional[str], Callable[[], Optional[str]]]] = None,
+        security: Optional[
+            Union[models.SecurityModel, Callable[[], models.SecurityModel]]
+        ] = None,
         workspace_name: Optional[str] = None,
         organization_id: Optional[str] = None,
         cloud_domain: Optional[str] = None,
@@ -304,7 +306,7 @@ class Cribl(BaseSDK):
     ) -> None:
         r"""Instantiates the SDK configuring it with the provided parameters.
 
-        :param bearer_auth: The bearer_auth required for authentication
+        :param security: The security details required for authentication
         :param workspace_name: Allows setting the workspaceName variable for url substitution
         :param organization_id: Allows setting the organizationId variable for url substitution
         :param cloud_domain: Allows setting the cloudDomain variable for url substitution
@@ -339,13 +341,6 @@ class Cribl(BaseSDK):
         assert issubclass(
             type(async_client), AsyncHttpClient
         ), "The provided async_client must implement the AsyncHttpClient protocol."
-
-        security: Any = None
-        if callable(bearer_auth):
-            # pylint: disable=unnecessary-lambda-assignment
-            security = lambda: models.SecurityModel(bearer_auth=bearer_auth())
-        else:
-            security = models.SecurityModel(bearer_auth=bearer_auth)
 
         if server_url is not None:
             if url_params is not None:

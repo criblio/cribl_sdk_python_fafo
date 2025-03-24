@@ -111,7 +111,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
@@ -134,7 +136,9 @@ import os
 async def main():
 
     async with Cribl(
-        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+        security=cribl.SecurityModel(
+            bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+        ),
     ) as c_client:
 
         res = await c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown_async(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
@@ -151,13 +155,14 @@ asyncio.run(main())
 
 ### Per-Client Security Schemes
 
-This SDK supports the following security scheme globally:
+This SDK supports the following security schemes globally:
 
-| Name          | Type | Scheme      | Environment Variable |
-| ------------- | ---- | ----------- | -------------------- |
-| `bearer_auth` | http | HTTP Bearer | `CRIBL_BEARER_AUTH`  |
+| Name           | Type   | Scheme       | Environment Variable |
+| -------------- | ------ | ------------ | -------------------- |
+| `bearer_auth`  | http   | HTTP Bearer  | `CRIBL_BEARER_AUTH`  |
+| `client_oauth` | oauth2 | OAuth2 token | `CRIBL_CLIENT_OAUTH` |
 
-To authenticate with the API the `bearer_auth` parameter must be set when initializing the SDK client instance. For example:
+You can set the security parameters through the `security` optional parameter when initializing the SDK client instance. The selected scheme will be used by default to authenticate with the API for all operations that support it. For example:
 ```python
 import cribl
 from cribl import Cribl
@@ -166,7 +171,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
@@ -1033,7 +1040,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY,
@@ -1055,7 +1064,9 @@ import os
 
 with Cribl(
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
@@ -1090,12 +1101,15 @@ When custom error responses are specified for an operation, the SDK may also rai
 ### Example
 
 ```python
+import cribl
 from cribl import Cribl, models
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
     res = None
     try:
@@ -1154,7 +1168,9 @@ with Cribl(
     organization_id="<id>"
     cloud_domain="<value>"
     group_name="<value>"
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
@@ -1176,7 +1192,9 @@ import os
 
 with Cribl(
     server_url="https://main-ian.cribl.cloud/api/v1",
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
@@ -1197,7 +1215,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY, server_url="https://api.cribl-staging.cloud")
@@ -1297,12 +1317,15 @@ The `Cribl` class implements the context manager protocol and registers a finali
 [context-manager]: https://docs.python.org/3/reference/datamodel.html#context-managers
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 def main():
 
     with Cribl(
-        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+        security=cribl.SecurityModel(
+            bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+        ),
     ) as c_client:
         # Rest of application here...
 
@@ -1311,7 +1334,9 @@ def main():
 async def amain():
 
     async with Cribl(
-        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+        security=cribl.SecurityModel(
+            bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+        ),
     ) as c_client:
         # Rest of application here...
 ```

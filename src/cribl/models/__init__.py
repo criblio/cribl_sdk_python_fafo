@@ -5164,6 +5164,7 @@ from .savedqueryschedule import (
 )
 from .savessearchrunmode import SavesSearchRunMode
 from .schemalibentry import SchemaLibEntry, SchemaLibEntryTypedDict
+from .schemeclientoauth import SchemeClientOauth, SchemeClientOauthTypedDict
 from .scriptlibentry import ScriptLibEntry, ScriptLibEntryTypedDict
 from .searchaggmode import SearchAggMode
 from .searchauditmetrics import (
@@ -10143,6 +10144,8 @@ __all__ = [
     "ScheduleTypedDict",
     "SchemaLibEntry",
     "SchemaLibEntryTypedDict",
+    "SchemeClientOauth",
+    "SchemeClientOauthTypedDict",
     "ScriptLibEntry",
     "ScriptLibEntryTypedDict",
     "SearchAggMode",
