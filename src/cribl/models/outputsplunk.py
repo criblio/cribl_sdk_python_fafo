@@ -125,6 +125,14 @@ class OutputSplunkAuthenticationMethod(str, Enum):
 
 
 class OutputSplunkCompression(str, Enum):
+    r"""Controls whether the sender should send compressed data to the server. Select 'Disabled' to reject compressed connections or 'Always' to ignore server's configuration and send compressed data."""
+
+    DISABLED = "disabled"
+    AUTO = "auto"
+    ALWAYS = "always"
+
+
+class OutputSplunkPqCompressCompression(str, Enum):
     r"""Codec to use to compress the persisted data."""
 
     NONE = "none"
@@ -194,13 +202,15 @@ class OutputSplunkTypedDict(TypedDict):
     description: NotRequired[str]
     max_failed_health_checks: NotRequired[float]
     r"""Maximum number of times healthcheck can fail before we close connection. If set to 0 (disabled), and the connection to Splunk is forcibly closed, some data loss might occur."""
+    compress: NotRequired[OutputSplunkCompression]
+    r"""Controls whether the sender should send compressed data to the server. Select 'Disabled' to reject compressed connections or 'Always' to ignore server's configuration and send compressed data."""
     pq_max_file_size: NotRequired[str]
     r"""The maximum size to store in each queue file before closing and optionally compressing (KB, MB, etc.)."""
     pq_max_size: NotRequired[str]
     r"""The maximum disk space that the queue can consume (as an average per Worker Process) before queueing stops. Enter a numeral with units of KB, MB, etc."""
     pq_path: NotRequired[str]
     r"""The location for the persistent queue files. To this field's value, the system will append: /<worker-id>/<output-id>."""
-    pq_compress: NotRequired[OutputSplunkCompression]
+    pq_compress: NotRequired[OutputSplunkPqCompressCompression]
     r"""Codec to use to compress the persisted data."""
     pq_on_backpressure: NotRequired[OutputSplunkQueueFullBehavior]
     r"""Whether to block or drop events when the queue is exerting backpressure (full capacity or low disk). 'Block' is the same behavior as non-PQ blocking. 'Drop new data' throws away incoming data, while leaving the contents of the PQ unchanged."""
@@ -297,6 +307,9 @@ class OutputSplunk(BaseModel):
     ] = 1
     r"""Maximum number of times healthcheck can fail before we close connection. If set to 0 (disabled), and the connection to Splunk is forcibly closed, some data loss might occur."""
 
+    compress: Optional[OutputSplunkCompression] = OutputSplunkCompression.DISABLED
+    r"""Controls whether the sender should send compressed data to the server. Select 'Disabled' to reject compressed connections or 'Always' to ignore server's configuration and send compressed data."""
+
     pq_max_file_size: Annotated[
         Optional[str], pydantic.Field(alias="pqMaxFileSize")
     ] = "1 MB"
@@ -311,8 +324,8 @@ class OutputSplunk(BaseModel):
     r"""The location for the persistent queue files. To this field's value, the system will append: /<worker-id>/<output-id>."""
 
     pq_compress: Annotated[
-        Optional[OutputSplunkCompression], pydantic.Field(alias="pqCompress")
-    ] = OutputSplunkCompression.NONE
+        Optional[OutputSplunkPqCompressCompression], pydantic.Field(alias="pqCompress")
+    ] = OutputSplunkPqCompressCompression.NONE
     r"""Codec to use to compress the persisted data."""
 
     pq_on_backpressure: Annotated[

@@ -201,7 +201,7 @@ class OutputWebhookTLSSettingsClientSide(BaseModel):
     r"""Maximum TLS version to use when connecting"""
 
 
-class Compression(str, Enum):
+class OutputWebhookCompression(str, Enum):
     r"""Codec to use to compress the persisted data."""
 
     NONE = "none"
@@ -356,7 +356,7 @@ class OutputWebhookTypedDict(TypedDict):
     r"""The maximum disk space that the queue can consume (as an average per Worker Process) before queueing stops. Enter a numeral with units of KB, MB, etc."""
     pq_path: NotRequired[str]
     r"""The location for the persistent queue files. To this field's value, the system will append: /<worker-id>/<output-id>."""
-    pq_compress: NotRequired[Compression]
+    pq_compress: NotRequired[OutputWebhookCompression]
     r"""Codec to use to compress the persisted data."""
     pq_on_backpressure: NotRequired[QueueFullBehavior]
     r"""Whether to block or drop events when the queue is exerting backpressure (full capacity or low disk). 'Block' is the same behavior as non-PQ blocking. 'Drop new data' throws away incoming data, while leaving the contents of the PQ unchanged."""
@@ -578,8 +578,8 @@ class OutputWebhook(BaseModel):
     r"""The location for the persistent queue files. To this field's value, the system will append: /<worker-id>/<output-id>."""
 
     pq_compress: Annotated[
-        Optional[Compression], pydantic.Field(alias="pqCompress")
-    ] = Compression.NONE
+        Optional[OutputWebhookCompression], pydantic.Field(alias="pqCompress")
+    ] = OutputWebhookCompression.NONE
     r"""Codec to use to compress the persisted data."""
 
     pq_on_backpressure: Annotated[

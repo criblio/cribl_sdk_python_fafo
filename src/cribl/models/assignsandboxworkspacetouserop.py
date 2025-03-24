@@ -7,6 +7,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+ASSIGN_SANDBOX_WORKSPACE_TO_USER_OP_SERVERS = [
+    "https://api.cribl-staging.cloud",
+]
+
+
 class AssignSandboxWorkspaceToUserRequestTypedDict(TypedDict):
     course_id: str
 

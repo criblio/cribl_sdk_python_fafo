@@ -102,10 +102,11 @@ from .appscopetransport import (
 )
 from .assignedsandboxassignmentdto import (
     AssignedSandboxAssignmentDTO,
+    AssignedSandboxAssignmentDTOState,
     AssignedSandboxAssignmentDTOTypedDict,
-    State,
 )
 from .assignsandboxworkspacetouserop import (
+    ASSIGN_SANDBOX_WORKSPACE_TO_USER_OP_SERVERS,
     AssignSandboxWorkspaceToUserRequest,
     AssignSandboxWorkspaceToUserRequestTypedDict,
 )
@@ -1101,6 +1102,7 @@ from .getappscopelibentrybyidop import (
     GetAppscopeLibEntryByIDResponseBody,
     GetAppscopeLibEntryByIDResponseBodyTypedDict,
 )
+from .getassignmentsop import GET_ASSIGNMENTS_OP_SERVERS
 from .getauthauthorizationcodecallbackop import (
     GetAuthAuthorizationCodeCallbackRequest,
     GetAuthAuthorizationCodeCallbackRequestTypedDict,
@@ -1175,9 +1177,13 @@ from .getconfigbundlesbygroupandversionop import (
     GetConfigBundlesByGroupAndVersionRequestTypedDict,
 )
 from .getcostsdto import Costs, CostsTypedDict, GetCostsDTO, GetCostsDTOTypedDict
-from .getcostsop import GetCostsRequest, GetCostsRequestTypedDict
+from .getcostsop import GET_COSTS_OP_SERVERS, GetCostsRequest, GetCostsRequestTypedDict
 from .getcreditsdto import GetCreditsDTO, GetCreditsDTOTypedDict
-from .getcreditsop import GetCreditsRequest, GetCreditsRequestTypedDict
+from .getcreditsop import (
+    GET_CREDITS_OP_SERVERS,
+    GetCreditsRequest,
+    GetCreditsRequestTypedDict,
+)
 from .getcreditssummaryresponsev5 import (
     GetCreditsSummaryResponseV5,
     GetCreditsSummaryResponseV5TypedDict,
@@ -1437,10 +1443,18 @@ from .getinputstatusbyidop import (
     GetInputStatusByIDResponseBody,
     GetInputStatusByIDResponseBodyTypedDict,
 )
-from .getinvoiceop import GetInvoiceRequest, GetInvoiceRequestTypedDict
+from .getinvoiceop import (
+    GET_INVOICE_OP_SERVERS,
+    GetInvoiceRequest,
+    GetInvoiceRequestTypedDict,
+)
 from .getinvoiceresponsev5 import GetInvoiceResponseV5, GetInvoiceResponseV5TypedDict
 from .getinvoicesdto import GetInvoicesDTO, GetInvoicesDTOTypedDict
-from .getinvoicesop import GetInvoicesRequest, GetInvoicesRequestTypedDict
+from .getinvoicesop import (
+    GET_INVOICES_OP_SERVERS,
+    GetInvoicesRequest,
+    GetInvoicesRequestTypedDict,
+)
 from .getinvoicesresponsev5 import GetInvoicesResponseV5, GetInvoicesResponseV5TypedDict
 from .getjobresultsbyidop import (
     GetJobResultsByIDRequest,
@@ -1576,7 +1590,7 @@ from .getpipelinebypackop import (
     GetPipelineByPackResponseBody,
     GetPipelineByPackResponseBodyTypedDict,
 )
-from .getplanop import GetPlanRequest, GetPlanRequestTypedDict
+from .getplanop import GET_PLAN_OP_SERVERS, GetPlanRequest, GetPlanRequestTypedDict
 from .getpolicyrulebyidop import (
     GetPolicyRuleByIDRequest,
     GetPolicyRuleByIDRequestTypedDict,
@@ -2024,7 +2038,7 @@ from .getusagegroupbyidop import (
     GetUsageGroupByIDResponseBody,
     GetUsageGroupByIDResponseBodyTypedDict,
 )
-from .getusageop import GetUsageRequest, GetUsageRequestTypedDict
+from .getusageop import GET_USAGE_OP_SERVERS, GetUsageRequest, GetUsageRequestTypedDict
 from .getuserbyidop import (
     GetUserByIDRequest,
     GetUserByIDRequestTypedDict,
@@ -3012,6 +3026,7 @@ from .inputsnmp import (
 from .inputsplunk import (
     AuthTokens,
     AuthTokensTypedDict,
+    Compression,
     InputSplunk,
     InputSplunkCompression,
     InputSplunkConnections,
@@ -4669,6 +4684,7 @@ from .outputsplunk import (
     OutputSplunkMaximumTLSVersion,
     OutputSplunkMinimumTLSVersion,
     OutputSplunkMode,
+    OutputSplunkPqCompressCompression,
     OutputSplunkPqControls,
     OutputSplunkPqControlsTypedDict,
     OutputSplunkQueueFullBehavior,
@@ -4716,6 +4732,7 @@ from .outputsplunklb import (
     OutputSplunkLbMinimumTLSVersion,
     OutputSplunkLbMode,
     OutputSplunkLbNestedFieldSerialization,
+    OutputSplunkLbPqCompressCompression,
     OutputSplunkLbPqControls,
     OutputSplunkLbPqControlsTypedDict,
     OutputSplunkLbQueueFullBehavior,
@@ -4852,11 +4869,11 @@ from .outputwavefront import (
 )
 from .outputwebhook import (
     BackpressureBehavior,
-    Compression,
     FailedRequestLoggingMode,
     Method,
     OutputWebhook,
     OutputWebhookAuthenticationType,
+    OutputWebhookCompression,
     OutputWebhookExtraHTTPHeaders,
     OutputWebhookExtraHTTPHeadersTypedDict,
     OutputWebhookFormat,
@@ -5770,55 +5787,67 @@ from .userprofile import UserProfile, UserProfileTypedDict
 from .v5_billing_consumption_getcreditssummaryop import (
     V5BillingConsumptionGetCreditsSummaryRequest,
     V5BillingConsumptionGetCreditsSummaryRequestTypedDict,
+    V5_BILLING_CONSUMPTION_GET_CREDITS_SUMMARY_OP_SERVERS,
 )
 from .v5_billing_consumption_getcumulativeconsumptionop import (
     V5BillingConsumptionGetCumulativeConsumptionRequest,
     V5BillingConsumptionGetCumulativeConsumptionRequestTypedDict,
+    V5_BILLING_CONSUMPTION_GET_CUMULATIVE_CONSUMPTION_OP_SERVERS,
 )
 from .v5_billing_consumption_getproductsbreakdownop import (
     V5BillingConsumptionGetProductsBreakdownRequest,
     V5BillingConsumptionGetProductsBreakdownRequestTypedDict,
+    V5_BILLING_CONSUMPTION_GET_PRODUCTS_BREAKDOWN_OP_SERVERS,
 )
 from .v5_billing_consumption_getproductsconsumptionstatsop import (
     V5BillingConsumptionGetProductsConsumptionStatsRequest,
     V5BillingConsumptionGetProductsConsumptionStatsRequestTypedDict,
+    V5_BILLING_CONSUMPTION_GET_PRODUCTS_CONSUMPTION_STATS_OP_SERVERS,
 )
 from .v5_billing_consumption_getsingleproductusagebreakdownop import (
     ProductSlug,
     V5BillingConsumptionGetSingleProductUsageBreakdownRequest,
     V5BillingConsumptionGetSingleProductUsageBreakdownRequestTypedDict,
+    V5_BILLING_CONSUMPTION_GET_SINGLE_PRODUCT_USAGE_BREAKDOWN_OP_SERVERS,
 )
 from .v5_billing_invoices_getinvoiceop import (
     V5BillingInvoicesGetInvoiceRequest,
     V5BillingInvoicesGetInvoiceRequestTypedDict,
+    V5_BILLING_INVOICES_GET_INVOICE_OP_SERVERS,
 )
 from .v5_billing_invoices_getinvoicesop import (
     V5BillingInvoicesGetInvoicesRequest,
     V5BillingInvoicesGetInvoicesRequestTypedDict,
+    V5_BILLING_INVOICES_GET_INVOICES_OP_SERVERS,
 )
 from .vaultkmstlsclientconfig import (
     VaultKMSTLSClientConfig,
     VaultKMSTLSClientConfigTypedDict,
 )
 from .versioninfo import VersionInfo, VersionInfoTypedDict
-from .workspacedto import WorkspaceDTO, WorkspaceDTOState, WorkspaceDTOTypedDict
+from .workspacedto import State, WorkspaceDTO, WorkspaceDTOTypedDict
 from .workspacescontroller_createworkspaceop import (
+    WORKSPACES_CONTROLLER_CREATE_WORKSPACE_OP_SERVERS,
     WorkspacesControllerCreateWorkspaceRequest,
     WorkspacesControllerCreateWorkspaceRequestTypedDict,
 )
 from .workspacescontroller_deleteworkspaceop import (
+    WORKSPACES_CONTROLLER_DELETE_WORKSPACE_OP_SERVERS,
     WorkspacesControllerDeleteWorkspaceRequest,
     WorkspacesControllerDeleteWorkspaceRequestTypedDict,
 )
 from .workspacescontroller_getworkspaceop import (
+    WORKSPACES_CONTROLLER_GET_WORKSPACE_OP_SERVERS,
     WorkspacesControllerGetWorkspaceRequest,
     WorkspacesControllerGetWorkspaceRequestTypedDict,
 )
 from .workspacescontroller_listworkspacesop import (
+    WORKSPACES_CONTROLLER_LIST_WORKSPACES_OP_SERVERS,
     WorkspacesControllerListWorkspacesRequest,
     WorkspacesControllerListWorkspacesRequestTypedDict,
 )
 from .workspacescontroller_patchworkspaceop import (
+    WORKSPACES_CONTROLLER_PATCH_WORKSPACE_OP_SERVERS,
     WorkspacesControllerPatchWorkspaceRequest,
     WorkspacesControllerPatchWorkspaceRequestTypedDict,
 )
@@ -5834,6 +5863,7 @@ __all__ = [
     "APIError",
     "APITypedDict",
     "APIVersion",
+    "ASSIGN_SANDBOX_WORKSPACE_TO_USER_OP_SERVERS",
     "AWSKMSServiceConfig",
     "AWSKMSServiceConfigTypedDict",
     "AccessControl",
@@ -5902,6 +5932,7 @@ __all__ = [
     "AssignSandboxWorkspaceToUserRequest",
     "AssignSandboxWorkspaceToUserRequestTypedDict",
     "AssignedSandboxAssignmentDTO",
+    "AssignedSandboxAssignmentDTOState",
     "AssignedSandboxAssignmentDTOTypedDict",
     "Audit",
     "AuditTypedDict",
@@ -6745,6 +6776,13 @@ __all__ = [
     "FunctionSpecificConfigs",
     "FunctionSpecificConfigsTypedDict",
     "FunctionTypedDict",
+    "GET_ASSIGNMENTS_OP_SERVERS",
+    "GET_COSTS_OP_SERVERS",
+    "GET_CREDITS_OP_SERVERS",
+    "GET_INVOICES_OP_SERVERS",
+    "GET_INVOICE_OP_SERVERS",
+    "GET_PLAN_OP_SERVERS",
+    "GET_USAGE_OP_SERVERS",
     "GetActivePlanDTO",
     "GetActivePlanDTOTypedDict",
     "GetAiConsentResponseBody",
@@ -9640,6 +9678,7 @@ __all__ = [
     "OutputSplunkLbMinimumTLSVersion",
     "OutputSplunkLbMode",
     "OutputSplunkLbNestedFieldSerialization",
+    "OutputSplunkLbPqCompressCompression",
     "OutputSplunkLbPqControls",
     "OutputSplunkLbPqControlsTypedDict",
     "OutputSplunkLbQueueFullBehavior",
@@ -9652,6 +9691,7 @@ __all__ = [
     "OutputSplunkMaximumTLSVersion",
     "OutputSplunkMinimumTLSVersion",
     "OutputSplunkMode",
+    "OutputSplunkPqCompressCompression",
     "OutputSplunkPqControls",
     "OutputSplunkPqControlsTypedDict",
     "OutputSplunkQueueFullBehavior",
@@ -9769,6 +9809,7 @@ __all__ = [
     "OutputWavefrontTypedDict",
     "OutputWebhook",
     "OutputWebhookAuthenticationType",
+    "OutputWebhookCompression",
     "OutputWebhookExtraHTTPHeaders",
     "OutputWebhookExtraHTTPHeadersTypedDict",
     "OutputWebhookFormat",
@@ -10614,11 +10655,23 @@ __all__ = [
     "V5BillingInvoicesGetInvoiceRequestTypedDict",
     "V5BillingInvoicesGetInvoicesRequest",
     "V5BillingInvoicesGetInvoicesRequestTypedDict",
+    "V5_BILLING_CONSUMPTION_GET_CREDITS_SUMMARY_OP_SERVERS",
+    "V5_BILLING_CONSUMPTION_GET_CUMULATIVE_CONSUMPTION_OP_SERVERS",
+    "V5_BILLING_CONSUMPTION_GET_PRODUCTS_BREAKDOWN_OP_SERVERS",
+    "V5_BILLING_CONSUMPTION_GET_PRODUCTS_CONSUMPTION_STATS_OP_SERVERS",
+    "V5_BILLING_CONSUMPTION_GET_SINGLE_PRODUCT_USAGE_BREAKDOWN_OP_SERVERS",
+    "V5_BILLING_INVOICES_GET_INVOICES_OP_SERVERS",
+    "V5_BILLING_INVOICES_GET_INVOICE_OP_SERVERS",
     "Variant",
     "VaultKMSTLSClientConfig",
     "VaultKMSTLSClientConfigTypedDict",
     "VersionInfo",
     "VersionInfoTypedDict",
+    "WORKSPACES_CONTROLLER_CREATE_WORKSPACE_OP_SERVERS",
+    "WORKSPACES_CONTROLLER_DELETE_WORKSPACE_OP_SERVERS",
+    "WORKSPACES_CONTROLLER_GET_WORKSPACE_OP_SERVERS",
+    "WORKSPACES_CONTROLLER_LIST_WORKSPACES_OP_SERVERS",
+    "WORKSPACES_CONTROLLER_PATCH_WORKSPACE_OP_SERVERS",
     "WarmPoolSize",
     "WarmPoolSize2",
     "WarmPoolSizeTypedDict",
@@ -10630,7 +10683,6 @@ __all__ = [
     "WorkersModel",
     "WorkersModelTypedDict",
     "WorkspaceDTO",
-    "WorkspaceDTOState",
     "WorkspaceDTOTypedDict",
     "WorkspacesControllerCreateWorkspaceRequest",
     "WorkspacesControllerCreateWorkspaceRequestTypedDict",

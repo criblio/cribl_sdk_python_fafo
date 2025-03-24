@@ -9,7 +9,7 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class WorkspaceDTOState(str, Enum):
+class State(str, Enum):
     WORKSPACE_REQUESTED = "Workspace-Requested"
     WORKSPACE_PROVISIONING = "Workspace-Provisioning"
     WORKSPACE_PROVISIONING_FAILED = "Workspace-Provisioning-Failed"
@@ -30,7 +30,7 @@ class WorkspaceDTOTypedDict(TypedDict):
     region: str
     last_updated: datetime
     leader_fqdn: str
-    state: WorkspaceDTOState
+    state: State
     alias: NotRequired[str]
     description: NotRequired[str]
     tags: NotRequired[List[str]]
@@ -45,7 +45,7 @@ class WorkspaceDTO(BaseModel):
 
     leader_fqdn: Annotated[str, pydantic.Field(alias="leaderFQDN")]
 
-    state: WorkspaceDTOState
+    state: State
 
     alias: Optional[str] = None
 

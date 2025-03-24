@@ -4,7 +4,7 @@
 <!-- Start Summary [summary] -->
 ## Summary
 
-Cribl API Reference: This API Reference lists available REST endpoints, along with their supported operations for accessing, creating, updating, or deleting resources. See our complementary product documentation at [docs.cribl.io](http://docs.cribl.io).
+
 <!-- End Summary [summary] -->
 
 <!-- Start Table of Contents [toc] -->
@@ -18,6 +18,7 @@ Cribl API Reference: This API Reference lists available REST endpoints, along wi
   * [Available Resources and Operations](#available-resources-and-operations)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
+  * [Server Selection](#server-selection)
   * [Custom HTTP Client](#custom-http-client)
   * [Resource Management](#resource-management)
   * [Debugging](#debugging)
@@ -105,15 +106,15 @@ Generally, the SDK will work well with most IDEs out of the box. However, when u
 # Synchronous Example
 import cribl
 from cribl import Cribl
+import dateutil.parser
 import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
-    res = c_client.billing.get_usage(organization_id="<id>", metric_type=cribl.MetricType.HYBRID_WORKER_G_BS_RECEIVED, starting_on="<value>", ending_before="<value>")
+    res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
 
     # Handle response
     print(res)
@@ -127,16 +128,16 @@ The same SDK client can also be used to make asychronous requests by importing a
 import asyncio
 import cribl
 from cribl import Cribl
+import dateutil.parser
 import os
 
 async def main():
 
     async with Cribl(
-        server_url="https://api.example.com",
         bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
     ) as c_client:
 
-        res = await c_client.billing.get_usage_async(organization_id="<id>", metric_type=cribl.MetricType.HYBRID_WORKER_G_BS_RECEIVED, starting_on="<value>", ending_before="<value>")
+        res = await c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown_async(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
 
         # Handle response
         print(res)
@@ -160,15 +161,15 @@ To authenticate with the API the `bearer_auth` parameter must be set when initia
 ```python
 import cribl
 from cribl import Cribl
+import dateutil.parser
 import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
-    res = c_client.billing.get_usage(organization_id="<id>", metric_type=cribl.MetricType.HYBRID_WORKER_G_BS_RECEIVED, starting_on="<value>", ending_before="<value>")
+    res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
 
     # Handle response
     print(res)
@@ -221,12 +222,12 @@ with Cribl(
 
 ### [billing](docs/sdks/billing/README.md)
 
-* [get_usage](docs/sdks/billing/README.md#get_usage)
-* [get_credits](docs/sdks/billing/README.md#get_credits)
 * [get_costs](docs/sdks/billing/README.md#get_costs)
 * [get_invoices](docs/sdks/billing/README.md#get_invoices)
 * [get_invoice](docs/sdks/billing/README.md#get_invoice)
+* [get_credits](docs/sdks/billing/README.md#get_credits)
 * [get_plan](docs/sdks/billing/README.md#get_plan)
+* [get_usage](docs/sdks/billing/README.md#get_usage)
 
 ### [certificates](docs/sdks/certificates/README.md)
 
@@ -791,8 +792,8 @@ with Cribl(
 
 ### [sandboxes](docs/sdks/sandboxes/README.md)
 
-* [assign_sandbox_workspace_to_user](docs/sdks/sandboxes/README.md#assign_sandbox_workspace_to_user)
 * [get_assignments](docs/sdks/sandboxes/README.md#get_assignments)
+* [assign_sandbox_workspace_to_user](docs/sdks/sandboxes/README.md#assign_sandbox_workspace_to_user)
 
 ### [saved_jobs](docs/sdks/savedjobs/README.md)
 
@@ -963,11 +964,11 @@ with Cribl(
 
 #### [v5.billing.consumption](docs/sdks/consumption/README.md)
 
+* [v5_billing_consumption_get_single_product_usage_breakdown](docs/sdks/consumption/README.md#v5_billing_consumption_get_single_product_usage_breakdown)
+* [v5_billing_consumption_get_products_consumption_stats](docs/sdks/consumption/README.md#v5_billing_consumption_get_products_consumption_stats)
 * [v5_billing_consumption_get_credits_summary](docs/sdks/consumption/README.md#v5_billing_consumption_get_credits_summary)
 * [v5_billing_consumption_get_cumulative_consumption](docs/sdks/consumption/README.md#v5_billing_consumption_get_cumulative_consumption)
 * [v5_billing_consumption_get_products_breakdown](docs/sdks/consumption/README.md#v5_billing_consumption_get_products_breakdown)
-* [v5_billing_consumption_get_products_consumption_stats](docs/sdks/consumption/README.md#v5_billing_consumption_get_products_consumption_stats)
-* [v5_billing_consumption_get_single_product_usage_breakdown](docs/sdks/consumption/README.md#v5_billing_consumption_get_single_product_usage_breakdown)
 
 #### [v5.billing.invoices](docs/sdks/invoices/README.md)
 
@@ -1027,15 +1028,15 @@ To change the default retry strategy for a single API call, simply provide a `Re
 import cribl
 from cribl import Cribl
 from cribl.utils import BackoffStrategy, RetryConfig
+import dateutil.parser
 import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
-    res = c_client.billing.get_usage(organization_id="<id>", metric_type=cribl.MetricType.HYBRID_WORKER_G_BS_RECEIVED, starting_on="<value>", ending_before="<value>",
+    res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY,
         RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False))
 
     # Handle response
@@ -1048,16 +1049,16 @@ If you'd like to override the default retry strategy for all operations that sup
 import cribl
 from cribl import Cribl
 from cribl.utils import BackoffStrategy, RetryConfig
+import dateutil.parser
 import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     retry_config=RetryConfig("backoff", BackoffStrategy(1, 50, 1.1, 100), False),
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
-    res = c_client.billing.get_usage(organization_id="<id>", metric_type=cribl.MetricType.HYBRID_WORKER_G_BS_RECEIVED, starting_on="<value>", ending_before="<value>")
+    res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
 
     # Handle response
     print(res)
@@ -1094,7 +1095,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
     res = None
@@ -1113,6 +1113,100 @@ with Cribl(
         raise(e)
 ```
 <!-- End Error Handling [errors] -->
+
+<!-- Start Server Selection [server] -->
+## Server Selection
+
+### Select Server by Name
+
+You can override the default server globally by passing a server name to the `server: str` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the names associated with the available servers:
+
+| Name            | Server                                                                        | Variables                                                              | Description |
+| --------------- | ----------------------------------------------------------------------------- | ---------------------------------------------------------------------- | ----------- |
+| `cloud`         | `https://{workspaceName}-{organizationId}.{cloudDomain}/api/v1`               | `workspaceName`<br/>`organizationId`<br/>`cloudDomain`                 |             |
+| `cloud-group`   | `https://{workspaceName}-{organizationId}.{cloudDomain}/api/v1/m/{groupName}` | `workspaceName`<br/>`organizationId`<br/>`cloudDomain`<br/>`groupName` |             |
+| `managed`       | `https://{hostname}:{port}/api/v1`                                            | `hostname`<br/>`port`                                                  |             |
+| `managed-group` | `https://{hostname}:{port}/api/v1/m/{groupName}`                              | `hostname`<br/>`port`<br/>`groupName`                                  |             |
+
+If the selected server has variables, you may override its default values through the additional parameters made available in the SDK constructor:
+
+| Variable         | Parameter              | Default         | Description                            |
+| ---------------- | ---------------------- | --------------- | -------------------------------------- |
+| `workspaceName`  | `workspace_name: str`  | `"main"`        | The Workspace name                     |
+| `organizationId` | `organization_id: str` | `"ian"`         | The Organization ID                    |
+| `cloudDomain`    | `cloud_domain: str`    | `"cribl.cloud"` | Cribl Cloud domain name                |
+| `groupName`      | `group_name: str`      | `"default"`     | The name of the Worker Group or Fleet  |
+| `hostname`       | `hostname: str`        | `"localhost"`   | The hostname of the managed API server |
+| `port`           | `port: str`            | `"9000"`        | The port of the managed API server     |
+
+#### Example
+
+```python
+import cribl
+from cribl import Cribl
+import dateutil.parser
+import os
+
+
+with Cribl(
+    server="cloud-group",
+    workspace_name="<value>"
+    organization_id="<id>"
+    cloud_domain="<value>"
+    group_name="<value>"
+    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+) as c_client:
+
+    res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
+
+    # Handle response
+    print(res)
+
+```
+
+### Override Server URL Per-Client
+
+The default server can also be overridden globally by passing a URL to the `server_url: str` optional parameter when initializing the SDK client instance. For example:
+```python
+import cribl
+from cribl import Cribl
+import dateutil.parser
+import os
+
+
+with Cribl(
+    server_url="https://main-ian.cribl.cloud/api/v1",
+    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+) as c_client:
+
+    res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY)
+
+    # Handle response
+    print(res)
+
+```
+
+### Override Server URL Per-Operation
+
+The server URL can also be overridden on a per-operation basis, provided a server list was specified for the operation. For example:
+```python
+import cribl
+from cribl import Cribl
+import dateutil.parser
+import os
+
+
+with Cribl(
+    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+) as c_client:
+
+    res = c_client.v5.billing.consumption.v5_billing_consumption_get_single_product_usage_breakdown(organization_id="<id>", product_slug=cribl.ProductSlug.SEARCH, starting_on=dateutil.parser.isoparse("2023-11-28T21:49:04.925Z"), ending_before=dateutil.parser.isoparse("2025-09-09T13:52:53.788Z"), window=cribl.ConsumptionWindowV5.MONTHLY, server_url="https://api.cribl-staging.cloud")
+
+    # Handle response
+    print(res)
+
+```
+<!-- End Server Selection [server] -->
 
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
@@ -1208,7 +1302,6 @@ import os
 def main():
 
     with Cribl(
-        server_url="https://api.example.com",
         bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
     ) as c_client:
         # Rest of application here...
@@ -1218,7 +1311,6 @@ def main():
 async def amain():
 
     async with Cribl(
-        server_url="https://api.example.com",
         bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
     ) as c_client:
         # Rest of application here...
@@ -1236,7 +1328,7 @@ from cribl import Cribl
 import logging
 
 logging.basicConfig(level=logging.DEBUG)
-s = Cribl(server_url="https://example.com", debug_logger=logging.getLogger("cribl"))
+s = Cribl(debug_logger=logging.getLogger("cribl"))
 ```
 
 You can also enable a default debug logger by setting an environment variable `CRIBL_DEBUG` to true.

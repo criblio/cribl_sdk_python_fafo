@@ -9,6 +9,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V5_BILLING_CONSUMPTION_GET_PRODUCTS_CONSUMPTION_STATS_OP_SERVERS = [
+    "https://api.cribl-staging.cloud",
+]
+
+
 class V5BillingConsumptionGetProductsConsumptionStatsRequestTypedDict(TypedDict):
     organization_id: str
     starting_on: datetime

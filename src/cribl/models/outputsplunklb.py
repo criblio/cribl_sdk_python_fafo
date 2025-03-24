@@ -124,6 +124,14 @@ class OutputSplunkLbAuthenticationMethod(str, Enum):
     SECRET = "secret"
 
 
+class OutputSplunkLbCompression(str, Enum):
+    r"""Controls whether the sender should send compressed data to the server. Select 'Disabled' to reject compressed connections or 'Always' to ignore server's configuration and send compressed data."""
+
+    DISABLED = "disabled"
+    AUTO = "auto"
+    ALWAYS = "always"
+
+
 class OutputSplunkLbIndexerDiscoveryConfigsAuthTokensAuthenticationMethod(str, Enum):
     r"""Select Manual to enter an auth token directly, or select Secret to use a text secret to authenticate"""
 
@@ -248,7 +256,7 @@ class Hosts(BaseModel):
     r"""Assign a weight (>0) to each endpoint to indicate its traffic-handling capability"""
 
 
-class OutputSplunkLbCompression(str, Enum):
+class OutputSplunkLbPqCompressCompression(str, Enum):
     r"""Codec to use to compress the persisted data."""
 
     NONE = "none"
@@ -326,6 +334,8 @@ class OutputSplunkLbTypedDict(TypedDict):
     description: NotRequired[str]
     max_failed_health_checks: NotRequired[float]
     r"""Maximum number of times healthcheck can fail before we close connection. If set to 0 (disabled), and the connection to Splunk is forcibly closed, some data loss might occur."""
+    compress: NotRequired[OutputSplunkLbCompression]
+    r"""Controls whether the sender should send compressed data to the server. Select 'Disabled' to reject compressed connections or 'Always' to ignore server's configuration and send compressed data."""
     indexer_discovery_configs: NotRequired[IndexerDiscoveryConfigsTypedDict]
     r"""List of configurations to set up indexer discovery in Splunk Indexer clustering environment."""
     exclude_self: NotRequired[bool]
@@ -336,7 +346,7 @@ class OutputSplunkLbTypedDict(TypedDict):
     r"""The maximum disk space that the queue can consume (as an average per Worker Process) before queueing stops. Enter a numeral with units of KB, MB, etc."""
     pq_path: NotRequired[str]
     r"""The location for the persistent queue files. To this field's value, the system will append: /<worker-id>/<output-id>."""
-    pq_compress: NotRequired[OutputSplunkLbCompression]
+    pq_compress: NotRequired[OutputSplunkLbPqCompressCompression]
     r"""Codec to use to compress the persisted data."""
     pq_on_backpressure: NotRequired[OutputSplunkLbQueueFullBehavior]
     r"""Whether to block or drop events when the queue is exerting backpressure (full capacity or low disk). 'Block' is the same behavior as non-PQ blocking. 'Drop new data' throws away incoming data, while leaving the contents of the PQ unchanged."""
@@ -456,6 +466,9 @@ class OutputSplunkLb(BaseModel):
     ] = 1
     r"""Maximum number of times healthcheck can fail before we close connection. If set to 0 (disabled), and the connection to Splunk is forcibly closed, some data loss might occur."""
 
+    compress: Optional[OutputSplunkLbCompression] = OutputSplunkLbCompression.DISABLED
+    r"""Controls whether the sender should send compressed data to the server. Select 'Disabled' to reject compressed connections or 'Always' to ignore server's configuration and send compressed data."""
+
     indexer_discovery_configs: Annotated[
         Optional[IndexerDiscoveryConfigs],
         pydantic.Field(alias="indexerDiscoveryConfigs"),
@@ -479,8 +492,9 @@ class OutputSplunkLb(BaseModel):
     r"""The location for the persistent queue files. To this field's value, the system will append: /<worker-id>/<output-id>."""
 
     pq_compress: Annotated[
-        Optional[OutputSplunkLbCompression], pydantic.Field(alias="pqCompress")
-    ] = OutputSplunkLbCompression.NONE
+        Optional[OutputSplunkLbPqCompressCompression],
+        pydantic.Field(alias="pqCompress"),
+    ] = OutputSplunkLbPqCompressCompression.NONE
     r"""Codec to use to compress the persisted data."""
 
     pq_on_backpressure: Annotated[

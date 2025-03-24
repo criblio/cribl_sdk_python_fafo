@@ -149,14 +149,14 @@ class OutputCriblLakeTypedDict(TypedDict):
     r"""Maximum amount of time to write to a file. Files open for longer than this will be closed and moved to final output location."""
     max_file_idle_time_sec: NotRequired[float]
     r"""Maximum amount of time to keep inactive files open. Files open for longer than this will be closed and moved to final output location."""
-    max_concurrent_file_parts: NotRequired[float]
-    r"""Maximum number of parts to upload in parallel per file. Minimum part size is 5MB."""
     verify_permissions: NotRequired[bool]
     r"""Disable if you can access files within the bucket but not the bucket itself."""
     max_closing_files_to_backpressure: NotRequired[float]
     r"""Maximum number of files that can be waiting for upload before backpressure is applied"""
     aws_authentication_method: NotRequired[AwsAuthenticationMethod]
     format_: NotRequired[OutputCriblLakeFormat]
+    max_concurrent_file_parts: NotRequired[float]
+    r"""Maximum number of parts to upload in parallel per file. Minimum part size is 5MB."""
     description: NotRequired[str]
     empty_dir_cleanup_sec: NotRequired[float]
     r"""How frequently, in seconds, to clean up empty directories when 'Remove empty staging dirs' is enabled"""
@@ -328,11 +328,6 @@ class OutputCriblLake(BaseModel):
     ] = 30
     r"""Maximum amount of time to keep inactive files open. Files open for longer than this will be closed and moved to final output location."""
 
-    max_concurrent_file_parts: Annotated[
-        Optional[float], pydantic.Field(alias="maxConcurrentFileParts")
-    ] = 4
-    r"""Maximum number of parts to upload in parallel per file. Minimum part size is 5MB."""
-
     verify_permissions: Annotated[
         Optional[bool], pydantic.Field(alias="verifyPermissions")
     ] = True
@@ -351,6 +346,11 @@ class OutputCriblLake(BaseModel):
     format_: Annotated[
         Optional[OutputCriblLakeFormat], pydantic.Field(alias="format")
     ] = None
+
+    max_concurrent_file_parts: Annotated[
+        Optional[float], pydantic.Field(alias="maxConcurrentFileParts")
+    ] = 1
+    r"""Maximum number of parts to upload in parallel per file. Minimum part size is 5MB."""
 
     description: Optional[str] = None
 

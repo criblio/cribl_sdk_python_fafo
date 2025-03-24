@@ -5,92 +5,12 @@
 
 ### Available Operations
 
-* [get_usage](#get_usage)
-* [get_credits](#get_credits)
 * [get_costs](#get_costs)
 * [get_invoices](#get_invoices)
 * [get_invoice](#get_invoice)
+* [get_credits](#get_credits)
 * [get_plan](#get_plan)
-
-## get_usage
-
-### Example Usage
-
-```python
-import cribl
-from cribl import Cribl
-import os
-
-
-with Cribl(
-    server_url="https://api.example.com",
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
-) as c_client:
-
-    res = c_client.billing.get_usage(organization_id="<id>", metric_type=cribl.MetricType.HYBRID_WORKER_G_BS_RECEIVED, starting_on="<value>", ending_before="<value>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `metric_type`                                                       | [models.MetricType](../../models/metrictype.md)                     | :heavy_check_mark:                                                  | N/A                                                                 |
-| `starting_on`                                                       | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `ending_before`                                                     | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.GetUsageDTO](../../models/getusagedto.md)**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| models.APIError | 4XX, 5XX        | \*/\*           |
-
-## get_credits
-
-### Example Usage
-
-```python
-from cribl import Cribl
-import os
-
-
-with Cribl(
-    server_url="https://api.example.com",
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
-) as c_client:
-
-    res = c_client.billing.get_credits(organization_id="<id>")
-
-    # Handle response
-    print(res)
-
-```
-
-### Parameters
-
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
-
-### Response
-
-**[models.GetCreditsDTO](../../models/getcreditsdto.md)**
-
-### Errors
-
-| Error Type      | Status Code     | Content Type    |
-| --------------- | --------------- | --------------- |
-| models.APIError | 4XX, 5XX        | \*/\*           |
+* [get_usage](#get_usage)
 
 ## get_costs
 
@@ -102,7 +22,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -121,6 +40,7 @@ with Cribl(
 | `starting_on`                                                       | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `ending_before`                                                     | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -142,7 +62,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -159,6 +78,7 @@ with Cribl(
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -180,7 +100,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -198,10 +117,49 @@ with Cribl(
 | `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `invoice_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
 **[models.GetSingleInvoiceDTO](../../models/getsingleinvoicedto.md)**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| models.APIError | 4XX, 5XX        | \*/\*           |
+
+## get_credits
+
+### Example Usage
+
+```python
+from cribl import Cribl
+import os
+
+
+with Cribl(
+    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+) as c_client:
+
+    res = c_client.billing.get_credits(organization_id="<id>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
+
+### Response
+
+**[models.GetCreditsDTO](../../models/getcreditsdto.md)**
 
 ### Errors
 
@@ -219,7 +177,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -236,10 +193,53 @@ with Cribl(
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
 **[models.GetActivePlanDTO](../../models/getactiveplandto.md)**
+
+### Errors
+
+| Error Type      | Status Code     | Content Type    |
+| --------------- | --------------- | --------------- |
+| models.APIError | 4XX, 5XX        | \*/\*           |
+
+## get_usage
+
+### Example Usage
+
+```python
+import cribl
+from cribl import Cribl
+import os
+
+
+with Cribl(
+    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+) as c_client:
+
+    res = c_client.billing.get_usage(organization_id="<id>", metric_type=cribl.MetricType.HYBRID_WORKER_G_BS_RECEIVED, starting_on="<value>", ending_before="<value>")
+
+    # Handle response
+    print(res)
+
+```
+
+### Parameters
+
+| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
+| `metric_type`                                                       | [models.MetricType](../../models/metrictype.md)                     | :heavy_check_mark:                                                  | N/A                                                                 |
+| `starting_on`                                                       | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
+| `ending_before`                                                     | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
+| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
+
+### Response
+
+**[models.GetUsageDTO](../../models/getusagedto.md)**
 
 ### Errors
 

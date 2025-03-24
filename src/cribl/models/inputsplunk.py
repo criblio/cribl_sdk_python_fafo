@@ -198,6 +198,14 @@ class MaxS2SVersion(str, Enum):
     V4 = "v4"
 
 
+class Compression(str, Enum):
+    r"""Controls whether to support reading compressed data from a forwarder. Select 'Automatic' to match the forwarder's configuration, or 'Disabled' to reject compressed connections."""
+
+    DISABLED = "disabled"
+    AUTO = "auto"
+    ALWAYS = "always"
+
+
 class InputSplunkTypedDict(TypedDict):
     port: float
     r"""Port to listen on"""
@@ -250,7 +258,7 @@ class InputSplunkTypedDict(TypedDict):
     r"""Drop Splunk control fields such as `crcSalt` and `_savedPort`. If disabled, control fields are stored in the internal field `__ctrlFields`."""
     extract_metrics: NotRequired[bool]
     r"""Extract and process Splunk-generated metrics as Cribl metrics"""
-    compress: NotRequired[str]
+    compress: NotRequired[Compression]
     r"""Controls whether to support reading compressed data from a forwarder. Select 'Automatic' to match the forwarder's configuration, or 'Disabled' to reject compressed connections."""
 
 
@@ -362,5 +370,5 @@ class InputSplunk(BaseModel):
     ] = False
     r"""Extract and process Splunk-generated metrics as Cribl metrics"""
 
-    compress: Optional[str] = "disabled"
+    compress: Optional[Compression] = Compression.DISABLED
     r"""Controls whether to support reading compressed data from a forwarder. Select 'Automatic' to match the forwarder's configuration, or 'Disabled' to reject compressed connections."""

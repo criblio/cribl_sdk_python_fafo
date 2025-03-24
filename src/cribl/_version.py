@@ -3,12 +3,10 @@
 import importlib.metadata
 
 __title__: str = "cribl"
-__version__: str = "0.0.5"
-__openapi_doc_version__: str = "4.12.0-alpha.1742471106527-a8a53ddb"
-__gen_version__: str = "2.558.2"
-__user_agent__: str = (
-    "speakeasy-sdk/python 0.0.5 2.558.2 4.12.0-alpha.1742471106527-a8a53ddb cribl"
-)
+__version__: str = "0.1.0"
+__openapi_doc_version__: str = "1.0.0"
+__gen_version__: str = "2.559.0"
+__user_agent__: str = "speakeasy-sdk/python 0.1.0 2.559.0 1.0.0 cribl"
 
 try:
     if __package__ is not None:

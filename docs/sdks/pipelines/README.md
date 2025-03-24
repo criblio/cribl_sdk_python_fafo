@@ -35,7 +35,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -77,7 +76,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -121,7 +119,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -164,7 +161,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -209,7 +205,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -252,7 +247,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -292,7 +286,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -334,7 +327,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -375,7 +367,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -418,7 +409,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -459,7 +449,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -500,7 +489,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -543,7 +531,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -585,7 +572,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -629,7 +615,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 

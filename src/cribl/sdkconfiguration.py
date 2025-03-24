@@ -11,9 +11,22 @@ from .httpclient import AsyncHttpClient, HttpClient
 from .utils import Logger, RetryConfig, remove_suffix
 from cribl import models
 from cribl.types import OptionalNullable, UNSET
-from dataclasses import dataclass
+from dataclasses import dataclass, field
 from pydantic import Field
 from typing import Callable, Dict, Optional, Tuple, Union
+
+
+SERVER_CLOUD = "cloud"
+SERVER_CLOUD_GROUP = "cloud-group"
+SERVER_MANAGED = "managed"
+SERVER_MANAGED_GROUP = "managed-group"
+SERVERS = {
+    SERVER_CLOUD: "https://{workspaceName}-{organizationId}.{cloudDomain}/api/v1",
+    SERVER_CLOUD_GROUP: "https://{workspaceName}-{organizationId}.{cloudDomain}/api/v1/m/{groupName}",
+    SERVER_MANAGED: "https://{hostname}:{port}/api/v1",
+    SERVER_MANAGED_GROUP: "https://{hostname}:{port}/api/v1/m/{groupName}",
+}
+"""Contains the list of servers available to the SDK"""
 
 
 @dataclass
@@ -23,10 +36,12 @@ class SDKConfiguration:
     async_client: Union[AsyncHttpClient, None]
     async_client_supplied: bool
     debug_logger: Logger
-    server_url: str
     security: Optional[
         Union[models.SecurityModel, Callable[[], models.SecurityModel]]
     ] = None
+    server_url: Optional[str] = ""
+    server: Optional[str] = ""
+    server_defaults: Dict[str, Dict[str, str]] = field(default_factory=Dict)
     language: str = "python"
     openapi_doc_version: str = __openapi_doc_version__
     sdk_version: str = __version__
@@ -39,7 +54,15 @@ class SDKConfiguration:
         self._hooks = SDKHooks()
 
     def get_server_details(self) -> Tuple[str, Dict[str, str]]:
-        return remove_suffix(self.server_url, "/"), {}
+        if self.server_url is not None and self.server_url:
+            return remove_suffix(self.server_url, "/"), {}
+        if not self.server:
+            self.server = SERVER_CLOUD
+
+        if self.server not in SERVERS:
+            raise ValueError(f'Invalid server "{self.server}"')
+
+        return SERVERS[self.server], self.server_defaults.get(self.server, {})
 
     def get_hooks(self) -> SDKHooks:
         return self._hooks

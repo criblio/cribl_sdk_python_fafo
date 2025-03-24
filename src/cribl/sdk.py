@@ -5,7 +5,7 @@ from .httpclient import AsyncHttpClient, ClientOwner, HttpClient, close_clients
 from .sdkconfiguration import SDKConfiguration
 from .utils.logger import Logger, get_default_logger
 from .utils.retries import RetryConfig
-from cribl import models
+from cribl import models, utils
 from cribl._hooks import SDKHooks
 from cribl.appscope_configs import AppscopeConfigs
 from cribl.auth import Auth
@@ -100,17 +100,15 @@ from cribl.versioning import Versioning
 from cribl.workers import Workers
 from cribl.workspaces import Workspaces
 import httpx
-from typing import Any, Callable, Optional, Union, cast
+from typing import Any, Callable, Dict, Optional, Union, cast
 import weakref
 
 
 class Cribl(BaseSDK):
-    r"""Cribl API Reference: This API Reference lists available REST endpoints, along with their supported operations for accessing, creating, updating, or deleting resources. See our complementary product documentation at [docs.cribl.io](http://docs.cribl.io)."""
-
-    billing: Billing
     v5: V5
-    sandboxes: Sandboxes
+    billing: Billing
     workspaces: Workspaces
+    sandboxes: Sandboxes
     projects: Projects
     r"""Actions related to Projects"""
     subscriptions: Subscriptions
@@ -288,8 +286,16 @@ class Cribl(BaseSDK):
 
     def __init__(
         self,
-        server_url: str,
         bearer_auth: Optional[Union[Optional[str], Callable[[], Optional[str]]]] = None,
+        workspace_name: Optional[str] = None,
+        organization_id: Optional[str] = None,
+        cloud_domain: Optional[str] = None,
+        group_name: Optional[str] = None,
+        hostname: Optional[str] = None,
+        port: Optional[str] = None,
+        server: Optional[str] = None,
+        server_url: Optional[str] = None,
+        url_params: Optional[Dict[str, str]] = None,
         client: Optional[HttpClient] = None,
         async_client: Optional[AsyncHttpClient] = None,
         retry_config: OptionalNullable[RetryConfig] = UNSET,
@@ -299,7 +305,13 @@ class Cribl(BaseSDK):
         r"""Instantiates the SDK configuring it with the provided parameters.
 
         :param bearer_auth: The bearer_auth required for authentication
-        :param server_idx: The index of the server to use for all methods
+        :param workspace_name: Allows setting the workspaceName variable for url substitution
+        :param organization_id: Allows setting the organizationId variable for url substitution
+        :param cloud_domain: Allows setting the cloudDomain variable for url substitution
+        :param group_name: Allows setting the groupName variable for url substitution
+        :param hostname: Allows setting the hostname variable for url substitution
+        :param port: Allows setting the port variable for url substitution
+        :param server: The server by name to use for all methods
         :param server_url: The server URL to use for all methods
         :param url_params: Parameters to optionally template the server URL with
         :param client: The HTTP client to use for all synchronous methods
@@ -335,6 +347,33 @@ class Cribl(BaseSDK):
         else:
             security = models.SecurityModel(bearer_auth=bearer_auth)
 
+        if server_url is not None:
+            if url_params is not None:
+                server_url = utils.template_url(server_url, url_params)
+
+        server_defaults: Dict[str, Dict[str, str]] = {
+            "cloud": {
+                "workspaceName": workspace_name or "main",
+                "organizationId": organization_id or "ian",
+                "cloudDomain": cloud_domain or "cribl.cloud",
+            },
+            "cloud-group": {
+                "workspaceName": workspace_name or "main",
+                "organizationId": organization_id or "ian",
+                "cloudDomain": cloud_domain or "cribl.cloud",
+                "groupName": group_name or "default",
+            },
+            "managed": {
+                "hostname": hostname or "localhost",
+                "port": port or "9000",
+            },
+            "managed-group": {
+                "hostname": hostname or "localhost",
+                "port": port or "9000",
+                "groupName": group_name or "default",
+            },
+        }
+
         BaseSDK.__init__(
             self,
             SDKConfiguration(
@@ -344,6 +383,8 @@ class Cribl(BaseSDK):
                 async_client_supplied=async_client_supplied,
                 security=security,
                 server_url=server_url,
+                server=server,
+                server_defaults=server_defaults,
                 retry_config=retry_config,
                 timeout_ms=timeout_ms,
                 debug_logger=debug_logger,
@@ -375,10 +416,10 @@ class Cribl(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.billing = Billing(self.sdk_configuration)
         self.v5 = V5(self.sdk_configuration)
-        self.sandboxes = Sandboxes(self.sdk_configuration)
+        self.billing = Billing(self.sdk_configuration)
         self.workspaces = Workspaces(self.sdk_configuration)
+        self.sandboxes = Sandboxes(self.sdk_configuration)
         self.projects = Projects(self.sdk_configuration)
         self.subscriptions = Subscriptions(self.sdk_configuration)
         self.versioning = Versioning(self.sdk_configuration)

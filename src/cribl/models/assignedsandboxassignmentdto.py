@@ -8,14 +8,14 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
-class State(str, Enum):
+class AssignedSandboxAssignmentDTOState(str, Enum):
     ASSIGNED = "ASSIGNED"
 
 
 class AssignedSandboxAssignmentDTOTypedDict(TypedDict):
     organization_id: str
     workspace_id: str
-    state: State
+    state: AssignedSandboxAssignmentDTOState
     user_id: str
     course_id: str
     assigned_at: datetime
@@ -27,7 +27,7 @@ class AssignedSandboxAssignmentDTO(BaseModel):
 
     workspace_id: Annotated[str, pydantic.Field(alias="workspaceId")]
 
-    state: State
+    state: AssignedSandboxAssignmentDTOState
 
     user_id: Annotated[str, pydantic.Field(alias="userId")]
 

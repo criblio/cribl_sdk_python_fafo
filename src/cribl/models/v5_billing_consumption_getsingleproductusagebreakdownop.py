@@ -10,6 +10,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V5_BILLING_CONSUMPTION_GET_SINGLE_PRODUCT_USAGE_BREAKDOWN_OP_SERVERS = [
+    "https://api.cribl-staging.cloud",
+]
+
+
 class ProductSlug(str, Enum):
     STREAM = "stream"
     SEARCH = "search"

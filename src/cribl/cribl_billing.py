@@ -7,8 +7,8 @@ from cribl.invoices import Invoices
 
 
 class CriblBilling(BaseSDK):
-    invoices: Invoices
     consumption: Consumption
+    invoices: Invoices
 
     def __init__(self, sdk_config: SDKConfiguration) -> None:
         BaseSDK.__init__(self, sdk_config)
@@ -16,5 +16,5 @@ class CriblBilling(BaseSDK):
         self._init_sdks()
 
     def _init_sdks(self):
-        self.invoices = Invoices(self.sdk_configuration)
         self.consumption = Consumption(self.sdk_configuration)
+        self.invoices = Invoices(self.sdk_configuration)

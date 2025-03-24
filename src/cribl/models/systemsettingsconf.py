@@ -49,6 +49,7 @@ class APITypedDict(TypedDict):
     disable_api_cache: NotRequired[bool]
     headers: NotRequired[HeadersTypedDict]
     idle_session_ttl: NotRequired[float]
+    listen_on_port: NotRequired[bool]
     login_rate_limit: NotRequired[str]
     scripts: NotRequired[bool]
     sensitive_fields: NotRequired[List[str]]
@@ -79,6 +80,10 @@ class API(BaseModel):
     idle_session_ttl: Annotated[
         Optional[float], pydantic.Field(alias="idleSessionTTL")
     ] = None
+
+    listen_on_port: Annotated[Optional[bool], pydantic.Field(alias="listenOnPort")] = (
+        None
+    )
 
     login_rate_limit: Annotated[
         Optional[str], pydantic.Field(alias="loginRateLimit")

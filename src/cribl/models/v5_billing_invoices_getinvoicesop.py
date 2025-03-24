@@ -7,6 +7,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+V5_BILLING_INVOICES_GET_INVOICES_OP_SERVERS = [
+    "https://api.cribl-staging.cloud",
+]
+
+
 class V5BillingInvoicesGetInvoicesRequestTypedDict(TypedDict):
     organization_id: str
 

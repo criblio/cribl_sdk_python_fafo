@@ -18,7 +18,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -35,6 +34,7 @@ with Cribl(
 | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 
@@ -56,7 +56,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -74,6 +73,7 @@ with Cribl(
 | `organization_id`                                                   | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `invoice_id`                                                        | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
 | `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| `server_url`                                                        | *Optional[str]*                                                     | :heavy_minus_sign:                                                  | An optional server URL to use.                                      |
 
 ### Response
 

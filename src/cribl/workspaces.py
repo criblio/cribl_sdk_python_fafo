@@ -33,7 +33,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_LIST_WORKSPACES_OP_SERVERS[0]
 
         request = models.WorkspacesControllerListWorkspacesRequest(
             organization_id=organization_id,
@@ -123,7 +123,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_LIST_WORKSPACES_OP_SERVERS[0]
 
         request = models.WorkspacesControllerListWorkspacesRequest(
             organization_id=organization_id,
@@ -223,7 +223,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_CREATE_WORKSPACE_OP_SERVERS[0]
 
         request = models.WorkspacesControllerCreateWorkspaceRequest(
             organization_id=organization_id,
@@ -337,7 +337,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_CREATE_WORKSPACE_OP_SERVERS[0]
 
         request = models.WorkspacesControllerCreateWorkspaceRequest(
             organization_id=organization_id,
@@ -443,7 +443,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_GET_WORKSPACE_OP_SERVERS[0]
 
         request = models.WorkspacesControllerGetWorkspaceRequest(
             organization_id=organization_id,
@@ -536,7 +536,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_GET_WORKSPACE_OP_SERVERS[0]
 
         request = models.WorkspacesControllerGetWorkspaceRequest(
             organization_id=organization_id,
@@ -629,7 +629,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_DELETE_WORKSPACE_OP_SERVERS[0]
 
         request = models.WorkspacesControllerDeleteWorkspaceRequest(
             organization_id=organization_id,
@@ -722,7 +722,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_DELETE_WORKSPACE_OP_SERVERS[0]
 
         request = models.WorkspacesControllerDeleteWorkspaceRequest(
             organization_id=organization_id,
@@ -821,7 +821,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_PATCH_WORKSPACE_OP_SERVERS[0]
 
         request = models.WorkspacesControllerPatchWorkspaceRequest(
             organization_id=organization_id,
@@ -932,7 +932,7 @@ class Workspaces(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.WORKSPACES_CONTROLLER_PATCH_WORKSPACE_OP_SERVERS[0]
 
         request = models.WorkspacesControllerPatchWorkspaceRequest(
             organization_id=organization_id,

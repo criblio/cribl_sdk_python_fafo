@@ -24,9 +24,7 @@ Provides health info for REST server
 from cribl import Cribl
 
 
-with Cribl(
-    server_url="https://api.example.com",
-) as c_client:
+with Cribl() as c_client:
 
     res = c_client.diag.get_health_info()
 
@@ -64,7 +62,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -103,7 +100,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -143,7 +139,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -183,7 +178,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 
@@ -224,7 +218,6 @@ import os
 
 
 with Cribl(
-    server_url="https://api.example.com",
     bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
 ) as c_client:
 

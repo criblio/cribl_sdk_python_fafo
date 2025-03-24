@@ -8,6 +8,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+GET_USAGE_OP_SERVERS = [
+    "https://api.cribl-staging.cloud",
+]
+
+
 class GetUsageRequestTypedDict(TypedDict):
     organization_id: str
     metric_type: MetricType

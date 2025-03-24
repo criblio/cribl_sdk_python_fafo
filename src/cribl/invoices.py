@@ -33,7 +33,7 @@ class Invoices(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.V5_BILLING_INVOICES_GET_INVOICES_OP_SERVERS[0]
 
         request = models.V5BillingInvoicesGetInvoicesRequest(
             organization_id=organization_id,
@@ -123,7 +123,7 @@ class Invoices(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.V5_BILLING_INVOICES_GET_INVOICES_OP_SERVERS[0]
 
         request = models.V5BillingInvoicesGetInvoicesRequest(
             organization_id=organization_id,
@@ -215,7 +215,7 @@ class Invoices(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.V5_BILLING_INVOICES_GET_INVOICE_OP_SERVERS[0]
 
         request = models.V5BillingInvoicesGetInvoiceRequest(
             organization_id=organization_id,
@@ -308,7 +308,7 @@ class Invoices(BaseSDK):
         if server_url is not None:
             base_url = server_url
         else:
-            base_url = self._get_url(base_url, url_variables)
+            base_url = models.V5_BILLING_INVOICES_GET_INVOICE_OP_SERVERS[0]
 
         request = models.V5BillingInvoicesGetInvoiceRequest(
             organization_id=organization_id,

@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4e47635b-372e-4905-92a7-4edd996fc886
 management:
-  docChecksum: c33f6af63b273d9515ea299f96ec67c4
-  docVersion: 4.12.0-alpha.1742471106527-a8a53ddb
-  speakeasyVersion: 1.521.0
-  generationVersion: 2.558.2
-  releaseVersion: 0.0.5
-  configChecksum: 47d78e493cb3e03561eadb69c2d7b0ff
+  docChecksum: 6f003595947bfc4d975ba51175d73b38
+  docVersion: 1.0.0
+  speakeasyVersion: 1.523.0
+  generationVersion: 2.559.0
+  releaseVersion: 0.1.0
+  configChecksum: 3b06607eeda901545a31f7c27526dd02
 features:
   python:
     additionalDependencies: 1.0.0
@@ -27,10 +27,12 @@ features:
     globalServerURLs: 3.1.0
     inputOutputModels: 3.0.0
     methodArguments: 1.0.2
+    methodServerURLs: 3.1.1
     nullables: 1.0.1
     responseFormat: 1.0.1
     retries: 3.0.2
     sdkHooks: 1.0.1
+    serverIDs: 3.0.0
     unions: 3.0.4
 generatedFiles:
   - .devcontainer/README.md
@@ -80,6 +82,7 @@ generatedFiles:
   - docs/models/appscopeprocessstatus.md
   - docs/models/appscopetransport.md
   - docs/models/assignedsandboxassignmentdto.md
+  - docs/models/assignedsandboxassignmentdtostate.md
   - docs/models/assignsandboxworkspacetouserrequest.md
   - docs/models/audit.md
   - docs/models/auth1.md
@@ -2373,6 +2376,7 @@ generatedFiles:
   - docs/models/outputsplunklbminimumtlsversion.md
   - docs/models/outputsplunklbmode.md
   - docs/models/outputsplunklbnestedfieldserialization.md
+  - docs/models/outputsplunklbpqcompresscompression.md
   - docs/models/outputsplunklbpqcontrols.md
   - docs/models/outputsplunklbqueuefullbehavior.md
   - docs/models/outputsplunklbtls.md
@@ -2382,6 +2386,7 @@ generatedFiles:
   - docs/models/outputsplunkmaxs2sversion.md
   - docs/models/outputsplunkminimumtlsversion.md
   - docs/models/outputsplunkmode.md
+  - docs/models/outputsplunkpqcompresscompression.md
   - docs/models/outputsplunkpqcontrols.md
   - docs/models/outputsplunkqueuefullbehavior.md
   - docs/models/outputsplunktlssettingsclientside.md
@@ -2468,6 +2473,7 @@ generatedFiles:
   - docs/models/outputwavefronttype.md
   - docs/models/outputwebhook.md
   - docs/models/outputwebhookauthenticationtype.md
+  - docs/models/outputwebhookcompression.md
   - docs/models/outputwebhookextrahttpheaders.md
   - docs/models/outputwebhookformat.md
   - docs/models/outputwebhookmaximumtlsversion.md
@@ -2951,7 +2957,6 @@ generatedFiles:
   - docs/models/workerinfo.md
   - docs/models/workersmodel.md
   - docs/models/workspacedto.md
-  - docs/models/workspacedtostate.md
   - docs/models/workspacescontrollercreateworkspacerequest.md
   - docs/models/workspacescontrollerdeleteworkspacerequest.md
   - docs/models/workspacescontrollergetworkspacerequest.md
@@ -3395,6 +3400,7 @@ generatedFiles:
   - src/cribl/models/getactiveplandto.py
   - src/cribl/models/getaiconsentop.py
   - src/cribl/models/getappscopelibentrybyidop.py
+  - src/cribl/models/getassignmentsop.py
   - src/cribl/models/getauthauthorizationcodecallbackop.py
   - src/cribl/models/getauthgroupsop.py
   - src/cribl/models/getauthmultifactorop.py

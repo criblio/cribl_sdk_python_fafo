@@ -7,6 +7,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+WORKSPACES_CONTROLLER_LIST_WORKSPACES_OP_SERVERS = [
+    "https://api.cribl-staging.cloud",
+]
+
+
 class WorkspacesControllerListWorkspacesRequestTypedDict(TypedDict):
     organization_id: str
 

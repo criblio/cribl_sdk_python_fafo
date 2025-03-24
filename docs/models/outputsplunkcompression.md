@@ -1,11 +1,12 @@
 # OutputSplunkCompression
 
-Codec to use to compress the persisted data.
+Controls whether the sender should send compressed data to the server. Select 'Disabled' to reject compressed connections or 'Always' to ignore server's configuration and send compressed data.
 
 
 ## Values
 
-| Name   | Value  |
-| ------ | ------ |
-| `NONE` | none   |
-| `GZIP` | gzip   |
+| Name       | Value      |
+| ---------- | ---------- |
+| `DISABLED` | disabled   |
+| `AUTO`     | auto       |
+| `ALWAYS`   | always     |

@@ -7,6 +7,11 @@ import pydantic
 from typing_extensions import Annotated, TypedDict
 
 
+GET_COSTS_OP_SERVERS = [
+    "https://api.cribl-staging.cloud",
+]
+
+
 class GetCostsRequestTypedDict(TypedDict):
     organization_id: str
     starting_on: str
