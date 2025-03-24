@@ -9,6 +9,12 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    clientOauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.cribl-staging.cloud/oauth/token
+          scopes: {}
   schemas:
     Error:
       type: object
@@ -44002,6 +44008,7 @@ components:
         - "region"
 security:
   - bearerAuth: []
+  - clientOauth: []
 tags:
   - name: appscope-configs
     description: Actions related to Appscope Configs
