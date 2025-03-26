@@ -143,7 +143,7 @@ class OutputS3TypedDict(TypedDict):
     aws_authentication_method: NotRequired[OutputS3AuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     endpoint: NotRequired[str]
-    r"""S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
+    r"""S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
     signature_version: NotRequired[OutputS3SignatureVersion]
     r"""Signature version to use for signing S3 requests"""
     reuse_connections: NotRequired[bool]
@@ -208,9 +208,9 @@ class OutputS3TypedDict(TypedDict):
     r"""Maximum number of files that can be waiting for upload before backpressure is applied"""
     description: NotRequired[str]
     aws_api_key: NotRequired[str]
-    r"""Access key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_ACCESS_KEY}`)."""
+    r"""This value can be a constant or a JavaScript expression (`${C.env.SOME_ACCESS_KEY}`)"""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
     compress: NotRequired[OutputS3Compress]
     r"""Choose data compression format to apply before moving files to final destination"""
     compression_level: NotRequired[OutputS3CompressionLevel]
@@ -281,7 +281,7 @@ class OutputS3(BaseModel):
     r"""AWS authentication method. Choose Auto to use IAM roles."""
 
     endpoint: Optional[str] = None
-    r"""S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
+    r"""S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[OutputS3SignatureVersion], pydantic.Field(alias="signatureVersion")
@@ -436,10 +436,10 @@ class OutputS3(BaseModel):
     description: Optional[str] = None
 
     aws_api_key: Annotated[Optional[str], pydantic.Field(alias="awsApiKey")] = None
-    r"""Access key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_ACCESS_KEY}`)."""
+    r"""This value can be a constant or a JavaScript expression (`${C.env.SOME_ACCESS_KEY}`)"""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
     compress: Optional[OutputS3Compress] = OutputS3Compress.GZIP
     r"""Choose data compression format to apply before moving files to final destination"""

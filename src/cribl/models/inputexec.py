@@ -124,7 +124,7 @@ class InputExecTypedDict(TypedDict):
     r"""Direct connections to Destinations, and optionally via a Pipeline or a Pack"""
     pq: NotRequired[InputExecPqTypedDict]
     retries: NotRequired[float]
-    r"""Maximum number of retry attempts in the event that the command fails."""
+    r"""Maximum number of retry attempts in the event that the command fails"""
     schedule_type: NotRequired[ScheduleType]
     r"""Select a schedule type; either an interval (in seconds) or a cron-style schedule."""
     breaker_rulesets: NotRequired[List[str]]
@@ -174,7 +174,7 @@ class InputExec(BaseModel):
     pq: Optional[InputExecPq] = None
 
     retries: Optional[float] = 10
-    r"""Maximum number of retry attempts in the event that the command fails."""
+    r"""Maximum number of retry attempts in the event that the command fails"""
 
     schedule_type: Annotated[
         Optional[ScheduleType], pydantic.Field(alias="scheduleType")

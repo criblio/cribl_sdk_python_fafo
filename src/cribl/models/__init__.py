@@ -2357,8 +2357,8 @@ from .inputdatagen import (
     InputDatagenMode,
     InputDatagenPq,
     InputDatagenPqTypedDict,
+    InputDatagenType,
     InputDatagenTypedDict,
-    InputType,
     SamplesModel,
     SamplesModelTypedDict,
 )
@@ -3360,7 +3360,6 @@ from .inputwiz import (
     InputWizConnectionsTypedDict,
     InputWizContentConfig,
     InputWizContentConfigTypedDict,
-    InputWizInputType,
     InputWizMetadata,
     InputWizMetadataTypedDict,
     InputWizMode,
@@ -3369,6 +3368,7 @@ from .inputwiz import (
     InputWizRetryRules,
     InputWizRetryRulesTypedDict,
     InputWizRetryType,
+    InputWizType,
     InputWizTypedDict,
 )
 from .inputzscalerhec import (
@@ -5164,6 +5164,7 @@ from .savedqueryschedule import (
 )
 from .savessearchrunmode import SavesSearchRunMode
 from .schemalibentry import SchemaLibEntry, SchemaLibEntryTypedDict
+from .schemeclientoauth import SchemeClientOauth, SchemeClientOauthTypedDict
 from .scriptlibentry import ScriptLibEntry, ScriptLibEntryTypedDict
 from .searchaggmode import SearchAggMode
 from .searchauditmetrics import (
@@ -7673,6 +7674,7 @@ __all__ = [
     "InputDatagenMode",
     "InputDatagenPq",
     "InputDatagenPqTypedDict",
+    "InputDatagenType",
     "InputDatagenTypedDict",
     "InputEdgePrometheus",
     "InputEdgePrometheusAuthenticationMethod",
@@ -8395,7 +8397,6 @@ __all__ = [
     "InputTcpjsonTLSSettingsServerSideTypedDict",
     "InputTcpjsonType",
     "InputTcpjsonTypedDict",
-    "InputType",
     "InputTypedDict",
     "InputWef",
     "InputWefAuthenticationMethod",
@@ -8470,7 +8471,6 @@ __all__ = [
     "InputWizConnectionsTypedDict",
     "InputWizContentConfig",
     "InputWizContentConfigTypedDict",
-    "InputWizInputType",
     "InputWizMetadata",
     "InputWizMetadataTypedDict",
     "InputWizMode",
@@ -8479,6 +8479,7 @@ __all__ = [
     "InputWizRetryRules",
     "InputWizRetryRulesTypedDict",
     "InputWizRetryType",
+    "InputWizType",
     "InputWizTypedDict",
     "InputZscalerHec",
     "InputZscalerHecAuthTokens",
@@ -10143,6 +10144,8 @@ __all__ = [
     "ScheduleTypedDict",
     "SchemaLibEntry",
     "SchemaLibEntryTypedDict",
+    "SchemeClientOauth",
+    "SchemeClientOauthTypedDict",
     "ScriptLibEntry",
     "ScriptLibEntryTypedDict",
     "SearchAggMode",

@@ -1,6 +1,6 @@
 # LogLevel
 
-Collector runtime log Level (verbosity).
+Collector runtime log level (verbosity)
 
 
 ## Values

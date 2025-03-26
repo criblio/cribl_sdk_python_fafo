@@ -393,7 +393,7 @@ class OutputConfluentCloudTypedDict(TypedDict):
     request_timeout: NotRequired[float]
     r"""Maximum time to wait for Kafka to respond to a request"""
     max_retries: NotRequired[float]
-    r"""If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data."""
+    r"""If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data"""
     max_back_off: NotRequired[float]
     r"""The maximum wait time for a retry, in milliseconds. Default (and minimum) is 30,000 ms (30 seconds); maximum is 180,000 ms (180 seconds)."""
     initial_backoff: NotRequired[float]
@@ -500,7 +500,7 @@ class OutputConfluentCloud(BaseModel):
     r"""Maximum time to wait for Kafka to respond to a request"""
 
     max_retries: Annotated[Optional[float], pydantic.Field(alias="maxRetries")] = 5
-    r"""If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data."""
+    r"""If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data"""
 
     max_back_off: Annotated[Optional[float], pydantic.Field(alias="maxBackOff")] = 30000
     r"""The maximum wait time for a retry, in milliseconds. Default (and minimum) is 30,000 ms (30 seconds); maximum is 180,000 ms (180 seconds)."""

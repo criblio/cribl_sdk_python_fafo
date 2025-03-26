@@ -79,9 +79,8 @@ class OutputCloudwatchTypedDict(TypedDict):
     aws_authentication_method: NotRequired[OutputCloudwatchAuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     aws_secret_key: NotRequired[str]
-    r"""Secret key"""
     endpoint: NotRequired[str]
-    r"""CloudWatchLogs service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to CloudWatchLogs-compatible endpoint."""
+    r"""CloudWatchLogs service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to CloudWatchLogs-compatible endpoint."""
     reuse_connections: NotRequired[bool]
     r"""Reuse connections between requests, which can improve performance"""
     reject_unauthorized: NotRequired[bool]
@@ -104,9 +103,8 @@ class OutputCloudwatchTypedDict(TypedDict):
     r"""Whether to block, drop, or queue events when all receivers are exerting backpressure."""
     description: NotRequired[str]
     aws_api_key: NotRequired[str]
-    r"""Access key"""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
     pq_max_file_size: NotRequired[str]
     r"""The maximum size to store in each queue file before closing and optionally compressing (KB, MB, etc.)."""
     pq_max_size: NotRequired[str]
@@ -160,10 +158,9 @@ class OutputCloudwatch(BaseModel):
     aws_secret_key: Annotated[Optional[str], pydantic.Field(alias="awsSecretKey")] = (
         None
     )
-    r"""Secret key"""
 
     endpoint: Optional[str] = None
-    r"""CloudWatchLogs service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to CloudWatchLogs-compatible endpoint."""
+    r"""CloudWatchLogs service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to CloudWatchLogs-compatible endpoint."""
 
     reuse_connections: Annotated[
         Optional[bool], pydantic.Field(alias="reuseConnections")
@@ -217,10 +214,9 @@ class OutputCloudwatch(BaseModel):
     description: Optional[str] = None
 
     aws_api_key: Annotated[Optional[str], pydantic.Field(alias="awsApiKey")] = None
-    r"""Access key"""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
     pq_max_file_size: Annotated[
         Optional[str], pydantic.Field(alias="pqMaxFileSize")

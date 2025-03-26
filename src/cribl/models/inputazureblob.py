@@ -140,13 +140,13 @@ class InputAzureBlobTypedDict(TypedDict):
     visibility_timeout: NotRequired[float]
     r"""The duration (in seconds) that the received messages are hidden from subsequent retrieve requests after being retrieved by a ReceiveMessage request."""
     num_receivers: NotRequired[float]
-    r"""The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead"""
+    r"""How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead."""
     max_messages: NotRequired[float]
     r"""The maximum number of messages to return in a poll request. Azure storage queues never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 32."""
     service_period_secs: NotRequired[float]
     r"""The duration (in seconds) which pollers should be validated and restarted if exited"""
     skip_on_error: NotRequired[bool]
-    r"""Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors."""
+    r"""Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors."""
     metadata: NotRequired[List[InputAzureBlobMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     breaker_rulesets: NotRequired[List[str]]
@@ -154,9 +154,9 @@ class InputAzureBlobTypedDict(TypedDict):
     stale_channel_flush_ms: NotRequired[float]
     r"""How long (in milliseconds) the Event Breaker will wait for new data to be sent to a specific channel before flushing the data stream out, as is, to the Pipelines"""
     parquet_chunk_size_mb: NotRequired[float]
-    r"""Maximum file size for each Parquet chunk."""
+    r"""Maximum file size for each Parquet chunk"""
     parquet_chunk_download_timeout: NotRequired[float]
-    r"""The maximum time allowed for downloading a Parquet chunk. Processing will abort if a chunk cannot be downloaded within the time specified."""
+    r"""The maximum time allowed for downloading a Parquet chunk. Processing will stop if a chunk cannot be downloaded within the time specified."""
     auth_type: NotRequired[InputAzureBlobAuthenticationMethod]
     r"""Enter connection string directly, or select a stored secret"""
     description: NotRequired[str]
@@ -219,7 +219,7 @@ class InputAzureBlob(BaseModel):
     r"""The duration (in seconds) that the received messages are hidden from subsequent retrieve requests after being retrieved by a ReceiveMessage request."""
 
     num_receivers: Annotated[Optional[float], pydantic.Field(alias="numReceivers")] = 1
-    r"""The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead"""
+    r"""How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead."""
 
     max_messages: Annotated[Optional[float], pydantic.Field(alias="maxMessages")] = 1
     r"""The maximum number of messages to return in a poll request. Azure storage queues never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 32."""
@@ -232,7 +232,7 @@ class InputAzureBlob(BaseModel):
     skip_on_error: Annotated[Optional[bool], pydantic.Field(alias="skipOnError")] = (
         False
     )
-    r"""Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors."""
+    r"""Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors."""
 
     metadata: Optional[List[InputAzureBlobMetadata]] = None
     r"""Fields to add to events from this input"""
@@ -250,12 +250,12 @@ class InputAzureBlob(BaseModel):
     parquet_chunk_size_mb: Annotated[
         Optional[float], pydantic.Field(alias="parquetChunkSizeMB")
     ] = 5
-    r"""Maximum file size for each Parquet chunk."""
+    r"""Maximum file size for each Parquet chunk"""
 
     parquet_chunk_download_timeout: Annotated[
         Optional[float], pydantic.Field(alias="parquetChunkDownloadTimeout")
     ] = 600
-    r"""The maximum time allowed for downloading a Parquet chunk. Processing will abort if a chunk cannot be downloaded within the time specified."""
+    r"""The maximum time allowed for downloading a Parquet chunk. Processing will stop if a chunk cannot be downloaded within the time specified."""
 
     auth_type: Annotated[
         Optional[InputAzureBlobAuthenticationMethod], pydantic.Field(alias="authType")

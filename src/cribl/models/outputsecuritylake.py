@@ -122,11 +122,10 @@ class OutputSecurityLakeTypedDict(TypedDict):
     streamtags: NotRequired[List[str]]
     r"""Tags for filtering and grouping in @{product}"""
     aws_secret_key: NotRequired[str]
-    r"""Secret key"""
     aws_authentication_method: NotRequired[OutputSecurityLakeAuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     endpoint: NotRequired[str]
-    r"""Amazon Security Lake service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to Amazon Security Lake-compatible endpoint."""
+    r"""Amazon Security Lake service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to Amazon Security Lake-compatible endpoint."""
     signature_version: NotRequired[OutputSecurityLakeSignatureVersion]
     r"""Signature version to use for signing Amazon Security Lake requests"""
     reuse_connections: NotRequired[bool]
@@ -201,9 +200,9 @@ class OutputSecurityLakeTypedDict(TypedDict):
     r"""Parquet tools can use the checksum of a Parquet page to verify data integrity"""
     description: NotRequired[str]
     aws_api_key: NotRequired[str]
-    r"""Access key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_ACCESS_KEY}`)."""
+    r"""This value can be a constant or a JavaScript expression (`${C.env.SOME_ACCESS_KEY}`)"""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
     empty_dir_cleanup_sec: NotRequired[float]
     r"""How frequently, in seconds, to clean up empty directories when 'Remove empty staging dirs' is enabled"""
     parquet_schema: NotRequired[str]
@@ -252,7 +251,6 @@ class OutputSecurityLake(BaseModel):
     aws_secret_key: Annotated[Optional[str], pydantic.Field(alias="awsSecretKey")] = (
         None
     )
-    r"""Secret key"""
 
     aws_authentication_method: Annotated[
         Optional[OutputSecurityLakeAuthenticationMethod],
@@ -261,7 +259,7 @@ class OutputSecurityLake(BaseModel):
     r"""AWS authentication method. Choose Auto to use IAM roles."""
 
     endpoint: Optional[str] = None
-    r"""Amazon Security Lake service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to Amazon Security Lake-compatible endpoint."""
+    r"""Amazon Security Lake service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to Amazon Security Lake-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[OutputSecurityLakeSignatureVersion],
@@ -449,10 +447,10 @@ class OutputSecurityLake(BaseModel):
     description: Optional[str] = None
 
     aws_api_key: Annotated[Optional[str], pydantic.Field(alias="awsApiKey")] = None
-    r"""Access key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_ACCESS_KEY}`)."""
+    r"""This value can be a constant or a JavaScript expression (`${C.env.SOME_ACCESS_KEY}`)"""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
     empty_dir_cleanup_sec: Annotated[
         Optional[float], pydantic.Field(alias="emptyDirCleanupSec")

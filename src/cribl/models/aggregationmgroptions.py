@@ -18,6 +18,7 @@ class AggregationMgrOptionsTypedDict(TypedDict):
     metrics_mode: bool
     sufficient_stats_only: bool
     time_window_seconds: float
+    dots_as_literals: NotRequired[bool]
     idle_time_limit_seconds: NotRequired[float]
     lag_tolerance_seconds: NotRequired[float]
     prefix: NotRequired[str]
@@ -43,6 +44,10 @@ class AggregationMgrOptions(BaseModel):
 
     time_window_seconds: Annotated[float, pydantic.Field(alias="timeWindowSeconds")]
 
+    dots_as_literals: Annotated[
+        Optional[bool], pydantic.Field(alias="dotsAsLiterals")
+    ] = None
+
     idle_time_limit_seconds: Annotated[
         Optional[float], pydantic.Field(alias="idleTimeLimitSeconds")
     ] = None
@@ -66,6 +71,7 @@ class AggregationMgrOptions(BaseModel):
     @model_serializer(mode="wrap")
     def serialize_model(self, handler):
         optional_fields = [
+            "dotsAsLiterals",
             "idleTimeLimitSeconds",
             "lagToleranceSeconds",
             "prefix",

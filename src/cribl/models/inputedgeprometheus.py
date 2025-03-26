@@ -301,11 +301,10 @@ class InputEdgePrometheusTypedDict(TypedDict):
     ]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     aws_secret_key: NotRequired[str]
-    r"""Secret key"""
     region: NotRequired[str]
     r"""Region where the EC2 is located"""
     endpoint: NotRequired[str]
-    r"""EC2 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to EC2-compatible endpoint."""
+    r"""EC2 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to EC2-compatible endpoint."""
     signature_version: NotRequired[InputEdgePrometheusSignatureVersion]
     r"""Signature version to use for signing EC2 requests"""
     reuse_connections: NotRequired[bool]
@@ -441,13 +440,12 @@ class InputEdgePrometheus(BaseModel):
     aws_secret_key: Annotated[Optional[str], pydantic.Field(alias="awsSecretKey")] = (
         None
     )
-    r"""Secret key"""
 
     region: Optional[str] = None
     r"""Region where the EC2 is located"""
 
     endpoint: Optional[str] = None
-    r"""EC2 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to EC2-compatible endpoint."""
+    r"""EC2 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to EC2-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[InputEdgePrometheusSignatureVersion],

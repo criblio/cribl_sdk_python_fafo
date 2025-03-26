@@ -140,9 +140,9 @@ class InputOffice365MsgTraceRetryRulesTypedDict(TypedDict):
     enable_header: NotRequired[bool]
     r"""Honor any Retry-After header that specifies a delay (in seconds) or a timestamp after which to retry the request. The delay is limited to 20 seconds, even if the Retry-After header specifies a longer delay. When disabled, all Retry-After headers are ignored."""
     retry_connect_timeout: NotRequired[bool]
-    r"""When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs"""
+    r"""Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs"""
     retry_connect_reset: NotRequired[bool]
-    r"""When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs"""
+    r"""Retry request when a connection reset (ECONNRESET) error occurs"""
 
 
 class InputOffice365MsgTraceRetryRules(BaseModel):
@@ -171,12 +171,12 @@ class InputOffice365MsgTraceRetryRules(BaseModel):
     retry_connect_timeout: Annotated[
         Optional[bool], pydantic.Field(alias="retryConnectTimeout")
     ] = False
-    r"""When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs"""
+    r"""Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs"""
 
     retry_connect_reset: Annotated[
         Optional[bool], pydantic.Field(alias="retryConnectReset")
     ] = False
-    r"""When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs"""
+    r"""Retry request when a connection reset (ECONNRESET) error occurs"""
 
 
 class InputOffice365MsgTraceSubscriptionPlan(str, Enum):

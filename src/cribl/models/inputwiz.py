@@ -8,63 +8,8 @@ from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
 
 
-class InputWizInputType(str, Enum):
-    SPLUNK = "splunk"
-    SPLUNK_HEC = "splunk_hec"
-    SYSLOG = "syslog"
-    TCPJSON = "tcpjson"
-    GRAFANA = "grafana"
-    LOKI = "loki"
-    HTTP = "http"
-    HTTP_RAW = "http_raw"
-    FIREHOSE = "firehose"
-    ELASTIC = "elastic"
-    KAFKA = "kafka"
-    CONFLUENT_CLOUD = "confluent_cloud"
-    MSK = "msk"
-    KINESIS = "kinesis"
-    EVENTHUB = "eventhub"
-    AZURE_BLOB = "azure_blob"
-    METRICS = "metrics"
-    SQS = "sqs"
-    S3 = "s3"
-    S3_INVENTORY = "s3_inventory"
-    SNMP = "snmp"
-    CROWDSTRIKE = "crowdstrike"
-    TCP = "tcp"
-    RAW_UDP = "raw_udp"
-    NETFLOW = "netflow"
-    OFFICE365_SERVICE = "office365_service"
-    OFFICE365_MGMT = "office365_mgmt"
-    OFFICE365_MSG_TRACE = "office365_msg_trace"
-    PROMETHEUS = "prometheus"
-    EDGE_PROMETHEUS = "edge_prometheus"
-    PROMETHEUS_RW = "prometheus_rw"
-    APPSCOPE = "appscope"
-    GOOGLE_PUBSUB = "google_pubsub"
-    OPEN_TELEMETRY = "open_telemetry"
-    MODEL_DRIVEN_TELEMETRY = "model_driven_telemetry"
-    DATADOG_AGENT = "datadog_agent"
-    WEF = "wef"
+class InputWizType(str, Enum):
     WIZ = "wiz"
-    ZSCALER_HEC = "zscaler_hec"
-    DATAGEN = "datagen"
-    CRIBL = "cribl"
-    CRIBLMETRICS = "criblmetrics"
-    CRIBL_HTTP = "cribl_http"
-    CRIBL_TCP = "cribl_tcp"
-    WIN_EVENT_LOGS = "win_event_logs"
-    SYSTEM_METRICS = "system_metrics"
-    WINDOWS_METRICS = "windows_metrics"
-    SYSTEM_STATE = "system_state"
-    KUBE_METRICS = "kube_metrics"
-    KUBE_LOGS = "kube_logs"
-    KUBE_EVENTS = "kube_events"
-    EXEC = "exec"
-    SPLUNK_SEARCH = "splunk_search"
-    FILE = "file"
-    JOURNAL_FILES = "journal_files"
-    SECURITY_LAKE = "security_lake"
 
 
 class InputWizConnectionsTypedDict(TypedDict):
@@ -191,9 +136,9 @@ class InputWizRetryRulesTypedDict(TypedDict):
     enable_header: NotRequired[bool]
     r"""Honor any Retry-After header that specifies a delay (in seconds) or a timestamp after which to retry the request. The delay is limited to 20 seconds, even if the Retry-After header specifies a longer delay. When disabled, all Retry-After headers are ignored."""
     retry_connect_timeout: NotRequired[bool]
-    r"""When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs"""
+    r"""Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs"""
     retry_connect_reset: NotRequired[bool]
-    r"""When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs"""
+    r"""Retry request when a connection reset (ECONNRESET) error occurs"""
 
 
 class InputWizRetryRules(BaseModel):
@@ -220,12 +165,12 @@ class InputWizRetryRules(BaseModel):
     retry_connect_timeout: Annotated[
         Optional[bool], pydantic.Field(alias="retryConnectTimeout")
     ] = False
-    r"""When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs"""
+    r"""Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs"""
 
     retry_connect_reset: Annotated[
         Optional[bool], pydantic.Field(alias="retryConnectReset")
     ] = False
-    r"""When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs"""
+    r"""Retry request when a connection reset (ECONNRESET) error occurs"""
 
 
 class InputWizAuthenticationMethod(str, Enum):
@@ -243,7 +188,7 @@ class InputWizTypedDict(TypedDict):
     content_config: List[InputWizContentConfigTypedDict]
     id: NotRequired[str]
     r"""Unique ID for this input"""
-    type: NotRequired[InputWizInputType]
+    type: NotRequired[InputWizType]
     disabled: NotRequired[bool]
     pipeline: NotRequired[str]
     r"""Pipeline to process data from this Source before sending it through the Routes"""
@@ -296,7 +241,7 @@ class InputWiz(BaseModel):
     id: Optional[str] = None
     r"""Unique ID for this input"""
 
-    type: Optional[InputWizInputType] = None
+    type: Optional[InputWizType] = None
 
     disabled: Optional[bool] = False
 

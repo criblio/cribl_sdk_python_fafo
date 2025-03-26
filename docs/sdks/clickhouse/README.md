@@ -22,7 +22,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.click_house.create_output_click_house_describe_table(async_inserts=True, database="<value>", flush_period_sec=2136.91, format_=cribl.Format.JSON_EACH_ROW, load_balanced=True, mapping_type=cribl.MappingType.AUTOMATIC, table_name="<value>", url="https://ill-tune-up.info/")

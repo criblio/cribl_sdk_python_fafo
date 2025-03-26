@@ -249,7 +249,7 @@ class InputLokiTypedDict(TypedDict):
     enable_proxy_header: NotRequired[bool]
     r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
     capture_headers: NotRequired[bool]
-    r"""Toggle this to Yes to add request headers to events, in the __headers field."""
+    r"""Add request headers to events, in the __headers field"""
     activity_log_sample_rate: NotRequired[float]
     r"""How often request activity is logged at the `info` level. A value of 1 would log every request, 10 every 10th request, etc."""
     request_timeout: NotRequired[float]
@@ -261,7 +261,7 @@ class InputLokiTypedDict(TypedDict):
     enable_health_check: NotRequired[bool]
     r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
     ip_allowlist_regex: NotRequired[str]
-    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist."""
+    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
     ip_denylist_regex: NotRequired[str]
     r"""Messages from matched IP addresses will be ignored. This takes precedence over the allowlist."""
     loki_api: NotRequired[str]
@@ -272,9 +272,7 @@ class InputLokiTypedDict(TypedDict):
     r"""Fields to add to events from this input"""
     description: NotRequired[str]
     username: NotRequired[str]
-    r"""Username for Basic authentication"""
     password: NotRequired[str]
-    r"""Password for Basic authentication"""
     token: NotRequired[str]
     r"""Bearer token to include in the authorization header"""
     credentials_secret: NotRequired[str]
@@ -355,7 +353,7 @@ class InputLoki(BaseModel):
     capture_headers: Annotated[
         Optional[bool], pydantic.Field(alias="captureHeaders")
     ] = False
-    r"""Toggle this to Yes to add request headers to events, in the __headers field."""
+    r"""Add request headers to events, in the __headers field"""
 
     activity_log_sample_rate: Annotated[
         Optional[float], pydantic.Field(alias="activityLogSampleRate")
@@ -385,7 +383,7 @@ class InputLoki(BaseModel):
     ip_allowlist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipAllowlistRegex")
     ] = "/.*/"
-    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist."""
+    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
 
     ip_denylist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipDenylistRegex")
@@ -408,10 +406,8 @@ class InputLoki(BaseModel):
     description: Optional[str] = None
 
     username: Optional[str] = None
-    r"""Username for Basic authentication"""
 
     password: Optional[str] = None
-    r"""Password for Basic authentication"""
 
     token: Optional[str] = None
     r"""Bearer token to include in the authorization header"""

@@ -10,8 +10,6 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 class OutputWebhookType(str, Enum):
     WEBHOOK = "webhook"
-    SENTINEL = "sentinel"
-    DYNATRACE_HTTP = "dynatrace_http"
 
 
 class Method(str, Enum):
@@ -364,9 +362,7 @@ class OutputWebhookTypedDict(TypedDict):
     r"""In Error mode, PQ writes events to the filesystem only when it detects a non-retryable Destination error. In Backpressure mode, PQ writes events to the filesystem when it detects backpressure from the Destination or when there are non-retryable Destination errors. In Always On mode, PQ always writes events to the filesystem."""
     pq_controls: NotRequired[PqControlsTypedDict]
     username: NotRequired[str]
-    r"""Username for Basic authentication"""
     password: NotRequired[str]
-    r"""Password for Basic authentication"""
     token: NotRequired[str]
     r"""Bearer token to include in the authorization header"""
     credentials_secret: NotRequired[str]
@@ -597,10 +593,8 @@ class OutputWebhook(BaseModel):
     )
 
     username: Optional[str] = None
-    r"""Username for Basic authentication"""
 
     password: Optional[str] = None
-    r"""Password for Basic authentication"""
 
     token: Optional[str] = None
     r"""Bearer token to include in the authorization header"""

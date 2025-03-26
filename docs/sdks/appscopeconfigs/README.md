@@ -20,12 +20,15 @@ Get a list of AppscopeLibEntry objects
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.appscope_configs.list_appscope_lib_entry()
@@ -65,7 +68,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.appscope_configs.create_appscope_lib_entry(config=cribl.AppscopeConfigWithCustom(), description="for sarong profitable hm", id="<id>", lib=cribl.CriblLib.CRIBL_CUSTOM)
@@ -104,12 +109,15 @@ Get AppscopeLibEntry by ID
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.appscope_configs.get_appscope_lib_entry_by_id(id="<id>")
@@ -150,7 +158,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.appscope_configs.update_appscope_lib_entry_by_id(id_param="<value>", config=cribl.AppscopeConfigWithCustom(), description="avow tighten zowie ouch", id="<id>", lib=cribl.CriblLib.CRIBL_CUSTOM)
@@ -190,12 +200,15 @@ Delete AppscopeLibEntry
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.appscope_configs.delete_appscope_lib_entry_by_id(id="<id>")

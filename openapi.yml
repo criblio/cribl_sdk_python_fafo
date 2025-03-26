@@ -9,6 +9,12 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    clientOauth:
+      type: oauth2
+      flows:
+        clientCredentials:
+          tokenUrl: https://login.cribl.cloud/oauth/token
+          scopes: {}
   schemas:
     Error:
       type: object
@@ -150,7 +156,7 @@ components:
         resumeOnBoot:
           type: boolean
           title: Resume job on boot
-          description: Resumes the ad hoc job if a failure condition causes Stream to restart during job execution
+          description: Resume the ad hoc job if a failure condition causes Stream to restart during job execution
           default: false
         environment:
           type: string
@@ -417,7 +423,7 @@ components:
         resumeOnBoot:
           type: boolean
           title: Resume job on boot
-          description: Resumes the ad hoc job if a failure condition causes Stream to restart during job execution
+          description: Resume the ad hoc job if a failure condition causes Stream to restart during job execution
           default: false
         environment:
           type: string
@@ -598,7 +604,7 @@ components:
         resumeOnBoot:
           type: boolean
           title: Resume job on boot
-          description: Resumes the ad hoc job if a failure condition causes Stream to restart during job execution
+          description: Resume the ad hoc job if a failure condition causes Stream to restart during job execution
           default: false
         environment:
           type: string
@@ -3687,8 +3693,8 @@ components:
           maximum: 3600000
         maxRetries:
           type: number
-          title: Max retries
-          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data.
+          title: Retry limit
+          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data
           default: 5
           minimum: 0
           maximum: 100
@@ -4185,8 +4191,8 @@ components:
           maximum: 3600000
         maxRetries:
           type: number
-          title: Max retries
-          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data.
+          title: Retry limit
+          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data
           default: 5
           minimum: 0
           maximum: 100
@@ -4237,7 +4243,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -4245,7 +4250,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: MSK cluster service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to MSK cluster-compatible endpoint.
+          description: MSK cluster service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to MSK cluster-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -4380,11 +4385,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
       type: object
     InputHttp:
       required:
@@ -4579,7 +4583,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -4614,7 +4618,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -5091,31 +5095,31 @@ components:
           title: Search head
           type: string
           default: https://localhost:8089
-          description: Search head base URL, can be expression, default is https://localhost:8089.
+          description: Search head base URL. Can be an expression. Default is https://localhost:8089.
         search:
           type: string
           title: Search
-          description: "Enter Splunk search here. For example: 'index=myAppLogs level=error channel=myApp' OR '| mstats avg(myStat) as myStat WHERE index=myStatsIndex.'"
+          description: "Enter Splunk search here. Examples: 'index=myAppLogs level=error channel=myApp' OR '| mstats avg(myStat) as myStat WHERE index=myStatsIndex.'"
         earliest:
           title: Earliest
           type: string
-          description: "The earliest time boundary for the search. Can be an exact or relative time. For example: '2022-01-14T12:00:00Z' or '-16m@m'"
+          description: "The earliest time boundary for the search. Can be an exact or relative time. Examples: '2022-01-14T12:00:00Z' or '-16m@m'"
           default: -16m@m
         latest:
           title: Latest
           type: string
-          description: "The latest time boundary for the search. Can be an exact or relative time. For example: '2022-01-14T12:00:00Z' or '-1m@m'"
+          description: "The latest time boundary for the search. Can be an exact or relative time. Examples: '2022-01-14T12:00:00Z' or '-1m@m'"
           default: -1m@m
         cronSchedule:
           type: string
           title: Cron schedule
-          description: A cron schedule on which to run this job.
+          description: A cron schedule on which to run this job
           default: "*/15 * * * *"
         endpoint:
           type: string
           title: Search endpoint
           default: /services/search/v2/jobs/export
-          description: REST API used to create a search.
+          description: REST API used to create a search
         outputMode:
           type: string
           title: Output mode
@@ -5127,7 +5131,7 @@ components:
         endpointParams:
           title: Endpoint parameters
           type: array
-          description: Optional request parameters to send to the endpoint.
+          description: Optional request parameters to send to the endpoint
           items:
             type: object
             required:
@@ -5135,16 +5139,15 @@ components:
               - value
             properties:
               name:
-                title: Name
+                title: Parameter Name
                 type: string
-                description: Parameter name
               value:
                 title: Value
                 type: string
                 description: JavaScript expression to compute the parameter's value, normally enclosed in backticks (e.g., `${earliest}`). If a constant, use single quotes (e.g., 'earliest'). Values without delimiters (e.g., earliest) are evaluated as strings.
         endpointHeaders:
           title: Endpoint headers
-          description: Optional request headers to send to the endpoint.
+          description: Optional request headers to send to the endpoint
           type: array
           items:
             type: object
@@ -5154,8 +5157,7 @@ components:
             properties:
               name:
                 type: string
-                title: Name
-                description: Header Name
+                title: Header Name
               value:
                 type: string
                 title: Value
@@ -5168,18 +5170,18 @@ components:
             - warn
             - info
             - debug
-          description: Collector runtime log Level (verbosity).
+          description: Collector runtime log level (verbosity)
         requestTimeout:
           type: number
           title: Request timeout (seconds)
-          description: HTTP request inactivity timeout, use 0 to disable
+          description: HTTP request inactivity timeout. Use 0 for no timeout.
           minimum: 0
           maximum: 2400
           default: 0
         useRoundRobinDns:
           type: boolean
           title: Round-robin DNS
-          description: Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned.
+          description: When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned
           default: false
         rejectUnauthorized:
           type: boolean
@@ -5254,7 +5256,7 @@ components:
               default: 1000
             limit:
               type: number
-              title: Max retries
+              title: Retry limit
               description: The maximum number of times to retry a failed HTTP request
               minimum: 0
               maximum: 20
@@ -5284,13 +5286,13 @@ components:
               default: true
             retryConnectTimeout:
               type: boolean
-              title: Retry Connection Timeout
-              description: When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs
+              title: Retry connection timeout
+              description: Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs
               default: false
             retryConnectReset:
               type: boolean
-              title: Retry Connection Reset
-              description: When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs
+              title: Retry connection reset
+              description: Retry request when a connection reset (ECONNRESET) error occurs
               default: false
         breakerRulesets:
           type: array
@@ -5325,11 +5327,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -5647,7 +5647,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -5678,7 +5678,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -5717,8 +5717,8 @@ components:
             minLength: 1
         splunkHecAcks:
           type: boolean
-          title: Splunk HEC Acks
-          description: Whether to enable Splunk HEC acknowledgements
+          title: Splunk HEC acks
+          description: Enable Splunk HEC acknowledgements
           default: false
         breakerRulesets:
           type: array
@@ -5765,7 +5765,7 @@ components:
         emitTokenMetrics:
           type: boolean
           title: Emit per-token request metrics
-          description: Enable to emit per-token (<prefix>.http.perToken) and summary (<prefix>.http.summary) request metrics
+          description: Emit per-token (<prefix>.http.perToken) and summary (<prefix>.http.summary) request metrics
           default: false
         description:
           type: string
@@ -5893,14 +5893,14 @@ components:
           maximum: 604800
         numReceivers:
           type: number
-          title: Num receivers
-          description: The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead
+          title: Number of receivers
+          description: How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead.
           default: 1
           minimum: 1
           maximum: 100
         maxMessages:
           type: number
-          title: Max messages
+          title: Message limit
           description: "The maximum number of messages to return in a poll request. Azure storage queues never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 32."
           default: 1
           minimum: 1
@@ -5915,7 +5915,7 @@ components:
         skipOnError:
           type: boolean
           title: Skip file on error
-          description: Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors.
+          description: Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors.
           default: false
         metadata:
           type: array
@@ -5950,14 +5950,14 @@ components:
         parquetChunkSizeMB:
           type: number
           title: Parquet chunk size limit (MB)
-          description: Maximum file size for each Parquet chunk.
+          description: Maximum file size for each Parquet chunk
           default: 5
           maximum: 100
           minimum: 1
         parquetChunkDownloadTimeout:
           type: number
           title: Parquet chunk download timeout (seconds)
-          description: The maximum time allowed for downloading a Parquet chunk. Processing will abort if a chunk cannot be downloaded within the time specified.
+          description: The maximum time allowed for downloading a Parquet chunk. Processing will stop if a chunk cannot be downloaded within the time specified.
           default: 600
           maximum: 3600
           minimum: 1
@@ -6200,7 +6200,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -6235,7 +6235,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -6703,8 +6703,8 @@ components:
           maximum: 3600000
         maxRetries:
           type: number
-          title: Max retries
-          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data.
+          title: Retry limit
+          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data
           default: 5
           minimum: 0
           maximum: 100
@@ -7033,7 +7033,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -7068,7 +7068,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -7105,11 +7105,9 @@ components:
             username:
               type: string
               title: Username
-              description: Username for Basic authentication
             password:
               type: string
               title: Password
-              description: Password for Basic authentication
             token:
               type: string
               title: Token
@@ -7205,11 +7203,9 @@ components:
             username:
               type: string
               title: Username
-              description: Username for Basic authentication
             password:
               type: string
               title: Password
-              description: Password for Basic authentication
             token:
               type: string
               title: Token
@@ -7501,7 +7497,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -7536,7 +7532,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -7584,11 +7580,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -7855,7 +7849,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -7890,7 +7884,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -7938,11 +7932,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -8305,7 +8297,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -8313,7 +8304,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: EC2 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to EC2-compatible endpoint.
+          description: EC2 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to EC2-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -8676,7 +8667,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -8684,7 +8674,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: EC2 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to EC2-compatible endpoint.
+          description: EC2 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to EC2-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -9039,7 +9029,7 @@ components:
               default: 1000
             limit:
               type: number
-              title: Max retries
+              title: Retry limit
               description: The maximum number of times to retry a failed HTTP request
               minimum: 0
               maximum: 20
@@ -9070,13 +9060,13 @@ components:
               default: true
             retryConnectTimeout:
               type: boolean
-              title: Retry Connection Timeout
-              description: When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs
+              title: Retry connection timeout
+              description: Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs
               default: false
             retryConnectReset:
               type: boolean
-              title: Retry Connection Reset
-              description: When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs
+              title: Retry connection reset
+              description: Retry request when a connection reset (ECONNRESET) error occurs
               default: false
         authType:
           title: Authentication method
@@ -9334,7 +9324,7 @@ components:
               default: 1000
             limit:
               type: number
-              title: Max retries
+              title: Retry limit
               description: The maximum number of times to retry a failed HTTP request
               minimum: 0
               maximum: 20
@@ -9365,13 +9355,13 @@ components:
               default: true
             retryConnectTimeout:
               type: boolean
-              title: Retry Connection Timeout
-              description: When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs
+              title: Retry connection timeout
+              description: Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs
               default: false
             retryConnectReset:
               type: boolean
-              title: Retry Connection Reset
-              description: When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs
+              title: Retry connection reset
+              description: Retry request when a connection reset (ECONNRESET) error occurs
               default: false
         authType:
           title: Authentication method
@@ -9626,7 +9616,7 @@ components:
               default: 1000
             limit:
               type: number
-              title: Max retries
+              title: Retry limit
               description: The maximum number of times to retry a failed HTTP request
               minimum: 0
               maximum: 20
@@ -9657,13 +9647,13 @@ components:
               default: true
             retryConnectTimeout:
               type: boolean
-              title: Retry Connection Timeout
-              description: When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs
+              title: Retry connection timeout
+              description: Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs
               default: false
             retryConnectReset:
               type: boolean
-              title: Retry Connection Reset
-              description: When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs
+              title: Retry connection reset
+              description: Retry request when a connection reset (ECONNRESET) error occurs
               default: false
         description:
           type: string
@@ -9881,8 +9871,8 @@ components:
           maximum: 3600000
         maxRetries:
           type: number
-          title: Max retries
-          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data.
+          title: Retry limit
+          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data
           default: 5
           minimum: 0
           maximum: 100
@@ -10155,8 +10145,8 @@ components:
           description: Command to execute; supports Bourne shell (or CMD on Windows) syntax
         retries:
           type: number
-          title: Max retries
-          description: Maximum number of retry attempts in the event that the command fails.
+          title: Retry limit
+          description: Maximum number of retry attempts in the event that the command fails
           default: 10
           minimum: 0
         scheduleType:
@@ -10405,7 +10395,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -10440,7 +10430,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -11198,7 +11188,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -11233,7 +11223,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -13154,14 +13144,14 @@ components:
         queueName:
           type: string
           title: Queue
-          description: "The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. E.g., referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
+          description: "The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
         fileFilter:
           type: string
           title: Filename filter
           description: "Regex matching file names to download and process. Defaults to: .*"
           default: /.*/
         awsAccountId:
-          title: AWS Account ID
+          title: AWS account ID
           description: SQS queue owner's AWS account ID. Leave empty if SQS queue is in same AWS account.
           type: string
         awsAuthenticationMethod:
@@ -13176,7 +13166,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -13184,7 +13173,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
+          description: S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -13218,7 +13207,7 @@ components:
           maximum: 43200000
         maxMessages:
           type: number
-          title: Max Messages
+          title: Message limit
           description: "The maximum number of messages SQS should return in a poll request. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10."
           default: 1
           minimum: 1
@@ -13232,8 +13221,8 @@ components:
           maximum: 43200
         numReceivers:
           type: number
-          title: Num receivers
-          description: The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead
+          title: Number of receivers
+          description: How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead.
           default: 1
           minimum: 1
           maximum: 100
@@ -13247,7 +13236,7 @@ components:
         skipOnError:
           type: boolean
           title: Skip file on error
-          description: Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors.
+          description: Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors.
           default: false
         enableAssumeRole:
           type: boolean
@@ -13274,7 +13263,7 @@ components:
         enableSQSAssumeRole:
           type: boolean
           title: Enable for SQS
-          description: Use Assume Role credentials when accessing SQS.
+          description: Use Assume Role credentials when accessing SQS
           default: false
         preprocess:
           type: object
@@ -13320,7 +13309,7 @@ components:
             enabled:
               type: boolean
               title: Enable checkpointing
-              description: Enable checkpointing to resume processing files after an interruption.
+              description: Resume processing files after an interruption
               default: false
             retries:
               type: number
@@ -13332,7 +13321,7 @@ components:
         pollTimeout:
           type: number
           title: Poll timeout (secs)
-          description: The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
+          description: How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
           default: 10
           minimum: 1
           maximum: 20
@@ -13346,11 +13335,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
       type: object
     InputDatadogAgent:
       required:
@@ -13539,7 +13527,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -13574,7 +13562,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -13633,64 +13621,8 @@ components:
           description: Unique ID for this input
         type:
           type: string
-          title: Input Type
           enum:
-            - splunk
-            - splunk_hec
-            - syslog
-            - tcpjson
-            - grafana
-            - loki
-            - http
-            - http_raw
-            - firehose
-            - elastic
-            - kafka
-            - confluent_cloud
-            - msk
-            - kinesis
-            - eventhub
-            - azure_blob
-            - metrics
-            - sqs
-            - s3
-            - s3_inventory
-            - snmp
-            - crowdstrike
-            - tcp
-            - raw_udp
-            - netflow
-            - office365_service
-            - office365_mgmt
-            - office365_msg_trace
-            - prometheus
-            - edge_prometheus
-            - prometheus_rw
-            - appscope
-            - google_pubsub
-            - open_telemetry
-            - model_driven_telemetry
-            - datadog_agent
-            - wef
-            - wiz
-            - zscaler_hec
             - datagen
-            - cribl
-            - criblmetrics
-            - cribl_http
-            - cribl_tcp
-            - win_event_logs
-            - system_metrics
-            - windows_metrics
-            - system_state
-            - kube_metrics
-            - kube_logs
-            - kube_events
-            - exec
-            - splunk_search
-            - file
-            - journal_files
-            - security_lake
         disabled:
           type: boolean
           title: Disabled
@@ -14017,7 +13949,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -14052,7 +13984,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -14315,7 +14247,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -14323,7 +14254,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: Kinesis stream service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to Kinesis stream-compatible endpoint.
+          description: Kinesis stream service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to Kinesis stream-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -14397,11 +14328,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
       type: object
     InputCriblmetrics:
       required:
@@ -14860,14 +14790,14 @@ components:
         queueName:
           type: string
           title: Queue
-          description: "The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. E.g., referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
+          description: "The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
         fileFilter:
           type: string
           title: Filename filter
           description: "Regex matching file names to download and process. Defaults to: .*"
           default: /.*/
         awsAccountId:
-          title: AWS Account ID
+          title: AWS account ID
           description: SQS queue owner's AWS account ID. Leave empty if SQS queue is in same AWS account.
           type: string
         awsAuthenticationMethod:
@@ -14882,7 +14812,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -14890,7 +14819,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
+          description: S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -14924,7 +14853,7 @@ components:
           maximum: 43200000
         maxMessages:
           type: number
-          title: Max Messages
+          title: Message limit
           description: "The maximum number of messages SQS should return in a poll request. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10."
           default: 1
           minimum: 1
@@ -14938,8 +14867,8 @@ components:
           maximum: 43200
         numReceivers:
           type: number
-          title: Num receivers
-          description: The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead
+          title: Number of receivers
+          description: How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead.
           default: 1
           minimum: 1
           maximum: 100
@@ -14953,7 +14882,7 @@ components:
         skipOnError:
           type: boolean
           title: Skip file on error
-          description: Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors.
+          description: Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors.
           default: false
         enableAssumeRole:
           type: boolean
@@ -14980,7 +14909,7 @@ components:
         enableSQSAssumeRole:
           type: boolean
           title: Enable for SQS
-          description: Use Assume Role credentials when accessing SQS.
+          description: Use Assume Role credentials when accessing SQS
           default: false
         preprocess:
           type: object
@@ -15021,14 +14950,14 @@ components:
         parquetChunkSizeMB:
           type: number
           title: Parquet chunk size limit (MB)
-          description: Maximum file size for each Parquet chunk.
+          description: Maximum file size for each Parquet chunk
           default: 5
           maximum: 100
           minimum: 1
         parquetChunkDownloadTimeout:
           type: number
           title: Parquet chunk download timeout (seconds)
-          description: The maximum time allowed for downloading a Parquet chunk. Processing will abort if a chunk cannot be downloaded within the time specified.
+          description: The maximum time allowed for downloading a Parquet chunk. Processing will stop if a chunk cannot be downloaded within the time specified.
           default: 600
           maximum: 3600
           minimum: 1
@@ -15040,7 +14969,7 @@ components:
             enabled:
               type: boolean
               title: Enable checkpointing
-              description: Enable checkpointing to resume processing files after an interruption.
+              description: Resume processing files after an interruption
               default: false
             retries:
               type: number
@@ -15052,7 +14981,7 @@ components:
         pollTimeout:
           type: number
           title: Poll timeout (secs)
-          description: The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
+          description: How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
           default: 10
           minimum: 1
           maximum: 20
@@ -15066,11 +14995,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
       type: object
     InputS3Inventory:
       required:
@@ -15179,14 +15107,14 @@ components:
         queueName:
           type: string
           title: Queue
-          description: "The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. E.g., referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
+          description: "The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
         fileFilter:
           type: string
           title: Filename filter
           description: "Regex matching file names to download and process. Defaults to: .*"
           default: /.*/
         awsAccountId:
-          title: AWS Account ID
+          title: AWS account ID
           description: SQS queue owner's AWS account ID. Leave empty if SQS queue is in same AWS account.
           type: string
         awsAuthenticationMethod:
@@ -15201,7 +15129,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -15209,7 +15136,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
+          description: S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -15243,7 +15170,7 @@ components:
           maximum: 43200000
         maxMessages:
           type: number
-          title: Max Messages
+          title: Message limit
           description: "The maximum number of messages SQS should return in a poll request. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10."
           default: 1
           minimum: 1
@@ -15257,8 +15184,8 @@ components:
           maximum: 43200
         numReceivers:
           type: number
-          title: Num receivers
-          description: The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead
+          title: Number of receivers
+          description: How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead.
           default: 1
           minimum: 1
           maximum: 100
@@ -15272,7 +15199,7 @@ components:
         skipOnError:
           type: boolean
           title: Skip file on error
-          description: Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors.
+          description: Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors.
           default: false
         enableAssumeRole:
           type: boolean
@@ -15299,7 +15226,7 @@ components:
         enableSQSAssumeRole:
           type: boolean
           title: Enable for SQS
-          description: Use Assume Role credentials when accessing SQS.
+          description: Use Assume Role credentials when accessing SQS
           default: false
         preprocess:
           type: object
@@ -15340,14 +15267,14 @@ components:
         parquetChunkSizeMB:
           type: number
           title: Parquet chunk size limit (MB)
-          description: Maximum file size for each Parquet chunk.
+          description: Maximum file size for each Parquet chunk
           default: 5
           maximum: 100
           minimum: 1
         parquetChunkDownloadTimeout:
           type: number
           title: Parquet chunk download timeout (seconds)
-          description: The maximum time allowed for downloading a Parquet chunk. Processing will abort if a chunk cannot be downloaded within the time specified.
+          description: The maximum time allowed for downloading a Parquet chunk. Processing will stop if a chunk cannot be downloaded within the time specified.
           default: 600
           maximum: 3600
           minimum: 1
@@ -15359,7 +15286,7 @@ components:
             enabled:
               type: boolean
               title: Enable checkpointing
-              description: Enable checkpointing to resume processing files after an interruption.
+              description: Resume processing files after an interruption
               default: false
             retries:
               type: number
@@ -15371,7 +15298,7 @@ components:
         pollTimeout:
           type: number
           title: Poll timeout (secs)
-          description: The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
+          description: How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
           default: 10
           minimum: 1
           maximum: 20
@@ -15397,11 +15324,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
       type: object
     InputSnmp:
       required:
@@ -15891,11 +15817,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -16283,7 +16207,7 @@ components:
         queueName:
           type: string
           title: Queue
-          description: "The name, URL, or ARN of the SQS queue to read events from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can only be evaluated at init time. E.g. referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
+          description: "The name, URL, or ARN of the SQS queue to read events from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can only be evaluated at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
         queueType:
           title: Queue Type
           type: string
@@ -16293,7 +16217,7 @@ components:
             - fifo
           default: standard
         awsAccountId:
-          title: AWS Account ID
+          title: AWS account ID
           description: SQS queue owner's AWS account ID. Leave empty if SQS queue is in same AWS account.
           type: string
         createQueue:
@@ -16313,7 +16237,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -16321,7 +16244,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: SQS service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to SQS-compatible endpoint.
+          description: SQS service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to SQS-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -16364,7 +16287,7 @@ components:
           default: 3600
         maxMessages:
           type: number
-          title: Max Messages
+          title: Message limit
           description: "The maximum number of messages SQS should return in a poll request. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10."
           default: 10
           minimum: 1
@@ -16396,7 +16319,7 @@ components:
         pollTimeout:
           type: number
           title: Poll timeout (secs)
-          description: The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
+          description: How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
           default: 10
           minimum: 1
           maximum: 20
@@ -16406,15 +16329,14 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         numReceivers:
           type: number
-          title: Num receivers
-          description: The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead
+          title: Number of receivers
+          description: How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead.
           default: 3
           minimum: 1
           maximum: 100
@@ -17741,7 +17663,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events in the __headers field
           default: false
         keepAliveTimeout:
           type: number
@@ -18428,64 +18350,8 @@ components:
           description: Unique ID for this input
         type:
           type: string
-          title: Input Type
           enum:
-            - splunk
-            - splunk_hec
-            - syslog
-            - tcpjson
-            - grafana
-            - loki
-            - http
-            - http_raw
-            - firehose
-            - elastic
-            - kafka
-            - confluent_cloud
-            - msk
-            - kinesis
-            - eventhub
-            - azure_blob
-            - metrics
-            - sqs
-            - s3
-            - s3_inventory
-            - snmp
-            - crowdstrike
-            - tcp
-            - raw_udp
-            - netflow
-            - office365_service
-            - office365_mgmt
-            - office365_msg_trace
-            - prometheus
-            - edge_prometheus
-            - prometheus_rw
-            - appscope
-            - google_pubsub
-            - open_telemetry
-            - model_driven_telemetry
-            - datadog_agent
-            - wef
             - wiz
-            - zscaler_hec
-            - datagen
-            - cribl
-            - criblmetrics
-            - cribl_http
-            - cribl_tcp
-            - win_event_logs
-            - system_metrics
-            - windows_metrics
-            - system_state
-            - kube_metrics
-            - kube_logs
-            - kube_events
-            - exec
-            - splunk_search
-            - file
-            - journal_files
-            - security_lake
         disabled:
           type: boolean
           title: Disabled
@@ -19079,7 +18945,7 @@ components:
               default: 1000
             limit:
               type: number
-              title: Max retries
+              title: Retry limit
               description: The maximum number of times to retry a failed HTTP request
               minimum: 0
               maximum: 20
@@ -19109,13 +18975,13 @@ components:
               default: true
             retryConnectTimeout:
               type: boolean
-              title: Retry Connection Timeout
-              description: When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs
+              title: Retry connection timeout
+              description: Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs
               default: false
             retryConnectReset:
               type: boolean
-              title: Retry Connection Reset
-              description: When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs
+              title: Retry connection reset
+              description: Retry request when a connection reset (ECONNRESET) error occurs
               default: false
         authType:
           title: Authentication method
@@ -19423,14 +19289,14 @@ components:
         queueName:
           type: string
           title: Queue
-          description: "The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. E.g., referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
+          description: "The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
         fileFilter:
           type: string
           title: Filename filter
           description: "Regex matching file names to download and process. Defaults to: .*"
           default: /.*/
         awsAccountId:
-          title: AWS Account ID
+          title: AWS account ID
           description: SQS queue owner's AWS account ID. Leave empty if SQS queue is in same AWS account.
           type: string
         awsAuthenticationMethod:
@@ -19445,7 +19311,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -19453,7 +19318,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
+          description: S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -19487,7 +19352,7 @@ components:
           maximum: 43200000
         maxMessages:
           type: number
-          title: Max Messages
+          title: Message limit
           description: "The maximum number of messages SQS should return in a poll request. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10."
           default: 1
           minimum: 1
@@ -19501,8 +19366,8 @@ components:
           maximum: 43200
         numReceivers:
           type: number
-          title: Num receivers
-          description: The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead
+          title: Number of receivers
+          description: How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead.
           default: 1
           minimum: 1
           maximum: 100
@@ -19516,7 +19381,7 @@ components:
         skipOnError:
           type: boolean
           title: Skip file on error
-          description: Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors.
+          description: Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors.
           default: false
         enableAssumeRole:
           type: boolean
@@ -19543,7 +19408,7 @@ components:
         enableSQSAssumeRole:
           type: boolean
           title: Enable for SQS
-          description: Use Assume Role credentials when accessing SQS.
+          description: Use Assume Role credentials when accessing SQS
           default: false
         preprocess:
           type: object
@@ -19584,14 +19449,14 @@ components:
         parquetChunkSizeMB:
           type: number
           title: Parquet chunk size limit (MB)
-          description: Maximum file size for each Parquet chunk.
+          description: Maximum file size for each Parquet chunk
           default: 5
           maximum: 100
           minimum: 1
         parquetChunkDownloadTimeout:
           type: number
           title: Parquet chunk download timeout (seconds)
-          description: The maximum time allowed for downloading a Parquet chunk. Processing will abort if a chunk cannot be downloaded within the time specified.
+          description: The maximum time allowed for downloading a Parquet chunk. Processing will stop if a chunk cannot be downloaded within the time specified.
           default: 600
           maximum: 3600
           minimum: 1
@@ -19603,7 +19468,7 @@ components:
             enabled:
               type: boolean
               title: Enable checkpointing
-              description: Enable checkpointing to resume processing files after an interruption.
+              description: Resume processing files after an interruption
               default: false
             retries:
               type: number
@@ -19615,7 +19480,7 @@ components:
         pollTimeout:
           type: number
           title: Poll timeout (secs)
-          description: The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
+          description: How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts.
           default: 10
           minimum: 1
           maximum: 20
@@ -19629,11 +19494,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
       type: object
     InputZscalerHec:
       required:
@@ -19873,7 +19737,7 @@ components:
         captureHeaders:
           type: boolean
           title: Capture request headers
-          description: Toggle this to Yes to add request headers to events, in the __headers field.
+          description: Add request headers to events, in the __headers field
           default: false
         activityLogSampleRate:
           type: number
@@ -19904,7 +19768,7 @@ components:
         ipAllowlistRegex:
           type: string
           title: IP allowlist regex
-          description: Messages from matched IP addresses will be processed, unless also matched by the denylist.
+          description: Messages from matched IP addresses will be processed, unless also matched by the denylist
           default: /.*/
         ipDenylistRegex:
           type: string
@@ -20124,8 +19988,6 @@ components:
           type: string
           enum:
             - webhook
-            - sentinel
-            - dynatrace_http
         pipeline:
           type: string
           title: Pipeline
@@ -20495,11 +20357,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -23332,7 +23192,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
+          description: S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -23540,11 +23400,11 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_ACCESS_KEY}`).
+          description: This value can be a constant or a JavaScript expression (`${C.env.SOME_ACCESS_KEY}`)
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         compress:
           type: string
           title: Compress
@@ -24726,7 +24586,7 @@ components:
         keypairSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
       type: object
     OutputKinesis:
       required:
@@ -24780,7 +24640,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -24788,7 +24647,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: Kinesis stream service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to Kinesis stream-compatible endpoint.
+          description: Kinesis stream service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to Kinesis stream-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -24881,11 +24740,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         pqMaxFileSize:
           type: string
           title: Max file size
@@ -25296,8 +25154,8 @@ components:
           maximum: 3600000
         maxRetries:
           type: number
-          title: Max retries
-          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data.
+          title: Retry limit
+          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data
           default: 5
           minimum: 0
           maximum: 100
@@ -26110,7 +25968,7 @@ components:
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
       type: object
     OutputGoogleCloudLogging:
       required:
@@ -27057,8 +26915,8 @@ components:
           maximum: 3600000
         maxRetries:
           type: number
-          title: Max retries
-          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data.
+          title: Retry limit
+          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data
           default: 5
           minimum: 0
           maximum: 100
@@ -27515,8 +27373,8 @@ components:
           maximum: 3600000
         maxRetries:
           type: number
-          title: Max retries
-          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data.
+          title: Retry limit
+          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data
           default: 5
           minimum: 0
           maximum: 100
@@ -27865,8 +27723,8 @@ components:
           maximum: 3600000
         maxRetries:
           type: number
-          title: Max retries
-          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data.
+          title: Retry limit
+          description: If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data
           default: 5
           minimum: 0
           maximum: 100
@@ -27917,7 +27775,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -27925,7 +27782,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: MSK cluster service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to MSK cluster-compatible endpoint.
+          description: MSK cluster service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to MSK cluster-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -28036,11 +27893,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         protobufLibraryId:
           type: string
           title: Definition set
@@ -29657,11 +29513,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -29797,7 +29651,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -29805,7 +29658,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: CloudWatchLogs service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to CloudWatchLogs-compatible endpoint.
+          description: CloudWatchLogs service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to CloudWatchLogs-compatible endpoint.
         reuseConnections:
           type: boolean
           title: Reuse connections
@@ -29872,11 +29725,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         pqMaxFileSize:
           type: string
           title: Max file size
@@ -30151,11 +30003,11 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_ACCESS_KEY}`).
+          description: This value can be a constant or a JavaScript expression (`${C.env.SOME_ACCESS_KEY}`)
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         compress:
           type: string
           title: Compress
@@ -30835,7 +30687,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -30843,7 +30694,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: SNS service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to SNS-compatible endpoint.
+          description: SNS service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to SNS-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -30899,11 +30750,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         pqMaxFileSize:
           type: string
           title: Max file size
@@ -30988,7 +30838,7 @@ components:
         queueName:
           type: string
           title: Queue Name
-          description: "The name, URL, or ARN of the SQS queue to send events to. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. E.g., referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
+          description: "The name, URL, or ARN of the SQS queue to send events to. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."
         queueType:
           title: Queue Type
           type: string
@@ -30998,7 +30848,7 @@ components:
             - fifo
           default: standard
         awsAccountId:
-          title: AWS Account ID
+          title: AWS account ID
           description: SQS queue owner's AWS account ID. Leave empty if SQS queue is in same AWS account.
           type: string
         messageGroupId:
@@ -31023,7 +30873,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         region:
           type: string
           title: Region
@@ -31031,7 +30880,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: SQS service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to SQS-compatible endpoint.
+          description: SQS service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to SQS-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -31112,11 +30961,10 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         pqMaxFileSize:
           type: string
           title: Max file size
@@ -32804,11 +32652,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -33150,11 +32996,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -35384,7 +35228,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
+          description: S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -35594,11 +35438,11 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_ACCESS_KEY}`).
+          description: This value can be a constant or a JavaScript expression (`${C.env.SOME_ACCESS_KEY}`)
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         compress:
           type: string
           title: Compress
@@ -35757,7 +35601,6 @@ components:
         awsSecretKey:
           type: string
           title: Secret key
-          description: Secret key
         awsAuthenticationMethod:
           type: string
           title: Authentication method
@@ -35770,7 +35613,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: Amazon Security Lake service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to Amazon Security Lake-compatible endpoint.
+          description: Amazon Security Lake service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to Amazon Security Lake-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -36033,11 +35876,11 @@ components:
         awsApiKey:
           type: string
           title: Access key
-          description: Access key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_ACCESS_KEY}`).
+          description: This value can be a constant or a JavaScript expression (`${C.env.SOME_ACCESS_KEY}`)
         awsSecret:
           type: string
           title: Secret key pair
-          description: Select or create a stored secret that references your access key and secret key.
+          description: Select or create a stored secret that references your access key and secret key
         emptyDirCleanupSec:
           type: number
           title: Staging cleanup period
@@ -36113,7 +35956,7 @@ components:
         endpoint:
           type: string
           title: Endpoint
-          description: S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
+          description: S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint.
         signatureVersion:
           type: string
           title: Signature version
@@ -36709,11 +36552,9 @@ components:
         username:
           type: string
           title: Username
-          description: Username for Basic authentication
         password:
           type: string
           title: Password
-          description: Password for Basic authentication
         token:
           type: string
           title: Token
@@ -37264,8 +37105,6 @@ components:
         type:
           type: string
           enum:
-            - webhook
-            - sentinel
             - dynatrace_http
         pipeline:
           type: string
@@ -39663,7 +39502,7 @@ components:
         resumeOnBoot:
           type: boolean
           title: Resume job on boot
-          description: Resumes the ad hoc job if a failure condition causes Stream to restart during job execution
+          description: Resume the ad hoc job if a failure condition causes Stream to restart during job execution
           default: false
         environment:
           type: string
@@ -40053,7 +39892,7 @@ components:
         resumeOnBoot:
           type: boolean
           title: Resume job on boot
-          description: Resumes the ad hoc job if a failure condition causes Stream to restart during job execution
+          description: Resume the ad hoc job if a failure condition causes Stream to restart during job execution
           default: false
         environment:
           type: string
@@ -40265,7 +40104,7 @@ components:
         resumeOnBoot:
           type: boolean
           title: Resume job on boot
-          description: Resumes the ad hoc job if a failure condition causes Stream to restart during job execution
+          description: Resume the ad hoc job if a failure condition causes Stream to restart during job execution
           default: false
         environment:
           type: string
@@ -41402,6 +41241,8 @@ components:
           items:
             type: string
         cumulative:
+          type: boolean
+        dotsAsLiterals:
           type: boolean
         flushEventLimit:
           type: number
@@ -44002,6 +43843,7 @@ components:
         - "region"
 security:
   - bearerAuth: []
+  - clientOauth: []
 tags:
   - name: appscope-configs
     description: Actions related to Appscope Configs

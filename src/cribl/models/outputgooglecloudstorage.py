@@ -211,7 +211,7 @@ class OutputGoogleCloudStorageTypedDict(TypedDict):
     aws_secret_key: NotRequired[str]
     r"""HMAC secret. This value can be a constant or a JavaScript expression (e.g., `${C.env.GCS_SECRET}`)."""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
 
 class OutputGoogleCloudStorage(BaseModel):
@@ -451,4 +451,4 @@ class OutputGoogleCloudStorage(BaseModel):
     r"""HMAC secret. This value can be a constant or a JavaScript expression (e.g., `${C.env.GCS_SECRET}`)."""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""

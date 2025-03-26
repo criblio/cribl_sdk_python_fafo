@@ -208,7 +208,7 @@ class OutputAzureLogsTypedDict(TypedDict):
     workspace_key: NotRequired[str]
     r"""Azure Log Analytics Workspace Primary or Secondary Shared Key. See Azure Dashboard Workspace > Advanced settings."""
     keypair_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
 
 class OutputAzureLogs(BaseModel):
@@ -366,4 +366,4 @@ class OutputAzureLogs(BaseModel):
     keypair_secret: Annotated[Optional[str], pydantic.Field(alias="keypairSecret")] = (
         None
     )
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""

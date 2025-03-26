@@ -86,11 +86,10 @@ class OutputSnsTypedDict(TypedDict):
     aws_authentication_method: NotRequired[OutputSnsAuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     aws_secret_key: NotRequired[str]
-    r"""Secret key"""
     region: NotRequired[str]
     r"""Region where the SNS is located"""
     endpoint: NotRequired[str]
-    r"""SNS service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to SNS-compatible endpoint."""
+    r"""SNS service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to SNS-compatible endpoint."""
     signature_version: NotRequired[OutputSnsSignatureVersion]
     r"""Signature version to use for signing SNS requests"""
     reuse_connections: NotRequired[bool]
@@ -109,9 +108,8 @@ class OutputSnsTypedDict(TypedDict):
     r"""Whether to block, drop, or queue events when all receivers are exerting backpressure."""
     description: NotRequired[str]
     aws_api_key: NotRequired[str]
-    r"""Access key"""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
     pq_max_file_size: NotRequired[str]
     r"""The maximum size to store in each queue file before closing and optionally compressing (KB, MB, etc.)."""
     pq_max_size: NotRequired[str]
@@ -165,13 +163,12 @@ class OutputSns(BaseModel):
     aws_secret_key: Annotated[Optional[str], pydantic.Field(alias="awsSecretKey")] = (
         None
     )
-    r"""Secret key"""
 
     region: Optional[str] = None
     r"""Region where the SNS is located"""
 
     endpoint: Optional[str] = None
-    r"""SNS service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to SNS-compatible endpoint."""
+    r"""SNS service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to SNS-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[OutputSnsSignatureVersion], pydantic.Field(alias="signatureVersion")
@@ -216,10 +213,9 @@ class OutputSns(BaseModel):
     description: Optional[str] = None
 
     aws_api_key: Annotated[Optional[str], pydantic.Field(alias="awsApiKey")] = None
-    r"""Access key"""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
     pq_max_file_size: Annotated[
         Optional[str], pydantic.Field(alias="pqMaxFileSize")

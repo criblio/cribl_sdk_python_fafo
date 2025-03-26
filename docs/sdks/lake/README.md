@@ -20,12 +20,15 @@ Create a Dataset in the specified Lake
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.lake.create_cribl_lake_dataset_by_lake_id(lake_id="<id>", bucket_name="<value>", id="<id>")
@@ -70,12 +73,15 @@ Get the list of Dataset contained in the specified Lake
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.lake.get_cribl_lake_dataset_by_lake_id(lake_id="<id>")
@@ -110,12 +116,15 @@ Delete a Dataset in the specified Lake
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.lake.delete_cribl_lake_dataset_by_lake_id_and_id(lake_id="<id>", id="<id>")
@@ -151,12 +160,15 @@ Get a Dataset in the specified Lake
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.lake.get_cribl_lake_dataset_by_lake_id_and_id(lake_id="<id>", id="<id>")
@@ -192,12 +204,15 @@ Update a Dataset in the specified Lake
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.lake.update_cribl_lake_dataset_by_lake_id_and_id(lake_id="<id>", id_param="<value>", bucket_name="<value>", id="<id>")

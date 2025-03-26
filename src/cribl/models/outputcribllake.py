@@ -98,7 +98,7 @@ class OutputCriblLakeTypedDict(TypedDict):
     aws_secret_key: NotRequired[str]
     r"""Secret key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_SECRET}`)."""
     endpoint: NotRequired[str]
-    r"""S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
+    r"""S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
     signature_version: NotRequired[OutputCriblLakeSignatureVersion]
     r"""Signature version to use for signing S3 requests"""
     reuse_connections: NotRequired[bool]
@@ -201,7 +201,7 @@ class OutputCriblLake(BaseModel):
     r"""Secret key. This value can be a constant or a JavaScript expression(e.g., `${C.env.SOME_SECRET}`)."""
 
     endpoint: Optional[str] = None
-    r"""S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
+    r"""S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[OutputCriblLakeSignatureVersion],

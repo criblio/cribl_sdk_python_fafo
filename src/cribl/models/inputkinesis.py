@@ -173,9 +173,8 @@ class InputKinesisTypedDict(TypedDict):
     aws_authentication_method: NotRequired[InputKinesisAuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     aws_secret_key: NotRequired[str]
-    r"""Secret key"""
     endpoint: NotRequired[str]
-    r"""Kinesis stream service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to Kinesis stream-compatible endpoint."""
+    r"""Kinesis stream service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to Kinesis stream-compatible endpoint."""
     signature_version: NotRequired[InputKinesisSignatureVersion]
     r"""Signature version to use for signing Kinesis stream requests"""
     reuse_connections: NotRequired[bool]
@@ -198,9 +197,8 @@ class InputKinesisTypedDict(TypedDict):
     r"""Fields to add to events from this input"""
     description: NotRequired[str]
     aws_api_key: NotRequired[str]
-    r"""Access key"""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
 
 class InputKinesis(BaseModel):
@@ -281,10 +279,9 @@ class InputKinesis(BaseModel):
     aws_secret_key: Annotated[Optional[str], pydantic.Field(alias="awsSecretKey")] = (
         None
     )
-    r"""Secret key"""
 
     endpoint: Optional[str] = None
-    r"""Kinesis stream service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to Kinesis stream-compatible endpoint."""
+    r"""Kinesis stream service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to Kinesis stream-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[InputKinesisSignatureVersion], pydantic.Field(alias="signatureVersion")
@@ -337,7 +334,6 @@ class InputKinesis(BaseModel):
     description: Optional[str] = None
 
     aws_api_key: Annotated[Optional[str], pydantic.Field(alias="awsApiKey")] = None
-    r"""Access key"""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""

@@ -344,9 +344,7 @@ class OutputOpenTelemetryTypedDict(TypedDict):
     r"""Whether to block, drop, or queue events when all receivers are exerting backpressure."""
     description: NotRequired[str]
     username: NotRequired[str]
-    r"""Username for Basic authentication"""
     password: NotRequired[str]
-    r"""Password for Basic authentication"""
     token: NotRequired[str]
     r"""Bearer token to include in the authorization header"""
     credentials_secret: NotRequired[str]
@@ -515,10 +513,8 @@ class OutputOpenTelemetry(BaseModel):
     description: Optional[str] = None
 
     username: Optional[str] = None
-    r"""Username for Basic authentication"""
 
     password: Optional[str] = None
-    r"""Password for Basic authentication"""
 
     token: Optional[str] = None
     r"""Bearer token to include in the authorization header"""

@@ -120,7 +120,7 @@ class InputSqsMetadata(BaseModel):
 
 class InputSqsTypedDict(TypedDict):
     queue_name: str
-    r"""The name, URL, or ARN of the SQS queue to read events from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can only be evaluated at init time. E.g. referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."""
+    r"""The name, URL, or ARN of the SQS queue to read events from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can only be evaluated at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     type: NotRequired[InputSqsType]
@@ -147,11 +147,10 @@ class InputSqsTypedDict(TypedDict):
     aws_authentication_method: NotRequired[InputSqsAuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     aws_secret_key: NotRequired[str]
-    r"""Secret key"""
     region: NotRequired[str]
     r"""AWS Region where the SQS queue is located. Required, unless the Queue entry is a URL or ARN that includes a Region."""
     endpoint: NotRequired[str]
-    r"""SQS service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to SQS-compatible endpoint."""
+    r"""SQS service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to SQS-compatible endpoint."""
     signature_version: NotRequired[InputSqsSignatureVersion]
     r"""Signature version to use for signing SQS requests"""
     reuse_connections: NotRequired[bool]
@@ -173,19 +172,18 @@ class InputSqsTypedDict(TypedDict):
     metadata: NotRequired[List[InputSqsMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     poll_timeout: NotRequired[float]
-    r"""The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts."""
+    r"""How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts."""
     description: NotRequired[str]
     aws_api_key: NotRequired[str]
-    r"""Access key"""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
     num_receivers: NotRequired[float]
-    r"""The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead"""
+    r"""How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead."""
 
 
 class InputSqs(BaseModel):
     queue_name: Annotated[str, pydantic.Field(alias="queueName")]
-    r"""The name, URL, or ARN of the SQS queue to read events from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can only be evaluated at init time. E.g. referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."""
+    r"""The name, URL, or ARN of the SQS queue to read events from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can only be evaluated at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""
@@ -238,13 +236,12 @@ class InputSqs(BaseModel):
     aws_secret_key: Annotated[Optional[str], pydantic.Field(alias="awsSecretKey")] = (
         None
     )
-    r"""Secret key"""
 
     region: Optional[str] = None
     r"""AWS Region where the SQS queue is located. Required, unless the Queue entry is a URL or ARN that includes a Region."""
 
     endpoint: Optional[str] = None
-    r"""SQS service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to SQS-compatible endpoint."""
+    r"""SQS service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to SQS-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[InputSqsSignatureVersion], pydantic.Field(alias="signatureVersion")
@@ -293,15 +290,14 @@ class InputSqs(BaseModel):
     r"""Fields to add to events from this input"""
 
     poll_timeout: Annotated[Optional[float], pydantic.Field(alias="pollTimeout")] = 10
-    r"""The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts."""
+    r"""How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts."""
 
     description: Optional[str] = None
 
     aws_api_key: Annotated[Optional[str], pydantic.Field(alias="awsApiKey")] = None
-    r"""Access key"""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
     num_receivers: Annotated[Optional[float], pydantic.Field(alias="numReceivers")] = 3
-    r"""The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead"""
+    r"""How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead."""

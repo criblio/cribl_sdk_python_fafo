@@ -400,7 +400,7 @@ class InputMskTypedDict(TypedDict):
     request_timeout: NotRequired[float]
     r"""Maximum time to wait for Kafka to respond to a request"""
     max_retries: NotRequired[float]
-    r"""If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data."""
+    r"""If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data"""
     max_back_off: NotRequired[float]
     r"""The maximum wait time for a retry, in milliseconds. Default (and minimum) is 30,000 ms (30 seconds); maximum is 180,000 ms (180 seconds)."""
     initial_backoff: NotRequired[float]
@@ -414,9 +414,8 @@ class InputMskTypedDict(TypedDict):
     aws_authentication_method: NotRequired[AuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     aws_secret_key: NotRequired[str]
-    r"""Secret key"""
     endpoint: NotRequired[str]
-    r"""MSK cluster service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to MSK cluster-compatible endpoint."""
+    r"""MSK cluster service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to MSK cluster-compatible endpoint."""
     signature_version: NotRequired[SignatureVersion]
     r"""Signature version to use for signing MSK cluster requests"""
     reuse_connections: NotRequired[bool]
@@ -444,9 +443,8 @@ class InputMskTypedDict(TypedDict):
     r"""Maximum number of network errors before the consumer recreates a socket."""
     description: NotRequired[str]
     aws_api_key: NotRequired[str]
-    r"""Access key"""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
 
 class InputMsk(BaseModel):
@@ -542,7 +540,7 @@ class InputMsk(BaseModel):
     r"""Maximum time to wait for Kafka to respond to a request"""
 
     max_retries: Annotated[Optional[float], pydantic.Field(alias="maxRetries")] = 5
-    r"""If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data."""
+    r"""If messages are failing, you can set the maximum number of retries as high as 100 to prevent loss of data"""
 
     max_back_off: Annotated[Optional[float], pydantic.Field(alias="maxBackOff")] = 30000
     r"""The maximum wait time for a retry, in milliseconds. Default (and minimum) is 30,000 ms (30 seconds); maximum is 180,000 ms (180 seconds)."""
@@ -573,10 +571,9 @@ class InputMsk(BaseModel):
     aws_secret_key: Annotated[Optional[str], pydantic.Field(alias="awsSecretKey")] = (
         None
     )
-    r"""Secret key"""
 
     endpoint: Optional[str] = None
-    r"""MSK cluster service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to MSK cluster-compatible endpoint."""
+    r"""MSK cluster service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to MSK cluster-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[SignatureVersion], pydantic.Field(alias="signatureVersion")
@@ -641,7 +638,6 @@ class InputMsk(BaseModel):
     description: Optional[str] = None
 
     aws_api_key: Annotated[Optional[str], pydantic.Field(alias="awsApiKey")] = None
-    r"""Access key"""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""

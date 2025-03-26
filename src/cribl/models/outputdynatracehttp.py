@@ -9,8 +9,6 @@ from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class OutputDynatraceHTTPType(str, Enum):
-    WEBHOOK = "webhook"
-    SENTINEL = "sentinel"
     DYNATRACE_HTTP = "dynatrace_http"
 
 

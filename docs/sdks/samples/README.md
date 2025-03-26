@@ -28,12 +28,15 @@ Capture live incoming data from a particular Project and Subscription at the Sub
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.create_system_projects_subscriptions_capture_by_group_id_and_subscription_id(group_id="<id>", project_id="<id>", subscription_id="<id>", duration=4923.8, filter_="<value>", level=3160.52, max_events=7440.79)
@@ -77,12 +80,15 @@ Capture live incoming data from a particular Project and Subscription at the Des
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.create_system_projects_capture_by_group_id_and_project_id(group_id="<id>", project_id="<id>", duration=5838.43, filter_="<value>", level=9104.01, max_events=8081.96)
@@ -131,7 +137,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.create_system_projects_preview_by_group_id_and_project_id(group_id="<id>", project_id="<id>", mode=cribl.Mode.ROUTE_AND_SEND, pipeline_id="<id>", sample_id="<id>")
@@ -179,12 +187,15 @@ Get a list of DataSample objects
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.list_data_sample()
@@ -218,12 +229,15 @@ Create DataSample
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.create_data_sample(id="<id>", sample_name="<value>", additional_properties={
@@ -266,12 +280,15 @@ Get DataSample by ID
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.get_data_sample_by_id(id="<id>")
@@ -306,12 +323,15 @@ Update DataSample
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.update_data_sample_by_id(id_param="<value>", id="<id>", sample_name="<value>", additional_properties={
@@ -355,12 +375,15 @@ Delete DataSample
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.delete_data_sample_by_id(id="<id>")
@@ -395,12 +418,15 @@ Get sample content by ID
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.get_data_sample_content_by_id(id="<id>")
@@ -435,12 +461,15 @@ Capture live incoming data
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.create_system_capture(duration=333.16, filter_="<value>", level=584.49, max_events=4480.84)
@@ -481,12 +510,15 @@ Capture live incoming data from a particular project and subscription at the des
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.create_system_projects_capture_by_project_id(project_id="<id>", duration=5278.59, filter_="<value>", level=3497.32, max_events=2257.32)
@@ -528,12 +560,15 @@ Capture live incoming data from a particular project and subscription at the sub
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.create_system_projects_subscriptions_capture_by_project_id_and_subscription_id(project_id="<id>", subscription_id="<id>", duration=8758.36, filter_="<value>", level=6607.86, max_events=5813.86)
@@ -582,7 +617,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.samples.create_preview(mode=cribl.Mode.PIPE, pipeline_id="<id>", sample_id="<id>")

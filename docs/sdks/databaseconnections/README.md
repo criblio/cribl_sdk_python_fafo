@@ -21,12 +21,15 @@ Get a list of DatabaseConnection objects
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.database_connections.get_database_connection_config()
@@ -67,7 +70,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.database_connections.create_database_connection_config(auth_type="<value>", database_type=cribl.DatabaseConnectionType.MYSQL, description="jump naughty pip fortunate remand apud yuck conservative nor", id="<id>")
@@ -112,12 +117,15 @@ Get DatabaseConnectionConfig by ID
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.database_connections.get_database_connection_config_by_id(id="<id>")
@@ -158,7 +166,9 @@ import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.database_connections.update_database_connection_config_by_id(id_param="<value>", auth_type="<value>", database_type=cribl.DatabaseConnectionType.ORACLE, description="orientate without internal", id="<id>")
@@ -204,12 +214,15 @@ Delete DatabaseConnectionConfig
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.database_connections.delete_database_connection_config_by_id(id="<id>")
@@ -244,12 +257,15 @@ Test a database connection given a type and connectionString
 ### Example Usage
 
 ```python
+import cribl
 from cribl import Cribl
 import os
 
 
 with Cribl(
-    bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
 ) as c_client:
 
     res = c_client.database_connections.create_lib_database_connections_test(auth_type="<value>", database_type="<value>")

@@ -268,7 +268,7 @@ class InputSplunkHecTypedDict(TypedDict):
     enable_proxy_header: NotRequired[bool]
     r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
     capture_headers: NotRequired[bool]
-    r"""Toggle this to Yes to add request headers to events, in the __headers field."""
+    r"""Add request headers to events, in the __headers field"""
     activity_log_sample_rate: NotRequired[float]
     r"""How often request activity is logged at the `info` level. A value of 1 would log every request, 10 every 10th request, etc."""
     request_timeout: NotRequired[float]
@@ -279,7 +279,7 @@ class InputSplunkHecTypedDict(TypedDict):
     r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 sec.; maximum 600 sec. (10 min.)."""
     enable_health_check: NotRequired[Any]
     ip_allowlist_regex: NotRequired[str]
-    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist."""
+    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
     ip_denylist_regex: NotRequired[str]
     r"""Messages from matched IP addresses will be ignored. This takes precedence over the allowlist."""
     splunk_hec_api: NotRequired[str]
@@ -289,7 +289,7 @@ class InputSplunkHecTypedDict(TypedDict):
     allowed_indexes: NotRequired[List[str]]
     r"""List values allowed in HEC event index field. Leave blank to skip validation. Supports wildcards. The values here can expand index validation at the token level."""
     splunk_hec_acks: NotRequired[bool]
-    r"""Whether to enable Splunk HEC acknowledgements"""
+    r"""Enable Splunk HEC acknowledgements"""
     breaker_rulesets: NotRequired[List[str]]
     r"""A list of event-breaking rulesets that will be applied, in order, to the input data stream"""
     stale_channel_flush_ms: NotRequired[float]
@@ -305,7 +305,7 @@ class InputSplunkHecTypedDict(TypedDict):
     access_control_allow_headers: NotRequired[List[str]]
     r"""Optionally, list HTTP headers that @{product} will send to allowed origins as \"Access-Control-Allow-Headers\" in a CORS preflight response. Use \"*\" to allow all headers."""
     emit_token_metrics: NotRequired[bool]
-    r"""Enable to emit per-token (<prefix>.http.perToken) and summary (<prefix>.http.summary) request metrics"""
+    r"""Emit per-token (<prefix>.http.perToken) and summary (<prefix>.http.summary) request metrics"""
     description: NotRequired[str]
 
 
@@ -370,7 +370,7 @@ class InputSplunkHec(BaseModel):
     capture_headers: Annotated[
         Optional[bool], pydantic.Field(alias="captureHeaders")
     ] = False
-    r"""Toggle this to Yes to add request headers to events, in the __headers field."""
+    r"""Add request headers to events, in the __headers field"""
 
     activity_log_sample_rate: Annotated[
         Optional[float], pydantic.Field(alias="activityLogSampleRate")
@@ -399,7 +399,7 @@ class InputSplunkHec(BaseModel):
     ip_allowlist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipAllowlistRegex")
     ] = "/.*/"
-    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist."""
+    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
 
     ip_denylist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipDenylistRegex")
@@ -422,7 +422,7 @@ class InputSplunkHec(BaseModel):
     splunk_hec_acks: Annotated[
         Optional[bool], pydantic.Field(alias="splunkHecAcks")
     ] = False
-    r"""Whether to enable Splunk HEC acknowledgements"""
+    r"""Enable Splunk HEC acknowledgements"""
 
     breaker_rulesets: Annotated[
         Optional[List[str]], pydantic.Field(alias="breakerRulesets")
@@ -462,6 +462,6 @@ class InputSplunkHec(BaseModel):
     emit_token_metrics: Annotated[
         Optional[bool], pydantic.Field(alias="emitTokenMetrics")
     ] = False
-    r"""Enable to emit per-token (<prefix>.http.perToken) and summary (<prefix>.http.summary) request metrics"""
+    r"""Emit per-token (<prefix>.http.perToken) and summary (<prefix>.http.summary) request metrics"""
 
     description: Optional[str] = None

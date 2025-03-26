@@ -92,14 +92,12 @@ class OutputMode(str, Enum):
 
 class EndpointParamsTypedDict(TypedDict):
     name: str
-    r"""Parameter name"""
     value: str
     r"""JavaScript expression to compute the parameter's value, normally enclosed in backticks (e.g., `${earliest}`). If a constant, use single quotes (e.g., 'earliest'). Values without delimiters (e.g., earliest) are evaluated as strings."""
 
 
 class EndpointParams(BaseModel):
     name: str
-    r"""Parameter name"""
 
     value: str
     r"""JavaScript expression to compute the parameter's value, normally enclosed in backticks (e.g., `${earliest}`). If a constant, use single quotes (e.g., 'earliest'). Values without delimiters (e.g., earliest) are evaluated as strings."""
@@ -107,21 +105,19 @@ class EndpointParams(BaseModel):
 
 class EndpointHeadersTypedDict(TypedDict):
     name: str
-    r"""Header Name"""
     value: str
     r"""JavaScript expression to compute the header's value, normally enclosed in backticks (e.g., `${earliest}`). If a constant, use single quotes (e.g., 'earliest'). Values without delimiters (e.g., earliest) are evaluated as strings."""
 
 
 class EndpointHeaders(BaseModel):
     name: str
-    r"""Header Name"""
 
     value: str
     r"""JavaScript expression to compute the header's value, normally enclosed in backticks (e.g., `${earliest}`). If a constant, use single quotes (e.g., 'earliest'). Values without delimiters (e.g., earliest) are evaluated as strings."""
 
 
 class LogLevel(str, Enum):
-    r"""Collector runtime log Level (verbosity)."""
+    r"""Collector runtime log level (verbosity)"""
 
     ERROR = "error"
     WARN = "warn"
@@ -164,9 +160,9 @@ class RetryRulesTypedDict(TypedDict):
     enable_header: NotRequired[bool]
     r"""Honor any Retry-After header that specifies a delay (in seconds) or a timestamp after which to retry the request. The delay is limited to 20 seconds, even if the Retry-After header specifies a longer delay. When disabled, all Retry-After headers are ignored."""
     retry_connect_timeout: NotRequired[bool]
-    r"""When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs"""
+    r"""Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs"""
     retry_connect_reset: NotRequired[bool]
-    r"""When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs"""
+    r"""Retry request when a connection reset (ECONNRESET) error occurs"""
 
 
 class RetryRules(BaseModel):
@@ -193,12 +189,12 @@ class RetryRules(BaseModel):
     retry_connect_timeout: Annotated[
         Optional[bool], pydantic.Field(alias="retryConnectTimeout")
     ] = False
-    r"""When toggled to Yes, a single retry attempt will be made when a connection timeout (ETIMEDOUT) error occurs"""
+    r"""Make a single retry attempt when a connection timeout (ETIMEDOUT) error occurs"""
 
     retry_connect_reset: Annotated[
         Optional[bool], pydantic.Field(alias="retryConnectReset")
     ] = False
-    r"""When toggled to Yes, the request will be retried when a connection reset (ECONNRESET) error occurs"""
+    r"""Retry request when a connection reset (ECONNRESET) error occurs"""
 
 
 class AuthenticationType(str, Enum):
@@ -244,7 +240,7 @@ class OauthHeaders(BaseModel):
 
 class InputSplunkSearchTypedDict(TypedDict):
     search: str
-    r"""Enter Splunk search here. For example: 'index=myAppLogs level=error channel=myApp' OR '| mstats avg(myStat) as myStat WHERE index=myStatsIndex.'"""
+    r"""Enter Splunk search here. Examples: 'index=myAppLogs level=error channel=myApp' OR '| mstats avg(myStat) as myStat WHERE index=myStatsIndex.'"""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     type: NotRequired[InputSplunkSearchType]
@@ -263,27 +259,27 @@ class InputSplunkSearchTypedDict(TypedDict):
     r"""Direct connections to Destinations, and optionally via a Pipeline or a Pack"""
     pq: NotRequired[InputSplunkSearchPqTypedDict]
     search_head: NotRequired[str]
-    r"""Search head base URL, can be expression, default is https://localhost:8089."""
+    r"""Search head base URL. Can be an expression. Default is https://localhost:8089."""
     earliest: NotRequired[str]
-    r"""The earliest time boundary for the search. Can be an exact or relative time. For example: '2022-01-14T12:00:00Z' or '-16m@m'"""
+    r"""The earliest time boundary for the search. Can be an exact or relative time. Examples: '2022-01-14T12:00:00Z' or '-16m@m'"""
     latest: NotRequired[str]
-    r"""The latest time boundary for the search. Can be an exact or relative time. For example: '2022-01-14T12:00:00Z' or '-1m@m'"""
+    r"""The latest time boundary for the search. Can be an exact or relative time. Examples: '2022-01-14T12:00:00Z' or '-1m@m'"""
     cron_schedule: NotRequired[str]
-    r"""A cron schedule on which to run this job."""
+    r"""A cron schedule on which to run this job"""
     endpoint: NotRequired[str]
-    r"""REST API used to create a search."""
+    r"""REST API used to create a search"""
     output_mode: NotRequired[OutputMode]
     r"""Format of the returned output"""
     endpoint_params: NotRequired[List[EndpointParamsTypedDict]]
-    r"""Optional request parameters to send to the endpoint."""
+    r"""Optional request parameters to send to the endpoint"""
     endpoint_headers: NotRequired[List[EndpointHeadersTypedDict]]
-    r"""Optional request headers to send to the endpoint."""
+    r"""Optional request headers to send to the endpoint"""
     log_level: NotRequired[LogLevel]
-    r"""Collector runtime log Level (verbosity)."""
+    r"""Collector runtime log level (verbosity)"""
     request_timeout: NotRequired[float]
-    r"""HTTP request inactivity timeout, use 0 to disable"""
+    r"""HTTP request inactivity timeout. Use 0 for no timeout."""
     use_round_robin_dns: NotRequired[bool]
-    r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned."""
+    r"""When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned"""
     reject_unauthorized: NotRequired[bool]
     r"""Reject certificates that cannot be verified against a valid CA (such as self-signed certificates)"""
     encoding: NotRequired[str]
@@ -307,9 +303,7 @@ class InputSplunkSearchTypedDict(TypedDict):
     r"""Splunk Search authentication type"""
     description: NotRequired[str]
     username: NotRequired[str]
-    r"""Username for Basic authentication"""
     password: NotRequired[str]
-    r"""Password for Basic authentication"""
     token: NotRequired[str]
     r"""Bearer token to include in the authorization header"""
     credentials_secret: NotRequired[str]
@@ -336,7 +330,7 @@ class InputSplunkSearchTypedDict(TypedDict):
 
 class InputSplunkSearch(BaseModel):
     search: str
-    r"""Enter Splunk search here. For example: 'index=myAppLogs level=error channel=myApp' OR '| mstats avg(myStat) as myStat WHERE index=myStatsIndex.'"""
+    r"""Enter Splunk search here. Examples: 'index=myAppLogs level=error channel=myApp' OR '| mstats avg(myStat) as myStat WHERE index=myStatsIndex.'"""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""
@@ -370,21 +364,21 @@ class InputSplunkSearch(BaseModel):
     search_head: Annotated[Optional[str], pydantic.Field(alias="searchHead")] = (
         "https://localhost:8089"
     )
-    r"""Search head base URL, can be expression, default is https://localhost:8089."""
+    r"""Search head base URL. Can be an expression. Default is https://localhost:8089."""
 
     earliest: Optional[str] = "-16m@m"
-    r"""The earliest time boundary for the search. Can be an exact or relative time. For example: '2022-01-14T12:00:00Z' or '-16m@m'"""
+    r"""The earliest time boundary for the search. Can be an exact or relative time. Examples: '2022-01-14T12:00:00Z' or '-16m@m'"""
 
     latest: Optional[str] = "-1m@m"
-    r"""The latest time boundary for the search. Can be an exact or relative time. For example: '2022-01-14T12:00:00Z' or '-1m@m'"""
+    r"""The latest time boundary for the search. Can be an exact or relative time. Examples: '2022-01-14T12:00:00Z' or '-1m@m'"""
 
     cron_schedule: Annotated[Optional[str], pydantic.Field(alias="cronSchedule")] = (
         "*/15 * * * *"
     )
-    r"""A cron schedule on which to run this job."""
+    r"""A cron schedule on which to run this job"""
 
     endpoint: Optional[str] = "/services/search/v2/jobs/export"
-    r"""REST API used to create a search."""
+    r"""REST API used to create a search"""
 
     output_mode: Annotated[Optional[OutputMode], pydantic.Field(alias="outputMode")] = (
         OutputMode.JSON
@@ -394,25 +388,25 @@ class InputSplunkSearch(BaseModel):
     endpoint_params: Annotated[
         Optional[List[EndpointParams]], pydantic.Field(alias="endpointParams")
     ] = None
-    r"""Optional request parameters to send to the endpoint."""
+    r"""Optional request parameters to send to the endpoint"""
 
     endpoint_headers: Annotated[
         Optional[List[EndpointHeaders]], pydantic.Field(alias="endpointHeaders")
     ] = None
-    r"""Optional request headers to send to the endpoint."""
+    r"""Optional request headers to send to the endpoint"""
 
     log_level: Annotated[Optional[LogLevel], pydantic.Field(alias="logLevel")] = None
-    r"""Collector runtime log Level (verbosity)."""
+    r"""Collector runtime log level (verbosity)"""
 
     request_timeout: Annotated[
         Optional[float], pydantic.Field(alias="requestTimeout")
     ] = 0
-    r"""HTTP request inactivity timeout, use 0 to disable"""
+    r"""HTTP request inactivity timeout. Use 0 for no timeout."""
 
     use_round_robin_dns: Annotated[
         Optional[bool], pydantic.Field(alias="useRoundRobinDns")
     ] = False
-    r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned."""
+    r"""When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned"""
 
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
@@ -463,10 +457,8 @@ class InputSplunkSearch(BaseModel):
     description: Optional[str] = None
 
     username: Optional[str] = None
-    r"""Username for Basic authentication"""
 
     password: Optional[str] = None
-    r"""Password for Basic authentication"""
 
     token: Optional[str] = None
     r"""Bearer token to include in the authorization header"""

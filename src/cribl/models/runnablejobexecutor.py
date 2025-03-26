@@ -265,7 +265,7 @@ class RunnableJobExecutorTypedDict(TypedDict):
     remove_fields: NotRequired[List[str]]
     r"""List of fields to remove from Discover results. Wildcards (for example, aws*) are allowed. This is useful when discovery returns sensitive fields that should not be exposed in the Jobs user interface."""
     resume_on_boot: NotRequired[bool]
-    r"""Resumes the ad hoc job if a failure condition causes Stream to restart during job execution"""
+    r"""Resume the ad hoc job if a failure condition causes Stream to restart during job execution"""
     environment: NotRequired[str]
     r"""Optionally, enable this config only on a specified Git branch. If empty, will be enabled everywhere."""
     schedule: NotRequired[RunnableJobExecutorScheduleTypedDict]
@@ -297,7 +297,7 @@ class RunnableJobExecutor(BaseModel):
     resume_on_boot: Annotated[Optional[bool], pydantic.Field(alias="resumeOnBoot")] = (
         False
     )
-    r"""Resumes the ad hoc job if a failure condition causes Stream to restart during job execution"""
+    r"""Resume the ad hoc job if a failure condition causes Stream to restart during job execution"""
 
     environment: Optional[str] = None
     r"""Optionally, enable this config only on a specified Git branch. If empty, will be enabled everywhere."""

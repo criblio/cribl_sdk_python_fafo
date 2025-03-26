@@ -131,14 +131,14 @@ class InputCrowdstrikeMetadata(BaseModel):
 
 class CheckpointingTypedDict(TypedDict):
     enabled: NotRequired[bool]
-    r"""Enable checkpointing to resume processing files after an interruption."""
+    r"""Resume processing files after an interruption"""
     retries: NotRequired[float]
     r"""If checkpointing is enabled, the number of times to retry processing when a processing error occurs. If skip file on error is enabled, this setting is ignored."""
 
 
 class Checkpointing(BaseModel):
     enabled: Optional[bool] = False
-    r"""Enable checkpointing to resume processing files after an interruption."""
+    r"""Resume processing files after an interruption"""
 
     retries: Optional[float] = 5
     r"""If checkpointing is enabled, the number of times to retry processing when a processing error occurs. If skip file on error is enabled, this setting is ignored."""
@@ -147,7 +147,7 @@ class Checkpointing(BaseModel):
 class InputCrowdstrikeTypedDict(TypedDict):
     type: InputCrowdstrikeType
     queue_name: str
-    r"""The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. E.g., referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."""
+    r"""The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     disabled: NotRequired[bool]
@@ -171,11 +171,10 @@ class InputCrowdstrikeTypedDict(TypedDict):
     aws_authentication_method: NotRequired[InputCrowdstrikeAuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     aws_secret_key: NotRequired[str]
-    r"""Secret key"""
     region: NotRequired[str]
     r"""AWS Region where the S3 bucket and SQS queue are located. Required, unless the Queue entry is a URL or ARN that includes a Region."""
     endpoint: NotRequired[str]
-    r"""S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
+    r"""S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
     signature_version: NotRequired[InputCrowdstrikeSignatureVersion]
     r"""Signature version to use for signing S3 requests"""
     reuse_connections: NotRequired[bool]
@@ -191,11 +190,11 @@ class InputCrowdstrikeTypedDict(TypedDict):
     visibility_timeout: NotRequired[float]
     r"""After messages are retrieved by a ReceiveMessage request, @{product} will hide them from subsequent retrieve requests for at least this duration. You can set this as high as 43200 sec. (12 hours)."""
     num_receivers: NotRequired[float]
-    r"""The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead"""
+    r"""How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead."""
     socket_timeout: NotRequired[float]
     r"""Socket inactivity timeout (in seconds). Increase this value if timeouts occur due to backpressure."""
     skip_on_error: NotRequired[bool]
-    r"""Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors."""
+    r"""Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors."""
     enable_assume_role: NotRequired[bool]
     r"""Use Assume Role credentials to access S3"""
     assume_role_arn: NotRequired[str]
@@ -205,27 +204,26 @@ class InputCrowdstrikeTypedDict(TypedDict):
     duration_seconds: NotRequired[float]
     r"""Duration of the assumed role's session, in seconds. Minimum is 900 (15 minutes), default is 3600 (1 hour), and maximum is 43200 (12 hours)."""
     enable_sqs_assume_role: NotRequired[bool]
-    r"""Use Assume Role credentials when accessing SQS."""
+    r"""Use Assume Role credentials when accessing SQS"""
     preprocess: NotRequired[InputCrowdstrikePreprocessTypedDict]
     metadata: NotRequired[List[InputCrowdstrikeMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     checkpointing: NotRequired[CheckpointingTypedDict]
     poll_timeout: NotRequired[float]
-    r"""The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts."""
+    r"""How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts."""
     encoding: NotRequired[str]
     r"""Character encoding to use when parsing ingested data. When not set, @{product} will default to UTF-8 but may incorrectly interpret multi-byte characters."""
     description: NotRequired[str]
     aws_api_key: NotRequired[str]
-    r"""Access key"""
     aws_secret: NotRequired[str]
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
 
 
 class InputCrowdstrike(BaseModel):
     type: InputCrowdstrikeType
 
     queue_name: Annotated[str, pydantic.Field(alias="queueName")]
-    r"""The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. E.g., 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. E.g., referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."""
+    r"""The name, URL, or ARN of the SQS queue to read notifications from. When a non-AWS URL is specified, format must be: '{url}/myQueueName'. Example: 'https://host:port/myQueueName'. Value must be a JavaScript expression (which can evaluate to a constant value), enclosed in quotes or backticks. Can be evaluated only at init time. Example referencing a Global Variable: `https://host:port/myQueue-${C.vars.myVar}`."""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""
@@ -271,13 +269,12 @@ class InputCrowdstrike(BaseModel):
     aws_secret_key: Annotated[Optional[str], pydantic.Field(alias="awsSecretKey")] = (
         None
     )
-    r"""Secret key"""
 
     region: Optional[str] = None
     r"""AWS Region where the S3 bucket and SQS queue are located. Required, unless the Queue entry is a URL or ARN that includes a Region."""
 
     endpoint: Optional[str] = None
-    r"""S3 service endpoint. If empty, defaults to AWS' Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
+    r"""S3 service endpoint. If empty, defaults to the AWS Region-specific endpoint. Otherwise, it must point to S3-compatible endpoint."""
 
     signature_version: Annotated[
         Optional[InputCrowdstrikeSignatureVersion],
@@ -314,7 +311,7 @@ class InputCrowdstrike(BaseModel):
     r"""After messages are retrieved by a ReceiveMessage request, @{product} will hide them from subsequent retrieve requests for at least this duration. You can set this as high as 43200 sec. (12 hours)."""
 
     num_receivers: Annotated[Optional[float], pydantic.Field(alias="numReceivers")] = 1
-    r"""The Number of receiver processes to run, the higher the number the better throughput at the expense of CPU overhead"""
+    r"""How many receiver processes to run. The higher the number, the better the throughput - at the expense of CPU overhead."""
 
     socket_timeout: Annotated[
         Optional[float], pydantic.Field(alias="socketTimeout")
@@ -324,7 +321,7 @@ class InputCrowdstrike(BaseModel):
     skip_on_error: Annotated[Optional[bool], pydantic.Field(alias="skipOnError")] = (
         False
     )
-    r"""Toggle to Yes to skip files that trigger a processing error. Defaults to No, which enables retries after processing errors."""
+    r"""Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors."""
 
     enable_assume_role: Annotated[
         Optional[bool], pydantic.Field(alias="enableAssumeRole")
@@ -349,7 +346,7 @@ class InputCrowdstrike(BaseModel):
     enable_sqs_assume_role: Annotated[
         Optional[bool], pydantic.Field(alias="enableSQSAssumeRole")
     ] = False
-    r"""Use Assume Role credentials when accessing SQS."""
+    r"""Use Assume Role credentials when accessing SQS"""
 
     preprocess: Optional[InputCrowdstrikePreprocess] = None
 
@@ -359,7 +356,7 @@ class InputCrowdstrike(BaseModel):
     checkpointing: Optional[Checkpointing] = None
 
     poll_timeout: Annotated[Optional[float], pydantic.Field(alias="pollTimeout")] = 10
-    r"""The amount of time to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts."""
+    r"""How long to wait for events before trying polling again. The lower the number the higher the AWS bill. The higher the number the longer it will take for the source to react to configuration changes and system restarts."""
 
     encoding: Optional[str] = None
     r"""Character encoding to use when parsing ingested data. When not set, @{product} will default to UTF-8 but may incorrectly interpret multi-byte characters."""
@@ -367,7 +364,6 @@ class InputCrowdstrike(BaseModel):
     description: Optional[str] = None
 
     aws_api_key: Annotated[Optional[str], pydantic.Field(alias="awsApiKey")] = None
-    r"""Access key"""
 
     aws_secret: Annotated[Optional[str], pydantic.Field(alias="awsSecret")] = None
-    r"""Select or create a stored secret that references your access key and secret key."""
+    r"""Select or create a stored secret that references your access key and secret key"""
