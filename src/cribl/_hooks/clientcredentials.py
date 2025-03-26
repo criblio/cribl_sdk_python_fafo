@@ -25,7 +25,7 @@ class Credentials:
         self.client_id = client_id
         self.client_secret = client_secret
         self.token_url = token_url
-        self.audience = os.getenv("CRIBL_AUDIENCE", "default") # Set default audience here
+        self.audience = os.getenv("CRIBL_AUDIENCE", "https://api.cribl.cloud")
 
 
 class Session:
