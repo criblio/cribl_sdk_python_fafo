@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.523.2
   generationVersion: 2.560.1
-  releaseVersion: 0.2.0
-  configChecksum: 70074b7441dde4b58440fa2ed1cffefa
+  releaseVersion: 0.2.1
+  configChecksum: ca7826b380b8b07b1accbecf36ae2cae
 features:
   python:
     additionalDependencies: 1.0.0
@@ -3072,7 +3072,6 @@ generatedFiles:
   - scripts/publish.sh
   - src/cribl/__init__.py
   - src/cribl/_hooks/__init__.py
-  - src/cribl/_hooks/clientcredentials.py
   - src/cribl/_hooks/sdkhooks.py
   - src/cribl/_hooks/types.py
   - src/cribl/_version.py
