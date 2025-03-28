@@ -59855,7 +59855,7 @@ paths:
         "200":
           description: SearchResultsResults for the Search /results and /results-poll endpoints. object
           content:
-            application/json:
+            application/x-ndjson:
               schema:
                 $ref: "#/components/schemas/SearchJobResults"
         "401":
@@ -59908,7 +59908,7 @@ paths:
         "200":
           description: SearchResultsResults for the Search /results and /results-poll endpoints. object
           content:
-            application/json:
+            application/x-ndjson:
               schema:
                 $ref: "#/components/schemas/SearchJobResults"
         "401":
