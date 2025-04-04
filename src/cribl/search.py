@@ -4,7 +4,7 @@ from .basesdk import BaseSDK
 from cribl import models, utils
 from cribl._hooks import HookContext
 from cribl.types import OptionalNullable, UNSET
-from cribl.utils import get_security_from_env
+from cribl.utils import get_security_from_env, jsonl
 from typing import Any, List, Mapping, Optional, Union
 
 
@@ -3263,7 +3263,7 @@ class Search(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.SearchJobResults:
+    ) -> jsonl.JsonLStream[models.SearchJobResults]:
         r"""List search results, when lower/upper bound is provided, offset is relative to the time range.
 
         List search results, when lower/upper bound is provided, offset is relative to the time range.
@@ -3306,7 +3306,7 @@ class Search(BaseSDK):
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="application/json",
+            accept_header_value="application/x-ndjson",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
@@ -3331,14 +3331,18 @@ class Search(BaseSDK):
             ),
             request=req,
             error_status_codes=["401", "4XX", "500", "5XX"],
+            stream=True,
             retry_config=retry_config,
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, models.SearchJobResults)
+        if utils.match_response(http_res, "200", "application/x-ndjson"):
+            return jsonl.JsonLStream(
+                http_res, lambda raw: utils.unmarshal_json(raw, models.SearchJobResults)
+            )
         if utils.match_response(http_res, "500", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, models.ErrorData)
+            http_res_text = utils.stream_to_text(http_res)
+            response_data = utils.unmarshal_json(http_res_text, models.ErrorData)
             raise models.Error(data=response_data)
         if utils.match_response(http_res, ["401", "4XX"], "*"):
             http_res_text = utils.stream_to_text(http_res)
@@ -3372,7 +3376,7 @@ class Search(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.SearchJobResults:
+    ) -> jsonl.JsonLStreamAsync[models.SearchJobResults]:
         r"""List search results, when lower/upper bound is provided, offset is relative to the time range.
 
         List search results, when lower/upper bound is provided, offset is relative to the time range.
@@ -3415,7 +3419,7 @@ class Search(BaseSDK):
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="application/json",
+            accept_header_value="application/x-ndjson",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
@@ -3440,14 +3444,18 @@ class Search(BaseSDK):
             ),
             request=req,
             error_status_codes=["401", "4XX", "500", "5XX"],
+            stream=True,
             retry_config=retry_config,
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, models.SearchJobResults)
+        if utils.match_response(http_res, "200", "application/x-ndjson"):
+            return jsonl.JsonLStreamAsync(
+                http_res, lambda raw: utils.unmarshal_json(raw, models.SearchJobResults)
+            )
         if utils.match_response(http_res, "500", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, models.ErrorData)
+            http_res_text = await utils.stream_to_text_async(http_res)
+            response_data = utils.unmarshal_json(http_res_text, models.ErrorData)
             raise models.Error(data=response_data)
         if utils.match_response(http_res, ["401", "4XX"], "*"):
             http_res_text = await utils.stream_to_text_async(http_res)
@@ -3482,7 +3490,7 @@ class Search(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.SearchJobResults:
+    ) -> jsonl.JsonLStream[models.SearchJobResults]:
         r"""List search results
 
         List search results
@@ -3527,7 +3535,7 @@ class Search(BaseSDK):
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="application/json",
+            accept_header_value="application/x-ndjson",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
@@ -3552,14 +3560,18 @@ class Search(BaseSDK):
             ),
             request=req,
             error_status_codes=["401", "4XX", "500", "5XX"],
+            stream=True,
             retry_config=retry_config,
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, models.SearchJobResults)
+        if utils.match_response(http_res, "200", "application/x-ndjson"):
+            return jsonl.JsonLStream(
+                http_res, lambda raw: utils.unmarshal_json(raw, models.SearchJobResults)
+            )
         if utils.match_response(http_res, "500", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, models.ErrorData)
+            http_res_text = utils.stream_to_text(http_res)
+            response_data = utils.unmarshal_json(http_res_text, models.ErrorData)
             raise models.Error(data=response_data)
         if utils.match_response(http_res, ["401", "4XX"], "*"):
             http_res_text = utils.stream_to_text(http_res)
@@ -3594,7 +3606,7 @@ class Search(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> models.SearchJobResults:
+    ) -> jsonl.JsonLStreamAsync[models.SearchJobResults]:
         r"""List search results
 
         List search results
@@ -3639,7 +3651,7 @@ class Search(BaseSDK):
             request_has_path_params=True,
             request_has_query_params=True,
             user_agent_header="user-agent",
-            accept_header_value="application/json",
+            accept_header_value="application/x-ndjson",
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             timeout_ms=timeout_ms,
@@ -3664,14 +3676,18 @@ class Search(BaseSDK):
             ),
             request=req,
             error_status_codes=["401", "4XX", "500", "5XX"],
+            stream=True,
             retry_config=retry_config,
         )
 
         response_data: Any = None
-        if utils.match_response(http_res, "200", "application/json"):
-            return utils.unmarshal_json(http_res.text, models.SearchJobResults)
+        if utils.match_response(http_res, "200", "application/x-ndjson"):
+            return jsonl.JsonLStreamAsync(
+                http_res, lambda raw: utils.unmarshal_json(raw, models.SearchJobResults)
+            )
         if utils.match_response(http_res, "500", "application/json"):
-            response_data = utils.unmarshal_json(http_res.text, models.ErrorData)
+            http_res_text = await utils.stream_to_text_async(http_res)
+            response_data = utils.unmarshal_json(http_res_text, models.ErrorData)
             raise models.Error(data=response_data)
         if utils.match_response(http_res, ["401", "4XX"], "*"):
             http_res_text = await utils.stream_to_text_async(http_res)

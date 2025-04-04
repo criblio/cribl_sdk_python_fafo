@@ -16,6 +16,7 @@
   * [SDK Example Usage](#sdk-example-usage)
   * [Authentication](#authentication)
   * [Available Resources and Operations](#available-resources-and-operations)
+  * [Json Streaming](#json-streaming)
   * [Retries](#retries)
   * [Error Handling](#error-handling)
   * [Server Selection](#server-selection)
@@ -1024,6 +1025,44 @@ with Cribl(
 
 </details>
 <!-- End Available Resources and Operations [operations] -->
+
+<!-- Start Json Streaming [jsonl] -->
+## Json Streaming
+
+Json Streaming ([jsonl][jsonl-format] / [x-ndjson][x-ndjson]) content type can be used to stream content from certain operations. These operations will expose the stream as [Generator][generator] that
+can be consumed using a simple `for` loop. The loop will
+terminate when the server no longer has any events to send and closes the
+underlying connection.
+
+The stream is also a [Context Manager][context-manager] and can be used with the `with` statement and will close the
+underlying connection when the context is exited.
+
+```python
+import cribl
+from cribl import Cribl
+import os
+
+
+with Cribl(
+    security=cribl.SecurityModel(
+        bearer_auth=os.getenv("CRIBL_BEARER_AUTH", ""),
+    ),
+) as c_client:
+
+    res = c_client.search.get_search_jobs_results_by_id(id="<id>")
+
+    with res as jsonl_stream:
+        for event in jsonl_stream:
+            # handle event
+            print(event, flush=True)
+
+```
+
+[jsonl-format]: https://jsonlines.org/
+[x-ndjson]: https://github.com/ndjson/ndjson-spec
+[generator]: https://book.pythontips.com/en/latest/generators.html
+[context-manager]: https://book.pythontips.com/en/latest/context_managers.html
+<!-- End Json Streaming [jsonl] -->
 
 <!-- Start Retries [retries] -->
 ## Retries

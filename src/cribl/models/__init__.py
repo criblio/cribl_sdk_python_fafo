@@ -3582,7 +3582,7 @@ from .logfileinfo import LogFileInfo, LogFileInfoTypedDict
 from .loggerconfig import LoggerConfig, LoggerConfigTypedDict
 from .loggerentry import LoggerEntry, LoggerEntryTypedDict
 from .logininfo import LoginInfo, LoginInfoTypedDict
-from .lookupfile import (
+from .lookupfile_input import (
     FileInfo,
     FileInfoTypedDict,
     LookupFile,

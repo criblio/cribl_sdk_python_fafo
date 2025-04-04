@@ -15,6 +15,92 @@ class LookupFile2Mode(str, Enum):
     DISK = "disk"
 
 
+class LookupFile2InputTypedDict(TypedDict):
+    id: str
+    content: NotRequired[str]
+    r"""File content."""
+    description: NotRequired[str]
+    tags: NotRequired[str]
+    r"""One or more tags related to this lookup. Optional."""
+    size: NotRequired[float]
+    r"""File size. Optional."""
+    mode: NotRequired[LookupFile2Mode]
+    r"""Operation mode for CSV-based lookups"""
+
+
+class LookupFile2Input(BaseModel):
+    id: str
+
+    content: Optional[str] = None
+    r"""File content."""
+
+    description: Optional[str] = None
+
+    tags: Optional[str] = None
+    r"""One or more tags related to this lookup. Optional."""
+
+    size: Optional[float] = None
+    r"""File size. Optional."""
+
+    mode: Optional[LookupFile2Mode] = LookupFile2Mode.MEMORY
+    r"""Operation mode for CSV-based lookups"""
+
+
+class FileInfoTypedDict(TypedDict):
+    filename: str
+
+
+class FileInfo(BaseModel):
+    filename: str
+
+
+class LookupFileMode(str, Enum):
+    r"""Operation mode for CSV-based lookups"""
+
+    MEMORY = "memory"
+    DISK = "disk"
+
+
+class LookupFile1InputTypedDict(TypedDict):
+    id: str
+    file_info: NotRequired[FileInfoTypedDict]
+    description: NotRequired[str]
+    tags: NotRequired[str]
+    r"""One or more tags related to this lookup. Optional."""
+    size: NotRequired[float]
+    r"""File size. Optional."""
+    mode: NotRequired[LookupFileMode]
+    r"""Operation mode for CSV-based lookups"""
+
+
+class LookupFile1Input(BaseModel):
+    id: str
+
+    file_info: Annotated[Optional[FileInfo], pydantic.Field(alias="fileInfo")] = None
+
+    description: Optional[str] = None
+
+    tags: Optional[str] = None
+    r"""One or more tags related to this lookup. Optional."""
+
+    size: Optional[float] = None
+    r"""File size. Optional."""
+
+    mode: Optional[LookupFileMode] = LookupFileMode.MEMORY
+    r"""Operation mode for CSV-based lookups"""
+
+
+LookupFileInputTypedDict = TypeAliasType(
+    "LookupFileInputTypedDict",
+    Union[LookupFile1InputTypedDict, LookupFile2InputTypedDict],
+)
+
+
+LookupFileInput = TypeAliasType(
+    "LookupFileInput", Union[LookupFile1Input, LookupFile2Input]
+)
+
+
 class LookupFile2Type(str, Enum):
     r"""Task type"""
 
@@ -81,21 +167,6 @@ class LookupFile2(BaseModel):
     pending_task: Annotated[
         Optional[LookupFilePendingTask], pydantic.Field(alias="pendingTask")
     ] = None
-
-
-class FileInfoTypedDict(TypedDict):
-    filename: str
-
-
-class FileInfo(BaseModel):
-    filename: str
-
-
-class LookupFileMode(str, Enum):
-    r"""Operation mode for CSV-based lookups"""
-
-    MEMORY = "memory"
-    DISK = "disk"
 
 
 class LookupFileType(str, Enum):
@@ -170,74 +241,3 @@ LookupFileTypedDict = TypeAliasType(
 
 
 LookupFile = TypeAliasType("LookupFile", Union[LookupFile1, LookupFile2])
-
-
-class LookupFile2InputTypedDict(TypedDict):
-    id: str
-    content: NotRequired[str]
-    r"""File content."""
-    description: NotRequired[str]
-    tags: NotRequired[str]
-    r"""One or more tags related to this lookup. Optional."""
-    size: NotRequired[float]
-    r"""File size. Optional."""
-    mode: NotRequired[LookupFile2Mode]
-    r"""Operation mode for CSV-based lookups"""
-
-
-class LookupFile2Input(BaseModel):
-    id: str
-
-    content: Optional[str] = None
-    r"""File content."""
-
-    description: Optional[str] = None
-
-    tags: Optional[str] = None
-    r"""One or more tags related to this lookup. Optional."""
-
-    size: Optional[float] = None
-    r"""File size. Optional."""
-
-    mode: Optional[LookupFile2Mode] = LookupFile2Mode.MEMORY
-    r"""Operation mode for CSV-based lookups"""
-
-
-class LookupFile1InputTypedDict(TypedDict):
-    id: str
-    file_info: NotRequired[FileInfoTypedDict]
-    description: NotRequired[str]
-    tags: NotRequired[str]
-    r"""One or more tags related to this lookup. Optional."""
-    size: NotRequired[float]
-    r"""File size. Optional."""
-    mode: NotRequired[LookupFileMode]
-    r"""Operation mode for CSV-based lookups"""
-
-
-class LookupFile1Input(BaseModel):
-    id: str
-
-    file_info: Annotated[Optional[FileInfo], pydantic.Field(alias="fileInfo")] = None
-
-    description: Optional[str] = None
-
-    tags: Optional[str] = None
-    r"""One or more tags related to this lookup. Optional."""
-
-    size: Optional[float] = None
-    r"""File size. Optional."""
-
-    mode: Optional[LookupFileMode] = LookupFileMode.MEMORY
-    r"""Operation mode for CSV-based lookups"""
-
-
-LookupFileInputTypedDict = TypeAliasType(
-    "LookupFileInputTypedDict",
-    Union[LookupFile1InputTypedDict, LookupFile2InputTypedDict],
-)
-
-
-LookupFileInput = TypeAliasType(
-    "LookupFileInput", Union[LookupFile1Input, LookupFile2Input]
-)

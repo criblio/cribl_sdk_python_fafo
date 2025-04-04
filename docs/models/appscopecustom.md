@@ -5,9 +5,9 @@
 
 | Field                                                | Type                                                 | Required                                             | Description                                          |
 | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `config`                                             | [models.AppscopeConfig](../models/appscopeconfig.md) | :heavy_check_mark:                                   | N/A                                                  |
 | `ancestor`                                           | *Optional[str]*                                      | :heavy_minus_sign:                                   | N/A                                                  |
 | `arg`                                                | *Optional[str]*                                      | :heavy_minus_sign:                                   | N/A                                                  |
+| `config`                                             | [models.AppscopeConfig](../models/appscopeconfig.md) | :heavy_check_mark:                                   | N/A                                                  |
 | `env`                                                | *Optional[str]*                                      | :heavy_minus_sign:                                   | N/A                                                  |
 | `hostname`                                           | *Optional[str]*                                      | :heavy_minus_sign:                                   | N/A                                                  |
 | `procname`                                           | *Optional[str]*                                      | :heavy_minus_sign:                                   | N/A                                                  |

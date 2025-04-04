@@ -125,12 +125,12 @@ with Cribl(
 
     res = c_client.jobs.create_jobs(request={
         "type": cribl.SavedJobExecutorJobType.EXECUTOR,
+        "ttl": "4h",
+        "resume_on_boot": False,
         "executor": {
             "type": "<value>",
             "store_task_results": True,
         },
-        "ttl": "4h",
-        "resume_on_boot": False,
     })
 
     # Handle response

@@ -78,36 +78,6 @@ with Cribl(
 ) as c_client:
 
     res = c_client.inputs.create_input(request={
-        "subscriptions": [
-            {
-                "subscription_name": "<value>",
-                "targets": [
-
-                ],
-                "content_format": cribl.InputWefFormat.RAW,
-                "heartbeat_interval": 60,
-                "batch_timeout": 60,
-                "read_existing_events": False,
-                "send_bookmarks": True,
-                "compress": True,
-                "locale": "en-US",
-                "query_selector": cribl.QueryBuilderMode.SIMPLE,
-            },
-            {
-                "subscription_name": "<value>",
-                "targets": [
-
-                ],
-                "content_format": cribl.InputWefFormat.RAW,
-                "heartbeat_interval": 60,
-                "batch_timeout": 60,
-                "read_existing_events": False,
-                "send_bookmarks": True,
-                "compress": True,
-                "locale": "en-US",
-                "query_selector": cribl.QueryBuilderMode.SIMPLE,
-            },
-        ],
         "disabled": False,
         "send_to_routes": True,
         "pq_enabled": False,
@@ -124,6 +94,36 @@ with Cribl(
         "ip_denylist_regex": "/^$/",
         "socket_timeout": 0,
         "allow_machine_id_mismatch": False,
+        "subscriptions": [
+            {
+                "subscription_name": "<value>",
+                "content_format": cribl.InputWefFormat.RAW,
+                "heartbeat_interval": 60,
+                "batch_timeout": 60,
+                "read_existing_events": False,
+                "send_bookmarks": True,
+                "compress": True,
+                "targets": [
+
+                ],
+                "locale": "en-US",
+                "query_selector": cribl.QueryBuilderMode.SIMPLE,
+            },
+            {
+                "subscription_name": "<value>",
+                "content_format": cribl.InputWefFormat.RAW,
+                "heartbeat_interval": 60,
+                "batch_timeout": 60,
+                "read_existing_events": False,
+                "send_bookmarks": True,
+                "compress": True,
+                "targets": [
+
+                ],
+                "locale": "en-US",
+                "query_selector": cribl.QueryBuilderMode.SIMPLE,
+            },
+        ],
     })
 
     # Handle response

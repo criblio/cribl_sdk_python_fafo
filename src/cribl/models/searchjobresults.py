@@ -2,9 +2,8 @@
 
 from __future__ import annotations
 from cribl.types import BaseModel
-import pydantic
 from typing import Any
-from typing_extensions import Annotated, TypedDict
+from typing_extensions import TypedDict
 
 
 class SearchJobResultsTypedDict(TypedDict):
@@ -17,7 +16,7 @@ class SearchJobResultsTypedDict(TypedDict):
 
 
 class SearchJobResults(BaseModel):
-    is_finished: Annotated[bool, pydantic.Field(alias="isFinished")]
+    is_finished: bool
 
     job: Any
 
@@ -25,6 +24,6 @@ class SearchJobResults(BaseModel):
 
     offset: float
 
-    persisted_event_count: Annotated[float, pydantic.Field(alias="persistedEventCount")]
+    persisted_event_count: float
 
-    total_event_count: Annotated[float, pydantic.Field(alias="totalEventCount")]
+    total_event_count: float

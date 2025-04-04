@@ -689,8 +689,10 @@ with Cribl(
 
     res = c_client.search.get_search_jobs_results_by_id(id="<id>")
 
-    # Handle response
-    print(res)
+    with res as jsonl_stream:
+        for event in jsonl_stream:
+            # handle event
+            print(event, flush=True)
 
 ```
 
@@ -707,7 +709,7 @@ with Cribl(
 
 ### Response
 
-**[models.SearchJobResults](../../models/searchjobresults.md)**
+**[Union[jsonl.JsonLStream[models.SearchJobResults], jsonl.JsonLStreamAsync[models.SearchJobResults]]](../../models/.md)**
 
 ### Errors
 
@@ -736,8 +738,10 @@ with Cribl(
 
     res = c_client.search.get_search_jobs_results_poll_by_id(id="<id>")
 
-    # Handle response
-    print(res)
+    with res as jsonl_stream:
+        for event in jsonl_stream:
+            # handle event
+            print(event, flush=True)
 
 ```
 
@@ -755,7 +759,7 @@ with Cribl(
 
 ### Response
 
-**[models.SearchJobResults](../../models/searchjobresults.md)**
+**[Union[jsonl.JsonLStream[models.SearchJobResults], jsonl.JsonLStreamAsync[models.SearchJobResults]]](../../models/.md)**
 
 ### Errors
 

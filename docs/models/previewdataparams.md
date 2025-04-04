@@ -5,9 +5,6 @@
 
 | Field                            | Type                             | Required                         | Description                      |
 | -------------------------------- | -------------------------------- | -------------------------------- | -------------------------------- |
-| `mode`                           | [models.Mode](../models/mode.md) | :heavy_check_mark:               | N/A                              |
-| `pipeline_id`                    | *str*                            | :heavy_check_mark:               | N/A                              |
-| `sample_id`                      | *str*                            | :heavy_check_mark:               | N/A                              |
 | `cpu_profile`                    | *Optional[bool]*                 | :heavy_minus_sign:               | N/A                              |
 | `dropped`                        | *Optional[bool]*                 | :heavy_minus_sign:               | N/A                              |
 | `enhance_metrics_output`         | *Optional[bool]*                 | :heavy_minus_sign:               | N/A                              |
@@ -15,5 +12,8 @@
 | `input_id`                       | *Optional[str]*                  | :heavy_minus_sign:               | N/A                              |
 | `level`                          | *Optional[float]*                | :heavy_minus_sign:               | N/A                              |
 | `memory`                         | *Optional[float]*                | :heavy_minus_sign:               | N/A                              |
+| `mode`                           | [models.Mode](../models/mode.md) | :heavy_check_mark:               | N/A                              |
+| `pipeline_id`                    | *str*                            | :heavy_check_mark:               | N/A                              |
+| `sample_id`                      | *str*                            | :heavy_check_mark:               | N/A                              |
 | `sample_pipeline_id`             | *Optional[str]*                  | :heavy_minus_sign:               | N/A                              |
 | `timeout`                        | *Optional[float]*                | :heavy_minus_sign:               | N/A                              |

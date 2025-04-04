@@ -1,18 +1,18 @@
 lockVersion: 2.0.0
 id: 4e47635b-372e-4905-92a7-4edd996fc886
 management:
-  docChecksum: dfe02465127e6c4bcc7438ffd09db66a
+  docChecksum: 9608acabf32793c250a430efe82bf98d
   docVersion: 1.0.0
-  speakeasyVersion: 1.523.2
-  generationVersion: 2.560.1
-  releaseVersion: 0.2.2
-  configChecksum: f44f45633f080acce1aad1861bc0f0ec
+  speakeasyVersion: 1.529.1
+  generationVersion: 2.566.5
+  releaseVersion: 0.3.0
+  configChecksum: 25d13739a2f80077cea2e31030827a37
 features:
   python:
     additionalDependencies: 1.0.0
     additionalProperties: 1.0.1
     constsAndDefaults: 1.0.5
-    core: 5.12.4
+    core: 5.12.6
     defaultEnabledRetries: 0.2.0
     deprecations: 3.0.2
     devContainers: 3.0.0
@@ -25,10 +25,11 @@ features:
     globalSecurityCallbacks: 1.0.0
     globalServerURLs: 3.1.0
     inputOutputModels: 3.0.0
+    jsonlResponses: 0.2.0
     methodArguments: 1.0.2
     methodServerURLs: 3.1.1
     nullables: 1.0.1
-    oauth2ClientCredentials: 1.1.2
+    oauth2ClientCredentials: 1.2.1
     responseFormat: 1.0.1
     retries: 3.0.2
     sdkHooks: 1.0.1
@@ -3743,7 +3744,7 @@ generatedFiles:
   - src/cribl/models/loggerconfig.py
   - src/cribl/models/loggerentry.py
   - src/cribl/models/logininfo.py
-  - src/cribl/models/lookupfile.py
+  - src/cribl/models/lookupfile_input.py
   - src/cribl/models/lookupfileinforesponse.py
   - src/cribl/models/lookupversions.py
   - src/cribl/models/mappingtype.py
@@ -4081,6 +4082,7 @@ generatedFiles:
   - src/cribl/utils/eventstreaming.py
   - src/cribl/utils/forms.py
   - src/cribl/utils/headers.py
+  - src/cribl/utils/jsonl.py
   - src/cribl/utils/logger.py
   - src/cribl/utils/metadata.py
   - src/cribl/utils/queryparams.py
@@ -4095,6 +4097,197 @@ generatedFiles:
   - src/cribl/workers.py
   - src/cribl/workspaces.py
 examples:
+  v5.billing.consumption.getSingleProductUsageBreakdown:
+    speakeasy-default-v5-billing-consumption-get-single-product-usage-breakdown:
+      parameters:
+        path:
+          organizationId: "<id>"
+          productSlug: "search"
+        query:
+          startingOn: "2023-11-28T21:49:04.925Z"
+          endingBefore: "2025-09-09T13:52:53.788Z"
+          window: "monthly"
+      responses:
+        "200":
+          application/json: {"items": [], "count": 8681.5}
+  v5.billing.consumption.getProductsConsumptionStats:
+    speakeasy-default-v5-billing-consumption-get-products-consumption-stats:
+      parameters:
+        path:
+          organizationId: "<id>"
+        query:
+          startingOn: "2023-01-04T00:19:37.899Z"
+          endingBefore: "2024-03-07T13:27:22.774Z"
+          window: "monthly"
+      responses:
+        "200":
+          application/json: {"items": [{"slug": "stream", "totalCredits": 3008.41, "perUnit": [{"averageQuantity": 3238.26, "recentQuantity": 9001.89, "totalQuantity": 6506.52, "totalCredits": 5721.3, "recentCredits": 8383.78}]}, {"slug": "infrastructure", "totalCredits": 1827.75, "perUnit": [{"averageQuantity": 2168.98, "recentQuantity": 6361.79, "totalQuantity": 1898.97, "totalCredits": 151.18, "recentCredits": 5824.18}]}], "count": 1527.04}
+  v5.billing.consumption.getCreditsSummary:
+    speakeasy-default-v5-billing-consumption-get-credits-summary:
+      parameters:
+        path:
+          organizationId: "<id>"
+        query:
+          startingOn: "2023-08-03T02:42:25.343Z"
+          endingBefore: "2025-11-07T19:07:23.531Z"
+          window: "monthly"
+      responses:
+        "200":
+          application/json: {"data": {"totalCreditsPurchased": 2517.17, "totalCreditsUsed": 2712.35, "averageConsumption": 709.19}}
+  v5.billing.consumption.getCumulativeConsumption:
+    speakeasy-default-v5-billing-consumption-get-cumulative-consumption:
+      parameters:
+        path:
+          organizationId: "<id>"
+        query:
+          startingOn: "2025-07-17T06:51:16.318Z"
+          endingBefore: "2025-09-28T06:02:59.574Z"
+          window: "monthly"
+      responses:
+        "200":
+          application/json: {"items": [{"date": "2023-05-23T00:13:12.158Z", "credits": 9342.93}, {"date": "2023-07-20T00:12:31.015Z", "credits": 581.33}], "count": 7696.21}
+  v5.billing.consumption.getProductsBreakdown:
+    speakeasy-default-v5-billing-consumption-get-products-breakdown:
+      parameters:
+        path:
+          organizationId: "<id>"
+        query:
+          startingOn: "2023-01-26T07:15:37.792Z"
+          endingBefore: "2023-10-03T12:05:18.738Z"
+          window: "monthly"
+      responses:
+        "200":
+          application/json: {"items": [{"date": "2025-03-23T18:17:07.860Z", "products": [{"slug": "<value>", "credits": 2472.44}, {"slug": "<value>", "credits": 8164.35}, {"slug": "<value>", "credits": 1573.58}]}, {"date": "2025-02-22T20:59:05.219Z", "products": []}], "count": 4833.55}
+  v5.billing.invoices.getInvoices:
+    speakeasy-default-v5-billing-invoices-get-invoices:
+      parameters:
+        path:
+          organizationId: "<id>"
+      responses:
+        "200":
+          application/json: {"items": [{"id": "<id>", "fromDate": "2025-12-17T23:32:55.607Z", "toDate": "2023-03-21T13:46:06.143Z", "totalCredits": 4675.86, "status": "VOID", "products": [{"slug": "edge", "name": "<value>", "totalCredits": 6501.9, "lineItems": [{"name": "<value>", "quantity": 4390.04, "credits": 9231.14, "groups": [{"key": "workergroup", "value": "<value>"}, {"key": "workergroup", "value": "<value>"}, {"key": "cluster_id", "value": "<value>"}]}, {"name": "<value>", "quantity": 7770.37, "credits": 4247.21, "groups": [{"key": "cluster_id", "value": "<value>"}, {"key": "workspace", "value": "<value>"}, {"key": "cluster_id", "value": "<value>"}]}]}]}], "count": 8970.43}
+  v5.billing.invoices.getInvoice:
+    speakeasy-default-v5-billing-invoices-get-invoice:
+      parameters:
+        path:
+          organizationId: "<id>"
+          invoiceId: "<id>"
+      responses:
+        "200":
+          application/json: {"data": {"id": "<id>", "fromDate": "2023-10-10T03:08:30.176Z", "toDate": "2025-04-28T05:25:31.707Z", "totalCredits": 3432.94, "status": "FINALIZED", "products": [{"slug": "lakehouse", "name": "<value>", "totalCredits": 7045.87, "lineItems": [{"name": "<value>", "quantity": 8733.08, "credits": 4047.21, "groups": [{"key": "deployment_id", "value": "<value>"}, {"key": "deployment_id", "value": "<value>"}]}, {"name": "<value>", "quantity": 2002.85, "credits": 3064.44, "groups": [{"key": "other", "value": "<value>"}]}, {"name": "<value>", "quantity": 4449.5, "credits": 9175.1, "groups": [{"key": "deployment_id", "value": "<value>"}, {"key": "other", "value": "<value>"}]}]}, {"slug": "search", "name": "<value>", "totalCredits": 2523.62, "lineItems": [{"name": "<value>", "quantity": 3842.01, "credits": 6135.62, "groups": []}, {"name": "<value>", "quantity": 1282.4, "credits": 8831.08, "groups": [{"key": "cluster_id", "value": "<value>"}, {"key": "workspace", "value": "<value>"}]}]}]}}
+  getCosts:
+    speakeasy-default-get-costs:
+      parameters:
+        path:
+          organizationId: "<id>"
+        query:
+          startingOn: "<value>"
+          endingBefore: "<value>"
+      responses:
+        "200":
+          application/json: {"startingOn": "<value>", "endingBefore": "<value>", "costs": {}}
+  getInvoices:
+    speakeasy-default-get-invoices:
+      parameters:
+        path:
+          organizationId: "<id>"
+      responses:
+        "200":
+          application/json: {"items": [{"id": "<id>", "fromDate": "<value>", "toDate": "<value>", "totalCredits": 1258.33, "products": [{"productName": "<value>"}, {"productName": "<value>"}, {"productName": "<value>"}], "status": "FINALIZED"}, {"id": "<id>", "fromDate": "<value>", "toDate": "<value>", "totalCredits": 2980.69, "products": [{"productName": "<value>"}], "status": "VOID"}], "count": 2499.92}
+  getInvoice:
+    speakeasy-default-get-invoice:
+      parameters:
+        path:
+          organizationId: "<id>"
+          invoiceId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "fromDate": "<value>", "toDate": "<value>", "totalCredits": 4864.15, "products": [{"productName": "<value>"}, {"productName": "<value>"}, {"productName": "<value>"}], "status": "VOID"}
+  getCredits:
+    speakeasy-default-get-credits:
+      parameters:
+        path:
+          organizationId: "<id>"
+      responses:
+        "200":
+          application/json: {"totalCreditsPurchased": 5315.42, "totalCreditsUsed": 817.32, "totalCreditsAvailable": 9659.58}
+  getPlan:
+    speakeasy-default-get-plan:
+      parameters:
+        path:
+          organizationId: "<id>"
+      responses:
+        "200":
+          application/json: {"id": "<id>", "name": "<value>", "description": "since foolhardy deliberately yowza", "startDate": "<value>", "isActive": false}
+  getUsage:
+    speakeasy-default-get-usage:
+      parameters:
+        path:
+          organizationId: "<id>"
+          metricType: "Hybrid Worker GBs Received"
+        query:
+          startingOn: "<value>"
+          endingBefore: "<value>"
+      responses:
+        "200":
+          application/json: {"startingOn": "<value>", "endingBefore": "<value>", "data": {"sum": 8631.26, "mean": 5674.17, "dataPoints": [{"category": "<value>", "startTimestamp": "<value>", "endTimestamp": "<value>", "value": 3529.09}, {"category": "<value>", "startTimestamp": "<value>", "endTimestamp": "<value>", "value": 9462.3}, {"category": "<value>", "startTimestamp": "<value>", "endTimestamp": "<value>", "value": 9398.67}]}}
+  WorkspacesController_listWorkspaces:
+    speakeasy-default-workspaces-controller-list-workspaces:
+      parameters:
+        path:
+          organizationId: "<id>"
+      responses:
+        "200":
+          application/json: {"items": [{"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2023-12-06T01:01:29.259Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioning-Failed"}, {"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2023-04-26T02:24:00.165Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioning"}], "count": 240.51}
+  WorkspacesController_createWorkspace:
+    speakeasy-default-workspaces-controller-create-workspace:
+      parameters:
+        path:
+          organizationId: "<id>"
+      requestBody:
+        application/json: {"workspaceId": "<id>", "region": "us-west-2"}
+      responses:
+        "200":
+          application/json: {"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2023-03-30T08:08:25.910Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioning-Failed"}
+  WorkspacesController_getWorkspace:
+    speakeasy-default-workspaces-controller-get-workspace:
+      parameters:
+        path:
+          organizationId: "<id>"
+          workspaceId: "<id>"
+      responses:
+        "200":
+          application/json: {"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2024-01-05T17:02:10.046Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioning-Failed"}
+  WorkspacesController_deleteWorkspace:
+    speakeasy-default-workspaces-controller-delete-workspace:
+      parameters:
+        path:
+          organizationId: "<id>"
+          workspaceId: "<id>"
+  WorkspacesController_patchWorkspace:
+    speakeasy-default-workspaces-controller-patch-workspace:
+      parameters:
+        path:
+          organizationId: "<id>"
+          workspaceId: "<id>"
+      requestBody:
+        application/json: {}
+      responses:
+        "200":
+          application/json: {"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2023-09-01T02:37:46.846Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioned"}
+  getAssignments:
+    speakeasy-default-get-assignments:
+      responses:
+        "200":
+          application/json: [{"organizationId": "<id>", "workspaceId": "<id>", "state": "AVAILABLE", "createdAt": "2025-08-06T21:53:43.553Z", "updatedAt": "2023-05-13T00:54:00.391Z"}]
+  assignSandboxWorkspaceToUser:
+    speakeasy-default-assign-sandbox-workspace-to-user:
+      parameters:
+        path:
+          courseId: "<id>"
+      responses:
+        "200":
+          application/json: {"organizationId": "<id>", "workspaceId": "<id>", "state": "ASSIGNED", "userId": "<id>", "courseId": "<id>", "assignedAt": "2024-01-10T03:42:06.753Z", "expiresAt": "2024-03-06T11:54:07.190Z"}
   getSystemProjectsSubscriptionsByGroupIdByAndProjectId:
     speakeasy-default-get-system-projects-subscriptions-by-group-id-by-and-project-id:
       parameters:
@@ -6419,8 +6612,6 @@ examples:
           id: "<id>"
         query: {}
       responses:
-        "200":
-          application/json: {"isFinished": false, "job": "Investor Division Consultant", "limit": 312.23, "offset": 5709.25, "persistedEventCount": 4130.71, "totalEventCount": 8856.79}
         "500":
           application/json: {}
   getSearchJobsResultsPollById:
@@ -6430,8 +6621,6 @@ examples:
           id: "<id>"
         query: {}
       responses:
-        "200":
-          application/json: {"isFinished": false, "job": "Customer Data Consultant", "limit": 2729.84, "offset": 7053.74, "persistedEventCount": 6540.09, "totalEventCount": 7902.98}
         "500":
           application/json: {}
   getDatabaseConnectionConfig:
@@ -6815,7 +7004,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"bucket": "<value>", "awsAuthenticationMethod": "auto", "signatureVersion": "v4", "reuseConnections": true, "rejectUnauthorized": true, "enableAssumeRole": false, "durationSeconds": 3600, "stagePath": "$CRIBL_HOME/state/outputs/staging", "addIdToStagePath": true, "destPath": "", "objectACL": "private", "removeEmptyDirs": true, "partitionExpr": "C.Time.strftime(_time ? _time : Date.now()/1000, '%Y/%m/%d')", "format": "json", "baseFileName": "`CriblOut`", "fileNameSuffix": "`.${C.env[\"CRIBL_WORKER_ID\"]}.${__format}${__compression === \"gzip\" ? \".gz\" : \"\"}`", "maxFileSizeMB": 32, "maxOpenFiles": 100, "headerLine": "", "writeHighWaterMark": 64, "onBackpressure": "block", "deadletterEnabled": false, "onDiskFullBackpressure": "block", "maxFileOpenTimeSec": 300, "maxFileIdleTimeSec": 30, "maxConcurrentFileParts": 4, "verifyPermissions": true, "maxClosingFilesToBackpressure": 100, "compress": "gzip", "compressionLevel": "best_speed", "automaticSchema": false, "parquetVersion": "PARQUET_2_6", "parquetDataPageVersion": "DATA_PAGE_V2", "parquetRowGroupLength": 10000, "parquetPageSize": "1MB", "enableStatistics": true, "enableWritePageIndex": true, "enablePageChecksum": false, "emptyDirCleanupSec": 300, "deadletterPath": "$CRIBL_HOME/state/outputs/dead-letter", "maxRetryNum": 20}
+        application/json: {"bucket": "<value>", "awsAuthenticationMethod": "auto", "signatureVersion": "v4", "reuseConnections": true, "rejectUnauthorized": true, "enableAssumeRole": false, "durationSeconds": 3600, "stagePath": "$CRIBL_HOME/state/outputs/staging", "addIdToStagePath": true, "destPath": "", "objectACL": "private", "removeEmptyDirs": true, "format": "json", "baseFileName": "`CriblOut`", "fileNameSuffix": "`.${C.env[\"CRIBL_WORKER_ID\"]}.${__format}${__compression === \"gzip\" ? \".gz\" : \"\"}`", "maxFileSizeMB": 32, "maxOpenFiles": 100, "headerLine": "", "writeHighWaterMark": 64, "onBackpressure": "block", "deadletterEnabled": false, "onDiskFullBackpressure": "block", "maxFileOpenTimeSec": 300, "maxFileIdleTimeSec": 30, "maxConcurrentFileParts": 4, "verifyPermissions": true, "maxClosingFilesToBackpressure": 100, "compress": "gzip", "compressionLevel": "best_speed", "automaticSchema": false, "parquetVersion": "PARQUET_2_6", "parquetDataPageVersion": "DATA_PAGE_V2", "parquetRowGroupLength": 10000, "parquetPageSize": "1MB", "enableStatistics": true, "enableWritePageIndex": true, "enablePageChecksum": false, "emptyDirCleanupSec": 300, "deadletterPath": "$CRIBL_HOME/state/outputs/dead-letter", "maxRetryNum": 20}
       responses:
         "200":
           application/json: {}
@@ -8245,196 +8434,5 @@ examples:
           application/json: {}
         "500":
           application/json: {}
-  getUsage:
-    speakeasy-default-get-usage:
-      parameters:
-        path:
-          organizationId: "<id>"
-          metricType: "Hybrid Worker GBs Received"
-        query:
-          startingOn: "<value>"
-          endingBefore: "<value>"
-      responses:
-        "200":
-          application/json: {"startingOn": "<value>", "endingBefore": "<value>", "data": {"sum": 8631.26, "mean": 5674.17, "dataPoints": [{"category": "<value>", "startTimestamp": "<value>", "endTimestamp": "<value>", "value": 3529.09}, {"category": "<value>", "startTimestamp": "<value>", "endTimestamp": "<value>", "value": 9462.3}, {"category": "<value>", "startTimestamp": "<value>", "endTimestamp": "<value>", "value": 9398.67}]}}
-  getCredits:
-    speakeasy-default-get-credits:
-      parameters:
-        path:
-          organizationId: "<id>"
-      responses:
-        "200":
-          application/json: {"totalCreditsPurchased": 5315.42, "totalCreditsUsed": 817.32, "totalCreditsAvailable": 9659.58}
-  getCosts:
-    speakeasy-default-get-costs:
-      parameters:
-        path:
-          organizationId: "<id>"
-        query:
-          startingOn: "<value>"
-          endingBefore: "<value>"
-      responses:
-        "200":
-          application/json: {"startingOn": "<value>", "endingBefore": "<value>", "costs": {}}
-  getInvoices:
-    speakeasy-default-get-invoices:
-      parameters:
-        path:
-          organizationId: "<id>"
-      responses:
-        "200":
-          application/json: {"items": [{"id": "<id>", "fromDate": "<value>", "toDate": "<value>", "totalCredits": 1258.33, "products": [{"productName": "<value>"}, {"productName": "<value>"}, {"productName": "<value>"}], "status": "FINALIZED"}, {"id": "<id>", "fromDate": "<value>", "toDate": "<value>", "totalCredits": 2980.69, "products": [{"productName": "<value>"}], "status": "VOID"}], "count": 2499.92}
-  getInvoice:
-    speakeasy-default-get-invoice:
-      parameters:
-        path:
-          organizationId: "<id>"
-          invoiceId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "fromDate": "<value>", "toDate": "<value>", "totalCredits": 4864.15, "products": [{"productName": "<value>"}, {"productName": "<value>"}, {"productName": "<value>"}], "status": "VOID"}
-  getPlan:
-    speakeasy-default-get-plan:
-      parameters:
-        path:
-          organizationId: "<id>"
-      responses:
-        "200":
-          application/json: {"id": "<id>", "name": "<value>", "description": "since foolhardy deliberately yowza", "startDate": "<value>", "isActive": false}
-  v5.billing.invoices.getInvoices:
-    speakeasy-default-v5-billing-invoices-get-invoices:
-      parameters:
-        path:
-          organizationId: "<id>"
-      responses:
-        "200":
-          application/json: {"items": [{"id": "<id>", "fromDate": "2025-12-17T23:32:55.607Z", "toDate": "2023-03-21T13:46:06.143Z", "totalCredits": 4675.86, "status": "VOID", "products": [{"slug": "edge", "name": "<value>", "totalCredits": 6501.9, "lineItems": [{"name": "<value>", "quantity": 4390.04, "credits": 9231.14, "groups": [{"key": "workergroup", "value": "<value>"}, {"key": "workergroup", "value": "<value>"}, {"key": "cluster_id", "value": "<value>"}]}, {"name": "<value>", "quantity": 7770.37, "credits": 4247.21, "groups": [{"key": "cluster_id", "value": "<value>"}, {"key": "workspace", "value": "<value>"}, {"key": "cluster_id", "value": "<value>"}]}]}]}], "count": 8970.43}
-  v5.billing.invoices.getInvoice:
-    speakeasy-default-v5-billing-invoices-get-invoice:
-      parameters:
-        path:
-          organizationId: "<id>"
-          invoiceId: "<id>"
-      responses:
-        "200":
-          application/json: {"data": {"id": "<id>", "fromDate": "2023-10-10T03:08:30.176Z", "toDate": "2025-04-28T05:25:31.707Z", "totalCredits": 3432.94, "status": "FINALIZED", "products": [{"slug": "lakehouse", "name": "<value>", "totalCredits": 7045.87, "lineItems": [{"name": "<value>", "quantity": 8733.08, "credits": 4047.21, "groups": [{"key": "deployment_id", "value": "<value>"}, {"key": "deployment_id", "value": "<value>"}]}, {"name": "<value>", "quantity": 2002.85, "credits": 3064.44, "groups": [{"key": "other", "value": "<value>"}]}, {"name": "<value>", "quantity": 4449.5, "credits": 9175.1, "groups": [{"key": "deployment_id", "value": "<value>"}, {"key": "other", "value": "<value>"}]}]}, {"slug": "search", "name": "<value>", "totalCredits": 2523.62, "lineItems": [{"name": "<value>", "quantity": 3842.01, "credits": 6135.62, "groups": []}, {"name": "<value>", "quantity": 1282.4, "credits": 8831.08, "groups": [{"key": "cluster_id", "value": "<value>"}, {"key": "workspace", "value": "<value>"}]}]}]}}
-  v5.billing.consumption.getCreditsSummary:
-    speakeasy-default-v5-billing-consumption-get-credits-summary:
-      parameters:
-        path:
-          organizationId: "<id>"
-        query:
-          startingOn: "2023-08-03T02:42:25.343Z"
-          endingBefore: "2025-11-07T19:07:23.531Z"
-          window: "monthly"
-      responses:
-        "200":
-          application/json: {"data": {"totalCreditsPurchased": 2517.17, "totalCreditsUsed": 2712.35, "averageConsumption": 709.19}}
-  v5.billing.consumption.getCumulativeConsumption:
-    speakeasy-default-v5-billing-consumption-get-cumulative-consumption:
-      parameters:
-        path:
-          organizationId: "<id>"
-        query:
-          startingOn: "2025-07-17T06:51:16.318Z"
-          endingBefore: "2025-09-28T06:02:59.574Z"
-          window: "monthly"
-      responses:
-        "200":
-          application/json: {"items": [{"date": "2023-05-23T00:13:12.158Z", "credits": 9342.93}, {"date": "2023-07-20T00:12:31.015Z", "credits": 581.33}], "count": 7696.21}
-  v5.billing.consumption.getProductsBreakdown:
-    speakeasy-default-v5-billing-consumption-get-products-breakdown:
-      parameters:
-        path:
-          organizationId: "<id>"
-        query:
-          startingOn: "2023-01-26T07:15:37.792Z"
-          endingBefore: "2023-10-03T12:05:18.738Z"
-          window: "monthly"
-      responses:
-        "200":
-          application/json: {"items": [{"date": "2025-03-23T18:17:07.860Z", "products": [{"slug": "<value>", "credits": 2472.44}, {"slug": "<value>", "credits": 8164.35}, {"slug": "<value>", "credits": 1573.58}]}, {"date": "2025-02-22T20:59:05.219Z", "products": []}], "count": 4833.55}
-  v5.billing.consumption.getProductsConsumptionStats:
-    speakeasy-default-v5-billing-consumption-get-products-consumption-stats:
-      parameters:
-        path:
-          organizationId: "<id>"
-        query:
-          startingOn: "2023-01-04T00:19:37.899Z"
-          endingBefore: "2024-03-07T13:27:22.774Z"
-          window: "monthly"
-      responses:
-        "200":
-          application/json: {"items": [{"slug": "stream", "totalCredits": 3008.41, "perUnit": [{"averageQuantity": 3238.26, "recentQuantity": 9001.89, "totalQuantity": 6506.52, "totalCredits": 5721.3, "recentCredits": 8383.78}]}, {"slug": "infrastructure", "totalCredits": 1827.75, "perUnit": [{"averageQuantity": 2168.98, "recentQuantity": 6361.79, "totalQuantity": 1898.97, "totalCredits": 151.18, "recentCredits": 5824.18}]}], "count": 1527.04}
-  v5.billing.consumption.getSingleProductUsageBreakdown:
-    speakeasy-default-v5-billing-consumption-get-single-product-usage-breakdown:
-      parameters:
-        path:
-          organizationId: "<id>"
-          productSlug: "search"
-        query:
-          startingOn: "2023-11-28T21:49:04.925Z"
-          endingBefore: "2025-09-09T13:52:53.788Z"
-          window: "monthly"
-      responses:
-        "200":
-          application/json: {"items": [], "count": 8681.5}
-  assignSandboxWorkspaceToUser:
-    speakeasy-default-assign-sandbox-workspace-to-user:
-      parameters:
-        path:
-          courseId: "<id>"
-      responses:
-        "200":
-          application/json: {"organizationId": "<id>", "workspaceId": "<id>", "state": "ASSIGNED", "userId": "<id>", "courseId": "<id>", "assignedAt": "2024-01-10T03:42:06.753Z", "expiresAt": "2024-03-06T11:54:07.190Z"}
-  getAssignments:
-    speakeasy-default-get-assignments:
-      responses:
-        "200":
-          application/json: [{"organizationId": "<id>", "workspaceId": "<id>", "state": "AVAILABLE", "createdAt": "2025-08-06T21:53:43.553Z", "updatedAt": "2023-05-13T00:54:00.391Z"}]
-  WorkspacesController_listWorkspaces:
-    speakeasy-default-workspaces-controller-list-workspaces:
-      parameters:
-        path:
-          organizationId: "<id>"
-      responses:
-        "200":
-          application/json: {"items": [{"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2023-12-06T01:01:29.259Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioning-Failed"}, {"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2023-04-26T02:24:00.165Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioning"}], "count": 240.51}
-  WorkspacesController_createWorkspace:
-    speakeasy-default-workspaces-controller-create-workspace:
-      parameters:
-        path:
-          organizationId: "<id>"
-      requestBody:
-        application/json: {"workspaceId": "<id>", "region": "us-west-2"}
-      responses:
-        "200":
-          application/json: {"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2023-03-30T08:08:25.910Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioning-Failed"}
-  WorkspacesController_getWorkspace:
-    speakeasy-default-workspaces-controller-get-workspace:
-      parameters:
-        path:
-          organizationId: "<id>"
-          workspaceId: "<id>"
-      responses:
-        "200":
-          application/json: {"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2024-01-05T17:02:10.046Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioning-Failed"}
-  WorkspacesController_deleteWorkspace:
-    speakeasy-default-workspaces-controller-delete-workspace:
-      parameters:
-        path:
-          organizationId: "<id>"
-          workspaceId: "<id>"
-  WorkspacesController_patchWorkspace:
-    speakeasy-default-workspaces-controller-patch-workspace:
-      parameters:
-        path:
-          organizationId: "<id>"
-          workspaceId: "<id>"
-      requestBody:
-        application/json: {}
-      responses:
-        "200":
-          application/json: {"workspaceId": "<id>", "region": "<value>", "lastUpdated": "2023-09-01T02:37:46.846Z", "leaderFQDN": "<value>", "state": "Workspace-Provisioned"}
-examplesVersion: 1.0.0
+examplesVersion: 1.0.1
 generatedTests: {}
