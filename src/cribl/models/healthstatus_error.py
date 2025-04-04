@@ -20,20 +20,6 @@ class HealthStatusStatus(str, Enum):
     STANDBY = "standby"
 
 
-class HealthStatusTypedDict(TypedDict):
-    status: HealthStatusStatus
-    start_time: float
-    role: NotRequired[HealthStatusRole]
-
-
-class HealthStatus(BaseModel):
-    status: HealthStatusStatus
-
-    start_time: Annotated[float, pydantic.Field(alias="startTime")]
-
-    role: Optional[HealthStatusRole] = None
-
-
 class HealthStatusErrorData(BaseModel):
     status: HealthStatusStatus
 
@@ -50,3 +36,17 @@ class HealthStatusError(Exception):
 
     def __str__(self) -> str:
         return utils.marshal_json(self.data, HealthStatusErrorData)
+
+
+class HealthStatusTypedDict(TypedDict):
+    status: HealthStatusStatus
+    start_time: float
+    role: NotRequired[HealthStatusRole]
+
+
+class HealthStatus(BaseModel):
+    status: HealthStatusStatus
+
+    start_time: Annotated[float, pydantic.Field(alias="startTime")]
+
+    role: Optional[HealthStatusRole] = None

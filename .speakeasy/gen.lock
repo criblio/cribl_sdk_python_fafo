@@ -5,8 +5,8 @@ management:
   docVersion: 1.0.0
   speakeasyVersion: 1.529.1
   generationVersion: 2.566.5
-  releaseVersion: 0.3.0
-  configChecksum: 25d13739a2f80077cea2e31030827a37
+  releaseVersion: 0.3.1
+  configChecksum: 427c8c1f75183e959d4b4293da4e7688
 features:
   python:
     additionalDependencies: 1.0.0
@@ -3604,7 +3604,7 @@ generatedFiles:
   - src/cribl/models/grokfile.py
   - src/cribl/models/hbcriblinfo.py
   - src/cribl/models/hbleaderinfo.py
-  - src/cribl/models/healthstatus.py
+  - src/cribl/models/healthstatus_error.py
   - src/cribl/models/heartbeatmetadata.py
   - src/cribl/models/hmacfunction.py
   - src/cribl/models/httpoutauthconfig.py
@@ -3881,7 +3881,7 @@ generatedFiles:
   - src/cribl/models/role.py
   - src/cribl/models/routecloneconf.py
   - src/cribl/models/routeconf.py
-  - src/cribl/models/routes.py
+  - src/cribl/models/routes_input.py
   - src/cribl/models/routesroute.py
   - src/cribl/models/routesroute_input.py
   - src/cribl/models/runnablejob.py
@@ -6614,6 +6614,7 @@ examples:
       responses:
         "500":
           application/json: {}
+        "200": {}
   getSearchJobsResultsPollById:
     speakeasy-default-get-search-jobs-results-poll-by-id:
       parameters:
@@ -6623,6 +6624,7 @@ examples:
       responses:
         "500":
           application/json: {}
+        "200": {}
   getDatabaseConnectionConfig:
     speakeasy-default-get-database-connection-config:
       responses:
@@ -7004,7 +7006,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"bucket": "<value>", "awsAuthenticationMethod": "auto", "signatureVersion": "v4", "reuseConnections": true, "rejectUnauthorized": true, "enableAssumeRole": false, "durationSeconds": 3600, "stagePath": "$CRIBL_HOME/state/outputs/staging", "addIdToStagePath": true, "destPath": "", "objectACL": "private", "removeEmptyDirs": true, "format": "json", "baseFileName": "`CriblOut`", "fileNameSuffix": "`.${C.env[\"CRIBL_WORKER_ID\"]}.${__format}${__compression === \"gzip\" ? \".gz\" : \"\"}`", "maxFileSizeMB": 32, "maxOpenFiles": 100, "headerLine": "", "writeHighWaterMark": 64, "onBackpressure": "block", "deadletterEnabled": false, "onDiskFullBackpressure": "block", "maxFileOpenTimeSec": 300, "maxFileIdleTimeSec": 30, "maxConcurrentFileParts": 4, "verifyPermissions": true, "maxClosingFilesToBackpressure": 100, "compress": "gzip", "compressionLevel": "best_speed", "automaticSchema": false, "parquetVersion": "PARQUET_2_6", "parquetDataPageVersion": "DATA_PAGE_V2", "parquetRowGroupLength": 10000, "parquetPageSize": "1MB", "enableStatistics": true, "enableWritePageIndex": true, "enablePageChecksum": false, "emptyDirCleanupSec": 300, "deadletterPath": "$CRIBL_HOME/state/outputs/dead-letter", "maxRetryNum": 20}
+        application/json: {"bucket": "<value>", "awsAuthenticationMethod": "auto", "signatureVersion": "v4", "reuseConnections": true, "rejectUnauthorized": true, "enableAssumeRole": false, "durationSeconds": 3600, "stagePath": "$CRIBL_HOME/state/outputs/staging", "addIdToStagePath": true, "destPath": "", "objectACL": "private", "removeEmptyDirs": true, "partitionExpr": "C.Time.strftime(_time ? _time : Date.now()/1000, '%Y/%m/%d')", "format": "json", "baseFileName": "`CriblOut`", "fileNameSuffix": "`.${C.env[\"CRIBL_WORKER_ID\"]}.${__format}${__compression === \"gzip\" ? \".gz\" : \"\"}`", "maxFileSizeMB": 32, "maxOpenFiles": 100, "headerLine": "", "writeHighWaterMark": 64, "onBackpressure": "block", "deadletterEnabled": false, "onDiskFullBackpressure": "block", "maxFileOpenTimeSec": 300, "maxFileIdleTimeSec": 30, "maxConcurrentFileParts": 4, "verifyPermissions": true, "maxClosingFilesToBackpressure": 100, "compress": "gzip", "compressionLevel": "best_speed", "automaticSchema": false, "parquetVersion": "PARQUET_2_6", "parquetDataPageVersion": "DATA_PAGE_V2", "parquetRowGroupLength": 10000, "parquetPageSize": "1MB", "enableStatistics": true, "enableWritePageIndex": true, "enablePageChecksum": false, "emptyDirCleanupSec": 300, "deadletterPath": "$CRIBL_HOME/state/outputs/dead-letter", "maxRetryNum": 20}
       responses:
         "200":
           application/json: {}

@@ -2130,7 +2130,7 @@ from .globalvar import GlobalVar, GlobalVarType, GlobalVarTypedDict
 from .grokfile import GrokFile, GrokFileTypedDict
 from .hbcriblinfo import Config, ConfigTypedDict, HBCriblInfo, HBCriblInfoTypedDict
 from .hbleaderinfo import HBLeaderInfo, HBLeaderInfoTypedDict
-from .healthstatus import (
+from .healthstatus_error import (
     HealthStatus,
     HealthStatusError,
     HealthStatusErrorData,
@@ -5014,7 +5014,7 @@ from .retrybackoffoptions import RetryBackoffOptions, RetryBackoffOptionsTypedDi
 from .role import Role, RoleTypedDict
 from .routecloneconf import RouteCloneConf, RouteCloneConfTypedDict
 from .routeconf import RouteConf, RouteConfTypedDict
-from .routes import (
+from .routes_input import (
     Comments,
     CommentsTypedDict,
     GroupsModel,
