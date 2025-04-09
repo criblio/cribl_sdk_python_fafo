@@ -3,10 +3,10 @@ id: 4e47635b-372e-4905-92a7-4edd996fc886
 management:
   docChecksum: 9e99a95280d1e34454fab53b14bf31f0
   docVersion: 1.0.0
-  speakeasyVersion: 1.529.1
-  generationVersion: 2.566.5
-  releaseVersion: 0.4.0
-  configChecksum: 7886655568cbbe595df37e7b9db1c454
+  speakeasyVersion: 1.531.0
+  generationVersion: 2.568.2
+  releaseVersion: 0.4.1
+  configChecksum: 493e713953497b07f9930ee12582de30
 features:
   python:
     additionalDependencies: 1.0.0
@@ -26,7 +26,7 @@ features:
     globalServerURLs: 3.1.0
     ignores: 3.0.1
     inputOutputModels: 3.0.0
-    jsonlResponses: 0.2.0
+    jsonlResponses: 0.2.1
     methodArguments: 1.0.2
     methodServerURLs: 3.1.1
     nullables: 1.0.1
@@ -3635,7 +3635,7 @@ generatedFiles:
   - src/cribl/models/grokfile.py
   - src/cribl/models/hbcriblinfo.py
   - src/cribl/models/hbleaderinfo.py
-  - src/cribl/models/healthstatus_error.py
+  - src/cribl/models/healthstatus.py
   - src/cribl/models/heartbeatmetadata.py
   - src/cribl/models/hmacfunction.py
   - src/cribl/models/httpoutauthconfig.py
@@ -3780,7 +3780,7 @@ generatedFiles:
   - src/cribl/models/loggerconfig.py
   - src/cribl/models/loggerentry.py
   - src/cribl/models/logininfo.py
-  - src/cribl/models/lookupfile_input.py
+  - src/cribl/models/lookupfile.py
   - src/cribl/models/lookupfileinforesponse.py
   - src/cribl/models/lookupversions.py
   - src/cribl/models/mappingtype.py
@@ -3918,7 +3918,7 @@ generatedFiles:
   - src/cribl/models/role.py
   - src/cribl/models/routecloneconf.py
   - src/cribl/models/routeconf.py
-  - src/cribl/models/routes.py
+  - src/cribl/models/routes_input.py
   - src/cribl/models/routesroute.py
   - src/cribl/models/routesroute_input.py
   - src/cribl/models/runnablejob.py

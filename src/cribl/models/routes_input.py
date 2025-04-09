@@ -51,29 +51,6 @@ class Comments(BaseModel):
         self.__pydantic_extra__ = value  # pyright: ignore[reportIncompatibleVariableOverride]
 
 
-class RoutesTypedDict(TypedDict):
-    routes: List[RoutesRouteTypedDict]
-    r"""Pipeline routing rules"""
-    id: NotRequired[str]
-    r"""Routes ID"""
-    groups: NotRequired[Dict[str, GroupsModelTypedDict]]
-    comments: NotRequired[List[CommentsTypedDict]]
-    r"""Comments"""
-
-
-class Routes(BaseModel):
-    routes: List[RoutesRoute]
-    r"""Pipeline routing rules"""
-
-    id: Optional[str] = None
-    r"""Routes ID"""
-
-    groups: Optional[Dict[str, GroupsModel]] = None
-
-    comments: Optional[List[Comments]] = None
-    r"""Comments"""
-
-
 class RoutesInputTypedDict(TypedDict):
     routes: List[RoutesRouteInputTypedDict]
     r"""Pipeline routing rules"""
@@ -86,6 +63,29 @@ class RoutesInputTypedDict(TypedDict):
 
 class RoutesInput(BaseModel):
     routes: List[RoutesRouteInput]
+    r"""Pipeline routing rules"""
+
+    id: Optional[str] = None
+    r"""Routes ID"""
+
+    groups: Optional[Dict[str, GroupsModel]] = None
+
+    comments: Optional[List[Comments]] = None
+    r"""Comments"""
+
+
+class RoutesTypedDict(TypedDict):
+    routes: List[RoutesRouteTypedDict]
+    r"""Pipeline routing rules"""
+    id: NotRequired[str]
+    r"""Routes ID"""
+    groups: NotRequired[Dict[str, GroupsModelTypedDict]]
+    comments: NotRequired[List[CommentsTypedDict]]
+    r"""Comments"""
+
+
+class Routes(BaseModel):
+    routes: List[RoutesRoute]
     r"""Pipeline routing rules"""
 
     id: Optional[str] = None
