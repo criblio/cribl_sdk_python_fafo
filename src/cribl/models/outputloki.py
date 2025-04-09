@@ -46,17 +46,13 @@ class OutputLokiAuthenticationType(str, Enum):
 
 class OutputLokiExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputLokiExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputLokiFailedRequestLoggingMode(str, Enum):
@@ -199,7 +195,7 @@ class OutputLokiTypedDict(TypedDict):
     flush_period_sec: NotRequired[float]
     r"""Maximum time between requests. Small values could cause the payload size to be smaller than the configured Maximum time between requests. Small values can reduce the payload size below the configured 'Max record size' and 'Max events per request'. Warning: Setting this too low can increase the number of ongoing requests (depending on the value of 'Request concurrency'); this can cause Loki to complain about entries being delivered out of order."""
     extra_http_headers: NotRequired[List[OutputLokiExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     use_round_robin_dns: NotRequired[bool]
     r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned. For optimal performance, consider enabling this setting for non-load balanced destinations."""
     failed_request_logging_mode: NotRequired[OutputLokiFailedRequestLoggingMode]
@@ -315,7 +311,7 @@ class OutputLoki(BaseModel):
         Optional[List[OutputLokiExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     use_round_robin_dns: Annotated[
         Optional[bool], pydantic.Field(alias="useRoundRobinDns")

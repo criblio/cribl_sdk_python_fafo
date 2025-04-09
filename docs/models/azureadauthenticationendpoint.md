@@ -1,6 +1,6 @@
 # AzureADAuthenticationEndpoint
 
-Endpoint used to acquire authentication tokens from Azure.
+Endpoint used to acquire authentication tokens from Azure
 
 
 ## Values

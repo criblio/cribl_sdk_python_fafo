@@ -111,17 +111,13 @@ class OutputOpenTelemetryOauthHeaders(BaseModel):
 
 class OutputOpenTelemetryExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputOpenTelemetryExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputOpenTelemetryResponseRetrySettingsTypedDict(TypedDict):
@@ -181,8 +177,6 @@ class OutputOpenTelemetryTimeoutRetrySettings(BaseModel):
 
 
 class OutputOpenTelemetryMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -190,8 +184,6 @@ class OutputOpenTelemetryMinimumTLSVersion(str, Enum):
 
 
 class OutputOpenTelemetryMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -201,11 +193,11 @@ class OutputOpenTelemetryMaximumTLSVersion(str, Enum):
 class OutputOpenTelemetryTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -213,11 +205,9 @@ class OutputOpenTelemetryTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[OutputOpenTelemetryMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[OutputOpenTelemetryMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputOpenTelemetryTLSSettingsClientSide(BaseModel):
@@ -226,14 +216,14 @@ class OutputOpenTelemetryTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -245,19 +235,17 @@ class OutputOpenTelemetryTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[OutputOpenTelemetryMinimumTLSVersion],
         pydantic.Field(alias="minVersion"),
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[OutputOpenTelemetryMaximumTLSVersion],
         pydantic.Field(alias="maxVersion"),
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputOpenTelemetryPqCompressCompression(str, Enum):
@@ -375,7 +363,7 @@ class OutputOpenTelemetryTypedDict(TypedDict):
     use_round_robin_dns: NotRequired[bool]
     r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned. For optimal performance, consider enabling this setting for non-load balanced destinations."""
     extra_http_headers: NotRequired[List[OutputOpenTelemetryExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     safe_headers: NotRequired[List[str]]
     r"""List of headers that are safe to log in plain text"""
     response_retry_settings: NotRequired[
@@ -582,7 +570,7 @@ class OutputOpenTelemetry(BaseModel):
         Optional[List[OutputOpenTelemetryExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     safe_headers: Annotated[
         Optional[List[str]], pydantic.Field(alias="safeHeaders")

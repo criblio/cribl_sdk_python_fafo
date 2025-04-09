@@ -84,8 +84,6 @@ class InputSplunkPq(BaseModel):
 
 
 class InputSplunkMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -93,8 +91,6 @@ class InputSplunkMinimumTLSVersion(str, Enum):
 
 
 class InputSplunkMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,9 +114,7 @@ class InputSplunkTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputSplunkMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputSplunkMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputSplunkTLSSettingsServerSide(BaseModel):
@@ -157,12 +151,10 @@ class InputSplunkTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputSplunkMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputSplunkMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputSplunkMetadataTypedDict(TypedDict):

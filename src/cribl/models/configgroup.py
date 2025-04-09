@@ -3,7 +3,9 @@
 from __future__ import annotations
 from .commit import Commit, CommitTypedDict
 from .configgroupcloud import ConfigGroupCloud, ConfigGroupCloudTypedDict
+from .configgrouplookups import ConfigGroupLookups, ConfigGroupLookupsTypedDict
 from cribl.types import BaseModel
+from enum import Enum
 import pydantic
 from typing import List, Optional
 from typing_extensions import Annotated, NotRequired, TypedDict
@@ -25,6 +27,10 @@ class GitModel(BaseModel):
     log: Optional[List[Commit]] = None
 
 
+class ConfigGroupType(str, Enum):
+    LAKE_ACCESS = "lake_access"
+
+
 class ConfigGroupTypedDict(TypedDict):
     config_version: str
     id: str
@@ -37,11 +43,13 @@ class ConfigGroupTypedDict(TypedDict):
     inherits: NotRequired[str]
     is_fleet: NotRequired[bool]
     is_search: NotRequired[bool]
+    lookup_deployments: NotRequired[List[ConfigGroupLookupsTypedDict]]
     name: NotRequired[str]
     on_prem: NotRequired[bool]
     provisioned: NotRequired[bool]
     streamtags: NotRequired[List[str]]
     tags: NotRequired[str]
+    type: NotRequired[ConfigGroupType]
     upgrade_version: NotRequired[str]
     worker_count: NotRequired[float]
     worker_remote_access: NotRequired[bool]
@@ -76,6 +84,10 @@ class ConfigGroup(BaseModel):
 
     is_search: Annotated[Optional[bool], pydantic.Field(alias="isSearch")] = None
 
+    lookup_deployments: Annotated[
+        Optional[List[ConfigGroupLookups]], pydantic.Field(alias="lookupDeployments")
+    ] = None
+
     name: Optional[str] = None
 
     on_prem: Annotated[Optional[bool], pydantic.Field(alias="onPrem")] = None
@@ -85,6 +97,8 @@ class ConfigGroup(BaseModel):
     streamtags: Optional[List[str]] = None
 
     tags: Optional[str] = None
+
+    type: Optional[ConfigGroupType] = None
 
     upgrade_version: Annotated[
         Optional[str], pydantic.Field(alias="upgradeVersion")

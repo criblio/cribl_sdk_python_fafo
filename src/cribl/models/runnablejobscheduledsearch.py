@@ -64,10 +64,14 @@ class RunnableJobScheduledSearchRunSettingsTypedDict(TypedDict):
 
 
 
+
+
     if your lower bundle size is 1MB, you can bundle up to five 200KB files into one task.
     """
     max_task_size: NotRequired[str]
     r"""Limits the bundle size for files above the lower task bundle size. For example, if your upper bundle size is 10MB,
+
+
 
 
 
@@ -130,6 +134,8 @@ class RunnableJobScheduledSearchRunSettings(BaseModel):
 
 
 
+
+
     if your lower bundle size is 1MB, you can bundle up to five 200KB files into one task.
     """
 
@@ -137,6 +143,8 @@ class RunnableJobScheduledSearchRunSettings(BaseModel):
         "10MB"
     )
     r"""Limits the bundle size for files above the lower task bundle size. For example, if your upper bundle size is 10MB,
+
+
 
 
 
@@ -194,6 +202,8 @@ class RunnableJobScheduledSearchTypedDict(TypedDict):
     description: NotRequired[str]
     ttl: NotRequired[str]
     r"""Time to keep the job's artifacts on disk after job completion. This also affects how long a job is listed in the Job Inspector."""
+    ignore_group_jobs_limit: NotRequired[bool]
+    r"""When enabled, this job's artifacts are not counted toward the Worker Group's finished job artifacts limit. Artifacts will be removed only after the Collector's configured time to live."""
     remove_fields: NotRequired[List[str]]
     r"""List of fields to remove from Discover results. Wildcards (for example, aws*) are allowed. This is useful when discovery returns sensitive fields that should not be exposed in the Jobs user interface."""
     resume_on_boot: NotRequired[bool]
@@ -219,6 +229,11 @@ class RunnableJobScheduledSearch(BaseModel):
 
     ttl: Optional[str] = "4h"
     r"""Time to keep the job's artifacts on disk after job completion. This also affects how long a job is listed in the Job Inspector."""
+
+    ignore_group_jobs_limit: Annotated[
+        Optional[bool], pydantic.Field(alias="ignoreGroupJobsLimit")
+    ] = False
+    r"""When enabled, this job's artifacts are not counted toward the Worker Group's finished job artifacts limit. Artifacts will be removed only after the Collector's configured time to live."""
 
     remove_fields: Annotated[
         Optional[List[str]], pydantic.Field(alias="removeFields")

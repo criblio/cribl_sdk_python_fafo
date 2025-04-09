@@ -1,7 +1,5 @@
 # InputSyslog2MinimumTLSVersion
 
-Minimum TLS version to accept from connections
-
 
 ## Values
 

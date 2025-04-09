@@ -83,8 +83,8 @@ class InputGooglePubsubPq(BaseModel):
     r"""Codec to use to compress the persisted data"""
 
 
-class InputGooglePubsubAuthenticationMethod(str, Enum):
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+class GoogleAuthenticationMethod(str, Enum):
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
 
     AUTO = "auto"
     MANUAL = "manual"
@@ -106,9 +106,9 @@ class InputGooglePubsubMetadata(BaseModel):
 
 class InputGooglePubsubTypedDict(TypedDict):
     topic_name: str
-    r"""ID of the topic to receive events from."""
+    r"""ID of the topic to receive events from"""
     subscription_name: str
-    r"""ID of the subscription to use when receiving events."""
+    r"""ID of the subscription to use when receiving events"""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     type: NotRequired[InputGooglePubsubType]
@@ -127,36 +127,36 @@ class InputGooglePubsubTypedDict(TypedDict):
     r"""Direct connections to Destinations, and optionally via a Pipeline or a Pack"""
     pq: NotRequired[InputGooglePubsubPqTypedDict]
     create_topic: NotRequired[bool]
-    r"""If enabled, create topic if it does not exist"""
+    r"""Create topic if it does not exist"""
     create_subscription: NotRequired[bool]
-    r"""If enabled, create subscription if it does not exist"""
+    r"""Create subscription if it does not exist"""
     region: NotRequired[str]
     r"""Region to retrieve messages from. Select 'default' to allow Google to auto-select the nearest region. When using ordered delivery, the selected region must be allowed by message storage policy."""
-    google_auth_method: NotRequired[InputGooglePubsubAuthenticationMethod]
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+    google_auth_method: NotRequired[GoogleAuthenticationMethod]
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
     service_account_credentials: NotRequired[str]
     r"""Contents of service account credentials (JSON keys) file downloaded from Google Cloud. To upload a file, click the upload button at this field's upper right."""
     secret: NotRequired[str]
     r"""Select or create a stored text secret"""
     max_backlog: NotRequired[float]
-    r"""If Destination exerts backpressure, this setting limits how many inbound events Stream will queue for processing before it stops retrieving events."""
+    r"""If Destination exerts backpressure, this setting limits how many inbound events Stream will queue for processing before it stops retrieving events"""
     concurrency: NotRequired[float]
     r"""How many streams to pull messages from at one time. Doubling the value doubles the number of messages this Source pulls from the topic (if available), while consuming more CPU and memory. Defaults to 5."""
     request_timeout: NotRequired[float]
-    r"""Pull request timeout, in milliseconds."""
+    r"""Pull request timeout, in milliseconds"""
     metadata: NotRequired[List[InputGooglePubsubMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     description: NotRequired[str]
     ordered_delivery: NotRequired[bool]
-    r"""If enabled, receive events in the order they were added to the queue. For this to work correctly, the process sending events must have ordering enabled."""
+    r"""Receive events in the order they were added to the queue. The process sending events must have ordering enabled."""
 
 
 class InputGooglePubsub(BaseModel):
     topic_name: Annotated[str, pydantic.Field(alias="topicName")]
-    r"""ID of the topic to receive events from."""
+    r"""ID of the topic to receive events from"""
 
     subscription_name: Annotated[str, pydantic.Field(alias="subscriptionName")]
-    r"""ID of the subscription to use when receiving events."""
+    r"""ID of the subscription to use when receiving events"""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""
@@ -188,21 +188,20 @@ class InputGooglePubsub(BaseModel):
     pq: Optional[InputGooglePubsubPq] = None
 
     create_topic: Annotated[Optional[bool], pydantic.Field(alias="createTopic")] = False
-    r"""If enabled, create topic if it does not exist"""
+    r"""Create topic if it does not exist"""
 
     create_subscription: Annotated[
         Optional[bool], pydantic.Field(alias="createSubscription")
     ] = True
-    r"""If enabled, create subscription if it does not exist"""
+    r"""Create subscription if it does not exist"""
 
     region: Optional[str] = None
     r"""Region to retrieve messages from. Select 'default' to allow Google to auto-select the nearest region. When using ordered delivery, the selected region must be allowed by message storage policy."""
 
     google_auth_method: Annotated[
-        Optional[InputGooglePubsubAuthenticationMethod],
-        pydantic.Field(alias="googleAuthMethod"),
-    ] = InputGooglePubsubAuthenticationMethod.MANUAL
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+        Optional[GoogleAuthenticationMethod], pydantic.Field(alias="googleAuthMethod")
+    ] = GoogleAuthenticationMethod.MANUAL
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
 
     service_account_credentials: Annotated[
         Optional[str], pydantic.Field(alias="serviceAccountCredentials")
@@ -213,7 +212,7 @@ class InputGooglePubsub(BaseModel):
     r"""Select or create a stored text secret"""
 
     max_backlog: Annotated[Optional[float], pydantic.Field(alias="maxBacklog")] = 1000
-    r"""If Destination exerts backpressure, this setting limits how many inbound events Stream will queue for processing before it stops retrieving events."""
+    r"""If Destination exerts backpressure, this setting limits how many inbound events Stream will queue for processing before it stops retrieving events"""
 
     concurrency: Optional[float] = 5
     r"""How many streams to pull messages from at one time. Doubling the value doubles the number of messages this Source pulls from the topic (if available), while consuming more CPU and memory. Defaults to 5."""
@@ -221,7 +220,7 @@ class InputGooglePubsub(BaseModel):
     request_timeout: Annotated[
         Optional[float], pydantic.Field(alias="requestTimeout")
     ] = 60000
-    r"""Pull request timeout, in milliseconds."""
+    r"""Pull request timeout, in milliseconds"""
 
     metadata: Optional[List[InputGooglePubsubMetadata]] = None
     r"""Fields to add to events from this input"""
@@ -231,4 +230,4 @@ class InputGooglePubsub(BaseModel):
     ordered_delivery: Annotated[
         Optional[bool], pydantic.Field(alias="orderedDelivery")
     ] = False
-    r"""If enabled, receive events in the order they were added to the queue. For this to work correctly, the process sending events must have ordering enabled."""
+    r"""Receive events in the order they were added to the queue. The process sending events must have ordering enabled."""

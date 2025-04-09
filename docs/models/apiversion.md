@@ -1,6 +1,6 @@
 # APIVersion
 
-The API version to use for communicating with the server.
+The API version to use for communicating with the server
 
 
 ## Values

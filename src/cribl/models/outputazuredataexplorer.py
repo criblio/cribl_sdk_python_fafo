@@ -20,7 +20,7 @@ class IngestionMode(str, Enum):
 
 
 class AzureADAuthenticationEndpoint(str, Enum):
-    r"""Endpoint used to acquire authentication tokens from Azure."""
+    r"""Endpoint used to acquire authentication tokens from Azure"""
 
     HTTPS_LOGIN_MICROSOFTONLINE_COM = "https://login.microsoftonline.com"
     HTTPS_LOGIN_MICROSOFTONLINE_US = "https://login.microsoftonline.us"
@@ -28,7 +28,7 @@ class AzureADAuthenticationEndpoint(str, Enum):
 
 
 class OutputAzureDataExplorerAuthenticationMethod(str, Enum):
-    r"""The type of OAuth 2.0 client credentials grant flow to use."""
+    r"""The type of OAuth 2.0 client credentials grant flow to use"""
 
     CLIENT_SECRET = "clientSecret"
     CLIENT_TEXT_SECRET = "clientTextSecret"
@@ -37,14 +37,14 @@ class OutputAzureDataExplorerAuthenticationMethod(str, Enum):
 
 class OutputAzureDataExplorerCertificateTypedDict(TypedDict):
     certificate_name: NotRequired[str]
-    r"""The certificate you registered as credentials for your app in the Azure portal."""
+    r"""The certificate you registered as credentials for your app in the Azure portal"""
 
 
 class OutputAzureDataExplorerCertificate(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The certificate you registered as credentials for your app in the Azure portal."""
+    r"""The certificate you registered as credentials for your app in the Azure portal"""
 
 
 class OutputAzureDataExplorerBackpressureBehavior(str, Enum):
@@ -222,11 +222,11 @@ class OutputAzureDataExplorerTypedDict(TypedDict):
     table: str
     r"""Name of the table to ingest data into."""
     tenant_id: str
-    r"""Directory ID (tenant identifier) in Azure Active Directory."""
+    r"""Directory ID (tenant identifier) in Azure Active Directory"""
     client_id: str
-    r"""client_id to pass in the OAuth request parameter."""
+    r"""client_id to pass in the OAuth request parameter"""
     scope: str
-    r"""Scope to pass in the OAuth request parameter."""
+    r"""Scope to pass in the OAuth request parameter"""
     id: NotRequired[str]
     r"""Unique ID for this output"""
     type: NotRequired[OutputAzureDataExplorerType]
@@ -243,12 +243,12 @@ class OutputAzureDataExplorerTypedDict(TypedDict):
     ingest_mode: NotRequired[IngestionMode]
     r"""Method to use for ingesting data."""
     oauth_endpoint: NotRequired[AzureADAuthenticationEndpoint]
-    r"""Endpoint used to acquire authentication tokens from Azure."""
+    r"""Endpoint used to acquire authentication tokens from Azure"""
     oauth_type: NotRequired[OutputAzureDataExplorerAuthenticationMethod]
-    r"""The type of OAuth 2.0 client credentials grant flow to use."""
+    r"""The type of OAuth 2.0 client credentials grant flow to use"""
     description: NotRequired[str]
     client_secret: NotRequired[str]
-    r"""The client secret that you generated for your app in the Azure portal."""
+    r"""The client secret that you generated for your app in the Azure portal"""
     text_secret: NotRequired[str]
     r"""Select or create a stored text secret"""
     certificate: NotRequired[OutputAzureDataExplorerCertificateTypedDict]
@@ -354,13 +354,13 @@ class OutputAzureDataExplorer(BaseModel):
     r"""Name of the table to ingest data into."""
 
     tenant_id: Annotated[str, pydantic.Field(alias="tenantId")]
-    r"""Directory ID (tenant identifier) in Azure Active Directory."""
+    r"""Directory ID (tenant identifier) in Azure Active Directory"""
 
     client_id: Annotated[str, pydantic.Field(alias="clientId")]
-    r"""client_id to pass in the OAuth request parameter."""
+    r"""client_id to pass in the OAuth request parameter"""
 
     scope: str
-    r"""Scope to pass in the OAuth request parameter."""
+    r"""Scope to pass in the OAuth request parameter"""
 
     id: Optional[str] = None
     r"""Unique ID for this output"""
@@ -394,18 +394,18 @@ class OutputAzureDataExplorer(BaseModel):
     oauth_endpoint: Annotated[
         Optional[AzureADAuthenticationEndpoint], pydantic.Field(alias="oauthEndpoint")
     ] = AzureADAuthenticationEndpoint.HTTPS_LOGIN_MICROSOFTONLINE_COM
-    r"""Endpoint used to acquire authentication tokens from Azure."""
+    r"""Endpoint used to acquire authentication tokens from Azure"""
 
     oauth_type: Annotated[
         Optional[OutputAzureDataExplorerAuthenticationMethod],
         pydantic.Field(alias="oauthType"),
     ] = OutputAzureDataExplorerAuthenticationMethod.CLIENT_SECRET
-    r"""The type of OAuth 2.0 client credentials grant flow to use."""
+    r"""The type of OAuth 2.0 client credentials grant flow to use"""
 
     description: Optional[str] = None
 
     client_secret: Annotated[Optional[str], pydantic.Field(alias="clientSecret")] = None
-    r"""The client secret that you generated for your app in the Azure portal."""
+    r"""The client secret that you generated for your app in the Azure portal"""
 
     text_secret: Annotated[Optional[str], pydantic.Field(alias="textSecret")] = None
     r"""Select or create a stored text secret"""

@@ -1,6 +1,6 @@
 # InputWefAuthenticationMethod
 
-Method by which to authenticate incoming client connections.
+How to authenticate incoming client connections
 
 
 ## Values

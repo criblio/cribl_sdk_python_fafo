@@ -84,8 +84,6 @@ class InputCriblHTTPPq(BaseModel):
 
 
 class InputCriblHTTPMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -93,8 +91,6 @@ class InputCriblHTTPMinimumTLSVersion(str, Enum):
 
 
 class InputCriblHTTPMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,9 +114,7 @@ class InputCriblHTTPTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputCriblHTTPMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputCriblHTTPMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputCriblHTTPTLSSettingsServerSide(BaseModel):
@@ -157,12 +151,10 @@ class InputCriblHTTPTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputCriblHTTPMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputCriblHTTPMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputCriblHTTPMetadataTypedDict(TypedDict):
@@ -204,11 +196,11 @@ class InputCriblHTTPTypedDict(TypedDict):
     r"""Shared secrets to be provided by any client (Authorization: <token>). If empty, unauthorized access is permitted."""
     tls: NotRequired[InputCriblHTTPTLSSettingsServerSideTypedDict]
     max_active_req: NotRequired[float]
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
     max_requests_per_socket: NotRequired[int]
     r"""Maximum number of requests per socket before @{product} instructs the client to close the connection. Default is 0 (unlimited)."""
     enable_proxy_header: NotRequired[bool]
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
     capture_headers: NotRequired[bool]
     r"""Add request headers to events, in the __headers field"""
     activity_log_sample_rate: NotRequired[float]
@@ -218,9 +210,9 @@ class InputCriblHTTPTypedDict(TypedDict):
     socket_timeout: NotRequired[float]
     r"""How long @{product} should wait before assuming that an inactive socket has timed out. To wait forever, set to 0."""
     keep_alive_timeout: NotRequired[float]
-    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 sec.; maximum 600 sec. (10 min.)."""
+    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 second, maximum 600 seconds (10 minutes)."""
     enable_health_check: NotRequired[bool]
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
     ip_allowlist_regex: NotRequired[str]
     r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
     ip_denylist_regex: NotRequired[str]
@@ -276,7 +268,7 @@ class InputCriblHTTP(BaseModel):
     max_active_req: Annotated[Optional[float], pydantic.Field(alias="maxActiveReq")] = (
         256
     )
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
 
     max_requests_per_socket: Annotated[
         Optional[int], pydantic.Field(alias="maxRequestsPerSocket")
@@ -286,7 +278,7 @@ class InputCriblHTTP(BaseModel):
     enable_proxy_header: Annotated[
         Optional[bool], pydantic.Field(alias="enableProxyHeader")
     ] = False
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
 
     capture_headers: Annotated[
         Optional[bool], pydantic.Field(alias="captureHeaders")
@@ -311,12 +303,12 @@ class InputCriblHTTP(BaseModel):
     keep_alive_timeout: Annotated[
         Optional[float], pydantic.Field(alias="keepAliveTimeout")
     ] = 5
-    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 sec.; maximum 600 sec. (10 min.)."""
+    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 second, maximum 600 seconds (10 minutes)."""
 
     enable_health_check: Annotated[
         Optional[bool], pydantic.Field(alias="enableHealthCheck")
     ] = False
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
 
     ip_allowlist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipAllowlistRegex")

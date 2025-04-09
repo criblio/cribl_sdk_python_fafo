@@ -14,17 +14,13 @@ class OutputXsiamType(str, Enum):
 
 class OutputXsiamExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputXsiamExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputXsiamFailedRequestLoggingMode(str, Enum):
@@ -179,7 +175,7 @@ class OutputXsiamTypedDict(TypedDict):
     flush_period_sec: NotRequired[float]
     r"""Maximum time between requests. Small values could cause the payload size to be smaller than the configured Max body size."""
     extra_http_headers: NotRequired[List[OutputXsiamExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     failed_request_logging_mode: NotRequired[OutputXsiamFailedRequestLoggingMode]
     r"""Data to log when a request fails. All headers are redacted by default, unless listed as safe headers below."""
     safe_headers: NotRequired[List[str]]
@@ -284,7 +280,7 @@ class OutputXsiam(BaseModel):
         Optional[List[OutputXsiamExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     failed_request_logging_mode: Annotated[
         Optional[OutputXsiamFailedRequestLoggingMode],

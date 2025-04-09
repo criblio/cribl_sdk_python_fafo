@@ -23,15 +23,10 @@ class GetOutputByIDRequest(BaseModel):
 class GetOutputByIDResponseBodyTypedDict(TypedDict):
     r"""a list of Output objects"""
 
-    count: NotRequired[int]
-    r"""number of items present in the items array"""
     items: NotRequired[List[OutputTypedDict]]
 
 
 class GetOutputByIDResponseBody(BaseModel):
     r"""a list of Output objects"""
-
-    count: Optional[int] = None
-    r"""number of items present in the items array"""
 
     items: Optional[List[Output]] = None

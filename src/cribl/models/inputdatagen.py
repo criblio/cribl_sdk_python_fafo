@@ -85,19 +85,17 @@ class InputDatagenPq(BaseModel):
 
 class SamplesModelTypedDict(TypedDict):
     sample: str
-    r"""Name of the datagen file"""
     events_per_sec: NotRequired[float]
-    r"""Maximum no. of events to generate per second per worker node. Defaults to 10."""
+    r"""Maximum number of events to generate per second per Worker Node. Defaults to 10."""
 
 
 class SamplesModel(BaseModel):
     sample: str
-    r"""Name of the datagen file"""
 
     events_per_sec: Annotated[Optional[float], pydantic.Field(alias="eventsPerSec")] = (
         10
     )
-    r"""Maximum no. of events to generate per second per worker node. Defaults to 10."""
+    r"""Maximum number of events to generate per second per Worker Node. Defaults to 10."""
 
 
 class InputDatagenMetadataTypedDict(TypedDict):
@@ -116,7 +114,6 @@ class InputDatagenMetadata(BaseModel):
 class InputDatagenTypedDict(TypedDict):
     type: InputDatagenType
     samples: List[SamplesModelTypedDict]
-    r"""List of datagens"""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     disabled: NotRequired[bool]
@@ -142,7 +139,6 @@ class InputDatagen(BaseModel):
     type: InputDatagenType
 
     samples: List[SamplesModel]
-    r"""List of datagens"""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""

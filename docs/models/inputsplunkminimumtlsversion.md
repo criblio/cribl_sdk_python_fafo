@@ -1,7 +1,5 @@
 # InputSplunkMinimumTLSVersion
 
-Minimum TLS version to accept from connections
-
 
 ## Values
 

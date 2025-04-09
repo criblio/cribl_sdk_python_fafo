@@ -136,17 +136,13 @@ class OutputGrafanaCloud2LokiAuth(BaseModel):
 
 class OutputGrafanaCloud2ExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputGrafanaCloud2ExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputGrafanaCloud2FailedRequestLoggingMode(str, Enum):
@@ -293,7 +289,7 @@ class OutputGrafanaCloud2TypedDict(TypedDict):
     flush_period_sec: NotRequired[float]
     r"""Maximum time between requests. Small values could cause the payload size to be smaller than the configured Maximum time between requests. Small values can reduce the payload size below the configured 'Max record size' and 'Max events per request'. Warning: Setting this too low can increase the number of ongoing requests (depending on the value of 'Request concurrency'); this can cause Loki and Prometheus to complain about entries being delivered out of order."""
     extra_http_headers: NotRequired[List[OutputGrafanaCloud2ExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     use_round_robin_dns: NotRequired[bool]
     r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned. For optimal performance, consider enabling this setting for non-load balanced destinations."""
     failed_request_logging_mode: NotRequired[
@@ -416,7 +412,7 @@ class OutputGrafanaCloud2(BaseModel):
         Optional[List[OutputGrafanaCloud2ExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     use_round_robin_dns: Annotated[
         Optional[bool], pydantic.Field(alias="useRoundRobinDns")
@@ -622,17 +618,13 @@ class OutputGrafanaCloudLokiAuth(BaseModel):
 
 class OutputGrafanaCloudExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputGrafanaCloudExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputGrafanaCloudFailedRequestLoggingMode(str, Enum):
@@ -779,7 +771,7 @@ class OutputGrafanaCloud1TypedDict(TypedDict):
     flush_period_sec: NotRequired[float]
     r"""Maximum time between requests. Small values could cause the payload size to be smaller than the configured Maximum time between requests. Small values can reduce the payload size below the configured 'Max record size' and 'Max events per request'. Warning: Setting this too low can increase the number of ongoing requests (depending on the value of 'Request concurrency'); this can cause Loki and Prometheus to complain about entries being delivered out of order."""
     extra_http_headers: NotRequired[List[OutputGrafanaCloudExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     use_round_robin_dns: NotRequired[bool]
     r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned. For optimal performance, consider enabling this setting for non-load balanced destinations."""
     failed_request_logging_mode: NotRequired[OutputGrafanaCloudFailedRequestLoggingMode]
@@ -899,7 +891,7 @@ class OutputGrafanaCloud1(BaseModel):
         Optional[List[OutputGrafanaCloudExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     use_round_robin_dns: Annotated[
         Optional[bool], pydantic.Field(alias="useRoundRobinDns")

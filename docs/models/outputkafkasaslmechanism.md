@@ -1,7 +1,5 @@
 # OutputKafkaSASLMechanism
 
-SASL authentication mechanism to use.
-
 
 ## Values
 

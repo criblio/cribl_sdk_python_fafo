@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 4e47635b-372e-4905-92a7-4edd996fc886
 management:
-  docChecksum: 9608acabf32793c250a430efe82bf98d
+  docChecksum: 9e99a95280d1e34454fab53b14bf31f0
   docVersion: 1.0.0
   speakeasyVersion: 1.529.1
   generationVersion: 2.566.5
-  releaseVersion: 0.3.1
-  configChecksum: 427c8c1f75183e959d4b4293da4e7688
+  releaseVersion: 0.4.0
+  configChecksum: 7886655568cbbe595df37e7b9db1c454
 features:
   python:
     additionalDependencies: 1.0.0
@@ -24,6 +24,7 @@ features:
     globalSecurity: 3.0.3
     globalSecurityCallbacks: 1.0.0
     globalServerURLs: 3.1.0
+    ignores: 3.0.1
     inputOutputModels: 3.0.0
     jsonlResponses: 0.2.0
     methodArguments: 1.0.2
@@ -167,6 +168,8 @@ generatedFiles:
   - docs/models/config.md
   - docs/models/configgroup.md
   - docs/models/configgroupcloud.md
+  - docs/models/configgrouplookups.md
+  - docs/models/configgrouptype.md
   - docs/models/connection.md
   - docs/models/connections.md
   - docs/models/consumers.md
@@ -389,6 +392,8 @@ generatedFiles:
   - docs/models/deletehmacfunctionbyidresponsebody.md
   - docs/models/deleteinputbyidrequest.md
   - docs/models/deleteinputbyidresponsebody.md
+  - docs/models/deleteiometricsconfigbyidrequest.md
+  - docs/models/deleteiometricsconfigbyidresponsebody.md
   - docs/models/deletejobsbyidrequest.md
   - docs/models/deletejobsbyidresponsebody.md
   - docs/models/deletekeymetadataentitybyidrequest.md
@@ -656,6 +661,8 @@ generatedFiles:
   - docs/models/getinvoicesdto.md
   - docs/models/getinvoicesrequest.md
   - docs/models/getinvoicesresponsev5.md
+  - docs/models/getiometricsconfigbyidrequest.md
+  - docs/models/getiometricsconfigbyidresponsebody.md
   - docs/models/getjobresultsbyidrequest.md
   - docs/models/getjobsbyidrequest.md
   - docs/models/getjobsbyidresponsebody.md
@@ -881,6 +888,7 @@ generatedFiles:
   - docs/models/gitstatusresultfiles.md
   - docs/models/globalvar.md
   - docs/models/globalvartype.md
+  - docs/models/googleauthenticationmethod.md
   - docs/models/grokfile.md
   - docs/models/groupsmodel.md
   - docs/models/hbcriblinfo.md
@@ -969,6 +977,16 @@ generatedFiles:
   - docs/models/inputcriblhttppq.md
   - docs/models/inputcriblhttptlssettingsserverside.md
   - docs/models/inputcriblhttptype.md
+  - docs/models/inputcribllakehttp.md
+  - docs/models/inputcribllakehttpcompression.md
+  - docs/models/inputcribllakehttpconnections.md
+  - docs/models/inputcribllakehttpmaximumtlsversion.md
+  - docs/models/inputcribllakehttpmetadata.md
+  - docs/models/inputcribllakehttpminimumtlsversion.md
+  - docs/models/inputcribllakehttpmode.md
+  - docs/models/inputcribllakehttppq.md
+  - docs/models/inputcribllakehttptlssettingsserverside.md
+  - docs/models/inputcribllakehttptype.md
   - docs/models/inputcriblmetadata.md
   - docs/models/inputcriblmetrics.md
   - docs/models/inputcriblmetricscompression.md
@@ -1082,7 +1100,6 @@ generatedFiles:
   - docs/models/inputfirehosetlssettingsserverside.md
   - docs/models/inputfirehosetype.md
   - docs/models/inputgooglepubsub.md
-  - docs/models/inputgooglepubsubauthenticationmethod.md
   - docs/models/inputgooglepubsubcompression.md
   - docs/models/inputgooglepubsubconnections.md
   - docs/models/inputgooglepubsubmetadata.md
@@ -1568,6 +1585,9 @@ generatedFiles:
   - docs/models/invoiceproductv5.md
   - docs/models/invoicev5.md
   - docs/models/invoicev5status.md
+  - docs/models/iometricsconfig.md
+  - docs/models/iometricsentry.md
+  - docs/models/iometricsentrylevel.md
   - docs/models/jobexecutionwarning.md
   - docs/models/jobinfo.md
   - docs/models/jobsettings.md
@@ -1620,6 +1640,7 @@ generatedFiles:
   - docs/models/listhmacfunctionresponsebody.md
   - docs/models/listinputresponsebody.md
   - docs/models/listinputstatusresponsebody.md
+  - docs/models/listiometricsconfigresponsebody.md
   - docs/models/listkeymetadataentityresponsebody.md
   - docs/models/listlibschemasresponsebody.md
   - docs/models/listlicenseresponsebody.md
@@ -1671,6 +1692,7 @@ generatedFiles:
   - docs/models/lookupfilemode.md
   - docs/models/lookupfilependingtask.md
   - docs/models/lookupfiletype.md
+  - docs/models/lookupsmodel.md
   - docs/models/lookupversions.md
   - docs/models/mapdetails.md
   - docs/models/mappingtype.md
@@ -2006,9 +2028,9 @@ generatedFiles:
   - docs/models/outputgooglechronicletimeoutretrysettings.md
   - docs/models/outputgooglechronicletype.md
   - docs/models/outputgooglecloudlogging.md
-  - docs/models/outputgooglecloudloggingauthenticationmethod.md
   - docs/models/outputgooglecloudloggingbackpressurebehavior.md
   - docs/models/outputgooglecloudloggingcompression.md
+  - docs/models/outputgooglecloudlogginggoogleauthenticationmethod.md
   - docs/models/outputgooglecloudloggingmode.md
   - docs/models/outputgooglecloudloggingpqcontrols.md
   - docs/models/outputgooglecloudloggingqueuefullbehavior.md
@@ -2028,9 +2050,9 @@ generatedFiles:
   - docs/models/outputgooglecloudstoragestorageclass.md
   - docs/models/outputgooglecloudstoragetype.md
   - docs/models/outputgooglepubsub.md
-  - docs/models/outputgooglepubsubauthenticationmethod.md
   - docs/models/outputgooglepubsubbackpressurebehavior.md
   - docs/models/outputgooglepubsubcompression.md
+  - docs/models/outputgooglepubsubgoogleauthenticationmethod.md
   - docs/models/outputgooglepubsubmode.md
   - docs/models/outputgooglepubsubpqcontrols.md
   - docs/models/outputgooglepubsubqueuefullbehavior.md
@@ -2505,6 +2527,8 @@ generatedFiles:
   - docs/models/packinfotags.md
   - docs/models/packinstallinfo.md
   - docs/models/packinstallinfotags.md
+  - docs/models/packrequestbody.md
+  - docs/models/packrequestbodytags.md
   - docs/models/parquetversion.md
   - docs/models/parser.md
   - docs/models/parser1.md
@@ -2840,6 +2864,8 @@ generatedFiles:
   - docs/models/updateinputbyidresponsebody.md
   - docs/models/updateinputhectokenbyidandtokenrequest.md
   - docs/models/updateinputhectokenbyidandtokenresponsebody.md
+  - docs/models/updateiometricsconfigbyidrequest.md
+  - docs/models/updateiometricsconfigbyidresponsebody.md
   - docs/models/updatejobscancelbyidrequest.md
   - docs/models/updatejobscancelbyidresponsebody.md
   - docs/models/updatejobskeepbyidrequest.md
@@ -3015,6 +3041,7 @@ generatedFiles:
   - docs/sdks/ingest/README.md
   - docs/sdks/inputs/README.md
   - docs/sdks/invoices/README.md
+  - docs/sdks/iometrics/README.md
   - docs/sdks/jobs/README.md
   - docs/sdks/keys/README.md
   - docs/sdks/kubelogs/README.md
@@ -3122,6 +3149,7 @@ generatedFiles:
   - src/cribl/ingest.py
   - src/cribl/inputs.py
   - src/cribl/invoices.py
+  - src/cribl/iometrics.py
   - src/cribl/jobs.py
   - src/cribl/keys.py
   - src/cribl/kube_logs.py
@@ -3187,6 +3215,7 @@ generatedFiles:
   - src/cribl/models/condition.py
   - src/cribl/models/configgroup.py
   - src/cribl/models/configgroupcloud.py
+  - src/cribl/models/configgrouplookups.py
   - src/cribl/models/connection.py
   - src/cribl/models/consumptionwindowv5.py
   - src/cribl/models/container.py
@@ -3339,6 +3368,7 @@ generatedFiles:
   - src/cribl/models/deletegrokfilebyidop.py
   - src/cribl/models/deletehmacfunctionbyidop.py
   - src/cribl/models/deleteinputbyidop.py
+  - src/cribl/models/deleteiometricsconfigbyidop.py
   - src/cribl/models/deletejobsbyidop.py
   - src/cribl/models/deletekeymetadataentitybyidop.py
   - src/cribl/models/deletelibschemasbyidop.py
@@ -3473,6 +3503,7 @@ generatedFiles:
   - src/cribl/models/getinvoicesdto.py
   - src/cribl/models/getinvoicesop.py
   - src/cribl/models/getinvoicesresponsev5.py
+  - src/cribl/models/getiometricsconfigbyidop.py
   - src/cribl/models/getjobresultsbyidop.py
   - src/cribl/models/getjobsbyidop.py
   - src/cribl/models/getjobserrorsbyidandgroupop.py
@@ -3617,6 +3648,7 @@ generatedFiles:
   - src/cribl/models/inputconfluentcloud.py
   - src/cribl/models/inputcribl.py
   - src/cribl/models/inputcriblhttp.py
+  - src/cribl/models/inputcribllakehttp.py
   - src/cribl/models/inputcriblmetrics.py
   - src/cribl/models/inputcribltcp.py
   - src/cribl/models/inputcrowdstrike.py
@@ -3675,6 +3707,9 @@ generatedFiles:
   - src/cribl/models/invoiceproduct.py
   - src/cribl/models/invoiceproductv5.py
   - src/cribl/models/invoicev5.py
+  - src/cribl/models/iometricsconfig.py
+  - src/cribl/models/iometricsentry.py
+  - src/cribl/models/iometricsentrylevel.py
   - src/cribl/models/jobexecutionwarning.py
   - src/cribl/models/jobinfo.py
   - src/cribl/models/jobsettings.py
@@ -3711,6 +3746,7 @@ generatedFiles:
   - src/cribl/models/listhmacfunctionop.py
   - src/cribl/models/listinputop.py
   - src/cribl/models/listinputstatusop.py
+  - src/cribl/models/listiometricsconfigop.py
   - src/cribl/models/listkeymetadataentityop.py
   - src/cribl/models/listlibschemasop.py
   - src/cribl/models/listlicenseop.py
@@ -3840,6 +3876,7 @@ generatedFiles:
   - src/cribl/models/packclone.py
   - src/cribl/models/packinfo.py
   - src/cribl/models/packinstallinfo.py
+  - src/cribl/models/packrequestbody.py
   - src/cribl/models/parserlibentry.py
   - src/cribl/models/parsermode.py
   - src/cribl/models/patchworkspacedto.py
@@ -3881,7 +3918,7 @@ generatedFiles:
   - src/cribl/models/role.py
   - src/cribl/models/routecloneconf.py
   - src/cribl/models/routeconf.py
-  - src/cribl/models/routes_input.py
+  - src/cribl/models/routes.py
   - src/cribl/models/routesroute.py
   - src/cribl/models/routesroute_input.py
   - src/cribl/models/runnablejob.py
@@ -3964,6 +4001,7 @@ generatedFiles:
   - src/cribl/models/updatehmacfunctionbyidop.py
   - src/cribl/models/updateinputbyidop.py
   - src/cribl/models/updateinputhectokenbyidandtokenop.py
+  - src/cribl/models/updateiometricsconfigbyidop.py
   - src/cribl/models/updatejobscancelbyidop.py
   - src/cribl/models/updatejobskeepbyidop.py
   - src/cribl/models/updatejobspausebyidop.py
@@ -5104,7 +5142,7 @@ examples:
   createSavedJob:
     speakeasy-default-create-saved-job:
       requestBody:
-        application/json: {"type": "scheduledSearch", "ttl": "4h", "resumeOnBoot": false, "workerAffinity": false, "collector": {"type": "<value>", "conf": {}, "destructive": false}}
+        application/json: {"type": "scheduledSearch", "ttl": "4h", "ignoreGroupJobsLimit": false, "resumeOnBoot": false, "workerAffinity": false, "collector": {"type": "<value>", "conf": {}, "destructive": false}}
       responses:
         "200":
           application/json: {}
@@ -5126,7 +5164,7 @@ examples:
         path:
           id: "<id>"
       requestBody:
-        application/json: {"type": "scheduledSearch", "ttl": "4h", "resumeOnBoot": false, "executor": {"type": "<value>", "storeTaskResults": true}}
+        application/json: {"type": "scheduledSearch", "ttl": "4h", "ignoreGroupJobsLimit": false, "resumeOnBoot": false, "executor": {"type": "<value>", "storeTaskResults": true}}
       responses:
         "200":
           application/json: {}
@@ -6894,7 +6932,7 @@ examples:
   createInput:
     speakeasy-default-create-input:
       requestBody:
-        application/json: {"disabled": false, "sendToRoutes": true, "pqEnabled": false, "host": "0.0.0.0", "port": 5986, "authMethod": "clientCert", "maxActiveReq": 256, "maxRequestsPerSocket": 0, "enableProxyHeader": false, "captureHeaders": false, "keepAliveTimeout": 90, "enableHealthCheck": false, "ipAllowlistRegex": "/.*/", "ipDenylistRegex": "/^$/", "socketTimeout": 0, "allowMachineIdMismatch": false, "subscriptions": [{"subscriptionName": "<value>", "contentFormat": "Raw", "heartbeatInterval": 60, "batchTimeout": 60, "readExistingEvents": false, "sendBookmarks": true, "compress": true, "targets": [], "locale": "en-US", "querySelector": "simple"}, {"subscriptionName": "<value>", "contentFormat": "Raw", "heartbeatInterval": 60, "batchTimeout": 60, "readExistingEvents": false, "sendBookmarks": true, "compress": true, "targets": [], "locale": "en-US", "querySelector": "simple"}]}
+        application/json: {"disabled": false, "sendToRoutes": true, "pqEnabled": false, "host": "0.0.0.0", "port": 5986, "authMethod": "clientCert", "maxActiveReq": 256, "maxRequestsPerSocket": 0, "enableProxyHeader": false, "captureHeaders": false, "keepAliveTimeout": 90, "enableHealthCheck": false, "ipAllowlistRegex": "/.*/", "ipDenylistRegex": "/^$/", "socketTimeout": 0, "allowMachineIdMismatch": false, "subscriptions": [{"subscriptionName": "<value>", "contentFormat": "Raw", "heartbeatInterval": 60, "batchTimeout": 60, "readExistingEvents": false, "sendBookmarks": true, "compress": true, "targets": [], "locale": "en-US", "querySelector": "simple"}, {"subscriptionName": "<value>", "contentFormat": "Raw", "heartbeatInterval": 60, "batchTimeout": 60, "readExistingEvents": false, "sendBookmarks": true, "compress": true, "targets": [], "locale": "en-US", "querySelector": "simple"}], "logFingerprintMismatch": false}
       responses:
         "200":
           application/json: {}
@@ -7929,7 +7967,7 @@ examples:
   createJobs:
     speakeasy-default-create-jobs:
       requestBody:
-        application/json: {"type": "executor", "ttl": "4h", "resumeOnBoot": false, "executor": {"type": "<value>", "storeTaskResults": true}}
+        application/json: {"type": "executor", "ttl": "4h", "ignoreGroupJobsLimit": false, "resumeOnBoot": false, "executor": {"type": "<value>", "storeTaskResults": true}}
       responses:
         "200":
           application/json: {}
@@ -8173,7 +8211,7 @@ examples:
   createPacks:
     speakeasy-default-create-packs:
       requestBody:
-        application/json: {"id": "<id>"}
+        application/json: {"id": "<id>", "source": "<value>"}
       responses:
         "200":
           application/json: {}
@@ -8431,6 +8469,45 @@ examples:
         path:
           id: "<id>"
         query: {}
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {}
+  listIoMetricsConfig:
+    speakeasy-default-list-io-metrics-config:
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {}
+  getIoMetricsConfigById:
+    speakeasy-default-get-io-metrics-config-by-id:
+      parameters:
+        path:
+          id: "<id>"
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {}
+  updateIoMetricsConfigById:
+    speakeasy-default-update-io-metrics-config-by-id:
+      parameters:
+        path:
+          id: "<value>"
+      requestBody:
+        application/json: {"id": "<id>", "ios": [{"id": "<id>", "level": "minimal"}, {"id": "<id>", "level": "basic"}]}
+      responses:
+        "200":
+          application/json: {}
+        "500":
+          application/json: {}
+  deleteIoMetricsConfigById:
+    speakeasy-default-delete-io-metrics-config-by-id:
+      parameters:
+        path:
+          id: "<id>"
       responses:
         "200":
           application/json: {}

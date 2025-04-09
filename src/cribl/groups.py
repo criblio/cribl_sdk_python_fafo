@@ -226,11 +226,18 @@ class Groups(BaseSDK):
         inherits: Optional[str] = None,
         is_fleet: Optional[bool] = None,
         is_search: Optional[bool] = None,
+        lookup_deployments: Optional[
+            Union[
+                List[models.ConfigGroupLookups],
+                List[models.ConfigGroupLookupsTypedDict],
+            ]
+        ] = None,
         name: Optional[str] = None,
         on_prem: Optional[bool] = None,
         provisioned: Optional[bool] = None,
         streamtags: Optional[List[str]] = None,
         tags: Optional[str] = None,
+        type_: Optional[models.ConfigGroupType] = None,
         upgrade_version: Optional[str] = None,
         worker_count: Optional[float] = None,
         worker_remote_access: Optional[bool] = None,
@@ -255,11 +262,13 @@ class Groups(BaseSDK):
         :param inherits:
         :param is_fleet:
         :param is_search:
+        :param lookup_deployments:
         :param name:
         :param on_prem:
         :param provisioned:
         :param streamtags:
         :param tags:
+        :param type:
         :param upgrade_version:
         :param worker_count:
         :param worker_remote_access:
@@ -294,11 +303,15 @@ class Groups(BaseSDK):
                 inherits=inherits,
                 is_fleet=is_fleet,
                 is_search=is_search,
+                lookup_deployments=utils.get_pydantic_model(
+                    lookup_deployments, Optional[List[models.ConfigGroupLookups]]
+                ),
                 name=name,
                 on_prem=on_prem,
                 provisioned=provisioned,
                 streamtags=streamtags,
                 tags=tags,
+                type=type_,
                 upgrade_version=upgrade_version,
                 worker_count=worker_count,
                 worker_remote_access=worker_remote_access,
@@ -391,11 +404,18 @@ class Groups(BaseSDK):
         inherits: Optional[str] = None,
         is_fleet: Optional[bool] = None,
         is_search: Optional[bool] = None,
+        lookup_deployments: Optional[
+            Union[
+                List[models.ConfigGroupLookups],
+                List[models.ConfigGroupLookupsTypedDict],
+            ]
+        ] = None,
         name: Optional[str] = None,
         on_prem: Optional[bool] = None,
         provisioned: Optional[bool] = None,
         streamtags: Optional[List[str]] = None,
         tags: Optional[str] = None,
+        type_: Optional[models.ConfigGroupType] = None,
         upgrade_version: Optional[str] = None,
         worker_count: Optional[float] = None,
         worker_remote_access: Optional[bool] = None,
@@ -420,11 +440,13 @@ class Groups(BaseSDK):
         :param inherits:
         :param is_fleet:
         :param is_search:
+        :param lookup_deployments:
         :param name:
         :param on_prem:
         :param provisioned:
         :param streamtags:
         :param tags:
+        :param type:
         :param upgrade_version:
         :param worker_count:
         :param worker_remote_access:
@@ -459,11 +481,15 @@ class Groups(BaseSDK):
                 inherits=inherits,
                 is_fleet=is_fleet,
                 is_search=is_search,
+                lookup_deployments=utils.get_pydantic_model(
+                    lookup_deployments, Optional[List[models.ConfigGroupLookups]]
+                ),
                 name=name,
                 on_prem=on_prem,
                 provisioned=provisioned,
                 streamtags=streamtags,
                 tags=tags,
+                type=type_,
                 upgrade_version=upgrade_version,
                 worker_count=worker_count,
                 worker_remote_access=worker_remote_access,

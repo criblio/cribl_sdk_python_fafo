@@ -3,12 +3,14 @@
 from __future__ import annotations
 from cribl.types import BaseModel
 import pydantic
-from typing_extensions import Annotated, TypedDict
+from typing import Optional
+from typing_extensions import Annotated, NotRequired, TypedDict
 
 
 class CPUTimeMetricTypedDict(TypedDict):
     total_cpu_seconds: float
     total_exec_cpu_seconds: float
+    billable_cpu_seconds: NotRequired[float]
 
 
 class CPUTimeMetric(BaseModel):
@@ -17,3 +19,7 @@ class CPUTimeMetric(BaseModel):
     total_exec_cpu_seconds: Annotated[
         float, pydantic.Field(alias="totalExecCPUSeconds")
     ]
+
+    billable_cpu_seconds: Annotated[
+        Optional[float], pydantic.Field(alias="billableCPUSeconds")
+    ] = None

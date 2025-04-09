@@ -66,7 +66,7 @@ class RulesTypedDict(TypedDict):
     timestamp: EventBreakerRulesetTimestampFormatTypedDict
     r"""Auto, manual format (strptime), or current time"""
     condition: NotRequired[str]
-    r"""The JavaScript filter expression used to match the data to apply the rule to"""
+    r"""JavaScript expression applied to the beginning of a file or object, to determine whether the rule applies to all contained events."""
     type: NotRequired[EventBreakerType]
     timestamp_anchor_regex: NotRequired[str]
     r"""The regex to match before attempting timestamp extraction. Use $ (end-of-string anchor) to prevent extraction."""
@@ -94,7 +94,7 @@ class Rules(BaseModel):
     r"""Auto, manual format (strptime), or current time"""
 
     condition: Optional[str] = "true"
-    r"""The JavaScript filter expression used to match the data to apply the rule to"""
+    r"""JavaScript expression applied to the beginning of a file or object, to determine whether the rule applies to all contained events."""
 
     type: Optional[EventBreakerType] = EventBreakerType.REGEX
 

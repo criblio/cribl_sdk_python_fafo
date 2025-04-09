@@ -84,8 +84,6 @@ class InputTcpjsonPq(BaseModel):
 
 
 class InputTcpjsonMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -93,8 +91,6 @@ class InputTcpjsonMinimumTLSVersion(str, Enum):
 
 
 class InputTcpjsonMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,9 +114,7 @@ class InputTcpjsonTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputTcpjsonMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputTcpjsonMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputTcpjsonTLSSettingsServerSide(BaseModel):
@@ -157,12 +151,10 @@ class InputTcpjsonTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputTcpjsonMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputTcpjsonMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputTcpjsonMetadataTypedDict(TypedDict):

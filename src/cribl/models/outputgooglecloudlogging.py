@@ -56,8 +56,8 @@ class ResourceTypeLabels(BaseModel):
     r"""JavaScript expression to compute the label's value."""
 
 
-class OutputGoogleCloudLoggingAuthenticationMethod(str, Enum):
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+class OutputGoogleCloudLoggingGoogleAuthenticationMethod(str, Enum):
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
 
     AUTO = "auto"
     MANUAL = "manual"
@@ -131,8 +131,8 @@ class OutputGoogleCloudLoggingTypedDict(TypedDict):
     r"""JavaScript expression to compute the value of the severity field. Must evaluate to one of the severity values supported by Google Cloud Logging [here](https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#logseverity) (case insensitive). Defaults to \"DEFAULT\"."""
     insert_id_expression: NotRequired[str]
     r"""JavaScript expression to compute the value of the insert ID field."""
-    google_auth_method: NotRequired[OutputGoogleCloudLoggingAuthenticationMethod]
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+    google_auth_method: NotRequired[OutputGoogleCloudLoggingGoogleAuthenticationMethod]
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
     service_account_credentials: NotRequired[str]
     r"""Contents of service account credentials (JSON keys) file downloaded from Google Cloud. To upload a file, click the upload button at this field's upper right."""
     secret: NotRequired[str]
@@ -292,10 +292,10 @@ class OutputGoogleCloudLogging(BaseModel):
     r"""JavaScript expression to compute the value of the insert ID field."""
 
     google_auth_method: Annotated[
-        Optional[OutputGoogleCloudLoggingAuthenticationMethod],
+        Optional[OutputGoogleCloudLoggingGoogleAuthenticationMethod],
         pydantic.Field(alias="googleAuthMethod"),
-    ] = OutputGoogleCloudLoggingAuthenticationMethod.MANUAL
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+    ] = OutputGoogleCloudLoggingGoogleAuthenticationMethod.MANUAL
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
 
     service_account_credentials: Annotated[
         Optional[str], pydantic.Field(alias="serviceAccountCredentials")

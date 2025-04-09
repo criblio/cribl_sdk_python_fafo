@@ -31,17 +31,13 @@ class OutputWebhookFormat(str, Enum):
 
 class OutputWebhookExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputWebhookExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class FailedRequestLoggingMode(str, Enum):
@@ -128,8 +124,6 @@ class OutputWebhookAuthenticationType(str, Enum):
 
 
 class OutputWebhookMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -137,8 +131,6 @@ class OutputWebhookMinimumTLSVersion(str, Enum):
 
 
 class OutputWebhookMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -150,7 +142,7 @@ class OutputWebhookTLSSettingsClientSideTypedDict(TypedDict):
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -158,11 +150,9 @@ class OutputWebhookTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[OutputWebhookMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[OutputWebhookMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputWebhookTLSSettingsClientSide(BaseModel):
@@ -174,7 +164,7 @@ class OutputWebhookTLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -186,17 +176,15 @@ class OutputWebhookTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[OutputWebhookMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[OutputWebhookMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputWebhookCompression(str, Enum):

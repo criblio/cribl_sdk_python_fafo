@@ -12,8 +12,8 @@ class OutputGooglePubsubType(str, Enum):
     GOOGLE_PUBSUB = "google_pubsub"
 
 
-class OutputGooglePubsubAuthenticationMethod(str, Enum):
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+class OutputGooglePubsubGoogleAuthenticationMethod(str, Enum):
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
 
     AUTO = "auto"
     MANUAL = "manual"
@@ -78,8 +78,8 @@ class OutputGooglePubsubTypedDict(TypedDict):
     r"""If enabled, send events in the order they were added to the queue. For this to work correctly, the process receiving events must have ordering enabled."""
     region: NotRequired[str]
     r"""Region to publish messages to. Select 'default' to allow Google to auto-select the nearest region. When using ordered delivery, the selected region must be allowed by message storage policy."""
-    google_auth_method: NotRequired[OutputGooglePubsubAuthenticationMethod]
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+    google_auth_method: NotRequired[OutputGooglePubsubGoogleAuthenticationMethod]
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
     service_account_credentials: NotRequired[str]
     r"""Contents of service account credentials (JSON keys) file downloaded from Google Cloud. To upload a file, click the upload button at this field's upper right."""
     secret: NotRequired[str]
@@ -149,10 +149,10 @@ class OutputGooglePubsub(BaseModel):
     r"""Region to publish messages to. Select 'default' to allow Google to auto-select the nearest region. When using ordered delivery, the selected region must be allowed by message storage policy."""
 
     google_auth_method: Annotated[
-        Optional[OutputGooglePubsubAuthenticationMethod],
+        Optional[OutputGooglePubsubGoogleAuthenticationMethod],
         pydantic.Field(alias="googleAuthMethod"),
-    ] = OutputGooglePubsubAuthenticationMethod.MANUAL
-    r"""Google authentication method. Choose Auto to use Google Application Default Credentials."""
+    ] = OutputGooglePubsubGoogleAuthenticationMethod.MANUAL
+    r"""Choose Auto to use Google Application Default Credentials (ADC), Manual to enter Google service account credentials directly, or Secret to select or create a stored secret that references Google service account credentials."""
 
     service_account_credentials: Annotated[
         Optional[str], pydantic.Field(alias="serviceAccountCredentials")

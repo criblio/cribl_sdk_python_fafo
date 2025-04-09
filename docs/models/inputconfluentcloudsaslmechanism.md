@@ -1,7 +1,5 @@
 # InputConfluentCloudSASLMechanism
 
-SASL authentication mechanism to use.
-
 
 ## Values
 

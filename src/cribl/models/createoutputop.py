@@ -10,15 +10,10 @@ from typing_extensions import NotRequired, TypedDict
 class CreateOutputResponseBodyTypedDict(TypedDict):
     r"""a list of Output objects"""
 
-    count: NotRequired[int]
-    r"""number of items present in the items array"""
     items: NotRequired[List[OutputTypedDict]]
 
 
 class CreateOutputResponseBody(BaseModel):
     r"""a list of Output objects"""
-
-    count: Optional[int] = None
-    r"""number of items present in the items array"""
 
     items: Optional[List[Output]] = None

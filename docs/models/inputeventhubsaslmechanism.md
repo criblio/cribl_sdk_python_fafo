@@ -1,7 +1,5 @@
 # InputEventhubSASLMechanism
 
-SASL authentication mechanism to use
-
 
 ## Values
 

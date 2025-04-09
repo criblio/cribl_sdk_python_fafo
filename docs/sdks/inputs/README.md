@@ -124,6 +124,7 @@ with Cribl(
                 "query_selector": cribl.QueryBuilderMode.SIMPLE,
             },
         ],
+        "log_fingerprint_mismatch": False,
     })
 
     # Handle response

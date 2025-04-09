@@ -84,8 +84,6 @@ class InputGrafana2Pq(BaseModel):
 
 
 class InputGrafana2MinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -93,8 +91,6 @@ class InputGrafana2MinimumTLSVersion(str, Enum):
 
 
 class InputGrafana2MaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,9 +114,7 @@ class InputGrafana2TLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputGrafana2MinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputGrafana2MaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputGrafana2TLSSettingsServerSide(BaseModel):
@@ -157,12 +151,10 @@ class InputGrafana2TLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputGrafana2MinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputGrafana2MaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputGrafana2AuthenticationType(str, Enum):
@@ -461,11 +453,11 @@ class InputGrafana2TypedDict(TypedDict):
     r"""Address to bind on. Defaults to 0.0.0.0 (all addresses)."""
     tls: NotRequired[InputGrafana2TLSSettingsServerSideTypedDict]
     max_active_req: NotRequired[float]
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
     max_requests_per_socket: NotRequired[int]
     r"""Maximum number of requests per socket before @{product} instructs the client to close the connection. Default is 0 (unlimited)."""
     enable_proxy_header: NotRequired[bool]
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
     capture_headers: NotRequired[bool]
     r"""Add request headers to events, in the __headers field"""
     activity_log_sample_rate: NotRequired[float]
@@ -477,7 +469,7 @@ class InputGrafana2TypedDict(TypedDict):
     keep_alive_timeout: NotRequired[float]
     r"""Maximum time to wait for additional data, after the last response was sent, before closing a socket connection. This can be very useful when Grafana Agent remote write's request frequency is high so, reusing connections, would help mitigating the cost of creating a new connection per request. Note that Grafana Agent's embedded Prometheus would attempt to keep connections open for up to 5 minutes."""
     enable_health_check: NotRequired[bool]
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
     ip_allowlist_regex: NotRequired[str]
     r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
     ip_denylist_regex: NotRequired[str]
@@ -534,7 +526,7 @@ class InputGrafana2(BaseModel):
     max_active_req: Annotated[Optional[float], pydantic.Field(alias="maxActiveReq")] = (
         256
     )
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
 
     max_requests_per_socket: Annotated[
         Optional[int], pydantic.Field(alias="maxRequestsPerSocket")
@@ -544,7 +536,7 @@ class InputGrafana2(BaseModel):
     enable_proxy_header: Annotated[
         Optional[bool], pydantic.Field(alias="enableProxyHeader")
     ] = False
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
 
     capture_headers: Annotated[
         Optional[bool], pydantic.Field(alias="captureHeaders")
@@ -574,7 +566,7 @@ class InputGrafana2(BaseModel):
     enable_health_check: Annotated[
         Optional[bool], pydantic.Field(alias="enableHealthCheck")
     ] = False
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
 
     ip_allowlist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipAllowlistRegex")
@@ -686,8 +678,6 @@ class InputGrafanaPq(BaseModel):
 
 
 class InputGrafanaMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -695,8 +685,6 @@ class InputGrafanaMinimumTLSVersion(str, Enum):
 
 
 class InputGrafanaMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -720,9 +708,7 @@ class InputGrafanaTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputGrafanaMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputGrafanaMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputGrafanaTLSSettingsServerSide(BaseModel):
@@ -759,12 +745,10 @@ class InputGrafanaTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputGrafanaMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputGrafanaMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputGrafanaAuthenticationType(str, Enum):
@@ -1060,11 +1044,11 @@ class InputGrafana1TypedDict(TypedDict):
     r"""Address to bind on. Defaults to 0.0.0.0 (all addresses)."""
     tls: NotRequired[InputGrafanaTLSSettingsServerSideTypedDict]
     max_active_req: NotRequired[float]
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
     max_requests_per_socket: NotRequired[int]
     r"""Maximum number of requests per socket before @{product} instructs the client to close the connection. Default is 0 (unlimited)."""
     enable_proxy_header: NotRequired[bool]
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
     capture_headers: NotRequired[bool]
     r"""Add request headers to events, in the __headers field"""
     activity_log_sample_rate: NotRequired[float]
@@ -1076,7 +1060,7 @@ class InputGrafana1TypedDict(TypedDict):
     keep_alive_timeout: NotRequired[float]
     r"""Maximum time to wait for additional data, after the last response was sent, before closing a socket connection. This can be very useful when Grafana Agent remote write's request frequency is high so, reusing connections, would help mitigating the cost of creating a new connection per request. Note that Grafana Agent's embedded Prometheus would attempt to keep connections open for up to 5 minutes."""
     enable_health_check: NotRequired[bool]
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
     ip_allowlist_regex: NotRequired[str]
     r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
     ip_denylist_regex: NotRequired[str]
@@ -1133,7 +1117,7 @@ class InputGrafana1(BaseModel):
     max_active_req: Annotated[Optional[float], pydantic.Field(alias="maxActiveReq")] = (
         256
     )
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
 
     max_requests_per_socket: Annotated[
         Optional[int], pydantic.Field(alias="maxRequestsPerSocket")
@@ -1143,7 +1127,7 @@ class InputGrafana1(BaseModel):
     enable_proxy_header: Annotated[
         Optional[bool], pydantic.Field(alias="enableProxyHeader")
     ] = False
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
 
     capture_headers: Annotated[
         Optional[bool], pydantic.Field(alias="captureHeaders")
@@ -1173,7 +1157,7 @@ class InputGrafana1(BaseModel):
     enable_health_check: Annotated[
         Optional[bool], pydantic.Field(alias="enableHealthCheck")
     ] = False
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
 
     ip_allowlist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipAllowlistRegex")

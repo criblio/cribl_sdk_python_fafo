@@ -84,8 +84,6 @@ class InputSyslog2Pq(BaseModel):
 
 
 class InputSyslog2MinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -93,8 +91,6 @@ class InputSyslog2MinimumTLSVersion(str, Enum):
 
 
 class InputSyslog2MaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,9 +114,7 @@ class InputSyslog2TLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputSyslog2MinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputSyslog2MaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputSyslog2TLSSettingsServerSide(BaseModel):
@@ -157,12 +151,10 @@ class InputSyslog2TLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputSyslog2MinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputSyslog2MaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputSyslog2MetadataTypedDict(TypedDict):
@@ -443,8 +435,6 @@ class InputSyslogPq(BaseModel):
 
 
 class InputSyslogMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -452,8 +442,6 @@ class InputSyslogMinimumTLSVersion(str, Enum):
 
 
 class InputSyslogMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -477,9 +465,7 @@ class InputSyslogTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputSyslogMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputSyslogMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputSyslogTLSSettingsServerSide(BaseModel):
@@ -516,12 +502,10 @@ class InputSyslogTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputSyslogMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputSyslogMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputSyslogMetadataTypedDict(TypedDict):

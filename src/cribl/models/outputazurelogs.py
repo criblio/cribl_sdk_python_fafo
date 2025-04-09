@@ -14,17 +14,13 @@ class OutputAzureLogsType(str, Enum):
 
 class OutputAzureLogsExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputAzureLogsExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputAzureLogsFailedRequestLoggingMode(str, Enum):
@@ -169,7 +165,7 @@ class OutputAzureLogsTypedDict(TypedDict):
     flush_period_sec: NotRequired[float]
     r"""Maximum time between requests. Small values could cause the payload size to be smaller than the configured Max body size."""
     extra_http_headers: NotRequired[List[OutputAzureLogsExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     use_round_robin_dns: NotRequired[bool]
     r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned. For optimal performance, consider enabling this setting for non-load balanced destinations."""
     failed_request_logging_mode: NotRequired[OutputAzureLogsFailedRequestLoggingMode]
@@ -272,7 +268,7 @@ class OutputAzureLogs(BaseModel):
         Optional[List[OutputAzureLogsExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     use_round_robin_dns: Annotated[
         Optional[bool], pydantic.Field(alias="useRoundRobinDns")

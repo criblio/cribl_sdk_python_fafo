@@ -84,8 +84,6 @@ class InputMetricsPq(BaseModel):
 
 
 class InputMetricsMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -93,8 +91,6 @@ class InputMetricsMinimumTLSVersion(str, Enum):
 
 
 class InputMetricsMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,9 +114,7 @@ class InputMetricsTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputMetricsMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputMetricsMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputMetricsTLSSettingsServerSide(BaseModel):
@@ -157,12 +151,10 @@ class InputMetricsTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputMetricsMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputMetricsMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputMetricsMetadataTypedDict(TypedDict):

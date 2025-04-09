@@ -86,8 +86,6 @@ class InputConfluentCloudPq(BaseModel):
 
 
 class InputConfluentCloudMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -95,8 +93,6 @@ class InputConfluentCloudMinimumTLSVersion(str, Enum):
 
 
 class InputConfluentCloudMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -106,13 +102,13 @@ class InputConfluentCloudMaximumTLSVersion(str, Enum):
 class InputConfluentCloudTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -120,11 +116,9 @@ class InputConfluentCloudTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[InputConfluentCloudMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[InputConfluentCloudMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class InputConfluentCloudTLSSettingsClientSide(BaseModel):
@@ -133,8 +127,8 @@ class InputConfluentCloudTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     servername: Optional[str] = None
@@ -143,7 +137,7 @@ class InputConfluentCloudTLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -155,26 +149,23 @@ class InputConfluentCloudTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[InputConfluentCloudMinimumTLSVersion],
         pydantic.Field(alias="minVersion"),
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[InputConfluentCloudMaximumTLSVersion],
         pydantic.Field(alias="maxVersion"),
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class InputConfluentCloudAuthTypedDict(TypedDict):
     r"""Credentials to use when authenticating with the schema registry using basic HTTP authentication"""
 
     disabled: NotRequired[bool]
-    r"""Enable authentication"""
     credentials_secret: NotRequired[str]
     r"""Select or create a secret that references your credentials"""
 
@@ -183,7 +174,6 @@ class InputConfluentCloudAuth(BaseModel):
     r"""Credentials to use when authenticating with the schema registry using basic HTTP authentication"""
 
     disabled: Optional[bool] = True
-    r"""Enable authentication"""
 
     credentials_secret: Annotated[
         Optional[str], pydantic.Field(alias="credentialsSecret")
@@ -192,8 +182,6 @@ class InputConfluentCloudAuth(BaseModel):
 
 
 class InputConfluentCloudKafkaSchemaRegistryMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -201,8 +189,6 @@ class InputConfluentCloudKafkaSchemaRegistryMinimumTLSVersion(str, Enum):
 
 
 class InputConfluentCloudKafkaSchemaRegistryMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -212,13 +198,13 @@ class InputConfluentCloudKafkaSchemaRegistryMaximumTLSVersion(str, Enum):
 class InputConfluentCloudKafkaSchemaRegistryTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -226,11 +212,9 @@ class InputConfluentCloudKafkaSchemaRegistryTLSSettingsClientSideTypedDict(Typed
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[InputConfluentCloudKafkaSchemaRegistryMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[InputConfluentCloudKafkaSchemaRegistryMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class InputConfluentCloudKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
@@ -239,8 +223,8 @@ class InputConfluentCloudKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     servername: Optional[str] = None
@@ -249,7 +233,7 @@ class InputConfluentCloudKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -261,24 +245,21 @@ class InputConfluentCloudKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[InputConfluentCloudKafkaSchemaRegistryMinimumTLSVersion],
         pydantic.Field(alias="minVersion"),
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[InputConfluentCloudKafkaSchemaRegistryMaximumTLSVersion],
         pydantic.Field(alias="maxVersion"),
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class InputConfluentCloudKafkaSchemaRegistryAuthenticationTypedDict(TypedDict):
     disabled: NotRequired[bool]
-    r"""Enable Schema Registry"""
     schema_registry_url: NotRequired[str]
     r"""URL for accessing the Confluent Schema Registry. Example: http://localhost:8081. To connect over TLS, use https instead of http."""
     connection_timeout: NotRequired[float]
@@ -296,7 +277,6 @@ class InputConfluentCloudKafkaSchemaRegistryAuthenticationTypedDict(TypedDict):
 
 class InputConfluentCloudKafkaSchemaRegistryAuthentication(BaseModel):
     disabled: Optional[bool] = True
-    r"""Enable Schema Registry"""
 
     schema_registry_url: Annotated[
         Optional[str], pydantic.Field(alias="schemaRegistryURL")
@@ -323,8 +303,6 @@ class InputConfluentCloudKafkaSchemaRegistryAuthentication(BaseModel):
 
 
 class InputConfluentCloudSASLMechanism(str, Enum):
-    r"""SASL authentication mechanism to use."""
-
     PLAIN = "plain"
     SCRAM_SHA_256 = "scram-sha-256"
     SCRAM_SHA_512 = "scram-sha-512"
@@ -335,21 +313,17 @@ class InputConfluentCloudAuthenticationTypedDict(TypedDict):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: NotRequired[bool]
-    r"""Enable Authentication"""
     mechanism: NotRequired[InputConfluentCloudSASLMechanism]
-    r"""SASL authentication mechanism to use."""
 
 
 class InputConfluentCloudAuthentication(BaseModel):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: Optional[bool] = True
-    r"""Enable Authentication"""
 
     mechanism: Optional[InputConfluentCloudSASLMechanism] = (
         InputConfluentCloudSASLMechanism.PLAIN
     )
-    r"""SASL authentication mechanism to use."""
 
 
 class InputConfluentCloudMetadataTypedDict(TypedDict):
@@ -369,7 +343,7 @@ class InputConfluentCloudTypedDict(TypedDict):
     brokers: List[str]
     r"""List of Confluent Cloud bootstrap servers to use, such as yourAccount.confluent.cloud:9092"""
     topics: List[str]
-    r"""Topic to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Kafka Source to only a single topic."""
+    r"""Topic to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Kafka Source to a single topic only."""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     type: NotRequired[InputConfluentCloudType]
@@ -389,9 +363,9 @@ class InputConfluentCloudTypedDict(TypedDict):
     pq: NotRequired[InputConfluentCloudPqTypedDict]
     tls: NotRequired[InputConfluentCloudTLSSettingsClientSideTypedDict]
     group_id: NotRequired[str]
-    r"""Specifies the consumer group to which this instance belongs. Defaults to 'Cribl'."""
+    r"""The consumer group to which this instance belongs. Defaults to 'Cribl'."""
     from_beginning: NotRequired[bool]
-    r"""Leave toggled to 'Yes' if you want the Source, upon first subscribing to a topic, to read starting with the earliest available message"""
+    r"""Leave enabled if you want the Source, upon first subscribing to a topic, to read starting with the earliest available message"""
     kafka_schema_registry: NotRequired[
         InputConfluentCloudKafkaSchemaRegistryAuthenticationTypedDict
     ]
@@ -410,26 +384,26 @@ class InputConfluentCloudTypedDict(TypedDict):
     authentication_timeout: NotRequired[float]
     r"""Maximum time to wait for Kafka to respond to an authentication request"""
     reauthentication_threshold: NotRequired[float]
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
     sasl: NotRequired[InputConfluentCloudAuthenticationTypedDict]
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
     session_timeout: NotRequired[float]
     r"""
-    Timeout used to detect client failures when using Kafka's group management facilities.
-    If the client sends the broker no heartbeats before this timeout expires,
-    the broker will remove this client from the group, and will initiate a rebalance.
+    Timeout used to detect client failures when using Kafka's group-management facilities.
+    If the client sends no heartbeats to the broker before the timeout expires,
+    the broker will remove the client from the group and initiate a rebalance.
     Value must be between the broker's configured group.min.session.timeout.ms and group.max.session.timeout.ms.
-    See details [here](https://kafka.apache.org/documentation/#consumerconfigs_session.timeout.ms).
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#consumerconfigs_session.timeout.ms) for details.
     """
     rebalance_timeout: NotRequired[float]
-    r"""Maximum allowed time for each worker to join the group after a rebalance has begun.
+    r"""Maximum allowed time for each worker to join the group after a rebalance begins.
     If the timeout is exceeded, the coordinator broker will remove the worker from the group.
-    See details [here](https://kafka.apache.org/documentation/#connectconfigs_rebalance.timeout.ms).
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#connectconfigs_rebalance.timeout.ms) for details.
     """
     heartbeat_interval: NotRequired[float]
-    r"""Expected time between heartbeats to the consumer coordinator when using Kafka's group management facilities.
-    Value must be lower than sessionTimeout, and typically should not exceed 1/3 of the sessionTimeout value.
-    See details [here](https://kafka.apache.org/documentation/#consumerconfigs_heartbeat.interval.ms).
+    r"""Expected time between heartbeats to the consumer coordinator when using Kafka's group-management facilities.
+    Value must be lower than sessionTimeout and typically should not exceed 1/3 of the sessionTimeout value.
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#consumerconfigs_heartbeat.interval.ms) for details.
     """
     auto_commit_interval: NotRequired[float]
     r"""How often to commit offsets. If both this and Offset commit threshold are set, @{product} commits offsets when either condition is met. If both are empty, @{product} commits offsets after each batch."""
@@ -440,7 +414,7 @@ class InputConfluentCloudTypedDict(TypedDict):
     max_bytes: NotRequired[float]
     r"""Maximum number of bytes that Kafka will return per fetch request. Defaults to 10485760 (10 MB)."""
     max_socket_errors: NotRequired[float]
-    r"""Maximum number of network errors before the consumer recreates a socket."""
+    r"""Maximum number of network errors before the consumer re-creates a socket"""
     metadata: NotRequired[List[InputConfluentCloudMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     description: NotRequired[str]
@@ -451,7 +425,7 @@ class InputConfluentCloud(BaseModel):
     r"""List of Confluent Cloud bootstrap servers to use, such as yourAccount.confluent.cloud:9092"""
 
     topics: List[str]
-    r"""Topic to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Kafka Source to only a single topic."""
+    r"""Topic to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Kafka Source to a single topic only."""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""
@@ -485,12 +459,12 @@ class InputConfluentCloud(BaseModel):
     tls: Optional[InputConfluentCloudTLSSettingsClientSide] = None
 
     group_id: Annotated[Optional[str], pydantic.Field(alias="groupId")] = "Cribl"
-    r"""Specifies the consumer group to which this instance belongs. Defaults to 'Cribl'."""
+    r"""The consumer group to which this instance belongs. Defaults to 'Cribl'."""
 
     from_beginning: Annotated[Optional[bool], pydantic.Field(alias="fromBeginning")] = (
         True
     )
-    r"""Leave toggled to 'Yes' if you want the Source, upon first subscribing to a topic, to read starting with the earliest available message"""
+    r"""Leave enabled if you want the Source, upon first subscribing to a topic, to read starting with the earliest available message"""
 
     kafka_schema_registry: Annotated[
         Optional[InputConfluentCloudKafkaSchemaRegistryAuthentication],
@@ -529,7 +503,7 @@ class InputConfluentCloud(BaseModel):
     reauthentication_threshold: Annotated[
         Optional[float], pydantic.Field(alias="reauthenticationThreshold")
     ] = 10000
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
 
     sasl: Optional[InputConfluentCloudAuthentication] = None
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
@@ -538,27 +512,27 @@ class InputConfluentCloud(BaseModel):
         Optional[float], pydantic.Field(alias="sessionTimeout")
     ] = 30000
     r"""
-    Timeout used to detect client failures when using Kafka's group management facilities.
-    If the client sends the broker no heartbeats before this timeout expires,
-    the broker will remove this client from the group, and will initiate a rebalance.
+    Timeout used to detect client failures when using Kafka's group-management facilities.
+    If the client sends no heartbeats to the broker before the timeout expires,
+    the broker will remove the client from the group and initiate a rebalance.
     Value must be between the broker's configured group.min.session.timeout.ms and group.max.session.timeout.ms.
-    See details [here](https://kafka.apache.org/documentation/#consumerconfigs_session.timeout.ms).
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#consumerconfigs_session.timeout.ms) for details.
     """
 
     rebalance_timeout: Annotated[
         Optional[float], pydantic.Field(alias="rebalanceTimeout")
     ] = 60000
-    r"""Maximum allowed time for each worker to join the group after a rebalance has begun.
+    r"""Maximum allowed time for each worker to join the group after a rebalance begins.
     If the timeout is exceeded, the coordinator broker will remove the worker from the group.
-    See details [here](https://kafka.apache.org/documentation/#connectconfigs_rebalance.timeout.ms).
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#connectconfigs_rebalance.timeout.ms) for details.
     """
 
     heartbeat_interval: Annotated[
         Optional[float], pydantic.Field(alias="heartbeatInterval")
     ] = 3000
-    r"""Expected time between heartbeats to the consumer coordinator when using Kafka's group management facilities.
-    Value must be lower than sessionTimeout, and typically should not exceed 1/3 of the sessionTimeout value.
-    See details [here](https://kafka.apache.org/documentation/#consumerconfigs_heartbeat.interval.ms).
+    r"""Expected time between heartbeats to the consumer coordinator when using Kafka's group-management facilities.
+    Value must be lower than sessionTimeout and typically should not exceed 1/3 of the sessionTimeout value.
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#consumerconfigs_heartbeat.interval.ms) for details.
     """
 
     auto_commit_interval: Annotated[
@@ -582,7 +556,7 @@ class InputConfluentCloud(BaseModel):
     max_socket_errors: Annotated[
         Optional[float], pydantic.Field(alias="maxSocketErrors")
     ] = 0
-    r"""Maximum number of network errors before the consumer recreates a socket."""
+    r"""Maximum number of network errors before the consumer re-creates a socket"""
 
     metadata: Optional[List[InputConfluentCloudMetadata]] = None
     r"""Fields to add to events from this input"""

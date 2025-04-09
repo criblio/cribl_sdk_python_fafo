@@ -22,17 +22,13 @@ class OutputDynatraceHTTPMethod(str, Enum):
 
 class OutputDynatraceHTTPExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputDynatraceHTTPExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputDynatraceHTTPFailedRequestLoggingMode(str, Enum):

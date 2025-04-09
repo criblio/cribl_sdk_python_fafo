@@ -520,6 +520,13 @@ with Cribl(
 * [list_input_status](docs/sdks/inputs/README.md#list_input_status) - Get a list of InputStatus objects
 * [get_input_status_by_id](docs/sdks/inputs/README.md#get_input_status_by_id) - Get InputStatus by ID
 
+### [iometrics](docs/sdks/iometrics/README.md)
+
+* [list_io_metrics_config](docs/sdks/iometrics/README.md#list_io_metrics_config) - Get a list of IoMetricsConfig objects
+* [get_io_metrics_config_by_id](docs/sdks/iometrics/README.md#get_io_metrics_config_by_id) - Get IoMetricsConfig by ID
+* [update_io_metrics_config_by_id](docs/sdks/iometrics/README.md#update_io_metrics_config_by_id) - Update IoMetricsConfig
+* [delete_io_metrics_config_by_id](docs/sdks/iometrics/README.md#delete_io_metrics_config_by_id) - Delete IoMetricsConfig
+
 ### [jobs](docs/sdks/jobs/README.md)
 
 * [get_job_results_by_id](docs/sdks/jobs/README.md#get_job_results_by_id) - Get results for a discover job by instance id

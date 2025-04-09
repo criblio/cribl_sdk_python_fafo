@@ -153,6 +153,12 @@ value: models.InputCriblTCP = /* values here */
 value: models.InputCriblHTTP = /* values here */
 ```
 
+### `models.InputCriblLakeHTTP`
+
+```python
+value: models.InputCriblLakeHTTP = /* values here */
+```
+
 ### `models.InputTcpjson`
 
 ```python

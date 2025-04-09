@@ -87,17 +87,13 @@ class SendEventsAs(str, Enum):
 
 class OutputGoogleChronicleExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputGoogleChronicleExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputGoogleChronicleFailedRequestLoggingMode(str, Enum):
@@ -222,7 +218,7 @@ class OutputGoogleChronicleTypedDict(TypedDict):
     extra_http_headers: NotRequired[
         List[OutputGoogleChronicleExtraHTTPHeadersTypedDict]
     ]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     failed_request_logging_mode: NotRequired[
         OutputGoogleChronicleFailedRequestLoggingMode
     ]
@@ -359,7 +355,7 @@ class OutputGoogleChronicle(BaseModel):
         Optional[List[OutputGoogleChronicleExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     failed_request_logging_mode: Annotated[
         Optional[OutputGoogleChronicleFailedRequestLoggingMode],

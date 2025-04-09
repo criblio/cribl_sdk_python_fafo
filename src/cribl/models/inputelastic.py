@@ -84,8 +84,6 @@ class InputElasticPq(BaseModel):
 
 
 class InputElasticMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -93,8 +91,6 @@ class InputElasticMinimumTLSVersion(str, Enum):
 
 
 class InputElasticMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,9 +114,7 @@ class InputElasticTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputElasticMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputElasticMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputElasticTLSSettingsServerSide(BaseModel):
@@ -157,17 +151,13 @@ class InputElasticTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputElasticMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputElasticMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputElasticAuthenticationType(str, Enum):
-    r"""Elastic authentication type"""
-
     NONE = "none"
     BASIC = "basic"
     CREDENTIALS_SECRET = "credentialsSecret"
@@ -175,7 +165,7 @@ class InputElasticAuthenticationType(str, Enum):
 
 
 class APIVersion(str, Enum):
-    r"""The API version to use for communicating with the server."""
+    r"""The API version to use for communicating with the server"""
 
     SIX_DOT_8_DOT_4 = "6.8.4"
     EIGHT_DOT_3_DOT_2 = "8.3.2"
@@ -184,17 +174,13 @@ class APIVersion(str, Enum):
 
 class ExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class ExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class InputElasticMetadataTypedDict(TypedDict):
@@ -220,30 +206,30 @@ class InputElasticAuthenticationMethod(str, Enum):
 
 class ProxyModeTypedDict(TypedDict):
     enabled: NotRequired[bool]
-    r"""Enable proxying of non-bulk API requests to an external Elastic server. Enable this only if you understand the implications; see docs for more details."""
+    r"""Enable proxying of non-bulk API requests to an external Elastic server. Enable this only if you understand the implications. See [Cribl Docs](https://docs.cribl.io/stream/sources-elastic/#proxy-mode) for more details."""
     url: NotRequired[str]
-    r"""URL of the Elastic server to proxy non-bulk requests to, e.g., http://elastic:9200"""
+    r"""URL of the Elastic server to proxy non-bulk requests to, such as http://elastic:9200"""
     reject_unauthorized: NotRequired[bool]
-    r"""Whether to reject certificates that cannot be verified against a valid CA (e.g., self-signed certificates)."""
+    r"""Reject certificates that cannot be verified against a valid CA (such as self-signed certificates)"""
     remove_headers: NotRequired[List[str]]
     r"""List of headers to remove from the request to proxy"""
     timeout_sec: NotRequired[float]
-    r"""Amount of time, in seconds, to wait for a proxy request to complete before canceling it."""
+    r"""Amount of time, in seconds, to wait for a proxy request to complete before canceling it"""
     auth_type: NotRequired[InputElasticAuthenticationMethod]
     r"""Enter credentials directly, or select a stored secret"""
 
 
 class ProxyMode(BaseModel):
     enabled: Optional[bool] = False
-    r"""Enable proxying of non-bulk API requests to an external Elastic server. Enable this only if you understand the implications; see docs for more details."""
+    r"""Enable proxying of non-bulk API requests to an external Elastic server. Enable this only if you understand the implications. See [Cribl Docs](https://docs.cribl.io/stream/sources-elastic/#proxy-mode) for more details."""
 
     url: Optional[str] = None
-    r"""URL of the Elastic server to proxy non-bulk requests to, e.g., http://elastic:9200"""
+    r"""URL of the Elastic server to proxy non-bulk requests to, such as http://elastic:9200"""
 
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = False
-    r"""Whether to reject certificates that cannot be verified against a valid CA (e.g., self-signed certificates)."""
+    r"""Reject certificates that cannot be verified against a valid CA (such as self-signed certificates)"""
 
     remove_headers: Annotated[
         Optional[List[str]], pydantic.Field(alias="removeHeaders")
@@ -251,7 +237,7 @@ class ProxyMode(BaseModel):
     r"""List of headers to remove from the request to proxy"""
 
     timeout_sec: Annotated[Optional[float], pydantic.Field(alias="timeoutSec")] = 60
-    r"""Amount of time, in seconds, to wait for a proxy request to complete before canceling it."""
+    r"""Amount of time, in seconds, to wait for a proxy request to complete before canceling it"""
 
     auth_type: Annotated[
         Optional[InputElasticAuthenticationMethod], pydantic.Field(alias="authType")
@@ -283,11 +269,11 @@ class InputElasticTypedDict(TypedDict):
     r"""Address to bind on. Defaults to 0.0.0.0 (all addresses)."""
     tls: NotRequired[InputElasticTLSSettingsServerSideTypedDict]
     max_active_req: NotRequired[float]
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
     max_requests_per_socket: NotRequired[int]
     r"""Maximum number of requests per socket before @{product} instructs the client to close the connection. Default is 0 (unlimited)."""
     enable_proxy_header: NotRequired[bool]
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
     capture_headers: NotRequired[bool]
     r"""Add request headers to events, in the __headers field"""
     activity_log_sample_rate: NotRequired[float]
@@ -297,21 +283,20 @@ class InputElasticTypedDict(TypedDict):
     socket_timeout: NotRequired[float]
     r"""How long @{product} should wait before assuming that an inactive socket has timed out. To wait forever, set to 0."""
     keep_alive_timeout: NotRequired[float]
-    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 sec.; maximum 600 sec. (10 min.)."""
+    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 second, maximum 600 seconds (10 minutes)."""
     enable_health_check: NotRequired[bool]
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
     ip_allowlist_regex: NotRequired[str]
     r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
     ip_denylist_regex: NotRequired[str]
     r"""Messages from matched IP addresses will be ignored. This takes precedence over the allowlist."""
     elastic_api: NotRequired[str]
-    r"""Absolute path on which to listen for Elasticsearch API requests. Defaults to /. _bulk will be appended automatically, e.g., /myPath becomes /myPath/_bulk. Requests can then be made to either /myPath/_bulk or /myPath/<myIndexName>/_bulk. Other entries are faked as success."""
+    r"""Absolute path on which to listen for Elasticsearch API requests. Defaults to /. _bulk will be appended automatically. For example, /myPath becomes /myPath/_bulk. Requests can then be made to either /myPath/_bulk or /myPath/<myIndexName>/_bulk. Other entries are faked as success."""
     auth_type: NotRequired[InputElasticAuthenticationType]
-    r"""Elastic authentication type"""
     api_version: NotRequired[APIVersion]
-    r"""The API version to use for communicating with the server."""
+    r"""The API version to use for communicating with the server"""
     extra_http_headers: NotRequired[List[ExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     metadata: NotRequired[List[InputElasticMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     ignore_standard_headers: NotRequired[bool]
@@ -371,7 +356,7 @@ class InputElastic(BaseModel):
     max_active_req: Annotated[Optional[float], pydantic.Field(alias="maxActiveReq")] = (
         256
     )
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
 
     max_requests_per_socket: Annotated[
         Optional[int], pydantic.Field(alias="maxRequestsPerSocket")
@@ -381,7 +366,7 @@ class InputElastic(BaseModel):
     enable_proxy_header: Annotated[
         Optional[bool], pydantic.Field(alias="enableProxyHeader")
     ] = False
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
 
     capture_headers: Annotated[
         Optional[bool], pydantic.Field(alias="captureHeaders")
@@ -406,12 +391,12 @@ class InputElastic(BaseModel):
     keep_alive_timeout: Annotated[
         Optional[float], pydantic.Field(alias="keepAliveTimeout")
     ] = 5
-    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 sec.; maximum 600 sec. (10 min.)."""
+    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 second, maximum 600 seconds (10 minutes)."""
 
     enable_health_check: Annotated[
         Optional[bool], pydantic.Field(alias="enableHealthCheck")
     ] = False
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
 
     ip_allowlist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipAllowlistRegex")
@@ -424,22 +409,21 @@ class InputElastic(BaseModel):
     r"""Messages from matched IP addresses will be ignored. This takes precedence over the allowlist."""
 
     elastic_api: Annotated[Optional[str], pydantic.Field(alias="elasticAPI")] = "/"
-    r"""Absolute path on which to listen for Elasticsearch API requests. Defaults to /. _bulk will be appended automatically, e.g., /myPath becomes /myPath/_bulk. Requests can then be made to either /myPath/_bulk or /myPath/<myIndexName>/_bulk. Other entries are faked as success."""
+    r"""Absolute path on which to listen for Elasticsearch API requests. Defaults to /. _bulk will be appended automatically. For example, /myPath becomes /myPath/_bulk. Requests can then be made to either /myPath/_bulk or /myPath/<myIndexName>/_bulk. Other entries are faked as success."""
 
     auth_type: Annotated[
         Optional[InputElasticAuthenticationType], pydantic.Field(alias="authType")
     ] = InputElasticAuthenticationType.NONE
-    r"""Elastic authentication type"""
 
     api_version: Annotated[Optional[APIVersion], pydantic.Field(alias="apiVersion")] = (
         APIVersion.EIGHT_DOT_3_DOT_2
     )
-    r"""The API version to use for communicating with the server."""
+    r"""The API version to use for communicating with the server"""
 
     extra_http_headers: Annotated[
         Optional[List[ExtraHTTPHeaders]], pydantic.Field(alias="extraHttpHeaders")
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     metadata: Optional[List[InputElasticMetadata]] = None
     r"""Fields to add to events from this input"""

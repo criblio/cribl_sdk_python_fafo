@@ -41,7 +41,6 @@ class OutputMskAuthTypedDict(TypedDict):
     r"""Credentials to use when authenticating with the schema registry using basic HTTP authentication"""
 
     disabled: NotRequired[bool]
-    r"""Enable authentication"""
     credentials_secret: NotRequired[str]
     r"""Select or create a secret that references your credentials"""
 
@@ -50,7 +49,6 @@ class OutputMskAuth(BaseModel):
     r"""Credentials to use when authenticating with the schema registry using basic HTTP authentication"""
 
     disabled: Optional[bool] = True
-    r"""Enable authentication"""
 
     credentials_secret: Annotated[
         Optional[str], pydantic.Field(alias="credentialsSecret")
@@ -59,8 +57,6 @@ class OutputMskAuth(BaseModel):
 
 
 class OutputMskKafkaSchemaRegistryMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -68,8 +64,6 @@ class OutputMskKafkaSchemaRegistryMinimumTLSVersion(str, Enum):
 
 
 class OutputMskKafkaSchemaRegistryMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -79,13 +73,13 @@ class OutputMskKafkaSchemaRegistryMaximumTLSVersion(str, Enum):
 class OutputMskKafkaSchemaRegistryTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -93,11 +87,9 @@ class OutputMskKafkaSchemaRegistryTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[OutputMskKafkaSchemaRegistryMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[OutputMskKafkaSchemaRegistryMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputMskKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
@@ -106,8 +98,8 @@ class OutputMskKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     servername: Optional[str] = None
@@ -116,7 +108,7 @@ class OutputMskKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -128,24 +120,21 @@ class OutputMskKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[OutputMskKafkaSchemaRegistryMinimumTLSVersion],
         pydantic.Field(alias="minVersion"),
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[OutputMskKafkaSchemaRegistryMaximumTLSVersion],
         pydantic.Field(alias="maxVersion"),
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputMskKafkaSchemaRegistryAuthenticationTypedDict(TypedDict):
     disabled: NotRequired[bool]
-    r"""Enable Schema Registry"""
     schema_registry_url: NotRequired[str]
     r"""URL for accessing the Confluent Schema Registry. Example: http://localhost:8081. To connect over TLS, use https instead of http."""
     connection_timeout: NotRequired[float]
@@ -165,7 +154,6 @@ class OutputMskKafkaSchemaRegistryAuthenticationTypedDict(TypedDict):
 
 class OutputMskKafkaSchemaRegistryAuthentication(BaseModel):
     disabled: Optional[bool] = True
-    r"""Enable Schema Registry"""
 
     schema_registry_url: Annotated[
         Optional[str], pydantic.Field(alias="schemaRegistryURL")
@@ -217,8 +205,6 @@ class OutputMskSignatureVersion(str, Enum):
 
 
 class OutputMskMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -226,8 +212,6 @@ class OutputMskMinimumTLSVersion(str, Enum):
 
 
 class OutputMskMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -237,13 +221,13 @@ class OutputMskMaximumTLSVersion(str, Enum):
 class OutputMskTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -251,11 +235,9 @@ class OutputMskTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[OutputMskMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[OutputMskMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputMskTLSSettingsClientSide(BaseModel):
@@ -264,8 +246,8 @@ class OutputMskTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     servername: Optional[str] = None
@@ -274,7 +256,7 @@ class OutputMskTLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -286,17 +268,15 @@ class OutputMskTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[OutputMskMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[OutputMskMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputMskBackpressureBehavior(str, Enum):
@@ -385,7 +365,7 @@ class OutputMskTypedDict(TypedDict):
     authentication_timeout: NotRequired[float]
     r"""Maximum time to wait for Kafka to respond to an authentication request"""
     reauthentication_threshold: NotRequired[float]
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
     aws_authentication_method: NotRequired[OutputMskAuthenticationMethod]
     r"""AWS authentication method. Choose Auto to use IAM roles."""
     aws_secret_key: NotRequired[str]
@@ -521,7 +501,7 @@ class OutputMsk(BaseModel):
     reauthentication_threshold: Annotated[
         Optional[float], pydantic.Field(alias="reauthenticationThreshold")
     ] = 10000
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
 
     aws_authentication_method: Annotated[
         Optional[OutputMskAuthenticationMethod],

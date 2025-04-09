@@ -1,7 +1,5 @@
 # SASLMechanism
 
-SASL authentication mechanism to use.
-
 
 ## Values
 

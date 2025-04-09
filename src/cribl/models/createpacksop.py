@@ -10,15 +10,10 @@ from typing_extensions import NotRequired, TypedDict
 class CreatePacksResponseBodyTypedDict(TypedDict):
     r"""a list of PackInstallInfo objects"""
 
-    count: NotRequired[int]
-    r"""number of items present in the items array"""
     items: NotRequired[List[PackInstallInfoTypedDict]]
 
 
 class CreatePacksResponseBody(BaseModel):
     r"""a list of PackInstallInfo objects"""
-
-    count: Optional[int] = None
-    r"""number of items present in the items array"""
 
     items: Optional[List[PackInstallInfo]] = None

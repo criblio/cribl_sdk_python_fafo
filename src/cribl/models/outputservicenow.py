@@ -69,17 +69,13 @@ class OutputServiceNowBackpressureBehavior(str, Enum):
 
 class OutputServiceNowExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputServiceNowExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputServiceNowResponseRetrySettingsTypedDict(TypedDict):
@@ -139,8 +135,6 @@ class OutputServiceNowTimeoutRetrySettings(BaseModel):
 
 
 class OutputServiceNowMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -148,8 +142,6 @@ class OutputServiceNowMinimumTLSVersion(str, Enum):
 
 
 class OutputServiceNowMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -159,11 +151,11 @@ class OutputServiceNowMaximumTLSVersion(str, Enum):
 class OutputServiceNowTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -171,11 +163,9 @@ class OutputServiceNowTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[OutputServiceNowMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[OutputServiceNowMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputServiceNowTLSSettingsClientSide(BaseModel):
@@ -184,14 +174,14 @@ class OutputServiceNowTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -203,17 +193,15 @@ class OutputServiceNowTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[OutputServiceNowMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[OutputServiceNowMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputServiceNowPqCompressCompression(str, Enum):
@@ -306,7 +294,7 @@ class OutputServiceNowTypedDict(TypedDict):
     use_round_robin_dns: NotRequired[bool]
     r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned. For optimal performance, consider enabling this setting for non-load balanced destinations."""
     extra_http_headers: NotRequired[List[OutputServiceNowExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     safe_headers: NotRequired[List[str]]
     r"""List of headers that are safe to log in plain text"""
     response_retry_settings: NotRequired[
@@ -457,7 +445,7 @@ class OutputServiceNow(BaseModel):
         Optional[List[OutputServiceNowExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     safe_headers: Annotated[
         Optional[List[str]], pydantic.Field(alias="safeHeaders")

@@ -1,7 +1,5 @@
 # OutputConfluentCloudKafkaSchemaRegistryMaximumTLSVersion
 
-Maximum TLS version to use when connecting
-
 
 ## Values
 

@@ -8,15 +8,12 @@ from typing_extensions import NotRequired, TypedDict
 
 class GitFileTypedDict(TypedDict):
     name: str
-    cached: NotRequired[bool]
     children: NotRequired[List[GitFileTypedDict]]
     state: NotRequired[str]
 
 
 class GitFile(BaseModel):
     name: str
-
-    cached: Optional[bool] = None
 
     children: Optional[List[GitFile]] = None
 

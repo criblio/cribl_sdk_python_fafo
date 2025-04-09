@@ -133,7 +133,7 @@ class InputS3CheckpointingTypedDict(TypedDict):
     enabled: NotRequired[bool]
     r"""Resume processing files after an interruption"""
     retries: NotRequired[float]
-    r"""If checkpointing is enabled, the number of times to retry processing when a processing error occurs. If skip file on error is enabled, this setting is ignored."""
+    r"""The number of times to retry processing when a processing error occurs. If Skip file on error is enabled, this setting is ignored."""
 
 
 class InputS3Checkpointing(BaseModel):
@@ -141,7 +141,7 @@ class InputS3Checkpointing(BaseModel):
     r"""Resume processing files after an interruption"""
 
     retries: Optional[float] = 5
-    r"""If checkpointing is enabled, the number of times to retry processing when a processing error occurs. If skip file on error is enabled, this setting is ignored."""
+    r"""The number of times to retry processing when a processing error occurs. If Skip file on error is enabled, this setting is ignored."""
 
 
 class InputS3TypedDict(TypedDict):
@@ -196,7 +196,7 @@ class InputS3TypedDict(TypedDict):
     skip_on_error: NotRequired[bool]
     r"""Skip files that trigger a processing error. Disabled by default, which allows retries after processing errors."""
     enable_assume_role: NotRequired[bool]
-    r"""Use Assume Role credentials to access S3"""
+    r"""Use Assume Role credentials to access Amazon S3"""
     assume_role_arn: NotRequired[str]
     r"""Amazon Resource Name (ARN) of the role to assume"""
     assume_role_external_id: NotRequired[str]
@@ -204,7 +204,7 @@ class InputS3TypedDict(TypedDict):
     duration_seconds: NotRequired[float]
     r"""Duration of the assumed role's session, in seconds. Minimum is 900 (15 minutes), default is 3600 (1 hour), and maximum is 43200 (12 hours)."""
     enable_sqs_assume_role: NotRequired[bool]
-    r"""Use Assume Role credentials when accessing SQS"""
+    r"""Use Assume Role credentials when accessing Amazon SQS"""
     preprocess: NotRequired[InputS3PreprocessTypedDict]
     metadata: NotRequired[List[InputS3MetadataTypedDict]]
     r"""Fields to add to events from this input"""
@@ -329,7 +329,7 @@ class InputS3(BaseModel):
     enable_assume_role: Annotated[
         Optional[bool], pydantic.Field(alias="enableAssumeRole")
     ] = True
-    r"""Use Assume Role credentials to access S3"""
+    r"""Use Assume Role credentials to access Amazon S3"""
 
     assume_role_arn: Annotated[Optional[str], pydantic.Field(alias="assumeRoleArn")] = (
         None
@@ -349,7 +349,7 @@ class InputS3(BaseModel):
     enable_sqs_assume_role: Annotated[
         Optional[bool], pydantic.Field(alias="enableSQSAssumeRole")
     ] = False
-    r"""Use Assume Role credentials when accessing SQS"""
+    r"""Use Assume Role credentials when accessing Amazon SQS"""
 
     preprocess: Optional[InputS3Preprocess] = None
 

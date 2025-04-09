@@ -1,6 +1,6 @@
 # InputWefFormat
 
-Content format in which the endpoint should deliver events.
+Content format in which the endpoint should deliver events
 
 
 ## Values

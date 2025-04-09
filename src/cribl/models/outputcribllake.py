@@ -78,11 +78,9 @@ class OutputCriblLakeFormat(str, Enum):
 
 
 class OutputCriblLakeTypedDict(TypedDict):
-    type: OutputCriblLakeType
-    dest_path: str
-    r"""Lake dataset to send the data to."""
-    id: NotRequired[str]
+    id: str
     r"""Unique ID for this output"""
+    type: OutputCriblLakeType
     pipeline: NotRequired[str]
     r"""Pipeline to process data before sending out to this output"""
     system_fields: NotRequired[List[str]]
@@ -117,6 +115,8 @@ class OutputCriblLakeTypedDict(TypedDict):
     r"""Filesystem location in which to buffer files, before compressing and moving to final destination. Use performant stable storage."""
     add_id_to_stage_path: NotRequired[bool]
     r"""Append output's ID to staging location"""
+    dest_path: NotRequired[str]
+    r"""Lake dataset to send the data to."""
     object_acl: NotRequired[OutputCriblLakeObjectACL]
     r"""Object ACL to assign to uploaded objects."""
     storage_class: NotRequired[OutputCriblLakeStorageClass]
@@ -167,13 +167,10 @@ class OutputCriblLakeTypedDict(TypedDict):
 
 
 class OutputCriblLake(BaseModel):
-    type: OutputCriblLakeType
-
-    dest_path: Annotated[str, pydantic.Field(alias="destPath")]
-    r"""Lake dataset to send the data to."""
-
-    id: Optional[str] = None
+    id: str
     r"""Unique ID for this output"""
+
+    type: OutputCriblLakeType
 
     pipeline: Optional[str] = None
     r"""Pipeline to process data before sending out to this output"""
@@ -248,6 +245,9 @@ class OutputCriblLake(BaseModel):
         Optional[bool], pydantic.Field(alias="addIdToStagePath")
     ] = True
     r"""Append output's ID to staging location"""
+
+    dest_path: Annotated[Optional[str], pydantic.Field(alias="destPath")] = None
+    r"""Lake dataset to send the data to."""
 
     object_acl: Annotated[
         Optional[OutputCriblLakeObjectACL], pydantic.Field(alias="objectACL")

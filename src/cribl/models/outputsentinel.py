@@ -14,17 +14,13 @@ class OutputSentinelType(str, Enum):
 
 class OutputSentinelExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputSentinelExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputSentinelFailedRequestLoggingMode(str, Enum):

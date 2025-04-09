@@ -5,7 +5,6 @@ a list of Input objects
 
 ## Fields
 
-| Field                                      | Type                                       | Required                                   | Description                                |
-| ------------------------------------------ | ------------------------------------------ | ------------------------------------------ | ------------------------------------------ |
-| `count`                                    | *Optional[int]*                            | :heavy_minus_sign:                         | number of items present in the items array |
-| `items`                                    | List[[models.Input](../models/input.md)]   | :heavy_minus_sign:                         | N/A                                        |
+| Field                                    | Type                                     | Required                                 | Description                              |
+| ---------------------------------------- | ---------------------------------------- | ---------------------------------------- | ---------------------------------------- |
+| `items`                                  | List[[models.Input](../models/input.md)] | :heavy_minus_sign:                       | N/A                                      |

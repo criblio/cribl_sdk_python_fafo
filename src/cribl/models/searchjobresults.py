@@ -2,17 +2,17 @@
 
 from __future__ import annotations
 from cribl.types import BaseModel
-from typing import Any
-from typing_extensions import TypedDict
+from typing import Any, Optional
+from typing_extensions import NotRequired, TypedDict
 
 
 class SearchJobResultsTypedDict(TypedDict):
     is_finished: bool
     job: Any
-    limit: float
     offset: float
     persisted_event_count: float
     total_event_count: float
+    limit: NotRequired[float]
 
 
 class SearchJobResults(BaseModel):
@@ -20,10 +20,10 @@ class SearchJobResults(BaseModel):
 
     job: Any
 
-    limit: float
-
     offset: float
 
     persisted_event_count: float
 
     total_event_count: float
+
+    limit: Optional[float] = None

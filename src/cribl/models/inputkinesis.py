@@ -84,7 +84,7 @@ class InputKinesisPq(BaseModel):
 
 
 class ShardIteratorStart(str, Enum):
-    r"""Location at which to start reading a shard for the first time."""
+    r"""Location at which to start reading a shard for the first time"""
 
     TRIM_HORIZON = "TRIM_HORIZON"
     LATEST = "LATEST"
@@ -136,7 +136,7 @@ class InputKinesisMetadata(BaseModel):
 
 class InputKinesisTypedDict(TypedDict):
     stream_name: str
-    r"""Kinesis stream name to read data from."""
+    r"""Kinesis Data Stream to read data from"""
     region: str
     r"""Region where the Kinesis stream is located"""
     id: NotRequired[str]
@@ -159,9 +159,9 @@ class InputKinesisTypedDict(TypedDict):
     service_interval: NotRequired[float]
     r"""Time interval in minutes between consecutive service calls"""
     shard_expr: NotRequired[str]
-    r"""A JS expression to be called with each shardId for the stream, if the expression evalutates to a truthy value the shard will be processed."""
+    r"""A JavaScript expression to be called with each shardId for the stream. If the expression evaluates to a truthy value, the shard will be processed."""
     shard_iterator_type: NotRequired[ShardIteratorStart]
-    r"""Location at which to start reading a shard for the first time."""
+    r"""Location at which to start reading a shard for the first time"""
     payload_format: NotRequired[RecordDataFormat]
     r"""Format of data inside the Kinesis Stream records. Gzip compression is automatically detected."""
     get_records_limit: NotRequired[float]
@@ -192,7 +192,7 @@ class InputKinesisTypedDict(TypedDict):
     verify_kpl_check_sums: NotRequired[bool]
     r"""Verify Kinesis Producer Library (KPL) event checksums"""
     avoid_duplicates: NotRequired[bool]
-    r"""Yes means: when resuming streaming from a stored state, Stream will read the next available record, rather than rereading the last-read record. Enabling this can cause data loss after a Worker Node's unexpected shutdown or restart."""
+    r"""When resuming streaming from a stored state, Stream will read the next available record, rather than rereading the last-read record. Enabling this setting can cause data loss after a Worker Node's unexpected shutdown or restart."""
     metadata: NotRequired[List[InputKinesisMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     description: NotRequired[str]
@@ -203,7 +203,7 @@ class InputKinesisTypedDict(TypedDict):
 
 class InputKinesis(BaseModel):
     stream_name: Annotated[str, pydantic.Field(alias="streamName")]
-    r"""Kinesis stream name to read data from."""
+    r"""Kinesis Data Stream to read data from"""
 
     region: str
     r"""Region where the Kinesis stream is located"""
@@ -243,12 +243,12 @@ class InputKinesis(BaseModel):
     r"""Time interval in minutes between consecutive service calls"""
 
     shard_expr: Annotated[Optional[str], pydantic.Field(alias="shardExpr")] = "true"
-    r"""A JS expression to be called with each shardId for the stream, if the expression evalutates to a truthy value the shard will be processed."""
+    r"""A JavaScript expression to be called with each shardId for the stream. If the expression evaluates to a truthy value, the shard will be processed."""
 
     shard_iterator_type: Annotated[
         Optional[ShardIteratorStart], pydantic.Field(alias="shardIteratorType")
     ] = ShardIteratorStart.TRIM_HORIZON
-    r"""Location at which to start reading a shard for the first time."""
+    r"""Location at which to start reading a shard for the first time"""
 
     payload_format: Annotated[
         Optional[RecordDataFormat], pydantic.Field(alias="payloadFormat")
@@ -326,7 +326,7 @@ class InputKinesis(BaseModel):
     avoid_duplicates: Annotated[
         Optional[bool], pydantic.Field(alias="avoidDuplicates")
     ] = False
-    r"""Yes means: when resuming streaming from a stored state, Stream will read the next available record, rather than rereading the last-read record. Enabling this can cause data loss after a Worker Node's unexpected shutdown or restart."""
+    r"""When resuming streaming from a stored state, Stream will read the next available record, rather than rereading the last-read record. Enabling this setting can cause data loss after a Worker Node's unexpected shutdown or restart."""
 
     metadata: Optional[List[InputKinesisMetadata]] = None
     r"""Fields to add to events from this input"""

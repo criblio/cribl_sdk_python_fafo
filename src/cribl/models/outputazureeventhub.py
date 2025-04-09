@@ -28,8 +28,6 @@ class OutputAzureEventhubRecordDataFormat(str, Enum):
 
 
 class OutputAzureEventhubSASLMechanism(str, Enum):
-    r"""SASL authentication mechanism to use"""
-
     PLAIN = "plain"
     OAUTHBEARER = "oauthbearer"
 
@@ -38,27 +36,23 @@ class OutputAzureEventhubAuthenticationTypedDict(TypedDict):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: NotRequired[bool]
-    r"""Enable authentication."""
     mechanism: NotRequired[OutputAzureEventhubSASLMechanism]
-    r"""SASL authentication mechanism to use"""
 
 
 class OutputAzureEventhubAuthentication(BaseModel):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: Optional[bool] = False
-    r"""Enable authentication."""
 
     mechanism: Optional[OutputAzureEventhubSASLMechanism] = (
         OutputAzureEventhubSASLMechanism.PLAIN
     )
-    r"""SASL authentication mechanism to use"""
 
 
 class OutputAzureEventhubTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another trusted CA (e.g., the system's CA)."""
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another trusted CA (such as the system's)"""
 
 
 class OutputAzureEventhubTLSSettingsClientSide(BaseModel):
@@ -67,7 +61,7 @@ class OutputAzureEventhubTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another trusted CA (e.g., the system's CA)."""
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another trusted CA (such as the system's)"""
 
 
 class OutputAzureEventhubBackpressureBehavior(str, Enum):
@@ -149,7 +143,7 @@ class OutputAzureEventhubTypedDict(TypedDict):
     authentication_timeout: NotRequired[float]
     r"""Maximum time to wait for Kafka to respond to an authentication request"""
     reauthentication_threshold: NotRequired[float]
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
     sasl: NotRequired[OutputAzureEventhubAuthenticationTypedDict]
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
     tls: NotRequired[OutputAzureEventhubTLSSettingsClientSideTypedDict]
@@ -252,7 +246,7 @@ class OutputAzureEventhub(BaseModel):
     reauthentication_threshold: Annotated[
         Optional[float], pydantic.Field(alias="reauthenticationThreshold")
     ] = 10000
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
 
     sasl: Optional[OutputAzureEventhubAuthentication] = None
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""

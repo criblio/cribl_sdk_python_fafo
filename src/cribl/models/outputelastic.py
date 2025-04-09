@@ -14,17 +14,13 @@ class OutputElasticType(str, Enum):
 
 class OutputElasticExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputElasticExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputElasticFailedRequestLoggingMode(str, Enum):
@@ -234,7 +230,7 @@ class OutputElasticTypedDict(TypedDict):
     flush_period_sec: NotRequired[float]
     r"""Maximum time between requests. Small values could cause the payload size to be smaller than the configured Max body size."""
     extra_http_headers: NotRequired[List[OutputElasticExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     failed_request_logging_mode: NotRequired[OutputElasticFailedRequestLoggingMode]
     r"""Data to log when a request fails. All headers are redacted by default, unless listed as safe headers below."""
     safe_headers: NotRequired[List[str]]
@@ -355,7 +351,7 @@ class OutputElastic(BaseModel):
         Optional[List[OutputElasticExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     failed_request_logging_mode: Annotated[
         Optional[OutputElasticFailedRequestLoggingMode],

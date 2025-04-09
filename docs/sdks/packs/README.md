@@ -33,7 +33,7 @@ with Cribl(
     ),
 ) as c_client:
 
-    res = c_client.packs.create_packs(id="<id>")
+    res = c_client.packs.create_packs(id="<id>", source="<value>")
 
     # Handle response
     print(res)
@@ -42,10 +42,21 @@ with Cribl(
 
 ### Parameters
 
-| Parameter                                                           | Type                                                                | Required                                                            | Description                                                         |
-| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| `id`                                                                | *str*                                                               | :heavy_check_mark:                                                  | N/A                                                                 |
-| `retries`                                                           | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)    | :heavy_minus_sign:                                                  | Configuration to override the default retry behavior of the client. |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `id`                                                                        | *str*                                                                       | :heavy_check_mark:                                                          | N/A                                                                         |
+| `source`                                                                    | *str*                                                                       | :heavy_check_mark:                                                          | N/A                                                                         |
+| `allow_custom_functions`                                                    | *Optional[bool]*                                                            | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `author`                                                                    | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `description`                                                               | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `display_name`                                                              | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `exports`                                                                   | List[*str*]                                                                 | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `force`                                                                     | *Optional[bool]*                                                            | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `min_log_stream_version`                                                    | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `spec`                                                                      | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `tags`                                                                      | [Optional[models.PackRequestBodyTags]](../../models/packrequestbodytags.md) | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `version`                                                                   | *Optional[str]*                                                             | :heavy_minus_sign:                                                          | N/A                                                                         |
+| `retries`                                                                   | [Optional[utils.RetryConfig]](../../models/utils/retryconfig.md)            | :heavy_minus_sign:                                                          | Configuration to override the default retry behavior of the client.         |
 
 ### Response
 

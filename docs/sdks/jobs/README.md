@@ -126,6 +126,7 @@ with Cribl(
     res = c_client.jobs.create_jobs(request={
         "type": cribl.SavedJobExecutorJobType.EXECUTOR,
         "ttl": "4h",
+        "ignore_group_jobs_limit": False,
         "resume_on_boot": False,
         "executor": {
             "type": "<value>",

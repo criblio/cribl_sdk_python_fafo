@@ -41,7 +41,6 @@ class OutputKafkaAuthTypedDict(TypedDict):
     r"""Credentials to use when authenticating with the schema registry using basic HTTP authentication"""
 
     disabled: NotRequired[bool]
-    r"""Enable authentication"""
     credentials_secret: NotRequired[str]
     r"""Select or create a secret that references your credentials"""
 
@@ -50,7 +49,6 @@ class OutputKafkaAuth(BaseModel):
     r"""Credentials to use when authenticating with the schema registry using basic HTTP authentication"""
 
     disabled: Optional[bool] = True
-    r"""Enable authentication"""
 
     credentials_secret: Annotated[
         Optional[str], pydantic.Field(alias="credentialsSecret")
@@ -59,8 +57,6 @@ class OutputKafkaAuth(BaseModel):
 
 
 class OutputKafkaKafkaSchemaRegistryMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -68,8 +64,6 @@ class OutputKafkaKafkaSchemaRegistryMinimumTLSVersion(str, Enum):
 
 
 class OutputKafkaKafkaSchemaRegistryMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -79,13 +73,13 @@ class OutputKafkaKafkaSchemaRegistryMaximumTLSVersion(str, Enum):
 class OutputKafkaKafkaSchemaRegistryTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -93,11 +87,9 @@ class OutputKafkaKafkaSchemaRegistryTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[OutputKafkaKafkaSchemaRegistryMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[OutputKafkaKafkaSchemaRegistryMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputKafkaKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
@@ -106,8 +98,8 @@ class OutputKafkaKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     servername: Optional[str] = None
@@ -116,7 +108,7 @@ class OutputKafkaKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -128,24 +120,21 @@ class OutputKafkaKafkaSchemaRegistryTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[OutputKafkaKafkaSchemaRegistryMinimumTLSVersion],
         pydantic.Field(alias="minVersion"),
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[OutputKafkaKafkaSchemaRegistryMaximumTLSVersion],
         pydantic.Field(alias="maxVersion"),
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputKafkaKafkaSchemaRegistryAuthenticationTypedDict(TypedDict):
     disabled: NotRequired[bool]
-    r"""Enable Schema Registry"""
     schema_registry_url: NotRequired[str]
     r"""URL for accessing the Confluent Schema Registry. Example: http://localhost:8081. To connect over TLS, use https instead of http."""
     connection_timeout: NotRequired[float]
@@ -165,7 +154,6 @@ class OutputKafkaKafkaSchemaRegistryAuthenticationTypedDict(TypedDict):
 
 class OutputKafkaKafkaSchemaRegistryAuthentication(BaseModel):
     disabled: Optional[bool] = True
-    r"""Enable Schema Registry"""
 
     schema_registry_url: Annotated[
         Optional[str], pydantic.Field(alias="schemaRegistryURL")
@@ -202,8 +190,6 @@ class OutputKafkaKafkaSchemaRegistryAuthentication(BaseModel):
 
 
 class OutputKafkaSASLMechanism(str, Enum):
-    r"""SASL authentication mechanism to use."""
-
     PLAIN = "plain"
     SCRAM_SHA_256 = "scram-sha-256"
     SCRAM_SHA_512 = "scram-sha-512"
@@ -214,24 +200,18 @@ class OutputKafkaAuthenticationTypedDict(TypedDict):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: NotRequired[bool]
-    r"""Enable Authentication"""
     mechanism: NotRequired[OutputKafkaSASLMechanism]
-    r"""SASL authentication mechanism to use."""
 
 
 class OutputKafkaAuthentication(BaseModel):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: Optional[bool] = True
-    r"""Enable Authentication"""
 
     mechanism: Optional[OutputKafkaSASLMechanism] = OutputKafkaSASLMechanism.PLAIN
-    r"""SASL authentication mechanism to use."""
 
 
 class OutputKafkaMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -239,8 +219,6 @@ class OutputKafkaMinimumTLSVersion(str, Enum):
 
 
 class OutputKafkaMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -250,13 +228,13 @@ class OutputKafkaMaximumTLSVersion(str, Enum):
 class OutputKafkaTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -264,11 +242,9 @@ class OutputKafkaTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[OutputKafkaMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[OutputKafkaMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputKafkaTLSSettingsClientSide(BaseModel):
@@ -277,8 +253,8 @@ class OutputKafkaTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     servername: Optional[str] = None
@@ -287,7 +263,7 @@ class OutputKafkaTLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -299,17 +275,15 @@ class OutputKafkaTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[OutputKafkaMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[OutputKafkaMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class OutputKafkaBackpressureBehavior(str, Enum):
@@ -396,7 +370,7 @@ class OutputKafkaTypedDict(TypedDict):
     authentication_timeout: NotRequired[float]
     r"""Maximum time to wait for Kafka to respond to an authentication request"""
     reauthentication_threshold: NotRequired[float]
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
     sasl: NotRequired[OutputKafkaAuthenticationTypedDict]
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
     tls: NotRequired[OutputKafkaTLSSettingsClientSideTypedDict]
@@ -509,7 +483,7 @@ class OutputKafka(BaseModel):
     reauthentication_threshold: Annotated[
         Optional[float], pydantic.Field(alias="reauthenticationThreshold")
     ] = 10000
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
 
     sasl: Optional[OutputKafkaAuthentication] = None
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""

@@ -292,6 +292,8 @@ class InputSplunkSearchTypedDict(TypedDict):
     r"""The number of Keep Alive Time periods before an inactive worker will have its job subscription revoked."""
     ttl: NotRequired[str]
     r"""Time to keep the job's artifacts on disk after job completion. This also affects how long a job is listed in the Job Inspector."""
+    ignore_group_jobs_limit: NotRequired[bool]
+    r"""When enabled, this job's artifacts are not counted toward the Worker Group's finished job artifacts limit. Artifacts will be removed only after the Collector's configured time to live."""
     metadata: NotRequired[List[InputSplunkSearchMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     retry_rules: NotRequired[RetryRulesTypedDict]
@@ -431,6 +433,11 @@ class InputSplunkSearch(BaseModel):
 
     ttl: Optional[str] = "4h"
     r"""Time to keep the job's artifacts on disk after job completion. This also affects how long a job is listed in the Job Inspector."""
+
+    ignore_group_jobs_limit: Annotated[
+        Optional[bool], pydantic.Field(alias="ignoreGroupJobsLimit")
+    ] = False
+    r"""When enabled, this job's artifacts are not counted toward the Worker Group's finished job artifacts limit. Artifacts will be removed only after the Collector's configured time to live."""
 
     metadata: Optional[List[InputSplunkSearchMetadata]] = None
     r"""Fields to add to events from this input"""

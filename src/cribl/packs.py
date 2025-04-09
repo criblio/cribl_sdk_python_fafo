@@ -5,7 +5,7 @@ from cribl import models, utils
 from cribl._hooks import HookContext
 from cribl.types import OptionalNullable, UNSET
 from cribl.utils import get_security_from_env
-from typing import Any, List, Mapping, Optional
+from typing import Any, List, Mapping, Optional, Union
 
 
 class Packs(BaseSDK):
@@ -15,6 +15,19 @@ class Packs(BaseSDK):
         self,
         *,
         id: str,
+        source: str,
+        allow_custom_functions: Optional[bool] = None,
+        author: Optional[str] = None,
+        description: Optional[str] = None,
+        display_name: Optional[str] = None,
+        exports: Optional[List[str]] = None,
+        force: Optional[bool] = None,
+        min_log_stream_version: Optional[str] = None,
+        spec: Optional[str] = None,
+        tags: Optional[
+            Union[models.PackRequestBodyTags, models.PackRequestBodyTagsTypedDict]
+        ] = None,
+        version: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -25,6 +38,17 @@ class Packs(BaseSDK):
         Install Pack
 
         :param id:
+        :param source:
+        :param allow_custom_functions:
+        :param author:
+        :param description:
+        :param display_name:
+        :param exports:
+        :param force:
+        :param min_log_stream_version:
+        :param spec:
+        :param tags:
+        :param version:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -40,8 +64,19 @@ class Packs(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CrudEntityBase(
+        request = models.PackRequestBody(
+            allow_custom_functions=allow_custom_functions,
+            author=author,
+            description=description,
+            display_name=display_name,
+            exports=exports,
+            force=force,
             id=id,
+            min_log_stream_version=min_log_stream_version,
+            source=source,
+            spec=spec,
+            tags=utils.get_pydantic_model(tags, Optional[models.PackRequestBodyTags]),
+            version=version,
         )
 
         req = self._build_request(
@@ -58,7 +93,7 @@ class Packs(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CrudEntityBase
+                request, False, False, "json", models.PackRequestBody
             ),
             timeout_ms=timeout_ms,
         )
@@ -115,6 +150,19 @@ class Packs(BaseSDK):
         self,
         *,
         id: str,
+        source: str,
+        allow_custom_functions: Optional[bool] = None,
+        author: Optional[str] = None,
+        description: Optional[str] = None,
+        display_name: Optional[str] = None,
+        exports: Optional[List[str]] = None,
+        force: Optional[bool] = None,
+        min_log_stream_version: Optional[str] = None,
+        spec: Optional[str] = None,
+        tags: Optional[
+            Union[models.PackRequestBodyTags, models.PackRequestBodyTagsTypedDict]
+        ] = None,
+        version: Optional[str] = None,
         retries: OptionalNullable[utils.RetryConfig] = UNSET,
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
@@ -125,6 +173,17 @@ class Packs(BaseSDK):
         Install Pack
 
         :param id:
+        :param source:
+        :param allow_custom_functions:
+        :param author:
+        :param description:
+        :param display_name:
+        :param exports:
+        :param force:
+        :param min_log_stream_version:
+        :param spec:
+        :param tags:
+        :param version:
         :param retries: Override the default retry configuration for this method
         :param server_url: Override the default server URL for this method
         :param timeout_ms: Override the default request timeout configuration for this method in milliseconds
@@ -140,8 +199,19 @@ class Packs(BaseSDK):
         else:
             base_url = self._get_url(base_url, url_variables)
 
-        request = models.CrudEntityBase(
+        request = models.PackRequestBody(
+            allow_custom_functions=allow_custom_functions,
+            author=author,
+            description=description,
+            display_name=display_name,
+            exports=exports,
+            force=force,
             id=id,
+            min_log_stream_version=min_log_stream_version,
+            source=source,
+            spec=spec,
+            tags=utils.get_pydantic_model(tags, Optional[models.PackRequestBodyTags]),
+            version=version,
         )
 
         req = self._build_request_async(
@@ -158,7 +228,7 @@ class Packs(BaseSDK):
             http_headers=http_headers,
             security=self.sdk_configuration.security,
             get_serialized_body=lambda: utils.serialize_request_body(
-                request, False, False, "json", models.CrudEntityBase
+                request, False, False, "json", models.PackRequestBody
             ),
             timeout_ms=timeout_ms,
         )

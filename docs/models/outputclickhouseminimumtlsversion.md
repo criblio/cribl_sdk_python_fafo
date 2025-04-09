@@ -1,7 +1,5 @@
 # OutputClickHouseMinimumTLSVersion
 
-Minimum TLS version to use when connecting
-
 
 ## Values
 

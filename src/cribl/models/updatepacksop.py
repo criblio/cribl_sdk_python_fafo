@@ -23,15 +23,10 @@ class UpdatePacksRequest(BaseModel):
 class UpdatePacksResponseBodyTypedDict(TypedDict):
     r"""a list of any objects"""
 
-    count: NotRequired[int]
-    r"""number of items present in the items array"""
     items: NotRequired[List[Dict[str, Any]]]
 
 
 class UpdatePacksResponseBody(BaseModel):
     r"""a list of any objects"""
-
-    count: Optional[int] = None
-    r"""number of items present in the items array"""
 
     items: Optional[List[Dict[str, Any]]] = None

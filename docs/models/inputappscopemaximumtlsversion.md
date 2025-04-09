@@ -1,7 +1,5 @@
 # InputAppscopeMaximumTLSVersion
 
-Maximum TLS version to accept from connections
-
 
 ## Values
 

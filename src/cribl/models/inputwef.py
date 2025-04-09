@@ -84,15 +84,13 @@ class InputWefPq(BaseModel):
 
 
 class InputWefAuthenticationMethod(str, Enum):
-    r"""Method by which to authenticate incoming client connections."""
+    r"""How to authenticate incoming client connections"""
 
     CLIENT_CERT = "clientCert"
     KERBEROS = "kerberos"
 
 
 class InputWefMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections."""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -100,8 +98,6 @@ class InputWefMinimumTLSVersion(str, Enum):
 
 
 class InputWefMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,19 +114,17 @@ class MTLSSettingsTypedDict(TypedDict):
     disabled: NotRequired[bool]
     r"""Enable TLS"""
     reject_unauthorized: NotRequired[bool]
-    r"""Required for WEF certificate authentication."""
+    r"""Required for WEF certificate authentication"""
     request_cert: NotRequired[bool]
-    r"""Required for WEF certificate authentication."""
+    r"""Required for WEF certificate authentication"""
     certificate_name: NotRequired[str]
-    r"""Name of the predefined certificate."""
+    r"""Name of the predefined certificate"""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     common_name_regex: NotRequired[str]
-    r"""Regex matching allowable common names in peer certificates' subject attribute."""
+    r"""Regex matching allowable common names in peer certificates' subject attribute"""
     min_version: NotRequired[InputWefMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections."""
     max_version: NotRequired[InputWefMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
     ocsp_check: NotRequired[bool]
     r"""Enable OCSP check of certificate"""
     keytab: NotRequired[Any]
@@ -155,33 +149,31 @@ class MTLSSettings(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Required for WEF certificate authentication."""
+    r"""Required for WEF certificate authentication"""
 
     request_cert: Annotated[Optional[bool], pydantic.Field(alias="requestCert")] = True
-    r"""Required for WEF certificate authentication."""
+    r"""Required for WEF certificate authentication"""
 
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""Name of the predefined certificate."""
+    r"""Name of the predefined certificate"""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     common_name_regex: Annotated[
         Optional[str], pydantic.Field(alias="commonNameRegex")
     ] = "/.*/"
-    r"""Regex matching allowable common names in peer certificates' subject attribute."""
+    r"""Regex matching allowable common names in peer certificates' subject attribute"""
 
     min_version: Annotated[
         Optional[InputWefMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections."""
 
     max_version: Annotated[
         Optional[InputWefMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
     ocsp_check: Annotated[Optional[bool], pydantic.Field(alias="ocspCheck")] = False
     r"""Enable OCSP check of certificate"""
@@ -197,15 +189,13 @@ class MTLSSettings(BaseModel):
 
 
 class InputWefFormat(str, Enum):
-    r"""Content format in which the endpoint should deliver events."""
+    r"""Content format in which the endpoint should deliver events"""
 
     RAW = "Raw"
     RENDERED_TEXT = "RenderedText"
 
 
 class QueryBuilderMode(str, Enum):
-    r"""Select the query builder mode."""
-
     SIMPLE = "simple"
     XML = "xml"
 
@@ -225,37 +215,34 @@ class InputWefSubscriptionsMetadata(BaseModel):
 
 class SubscriptionsModelTypedDict(TypedDict):
     subscription_name: str
-    r"""Friendly name for this subscription."""
     targets: List[str]
-    r"""Enter the DNS names of the endpoints that should forward these events. You may use wildcards, for example: *.mydomain.com"""
+    r"""The DNS names of the endpoints that should forward these events. You may use wildcards, such as *.mydomain.com"""
     version: NotRequired[str]
     r"""Version UUID for this subscription. If any subscription parameters are modified, this value will change."""
     content_format: NotRequired[InputWefFormat]
-    r"""Content format in which the endpoint should deliver events."""
+    r"""Content format in which the endpoint should deliver events"""
     heartbeat_interval: NotRequired[float]
-    r"""Maximum time (in seconds) between endpoint checkins before considering it unavailable."""
+    r"""Maximum time (in seconds) between endpoint checkins before considering it unavailable"""
     batch_timeout: NotRequired[float]
-    r"""Interval (in seconds) over which the endpoint should collect events before sending them to Stream."""
+    r"""Interval (in seconds) over which the endpoint should collect events before sending them to Stream"""
     read_existing_events: NotRequired[bool]
-    r"""Set to Yes if a newly-subscribed endpoint should send previously existing events. Set to No to only receive new events"""
+    r"""Newly subscribed endpoints will send previously existing events. Disable to receive new events only."""
     send_bookmarks: NotRequired[bool]
-    r"""If toggled to Yes, @{product} will keep track of which events have been received, resuming from that point after a re-subscription. This setting takes precedence over 'Read existing events' -- see the documentation for details."""
+    r"""Keep track of which events have been received, resuming from that point after a re-subscription. This setting takes precedence over 'Read existing events'. See [Cribl Docs](https://docs.cribl.io/stream/sources-wef/#subscriptions) for more details."""
     compress: NotRequired[bool]
-    r"""If toggled to Yes, Stream will receive compressed events from the source."""
+    r"""Receive compressed events from the source"""
     locale: NotRequired[str]
     r"""The RFC-3066 locale the Windows clients should use when sending events. Defaults to \"en-US\"."""
     query_selector: NotRequired[QueryBuilderMode]
-    r"""Select the query builder mode."""
     metadata: NotRequired[List[InputWefSubscriptionsMetadataTypedDict]]
     r"""Fields to add to events ingested under this subscription"""
 
 
 class SubscriptionsModel(BaseModel):
     subscription_name: Annotated[str, pydantic.Field(alias="subscriptionName")]
-    r"""Friendly name for this subscription."""
 
     targets: List[str]
-    r"""Enter the DNS names of the endpoints that should forward these events. You may use wildcards, for example: *.mydomain.com"""
+    r"""The DNS names of the endpoints that should forward these events. You may use wildcards, such as *.mydomain.com"""
 
     version: Optional[str] = None
     r"""Version UUID for this subscription. If any subscription parameters are modified, this value will change."""
@@ -263,28 +250,28 @@ class SubscriptionsModel(BaseModel):
     content_format: Annotated[
         Optional[InputWefFormat], pydantic.Field(alias="contentFormat")
     ] = InputWefFormat.RAW
-    r"""Content format in which the endpoint should deliver events."""
+    r"""Content format in which the endpoint should deliver events"""
 
     heartbeat_interval: Annotated[
         Optional[float], pydantic.Field(alias="heartbeatInterval")
     ] = 60
-    r"""Maximum time (in seconds) between endpoint checkins before considering it unavailable."""
+    r"""Maximum time (in seconds) between endpoint checkins before considering it unavailable"""
 
     batch_timeout: Annotated[Optional[float], pydantic.Field(alias="batchTimeout")] = 60
-    r"""Interval (in seconds) over which the endpoint should collect events before sending them to Stream."""
+    r"""Interval (in seconds) over which the endpoint should collect events before sending them to Stream"""
 
     read_existing_events: Annotated[
         Optional[bool], pydantic.Field(alias="readExistingEvents")
     ] = False
-    r"""Set to Yes if a newly-subscribed endpoint should send previously existing events. Set to No to only receive new events"""
+    r"""Newly subscribed endpoints will send previously existing events. Disable to receive new events only."""
 
     send_bookmarks: Annotated[Optional[bool], pydantic.Field(alias="sendBookmarks")] = (
         True
     )
-    r"""If toggled to Yes, @{product} will keep track of which events have been received, resuming from that point after a re-subscription. This setting takes precedence over 'Read existing events' -- see the documentation for details."""
+    r"""Keep track of which events have been received, resuming from that point after a re-subscription. This setting takes precedence over 'Read existing events'. See [Cribl Docs](https://docs.cribl.io/stream/sources-wef/#subscriptions) for more details."""
 
     compress: Optional[bool] = True
-    r"""If toggled to Yes, Stream will receive compressed events from the source."""
+    r"""Receive compressed events from the source"""
 
     locale: Optional[str] = "en-US"
     r"""The RFC-3066 locale the Windows clients should use when sending events. Defaults to \"en-US\"."""
@@ -292,7 +279,6 @@ class SubscriptionsModel(BaseModel):
     query_selector: Annotated[
         Optional[QueryBuilderMode], pydantic.Field(alias="querySelector")
     ] = QueryBuilderMode.SIMPLE
-    r"""Select the query builder mode."""
 
     metadata: Optional[List[InputWefSubscriptionsMetadata]] = None
     r"""Fields to add to events ingested under this subscription"""
@@ -313,7 +299,7 @@ class InputWefMetadata(BaseModel):
 
 class InputWefTypedDict(TypedDict):
     subscriptions: List[SubscriptionsModelTypedDict]
-    r"""Subscriptions to events on forwarding endpoints."""
+    r"""Subscriptions to events on forwarding endpoints"""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     type: NotRequired[InputWefType]
@@ -336,22 +322,22 @@ class InputWefTypedDict(TypedDict):
     port: NotRequired[float]
     r"""Port to listen on"""
     auth_method: NotRequired[InputWefAuthenticationMethod]
-    r"""Method by which to authenticate incoming client connections."""
+    r"""How to authenticate incoming client connections"""
     tls: NotRequired[MTLSSettingsTypedDict]
     max_active_req: NotRequired[float]
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
     max_requests_per_socket: NotRequired[int]
     r"""Maximum number of requests per socket before @{product} instructs the client to close the connection. Default is 0 (unlimited)."""
     enable_proxy_header: NotRequired[bool]
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
     capture_headers: NotRequired[bool]
     r"""Add request headers to events in the __headers field"""
     keep_alive_timeout: NotRequired[float]
-    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 sec.; maximum 600 sec. (10 min.)."""
+    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 second, maximum 600 seconds (10 minutes)."""
     enable_health_check: NotRequired[bool]
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
     ip_allowlist_regex: NotRequired[str]
-    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist."""
+    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
     ip_denylist_regex: NotRequired[str]
     r"""Messages from matched IP addresses will be ignored. This takes precedence over the allowlist."""
     socket_timeout: NotRequired[float]
@@ -361,17 +347,19 @@ class InputWefTypedDict(TypedDict):
     keytab: NotRequired[str]
     r"""Path to the keytab file containing the service principal credentials. @{product} will use `/etc/krb5.keytab` if not provided."""
     principal: NotRequired[str]
-    r"""Kerberos principal used for authentication, typically in the form HTTP/<hostname>@<REALM>."""
+    r"""Kerberos principal used for authentication, typically in the form HTTP/<hostname>@<REALM>"""
     allow_machine_id_mismatch: NotRequired[bool]
-    r"""Allow events to be ingested even if their MachineID does not match the client certificate CN."""
+    r"""Allow events to be ingested even if their MachineID does not match the client certificate CN"""
     metadata: NotRequired[List[InputWefMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     description: NotRequired[str]
+    log_fingerprint_mismatch: NotRequired[bool]
+    r"""Log a warning if the client certificate authority (CA) fingerprint does not match the expected value. A mismatch prevents Cribl from receiving events from the Windows Event Forwarder."""
 
 
 class InputWef(BaseModel):
     subscriptions: List[SubscriptionsModel]
-    r"""Subscriptions to events on forwarding endpoints."""
+    r"""Subscriptions to events on forwarding endpoints"""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""
@@ -411,14 +399,14 @@ class InputWef(BaseModel):
     auth_method: Annotated[
         Optional[InputWefAuthenticationMethod], pydantic.Field(alias="authMethod")
     ] = InputWefAuthenticationMethod.CLIENT_CERT
-    r"""Method by which to authenticate incoming client connections."""
+    r"""How to authenticate incoming client connections"""
 
     tls: Optional[MTLSSettings] = None
 
     max_active_req: Annotated[Optional[float], pydantic.Field(alias="maxActiveReq")] = (
         256
     )
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
 
     max_requests_per_socket: Annotated[
         Optional[int], pydantic.Field(alias="maxRequestsPerSocket")
@@ -428,7 +416,7 @@ class InputWef(BaseModel):
     enable_proxy_header: Annotated[
         Optional[bool], pydantic.Field(alias="enableProxyHeader")
     ] = False
-    r"""Enable when clients are connecting through a proxy that supports the x-forwarded-for header to keep the client's original IP address on the event instead of the proxy's IP address"""
+    r"""Preserve the client’s original IP address in the __srcIpPort field when connecting through an HTTP proxy that supports the X-Forwarded-For header. This does not apply to TCP-layer Proxy Protocol v1/v2."""
 
     capture_headers: Annotated[
         Optional[bool], pydantic.Field(alias="captureHeaders")
@@ -438,17 +426,17 @@ class InputWef(BaseModel):
     keep_alive_timeout: Annotated[
         Optional[float], pydantic.Field(alias="keepAliveTimeout")
     ] = 90
-    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 sec.; maximum 600 sec. (10 min.)."""
+    r"""After the last response is sent, @{product} will wait this long for additional data before closing the socket connection. Minimum 1 second, maximum 600 seconds (10 minutes)."""
 
     enable_health_check: Annotated[
         Optional[bool], pydantic.Field(alias="enableHealthCheck")
     ] = False
-    r"""Enable to expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
+    r"""Expose the /cribl_health endpoint, which returns 200 OK when this Source is healthy"""
 
     ip_allowlist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipAllowlistRegex")
     ] = "/.*/"
-    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist."""
+    r"""Messages from matched IP addresses will be processed, unless also matched by the denylist"""
 
     ip_denylist_regex: Annotated[
         Optional[str], pydantic.Field(alias="ipDenylistRegex")
@@ -469,14 +457,19 @@ class InputWef(BaseModel):
     r"""Path to the keytab file containing the service principal credentials. @{product} will use `/etc/krb5.keytab` if not provided."""
 
     principal: Optional[str] = None
-    r"""Kerberos principal used for authentication, typically in the form HTTP/<hostname>@<REALM>."""
+    r"""Kerberos principal used for authentication, typically in the form HTTP/<hostname>@<REALM>"""
 
     allow_machine_id_mismatch: Annotated[
         Optional[bool], pydantic.Field(alias="allowMachineIdMismatch")
     ] = False
-    r"""Allow events to be ingested even if their MachineID does not match the client certificate CN."""
+    r"""Allow events to be ingested even if their MachineID does not match the client certificate CN"""
 
     metadata: Optional[List[InputWefMetadata]] = None
     r"""Fields to add to events from this input"""
 
     description: Optional[str] = None
+
+    log_fingerprint_mismatch: Annotated[
+        Optional[bool], pydantic.Field(alias="logFingerprintMismatch")
+    ] = False
+    r"""Log a warning if the client certificate authority (CA) fingerprint does not match the expected value. A mismatch prevents Cribl from receiving events from the Windows Event Forwarder."""

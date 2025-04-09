@@ -1,6 +1,6 @@
 # OutputAzureDataExplorerAuthenticationMethod
 
-The type of OAuth 2.0 client credentials grant flow to use.
+The type of OAuth 2.0 client credentials grant flow to use
 
 
 ## Values

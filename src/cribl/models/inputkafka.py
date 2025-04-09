@@ -87,7 +87,6 @@ class InputKafkaAuthTypedDict(TypedDict):
     r"""Credentials to use when authenticating with the schema registry using basic HTTP authentication"""
 
     disabled: NotRequired[bool]
-    r"""Enable authentication"""
     credentials_secret: NotRequired[str]
     r"""Select or create a secret that references your credentials"""
 
@@ -96,7 +95,6 @@ class InputKafkaAuth(BaseModel):
     r"""Credentials to use when authenticating with the schema registry using basic HTTP authentication"""
 
     disabled: Optional[bool] = True
-    r"""Enable authentication"""
 
     credentials_secret: Annotated[
         Optional[str], pydantic.Field(alias="credentialsSecret")
@@ -105,8 +103,6 @@ class InputKafkaAuth(BaseModel):
 
 
 class InputKafkaMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -114,8 +110,6 @@ class InputKafkaMinimumTLSVersion(str, Enum):
 
 
 class InputKafkaMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -125,13 +119,13 @@ class InputKafkaMaximumTLSVersion(str, Enum):
 class InputKafkaTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -139,11 +133,9 @@ class InputKafkaTLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[InputKafkaMinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[InputKafkaMaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class InputKafkaTLSSettingsClientSide(BaseModel):
@@ -152,8 +144,8 @@ class InputKafkaTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     servername: Optional[str] = None
@@ -162,7 +154,7 @@ class InputKafkaTLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -174,22 +166,19 @@ class InputKafkaTLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[InputKafkaMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[InputKafkaMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class KafkaSchemaRegistryAuthenticationTypedDict(TypedDict):
     disabled: NotRequired[bool]
-    r"""Enable Schema Registry"""
     schema_registry_url: NotRequired[str]
     r"""URL for accessing the Confluent Schema Registry. Example: http://localhost:8081. To connect over TLS, use https instead of http."""
     connection_timeout: NotRequired[float]
@@ -205,7 +194,6 @@ class KafkaSchemaRegistryAuthenticationTypedDict(TypedDict):
 
 class KafkaSchemaRegistryAuthentication(BaseModel):
     disabled: Optional[bool] = True
-    r"""Enable Schema Registry"""
 
     schema_registry_url: Annotated[
         Optional[str], pydantic.Field(alias="schemaRegistryURL")
@@ -232,8 +220,6 @@ class KafkaSchemaRegistryAuthentication(BaseModel):
 
 
 class SASLMechanism(str, Enum):
-    r"""SASL authentication mechanism to use."""
-
     PLAIN = "plain"
     SCRAM_SHA_256 = "scram-sha-256"
     SCRAM_SHA_512 = "scram-sha-512"
@@ -244,24 +230,18 @@ class AuthenticationTypedDict(TypedDict):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: NotRequired[bool]
-    r"""Enable Authentication"""
     mechanism: NotRequired[SASLMechanism]
-    r"""SASL authentication mechanism to use."""
 
 
 class Authentication(BaseModel):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: Optional[bool] = True
-    r"""Enable Authentication"""
 
     mechanism: Optional[SASLMechanism] = SASLMechanism.PLAIN
-    r"""SASL authentication mechanism to use."""
 
 
 class MinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -269,8 +249,6 @@ class MinimumTLSVersion(str, Enum):
 
 
 class MaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to use when connecting"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -280,13 +258,13 @@ class MaximumTLSVersion(str, Enum):
 class TLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
     servername: NotRequired[str]
     r"""Server name for the SNI (Server Name Indication) TLS extension. It must be a host name, and not an IP address."""
     certificate_name: NotRequired[str]
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
     ca_path: NotRequired[str]
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
     priv_key_path: NotRequired[str]
@@ -294,11 +272,9 @@ class TLSSettingsClientSideTypedDict(TypedDict):
     cert_path: NotRequired[str]
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
     passphrase: NotRequired[str]
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
     min_version: NotRequired[MinimumTLSVersion]
-    r"""Minimum TLS version to use when connecting"""
     max_version: NotRequired[MaximumTLSVersion]
-    r"""Maximum TLS version to use when connecting"""
 
 
 class TLSSettingsClientSide(BaseModel):
@@ -307,8 +283,8 @@ class TLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another
-    trusted CA (e.g., the system's CA). Defaults to Yes. Overrides the toggle from Advanced Settings, when also present.
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another
+    trusted CA (such as the system's). Defaults to Enabled. Overrides the toggle from Advanced Settings, when also present.
     """
 
     servername: Optional[str] = None
@@ -317,7 +293,7 @@ class TLSSettingsClientSide(BaseModel):
     certificate_name: Annotated[
         Optional[str], pydantic.Field(alias="certificateName")
     ] = None
-    r"""The name of the predefined certificate."""
+    r"""The name of the predefined certificate"""
 
     ca_path: Annotated[Optional[str], pydantic.Field(alias="caPath")] = None
     r"""Path on client in which to find CA certificates to verify the server's cert. PEM format. Can reference $ENV_VARS."""
@@ -329,17 +305,15 @@ class TLSSettingsClientSide(BaseModel):
     r"""Path on client in which to find certificates to use. PEM format. Can reference $ENV_VARS."""
 
     passphrase: Optional[str] = None
-    r"""Passphrase to use to decrypt private key."""
+    r"""Passphrase to use to decrypt private key"""
 
     min_version: Annotated[
         Optional[MinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to use when connecting"""
 
     max_version: Annotated[
         Optional[MaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to use when connecting"""
 
 
 class InputKafkaMetadataTypedDict(TypedDict):
@@ -359,7 +333,7 @@ class InputKafkaTypedDict(TypedDict):
     brokers: List[str]
     r"""Enter each Kafka bootstrap server you want to use. Specify the hostname and port (such as mykafkabroker:9092) or just the hostname (in which case @{product} will assign port 9092)."""
     topics: List[str]
-    r"""Topic to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Kafka Source to only a single topic."""
+    r"""Topic to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Kafka Source to a single topic only."""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     type: NotRequired[InputKafkaType]
@@ -378,9 +352,9 @@ class InputKafkaTypedDict(TypedDict):
     r"""Direct connections to Destinations, and optionally via a Pipeline or a Pack"""
     pq: NotRequired[InputKafkaPqTypedDict]
     group_id: NotRequired[str]
-    r"""Specifies the consumer group to which this instance belongs. Defaults to 'Cribl'."""
+    r"""The consumer group to which this instance belongs. Defaults to 'Cribl'."""
     from_beginning: NotRequired[bool]
-    r"""Leave toggled to 'Yes' if you want the Source, upon first subscribing to a topic, to read starting with the earliest available message"""
+    r"""Leave enabled if you want the Source, upon first subscribing to a topic, to read starting with the earliest available message"""
     kafka_schema_registry: NotRequired[KafkaSchemaRegistryAuthenticationTypedDict]
     connection_timeout: NotRequired[float]
     r"""Maximum time to wait for a connection to complete successfully"""
@@ -397,27 +371,27 @@ class InputKafkaTypedDict(TypedDict):
     authentication_timeout: NotRequired[float]
     r"""Maximum time to wait for Kafka to respond to an authentication request"""
     reauthentication_threshold: NotRequired[float]
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
     sasl: NotRequired[AuthenticationTypedDict]
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
     tls: NotRequired[TLSSettingsClientSideTypedDict]
     session_timeout: NotRequired[float]
     r"""
-    Timeout used to detect client failures when using Kafka's group management facilities.
-    If the client sends the broker no heartbeats before this timeout expires,
-    the broker will remove this client from the group, and will initiate a rebalance.
+    Timeout used to detect client failures when using Kafka's group-management facilities.
+    If the client sends no heartbeats to the broker before the timeout expires,
+    the broker will remove the client from the group and initiate a rebalance.
     Value must be between the broker's configured group.min.session.timeout.ms and group.max.session.timeout.ms.
-    See details [here](https://kafka.apache.org/documentation/#consumerconfigs_session.timeout.ms).
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#consumerconfigs_session.timeout.ms) for details.
     """
     rebalance_timeout: NotRequired[float]
-    r"""Maximum allowed time for each worker to join the group after a rebalance has begun.
+    r"""Maximum allowed time for each worker to join the group after a rebalance begins.
     If the timeout is exceeded, the coordinator broker will remove the worker from the group.
-    See details [here](https://kafka.apache.org/documentation/#connectconfigs_rebalance.timeout.ms).
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#connectconfigs_rebalance.timeout.ms) for details.
     """
     heartbeat_interval: NotRequired[float]
-    r"""Expected time between heartbeats to the consumer coordinator when using Kafka's group management facilities.
-    Value must be lower than sessionTimeout, and typically should not exceed 1/3 of the sessionTimeout value.
-    See details [here](https://kafka.apache.org/documentation/#consumerconfigs_heartbeat.interval.ms).
+    r"""Expected time between heartbeats to the consumer coordinator when using Kafka's group-management facilities.
+    Value must be lower than sessionTimeout and typically should not exceed 1/3 of the sessionTimeout value.
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#consumerconfigs_heartbeat.interval.ms) for details.
     """
     auto_commit_interval: NotRequired[float]
     r"""How often to commit offsets. If both this and Offset commit threshold are set, @{product} commits offsets when either condition is met. If both are empty, @{product} commits offsets after each batch."""
@@ -428,7 +402,7 @@ class InputKafkaTypedDict(TypedDict):
     max_bytes: NotRequired[float]
     r"""Maximum number of bytes that Kafka will return per fetch request. Defaults to 10485760 (10 MB)."""
     max_socket_errors: NotRequired[float]
-    r"""Maximum number of network errors before the consumer recreates a socket."""
+    r"""Maximum number of network errors before the consumer re-creates a socket"""
     metadata: NotRequired[List[InputKafkaMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     description: NotRequired[str]
@@ -439,7 +413,7 @@ class InputKafka(BaseModel):
     r"""Enter each Kafka bootstrap server you want to use. Specify the hostname and port (such as mykafkabroker:9092) or just the hostname (in which case @{product} will assign port 9092)."""
 
     topics: List[str]
-    r"""Topic to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Kafka Source to only a single topic."""
+    r"""Topic to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Kafka Source to a single topic only."""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""
@@ -471,12 +445,12 @@ class InputKafka(BaseModel):
     pq: Optional[InputKafkaPq] = None
 
     group_id: Annotated[Optional[str], pydantic.Field(alias="groupId")] = "Cribl"
-    r"""Specifies the consumer group to which this instance belongs. Defaults to 'Cribl'."""
+    r"""The consumer group to which this instance belongs. Defaults to 'Cribl'."""
 
     from_beginning: Annotated[Optional[bool], pydantic.Field(alias="fromBeginning")] = (
         True
     )
-    r"""Leave toggled to 'Yes' if you want the Source, upon first subscribing to a topic, to read starting with the earliest available message"""
+    r"""Leave enabled if you want the Source, upon first subscribing to a topic, to read starting with the earliest available message"""
 
     kafka_schema_registry: Annotated[
         Optional[KafkaSchemaRegistryAuthentication],
@@ -515,7 +489,7 @@ class InputKafka(BaseModel):
     reauthentication_threshold: Annotated[
         Optional[float], pydantic.Field(alias="reauthenticationThreshold")
     ] = 10000
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
 
     sasl: Optional[Authentication] = None
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
@@ -526,27 +500,27 @@ class InputKafka(BaseModel):
         Optional[float], pydantic.Field(alias="sessionTimeout")
     ] = 30000
     r"""
-    Timeout used to detect client failures when using Kafka's group management facilities.
-    If the client sends the broker no heartbeats before this timeout expires,
-    the broker will remove this client from the group, and will initiate a rebalance.
+    Timeout used to detect client failures when using Kafka's group-management facilities.
+    If the client sends no heartbeats to the broker before the timeout expires,
+    the broker will remove the client from the group and initiate a rebalance.
     Value must be between the broker's configured group.min.session.timeout.ms and group.max.session.timeout.ms.
-    See details [here](https://kafka.apache.org/documentation/#consumerconfigs_session.timeout.ms).
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#consumerconfigs_session.timeout.ms) for details.
     """
 
     rebalance_timeout: Annotated[
         Optional[float], pydantic.Field(alias="rebalanceTimeout")
     ] = 60000
-    r"""Maximum allowed time for each worker to join the group after a rebalance has begun.
+    r"""Maximum allowed time for each worker to join the group after a rebalance begins.
     If the timeout is exceeded, the coordinator broker will remove the worker from the group.
-    See details [here](https://kafka.apache.org/documentation/#connectconfigs_rebalance.timeout.ms).
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#connectconfigs_rebalance.timeout.ms) for details.
     """
 
     heartbeat_interval: Annotated[
         Optional[float], pydantic.Field(alias="heartbeatInterval")
     ] = 3000
-    r"""Expected time between heartbeats to the consumer coordinator when using Kafka's group management facilities.
-    Value must be lower than sessionTimeout, and typically should not exceed 1/3 of the sessionTimeout value.
-    See details [here](https://kafka.apache.org/documentation/#consumerconfigs_heartbeat.interval.ms).
+    r"""Expected time between heartbeats to the consumer coordinator when using Kafka's group-management facilities.
+    Value must be lower than sessionTimeout and typically should not exceed 1/3 of the sessionTimeout value.
+    See [Kafka's documentation](https://kafka.apache.org/documentation/#consumerconfigs_heartbeat.interval.ms) for details.
     """
 
     auto_commit_interval: Annotated[
@@ -570,7 +544,7 @@ class InputKafka(BaseModel):
     max_socket_errors: Annotated[
         Optional[float], pydantic.Field(alias="maxSocketErrors")
     ] = 0
-    r"""Maximum number of network errors before the consumer recreates a socket."""
+    r"""Maximum number of network errors before the consumer re-creates a socket"""
 
     metadata: Optional[List[InputKafkaMetadata]] = None
     r"""Fields to add to events from this input"""

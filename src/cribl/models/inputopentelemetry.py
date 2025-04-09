@@ -86,8 +86,6 @@ class InputOpenTelemetryPq(BaseModel):
 
 
 class InputOpenTelemetryMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -95,8 +93,6 @@ class InputOpenTelemetryMinimumTLSVersion(str, Enum):
 
 
 class InputOpenTelemetryMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -120,9 +116,7 @@ class InputOpenTelemetryTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputOpenTelemetryMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputOpenTelemetryMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputOpenTelemetryTLSSettingsServerSide(BaseModel):
@@ -160,13 +154,11 @@ class InputOpenTelemetryTLSSettingsServerSide(BaseModel):
         Optional[InputOpenTelemetryMinimumTLSVersion],
         pydantic.Field(alias="minVersion"),
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputOpenTelemetryMaximumTLSVersion],
         pydantic.Field(alias="maxVersion"),
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputOpenTelemetryProtocol(str, Enum):
@@ -261,7 +253,7 @@ class InputOpenTelemetryTypedDict(TypedDict):
     r"""Port to listen on"""
     tls: NotRequired[InputOpenTelemetryTLSSettingsServerSideTypedDict]
     max_active_req: NotRequired[float]
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
     max_requests_per_socket: NotRequired[int]
     r"""Maximum number of requests per socket before @{product} instructs the client to close the connection. Default is 0 (unlimited)."""
     enable_proxy_header: NotRequired[Any]
@@ -363,7 +355,7 @@ class InputOpenTelemetry(BaseModel):
     max_active_req: Annotated[Optional[float], pydantic.Field(alias="maxActiveReq")] = (
         256
     )
-    r"""Maximum number of active requests per Worker Process. Use 0 for unlimited."""
+    r"""Maximum number of active requests allowed per Worker Process. Set to 0 for unlimited. Caution: Increasing the limit above the default value, or setting it to unlimited, may degrade performance and reduce throughput."""
 
     max_requests_per_socket: Annotated[
         Optional[int], pydantic.Field(alias="maxRequestsPerSocket")

@@ -14,17 +14,13 @@ class OutputSplunkHecType(str, Enum):
 
 class OutputSplunkHecExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputSplunkHecExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputSplunkHecFailedRequestLoggingMode(str, Enum):
@@ -187,7 +183,7 @@ class OutputSplunkHecTypedDict(TypedDict):
     flush_period_sec: NotRequired[float]
     r"""Maximum time between requests. Small values could cause the payload size to be smaller than the configured Max body size."""
     extra_http_headers: NotRequired[List[OutputSplunkHecExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     failed_request_logging_mode: NotRequired[OutputSplunkHecFailedRequestLoggingMode]
     r"""Data to log when a request fails. All headers are redacted by default, unless listed as safe headers below."""
     safe_headers: NotRequired[List[str]]
@@ -307,7 +303,7 @@ class OutputSplunkHec(BaseModel):
         Optional[List[OutputSplunkHecExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     failed_request_logging_mode: Annotated[
         Optional[OutputSplunkHecFailedRequestLoggingMode],

@@ -48,6 +48,7 @@ from cribl.health import Health
 from cribl.hmac_functions import HmacFunctions
 from cribl.ingest import Ingest
 from cribl.inputs import Inputs
+from cribl.iometrics import Iometrics
 from cribl.jobs import Jobs
 from cribl.keys import Keys
 from cribl.kube_logs import KubeLogs
@@ -249,6 +250,8 @@ class Cribl(BaseSDK):
     r"""Actions related to diagnostics"""
     health: Health
     r"""Actions related to REST server health"""
+    iometrics: Iometrics
+    r"""Actions related to source/destination metrics"""
     jobs: Jobs
     r"""Actions related to Jobs"""
     security: Security
@@ -485,6 +488,7 @@ class Cribl(BaseSDK):
         self.conditions = Conditions(self.sdk_configuration)
         self.diag = DiagSDK(self.sdk_configuration)
         self.health = Health(self.sdk_configuration)
+        self.iometrics = Iometrics(self.sdk_configuration)
         self.jobs = Jobs(self.sdk_configuration)
         self.security = Security(self.sdk_configuration)
         self.licenses = Licenses(self.sdk_configuration)

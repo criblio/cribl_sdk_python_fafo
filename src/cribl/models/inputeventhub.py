@@ -84,8 +84,6 @@ class InputEventhubPq(BaseModel):
 
 
 class InputEventhubSASLMechanism(str, Enum):
-    r"""SASL authentication mechanism to use"""
-
     PLAIN = "plain"
     OAUTHBEARER = "oauthbearer"
 
@@ -94,25 +92,21 @@ class InputEventhubAuthenticationTypedDict(TypedDict):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: NotRequired[bool]
-    r"""Enable authentication."""
     mechanism: NotRequired[InputEventhubSASLMechanism]
-    r"""SASL authentication mechanism to use"""
 
 
 class InputEventhubAuthentication(BaseModel):
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
 
     disabled: Optional[bool] = False
-    r"""Enable authentication."""
 
     mechanism: Optional[InputEventhubSASLMechanism] = InputEventhubSASLMechanism.PLAIN
-    r"""SASL authentication mechanism to use"""
 
 
 class InputEventhubTLSSettingsClientSideTypedDict(TypedDict):
     disabled: NotRequired[bool]
     reject_unauthorized: NotRequired[bool]
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another trusted CA (e.g., the system's CA)."""
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another trusted CA (such as the system's)"""
 
 
 class InputEventhubTLSSettingsClientSide(BaseModel):
@@ -121,7 +115,7 @@ class InputEventhubTLSSettingsClientSide(BaseModel):
     reject_unauthorized: Annotated[
         Optional[bool], pydantic.Field(alias="rejectUnauthorized")
     ] = True
-    r"""Reject certs that are not authorized by a CA in the CA certificate path, or by another trusted CA (e.g., the system's CA)."""
+    r"""Reject certificates that are not authorized by a CA in the CA certificate path, or by another trusted CA (such as the system's)"""
 
 
 class InputEventhubMetadataTypedDict(TypedDict):
@@ -139,9 +133,9 @@ class InputEventhubMetadata(BaseModel):
 
 class InputEventhubTypedDict(TypedDict):
     brokers: List[str]
-    r"""List of Event Hubs Kafka brokers to connect to, e.g., yourdomain.servicebus.windows.net:9093. The hostname can be found in the host portion of the primary or secondary connection string in Shared Access Policies."""
+    r"""List of Event Hubs Kafka brokers to connect to (example: yourdomain.servicebus.windows.net:9093). The hostname can be found in the host portion of the primary or secondary connection string in Shared Access Policies."""
     topics: List[str]
-    r"""The name of the Event Hub (a.k.a. Kafka topic) to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Event Hubs Source to only a single topic."""
+    r"""The name of the Event Hub (Kafka topic) to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Event Hubs Source to only a single topic."""
     id: NotRequired[str]
     r"""Unique ID for this input"""
     type: NotRequired[InputEventhubType]
@@ -160,9 +154,9 @@ class InputEventhubTypedDict(TypedDict):
     r"""Direct connections to Destinations, and optionally via a Pipeline or a Pack"""
     pq: NotRequired[InputEventhubPqTypedDict]
     group_id: NotRequired[str]
-    r"""Specifies the consumer group this instance belongs to, default is 'Cribl'."""
+    r"""The consumer group this instance belongs to. Default is 'Cribl'."""
     from_beginning: NotRequired[bool]
-    r"""Whether to start reading from earliest available data, relevant only during initial subscription."""
+    r"""Start reading from earliest available data; relevant only during initial subscription"""
     connection_timeout: NotRequired[float]
     r"""Maximum time to wait for a connection to complete successfully"""
     request_timeout: NotRequired[float]
@@ -178,25 +172,25 @@ class InputEventhubTypedDict(TypedDict):
     authentication_timeout: NotRequired[float]
     r"""Maximum time to wait for Kafka to respond to an authentication request"""
     reauthentication_threshold: NotRequired[float]
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
     sasl: NotRequired[InputEventhubAuthenticationTypedDict]
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
     tls: NotRequired[InputEventhubTLSSettingsClientSideTypedDict]
     session_timeout: NotRequired[float]
-    r"""Timeout (a.k.a session.timeout.ms in Kafka domain) used to detect client failures when using Kafka's group management facilities.
-    If the client sends the broker no heartbeats before this timeout expires, the broker will remove this client from the group, and will initiate a rebalance.
+    r"""Timeout (session.timeout.ms in Kafka domain) used to detect client failures when using Kafka's group-management facilities.
+    If the client sends no heartbeats to the broker before the timeout expires, the broker will remove the client from the group and initiate a rebalance.
     Value must be lower than rebalanceTimeout.
     See details [here](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
     """
     rebalance_timeout: NotRequired[float]
-    r"""Maximum allowed time (a.k.a rebalance.timeout.ms in Kafka domain) for each worker to join the group after a rebalance has begun.
+    r"""Maximum allowed time (rebalance.timeout.ms in Kafka domain) for each worker to join the group after a rebalance begins.
     If the timeout is exceeded, the coordinator broker will remove the worker from the group.
-    See details [here](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
+    See [Recommended configurations](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
     """
     heartbeat_interval: NotRequired[float]
-    r"""Expected time (a.k.a heartbeat.interval.ms in Kafka domain) between heartbeats to the consumer coordinator when using Kafka's group management facilities.
-    Value must be lower than sessionTimeout, and typically should not exceed 1/3 of the sessionTimeout value.
-    See details [here](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
+    r"""Expected time (heartbeat.interval.ms in Kafka domain) between heartbeats to the consumer coordinator when using Kafka's group-management facilities.
+    Value must be lower than sessionTimeout and typically should not exceed 1/3 of the sessionTimeout value.
+    See [Recommended configurations](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
     """
     auto_commit_interval: NotRequired[float]
     r"""How often to commit offsets. If both this and Offset commit threshold are set, @{product} commits offsets when either condition is met. If both are empty, @{product} commits offsets after each batch."""
@@ -207,9 +201,9 @@ class InputEventhubTypedDict(TypedDict):
     max_bytes: NotRequired[float]
     r"""Maximum number of bytes that Kafka will return per fetch request. Defaults to 10485760 (10 MB)."""
     max_socket_errors: NotRequired[float]
-    r"""Maximum number of network errors before the consumer recreates a socket."""
+    r"""Maximum number of network errors before the consumer re-creates a socket"""
     minimize_duplicates: NotRequired[bool]
-    r"""Enable feature to minimize duplicate events by only starting one consumer for each topic partition."""
+    r"""Minimize duplicate events by starting only one consumer for each topic partition"""
     metadata: NotRequired[List[InputEventhubMetadataTypedDict]]
     r"""Fields to add to events from this input"""
     description: NotRequired[str]
@@ -217,10 +211,10 @@ class InputEventhubTypedDict(TypedDict):
 
 class InputEventhub(BaseModel):
     brokers: List[str]
-    r"""List of Event Hubs Kafka brokers to connect to, e.g., yourdomain.servicebus.windows.net:9093. The hostname can be found in the host portion of the primary or secondary connection string in Shared Access Policies."""
+    r"""List of Event Hubs Kafka brokers to connect to (example: yourdomain.servicebus.windows.net:9093). The hostname can be found in the host portion of the primary or secondary connection string in Shared Access Policies."""
 
     topics: List[str]
-    r"""The name of the Event Hub (a.k.a. Kafka topic) to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Event Hubs Source to only a single topic."""
+    r"""The name of the Event Hub (Kafka topic) to subscribe to. Warning: To optimize performance, Cribl suggests subscribing each Event Hubs Source to only a single topic."""
 
     id: Optional[str] = None
     r"""Unique ID for this input"""
@@ -252,12 +246,12 @@ class InputEventhub(BaseModel):
     pq: Optional[InputEventhubPq] = None
 
     group_id: Annotated[Optional[str], pydantic.Field(alias="groupId")] = "Cribl"
-    r"""Specifies the consumer group this instance belongs to, default is 'Cribl'."""
+    r"""The consumer group this instance belongs to. Default is 'Cribl'."""
 
     from_beginning: Annotated[Optional[bool], pydantic.Field(alias="fromBeginning")] = (
         True
     )
-    r"""Whether to start reading from earliest available data, relevant only during initial subscription."""
+    r"""Start reading from earliest available data; relevant only during initial subscription"""
 
     connection_timeout: Annotated[
         Optional[float], pydantic.Field(alias="connectionTimeout")
@@ -291,7 +285,7 @@ class InputEventhub(BaseModel):
     reauthentication_threshold: Annotated[
         Optional[float], pydantic.Field(alias="reauthenticationThreshold")
     ] = 10000
-    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backwards from the moment when credentials are set to expire."""
+    r"""Specifies a time window during which @{product} can reauthenticate if needed. Creates the window measuring backward from the moment when credentials are set to expire."""
 
     sasl: Optional[InputEventhubAuthentication] = None
     r"""Authentication parameters to use when connecting to brokers. Using TLS is highly recommended."""
@@ -301,8 +295,8 @@ class InputEventhub(BaseModel):
     session_timeout: Annotated[
         Optional[float], pydantic.Field(alias="sessionTimeout")
     ] = 30000
-    r"""Timeout (a.k.a session.timeout.ms in Kafka domain) used to detect client failures when using Kafka's group management facilities.
-    If the client sends the broker no heartbeats before this timeout expires, the broker will remove this client from the group, and will initiate a rebalance.
+    r"""Timeout (session.timeout.ms in Kafka domain) used to detect client failures when using Kafka's group-management facilities.
+    If the client sends no heartbeats to the broker before the timeout expires, the broker will remove the client from the group and initiate a rebalance.
     Value must be lower than rebalanceTimeout.
     See details [here](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
     """
@@ -310,17 +304,17 @@ class InputEventhub(BaseModel):
     rebalance_timeout: Annotated[
         Optional[float], pydantic.Field(alias="rebalanceTimeout")
     ] = 60000
-    r"""Maximum allowed time (a.k.a rebalance.timeout.ms in Kafka domain) for each worker to join the group after a rebalance has begun.
+    r"""Maximum allowed time (rebalance.timeout.ms in Kafka domain) for each worker to join the group after a rebalance begins.
     If the timeout is exceeded, the coordinator broker will remove the worker from the group.
-    See details [here](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
+    See [Recommended configurations](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
     """
 
     heartbeat_interval: Annotated[
         Optional[float], pydantic.Field(alias="heartbeatInterval")
     ] = 3000
-    r"""Expected time (a.k.a heartbeat.interval.ms in Kafka domain) between heartbeats to the consumer coordinator when using Kafka's group management facilities.
-    Value must be lower than sessionTimeout, and typically should not exceed 1/3 of the sessionTimeout value.
-    See details [here](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
+    r"""Expected time (heartbeat.interval.ms in Kafka domain) between heartbeats to the consumer coordinator when using Kafka's group-management facilities.
+    Value must be lower than sessionTimeout and typically should not exceed 1/3 of the sessionTimeout value.
+    See [Recommended configurations](https://github.com/Azure/azure-event-hubs-for-kafka/blob/master/CONFIGURATION.md).
     """
 
     auto_commit_interval: Annotated[
@@ -344,12 +338,12 @@ class InputEventhub(BaseModel):
     max_socket_errors: Annotated[
         Optional[float], pydantic.Field(alias="maxSocketErrors")
     ] = 0
-    r"""Maximum number of network errors before the consumer recreates a socket."""
+    r"""Maximum number of network errors before the consumer re-creates a socket"""
 
     minimize_duplicates: Annotated[
         Optional[bool], pydantic.Field(alias="minimizeDuplicates")
     ] = False
-    r"""Enable feature to minimize duplicate events by only starting one consumer for each topic partition."""
+    r"""Minimize duplicate events by starting only one consumer for each topic partition"""
 
     metadata: Optional[List[InputEventhubMetadata]] = None
     r"""Fields to add to events from this input"""

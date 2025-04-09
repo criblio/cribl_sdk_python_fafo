@@ -1,7 +1,5 @@
 # QueryBuilderMode
 
-Select the query builder mode.
-
 
 ## Values
 

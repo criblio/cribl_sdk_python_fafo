@@ -181,8 +181,6 @@ class InputAppscopeAuthenticationMethod(str, Enum):
 
 
 class InputAppscopeMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -190,8 +188,6 @@ class InputAppscopeMinimumTLSVersion(str, Enum):
 
 
 class InputAppscopeMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -215,9 +211,7 @@ class InputAppscopeTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputAppscopeMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputAppscopeMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputAppscopeTLSSettingsServerSide(BaseModel):
@@ -254,12 +248,10 @@ class InputAppscopeTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputAppscopeMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputAppscopeMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputAppscopeTypedDict(TypedDict):

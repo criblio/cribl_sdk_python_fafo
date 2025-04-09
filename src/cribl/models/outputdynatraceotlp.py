@@ -75,17 +75,13 @@ class OutputDynatraceOtlpBackpressureBehavior(str, Enum):
 
 class OutputDynatraceOtlpExtraHTTPHeadersTypedDict(TypedDict):
     value: str
-    r"""Field value"""
     name: NotRequired[str]
-    r"""Field name"""
 
 
 class OutputDynatraceOtlpExtraHTTPHeaders(BaseModel):
     value: str
-    r"""Field value"""
 
     name: Optional[str] = None
-    r"""Field name"""
 
 
 class OutputDynatraceOtlpResponseRetrySettingsTypedDict(TypedDict):
@@ -238,7 +234,7 @@ class OutputDynatraceOtlpTypedDict(TypedDict):
     use_round_robin_dns: NotRequired[bool]
     r"""Enables round-robin DNS lookup. When a DNS server returns multiple addresses, @{product} will cycle through them in the order returned. For optimal performance, consider enabling this setting for non-load balanced destinations."""
     extra_http_headers: NotRequired[List[OutputDynatraceOtlpExtraHTTPHeadersTypedDict]]
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
     safe_headers: NotRequired[List[str]]
     r"""List of headers that are safe to log in plain text"""
     response_retry_settings: NotRequired[
@@ -399,7 +395,7 @@ class OutputDynatraceOtlp(BaseModel):
         Optional[List[OutputDynatraceOtlpExtraHTTPHeaders]],
         pydantic.Field(alias="extraHttpHeaders"),
     ] = None
-    r"""Headers to add to all events."""
+    r"""Headers to add to all events"""
 
     safe_headers: Annotated[
         Optional[List[str]], pydantic.Field(alias="safeHeaders")

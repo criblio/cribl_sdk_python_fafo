@@ -196,8 +196,20 @@ from .commonservicelimitconfigs import (
     CommonServiceLimitConfigsTypedDict,
 )
 from .condition import Condition, ConditionTypedDict
-from .configgroup import ConfigGroup, ConfigGroupTypedDict, GitModel, GitModelTypedDict
+from .configgroup import (
+    ConfigGroup,
+    ConfigGroupType,
+    ConfigGroupTypedDict,
+    GitModel,
+    GitModelTypedDict,
+)
 from .configgroupcloud import ConfigGroupCloud, ConfigGroupCloudTypedDict
+from .configgrouplookups import (
+    ConfigGroupLookups,
+    ConfigGroupLookupsTypedDict,
+    LookupsModel,
+    LookupsModelTypedDict,
+)
 from .connection import Connection, ConnectionTypedDict
 from .consumptionwindowv5 import ConsumptionWindowV5
 from .container import (
@@ -794,6 +806,12 @@ from .deleteinputbyidop import (
     DeleteInputByIDRequestTypedDict,
     DeleteInputByIDResponseBody,
     DeleteInputByIDResponseBodyTypedDict,
+)
+from .deleteiometricsconfigbyidop import (
+    DeleteIoMetricsConfigByIDRequest,
+    DeleteIoMetricsConfigByIDRequestTypedDict,
+    DeleteIoMetricsConfigByIDResponseBody,
+    DeleteIoMetricsConfigByIDResponseBodyTypedDict,
 )
 from .deletejobsbyidop import (
     DeleteJobsByIDRequest,
@@ -1456,6 +1474,12 @@ from .getinvoicesop import (
     GetInvoicesRequestTypedDict,
 )
 from .getinvoicesresponsev5 import GetInvoicesResponseV5, GetInvoicesResponseV5TypedDict
+from .getiometricsconfigbyidop import (
+    GetIoMetricsConfigByIDRequest,
+    GetIoMetricsConfigByIDRequestTypedDict,
+    GetIoMetricsConfigByIDResponseBody,
+    GetIoMetricsConfigByIDResponseBodyTypedDict,
+)
 from .getjobresultsbyidop import (
     GetJobResultsByIDRequest,
     GetJobResultsByIDRequestTypedDict,
@@ -2279,6 +2303,23 @@ from .inputcriblhttp import (
     InputCriblHTTPType,
     InputCriblHTTPTypedDict,
 )
+from .inputcribllakehttp import (
+    InputCriblLakeHTTP,
+    InputCriblLakeHTTPCompression,
+    InputCriblLakeHTTPConnections,
+    InputCriblLakeHTTPConnectionsTypedDict,
+    InputCriblLakeHTTPMaximumTLSVersion,
+    InputCriblLakeHTTPMetadata,
+    InputCriblLakeHTTPMetadataTypedDict,
+    InputCriblLakeHTTPMinimumTLSVersion,
+    InputCriblLakeHTTPMode,
+    InputCriblLakeHTTPPq,
+    InputCriblLakeHTTPPqTypedDict,
+    InputCriblLakeHTTPTLSSettingsServerSide,
+    InputCriblLakeHTTPTLSSettingsServerSideTypedDict,
+    InputCriblLakeHTTPType,
+    InputCriblLakeHTTPTypedDict,
+)
 from .inputcriblmetrics import (
     InputCriblmetrics,
     InputCriblmetricsCompression,
@@ -2479,8 +2520,8 @@ from .inputfirehose import (
     InputFirehoseTypedDict,
 )
 from .inputgooglepubsub import (
+    GoogleAuthenticationMethod,
     InputGooglePubsub,
-    InputGooglePubsubAuthenticationMethod,
     InputGooglePubsubCompression,
     InputGooglePubsubConnections,
     InputGooglePubsubConnectionsTypedDict,
@@ -3402,6 +3443,9 @@ from .invoicelineitem import InvoiceLineItem, InvoiceLineItemTypedDict
 from .invoiceproduct import InvoiceProduct, InvoiceProductTypedDict
 from .invoiceproductv5 import InvoiceProductV5, InvoiceProductV5TypedDict, Slug
 from .invoicev5 import InvoiceV5, InvoiceV5Status, InvoiceV5TypedDict
+from .iometricsconfig import IoMetricsConfig, IoMetricsConfigTypedDict
+from .iometricsentry import IoMetricsEntry, IoMetricsEntryTypedDict
+from .iometricsentrylevel import IoMetricsEntryLevel
 from .jobexecutionwarning import JobExecutionWarning, JobExecutionWarningTypedDict
 from .jobinfo import JobInfo, JobInfoTypedDict
 from .jobsettings import JobSettings, JobSettingsTypedDict
@@ -3494,6 +3538,10 @@ from .listinputop import ListInputResponseBody, ListInputResponseBodyTypedDict
 from .listinputstatusop import (
     ListInputStatusResponseBody,
     ListInputStatusResponseBodyTypedDict,
+)
+from .listiometricsconfigop import (
+    ListIoMetricsConfigResponseBody,
+    ListIoMetricsConfigResponseBodyTypedDict,
 )
 from .listkeymetadataentityop import (
     ListKeyMetadataEntityResponseBody,
@@ -4145,9 +4193,9 @@ from .outputgooglecloudlogging import (
     LogLabelsTypedDict,
     LogLocationType,
     OutputGoogleCloudLogging,
-    OutputGoogleCloudLoggingAuthenticationMethod,
     OutputGoogleCloudLoggingBackpressureBehavior,
     OutputGoogleCloudLoggingCompression,
+    OutputGoogleCloudLoggingGoogleAuthenticationMethod,
     OutputGoogleCloudLoggingMode,
     OutputGoogleCloudLoggingPqControls,
     OutputGoogleCloudLoggingPqControlsTypedDict,
@@ -4178,9 +4226,9 @@ from .outputgooglecloudstorage import (
 )
 from .outputgooglepubsub import (
     OutputGooglePubsub,
-    OutputGooglePubsubAuthenticationMethod,
     OutputGooglePubsubBackpressureBehavior,
     OutputGooglePubsubCompression,
+    OutputGooglePubsubGoogleAuthenticationMethod,
     OutputGooglePubsubMode,
     OutputGooglePubsubPqControls,
     OutputGooglePubsubPqControlsTypedDict,
@@ -4927,6 +4975,12 @@ from .packinstallinfo import (
     PackInstallInfoTagsTypedDict,
     PackInstallInfoTypedDict,
 )
+from .packrequestbody import (
+    PackRequestBody,
+    PackRequestBodyTags,
+    PackRequestBodyTagsTypedDict,
+    PackRequestBodyTypedDict,
+)
 from .parserlibentry import ParserLibEntry, ParserLibEntryType, ParserLibEntryTypedDict
 from .parsermode import ParserMode
 from .patchworkspacedto import PatchWorkspaceDTO, PatchWorkspaceDTOTypedDict
@@ -5014,7 +5068,7 @@ from .retrybackoffoptions import RetryBackoffOptions, RetryBackoffOptionsTypedDi
 from .role import Role, RoleTypedDict
 from .routecloneconf import RouteCloneConf, RouteCloneConfTypedDict
 from .routeconf import RouteConf, RouteConfTypedDict
-from .routes_input import (
+from .routes import (
     Comments,
     CommentsTypedDict,
     GroupsModel,
@@ -5506,6 +5560,12 @@ from .updateinputhectokenbyidandtokenop import (
     UpdateInputHecTokenByIDAndTokenRequestTypedDict,
     UpdateInputHecTokenByIDAndTokenResponseBody,
     UpdateInputHecTokenByIDAndTokenResponseBodyTypedDict,
+)
+from .updateiometricsconfigbyidop import (
+    UpdateIoMetricsConfigByIDRequest,
+    UpdateIoMetricsConfigByIDRequestTypedDict,
+    UpdateIoMetricsConfigByIDResponseBody,
+    UpdateIoMetricsConfigByIDResponseBodyTypedDict,
 )
 from .updatejobscancelbyidop import (
     UpdateJobsCancelByIDRequest,
@@ -6077,6 +6137,9 @@ __all__ = [
     "ConfigGroup",
     "ConfigGroupCloud",
     "ConfigGroupCloudTypedDict",
+    "ConfigGroupLookups",
+    "ConfigGroupLookupsTypedDict",
+    "ConfigGroupType",
     "ConfigGroupTypedDict",
     "ConfigTypedDict",
     "Connection",
@@ -6504,6 +6567,10 @@ __all__ = [
     "DeleteInputByIDRequestTypedDict",
     "DeleteInputByIDResponseBody",
     "DeleteInputByIDResponseBodyTypedDict",
+    "DeleteIoMetricsConfigByIDRequest",
+    "DeleteIoMetricsConfigByIDRequestTypedDict",
+    "DeleteIoMetricsConfigByIDResponseBody",
+    "DeleteIoMetricsConfigByIDResponseBodyTypedDict",
     "DeleteJobsByIDRequest",
     "DeleteJobsByIDRequestTypedDict",
     "DeleteJobsByIDResponseBody",
@@ -7019,6 +7086,10 @@ __all__ = [
     "GetInvoicesRequestTypedDict",
     "GetInvoicesResponseV5",
     "GetInvoicesResponseV5TypedDict",
+    "GetIoMetricsConfigByIDRequest",
+    "GetIoMetricsConfigByIDRequestTypedDict",
+    "GetIoMetricsConfigByIDResponseBody",
+    "GetIoMetricsConfigByIDResponseBodyTypedDict",
     "GetJobResultsByIDRequest",
     "GetJobResultsByIDRequestTypedDict",
     "GetJobsByIDRequest",
@@ -7460,6 +7531,7 @@ __all__ = [
     "GlobalVar",
     "GlobalVarType",
     "GlobalVarTypedDict",
+    "GoogleAuthenticationMethod",
     "GrokFile",
     "GrokFileTypedDict",
     "GroupsModel",
@@ -7600,6 +7672,21 @@ __all__ = [
     "InputCriblHTTPTLSSettingsServerSideTypedDict",
     "InputCriblHTTPType",
     "InputCriblHTTPTypedDict",
+    "InputCriblLakeHTTP",
+    "InputCriblLakeHTTPCompression",
+    "InputCriblLakeHTTPConnections",
+    "InputCriblLakeHTTPConnectionsTypedDict",
+    "InputCriblLakeHTTPMaximumTLSVersion",
+    "InputCriblLakeHTTPMetadata",
+    "InputCriblLakeHTTPMetadataTypedDict",
+    "InputCriblLakeHTTPMinimumTLSVersion",
+    "InputCriblLakeHTTPMode",
+    "InputCriblLakeHTTPPq",
+    "InputCriblLakeHTTPPqTypedDict",
+    "InputCriblLakeHTTPTLSSettingsServerSide",
+    "InputCriblLakeHTTPTLSSettingsServerSideTypedDict",
+    "InputCriblLakeHTTPType",
+    "InputCriblLakeHTTPTypedDict",
     "InputCriblMetadata",
     "InputCriblMetadataTypedDict",
     "InputCriblMode",
@@ -7769,7 +7856,6 @@ __all__ = [
     "InputFirehoseType",
     "InputFirehoseTypedDict",
     "InputGooglePubsub",
-    "InputGooglePubsubAuthenticationMethod",
     "InputGooglePubsubCompression",
     "InputGooglePubsubConnections",
     "InputGooglePubsubConnectionsTypedDict",
@@ -8516,6 +8602,11 @@ __all__ = [
     "InvoiceV5",
     "InvoiceV5Status",
     "InvoiceV5TypedDict",
+    "IoMetricsConfig",
+    "IoMetricsConfigTypedDict",
+    "IoMetricsEntry",
+    "IoMetricsEntryLevel",
+    "IoMetricsEntryTypedDict",
     "JobExecutionWarning",
     "JobExecutionWarningTypedDict",
     "JobInfo",
@@ -8612,6 +8703,8 @@ __all__ = [
     "ListInputResponseBodyTypedDict",
     "ListInputStatusResponseBody",
     "ListInputStatusResponseBodyTypedDict",
+    "ListIoMetricsConfigResponseBody",
+    "ListIoMetricsConfigResponseBodyTypedDict",
     "ListKeyMetadataEntityResponseBody",
     "ListKeyMetadataEntityResponseBodyTypedDict",
     "ListLibSchemasResponseBody",
@@ -8712,6 +8805,8 @@ __all__ = [
     "LookupFileTypedDict",
     "LookupVersions",
     "LookupVersionsTypedDict",
+    "LookupsModel",
+    "LookupsModelTypedDict",
     "MTLSSettings",
     "MTLSSettingsTypedDict",
     "MapDetails",
@@ -9179,9 +9274,9 @@ __all__ = [
     "OutputGoogleChronicleType",
     "OutputGoogleChronicleTypedDict",
     "OutputGoogleCloudLogging",
-    "OutputGoogleCloudLoggingAuthenticationMethod",
     "OutputGoogleCloudLoggingBackpressureBehavior",
     "OutputGoogleCloudLoggingCompression",
+    "OutputGoogleCloudLoggingGoogleAuthenticationMethod",
     "OutputGoogleCloudLoggingMode",
     "OutputGoogleCloudLoggingPqControls",
     "OutputGoogleCloudLoggingPqControlsTypedDict",
@@ -9205,9 +9300,9 @@ __all__ = [
     "OutputGoogleCloudStorageType",
     "OutputGoogleCloudStorageTypedDict",
     "OutputGooglePubsub",
-    "OutputGooglePubsubAuthenticationMethod",
     "OutputGooglePubsubBackpressureBehavior",
     "OutputGooglePubsubCompression",
+    "OutputGooglePubsubGoogleAuthenticationMethod",
     "OutputGooglePubsubMode",
     "OutputGooglePubsubPqControls",
     "OutputGooglePubsubPqControlsTypedDict",
@@ -9856,6 +9951,10 @@ __all__ = [
     "PackInstallInfoTags",
     "PackInstallInfoTagsTypedDict",
     "PackInstallInfoTypedDict",
+    "PackRequestBody",
+    "PackRequestBodyTags",
+    "PackRequestBodyTagsTypedDict",
+    "PackRequestBodyTypedDict",
     "PackageUrls",
     "PackageUrlsTypedDict",
     "Packages",
@@ -10444,6 +10543,10 @@ __all__ = [
     "UpdateInputHecTokenByIDAndTokenRequestTypedDict",
     "UpdateInputHecTokenByIDAndTokenResponseBody",
     "UpdateInputHecTokenByIDAndTokenResponseBodyTypedDict",
+    "UpdateIoMetricsConfigByIDRequest",
+    "UpdateIoMetricsConfigByIDRequestTypedDict",
+    "UpdateIoMetricsConfigByIDResponseBody",
+    "UpdateIoMetricsConfigByIDResponseBodyTypedDict",
     "UpdateJobsCancelByIDRequest",
     "UpdateJobsCancelByIDRequestTypedDict",
     "UpdateJobsCancelByIDResponseBody",

@@ -1,7 +1,5 @@
 # InputElasticAuthenticationType
 
-Elastic authentication type
-
 
 ## Values
 

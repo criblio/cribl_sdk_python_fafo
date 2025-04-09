@@ -76,6 +76,7 @@ with Cribl(
     res = c_client.saved_jobs.create_saved_job(request={
         "type": cribl.JobType.SCHEDULED_SEARCH,
         "ttl": "4h",
+        "ignore_group_jobs_limit": False,
         "resume_on_boot": False,
         "worker_affinity": False,
         "collector": {
@@ -172,6 +173,7 @@ with Cribl(
     res = c_client.saved_jobs.update_saved_job_by_id(id="<id>", saved_job={
         "type": cribl.SavedJobExecutorJobType.SCHEDULED_SEARCH,
         "ttl": "4h",
+        "ignore_group_jobs_limit": False,
         "resume_on_boot": False,
         "executor": {
             "type": "<value>",

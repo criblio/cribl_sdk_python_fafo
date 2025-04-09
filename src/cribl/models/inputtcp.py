@@ -84,8 +84,6 @@ class InputTCPPq(BaseModel):
 
 
 class InputTCPMinimumTLSVersion(str, Enum):
-    r"""Minimum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -93,8 +91,6 @@ class InputTCPMinimumTLSVersion(str, Enum):
 
 
 class InputTCPMaximumTLSVersion(str, Enum):
-    r"""Maximum TLS version to accept from connections"""
-
     TL_SV1 = "TLSv1"
     TL_SV1_1 = "TLSv1.1"
     TL_SV1_2 = "TLSv1.2"
@@ -118,9 +114,7 @@ class InputTCPTLSSettingsServerSideTypedDict(TypedDict):
     reject_unauthorized: NotRequired[Any]
     common_name_regex: NotRequired[Any]
     min_version: NotRequired[InputTCPMinimumTLSVersion]
-    r"""Minimum TLS version to accept from connections"""
     max_version: NotRequired[InputTCPMaximumTLSVersion]
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputTCPTLSSettingsServerSide(BaseModel):
@@ -157,12 +151,10 @@ class InputTCPTLSSettingsServerSide(BaseModel):
     min_version: Annotated[
         Optional[InputTCPMinimumTLSVersion], pydantic.Field(alias="minVersion")
     ] = None
-    r"""Minimum TLS version to accept from connections"""
 
     max_version: Annotated[
         Optional[InputTCPMaximumTLSVersion], pydantic.Field(alias="maxVersion")
     ] = None
-    r"""Maximum TLS version to accept from connections"""
 
 
 class InputTCPMetadataTypedDict(TypedDict):
