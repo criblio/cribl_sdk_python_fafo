@@ -3,10 +3,10 @@
 import importlib.metadata
 
 __title__: str = "cribl-sdk-python-fafo"
-__version__: str = "0.0.1"
+__version__: str = "0.0.2"
 __openapi_doc_version__: str = "4.13.0-alpha.1750836723351-6415b6ec"
 __gen_version__: str = "2.634.2"
-__user_agent__: str = "speakeasy-sdk/python 0.0.1 2.634.2 4.13.0-alpha.1750836723351-6415b6ec cribl-sdk-python-fafo"
+__user_agent__: str = "speakeasy-sdk/python 0.0.2 2.634.2 4.13.0-alpha.1750836723351-6415b6ec cribl-sdk-python-fafo"
 
 try:
     if __package__ is not None:
