@@ -55862,7 +55862,12 @@ paths:
           content:
             application/x-ndjson:
               schema:
-                $ref: "#/components/schemas/SearchJobResults"
+                oneOf:
+                  - $ref: "#/components/schemas/SearchJobResults"
+                  - type: object
+                    properties:
+                      dataset:
+                        type: string
         "401":
           description: Unauthorized
         "500":

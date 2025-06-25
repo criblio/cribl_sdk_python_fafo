@@ -1061,7 +1061,7 @@ with CriblSDKPythonFafo(
 
 ### Response
 
-**[Union[jsonl.JsonLStream[models.SearchJobResults], jsonl.JsonLStreamAsync[models.SearchJobResults]]](../../models/.md)**
+**[Union[jsonl.JsonLStream[models.GetSearchJobsResultsByIDResponseBody], jsonl.JsonLStreamAsync[models.GetSearchJobsResultsByIDResponseBody]]](../../models/.md)**
 
 ### Errors
 

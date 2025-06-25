@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 40628860-fa6f-499f-83b4-f79ac1eda7d5
 management:
-  docChecksum: 315f343855b566be056df6635bb1cb5b
+  docChecksum: c0e763711843e6e44a9103a2e45fc8b0
   docVersion: 4.13.0-alpha.1750836723351-6415b6ec
   speakeasyVersion: 1.568.2
   generationVersion: 2.634.2
-  releaseVersion: 0.0.2
-  configChecksum: 946282d02d8a5d284591c467c8c1fbf4
+  releaseVersion: 0.0.3
+  configChecksum: 58fb1b9d167a3a5c2703dd0b87256cd5
 features:
   python:
     additionalDependencies: 1.0.0
@@ -745,6 +745,7 @@ generatedFiles:
   - docs/models/getsearchjobslogsbyidandfilenamerequest.md
   - docs/models/getsearchjobsmetricsbyidrequest.md
   - docs/models/getsearchjobsresultsbyidrequest.md
+  - docs/models/getsearchjobsresultsbyidresponsebody.md
   - docs/models/getsearchjobsresultspollbyidrequest.md
   - docs/models/getsearchjobsstagesresultsbyidandstageidrequest.md
   - docs/models/getsearchjobstatusbyidrequest.md
@@ -2594,6 +2595,7 @@ generatedFiles:
   - docs/models/reportmethod.md
   - docs/models/resourcepolicy.md
   - docs/models/resourcetypelabel.md
+  - docs/models/responsebody.md
   - docs/models/restartresponse.md
   - docs/models/restartresponsestatus.md
   - docs/models/restsecret.md

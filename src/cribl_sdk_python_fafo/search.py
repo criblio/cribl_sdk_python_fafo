@@ -4869,7 +4869,7 @@ class Search(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> jsonl.JsonLStream[models.SearchJobResults]:
+    ) -> jsonl.JsonLStream[models.GetSearchJobsResultsByIDResponseBody]:
         r"""List search results, when lower/upper bound is provided, offset is relative to the time range.
 
         List search results, when lower/upper bound is provided, offset is relative to the time range.
@@ -4945,7 +4945,10 @@ class Search(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/x-ndjson"):
             return jsonl.JsonLStream(
-                http_res, lambda raw: utils.unmarshal_json(raw, models.SearchJobResults)
+                http_res,
+                lambda raw: utils.unmarshal_json(
+                    raw, models.GetSearchJobsResultsByIDResponseBody
+                ),
             )
         if utils.match_response(http_res, "500", "application/json"):
             http_res_text = utils.stream_to_text(http_res)
@@ -4983,7 +4986,7 @@ class Search(BaseSDK):
         server_url: Optional[str] = None,
         timeout_ms: Optional[int] = None,
         http_headers: Optional[Mapping[str, str]] = None,
-    ) -> jsonl.JsonLStreamAsync[models.SearchJobResults]:
+    ) -> jsonl.JsonLStreamAsync[models.GetSearchJobsResultsByIDResponseBody]:
         r"""List search results, when lower/upper bound is provided, offset is relative to the time range.
 
         List search results, when lower/upper bound is provided, offset is relative to the time range.
@@ -5059,7 +5062,10 @@ class Search(BaseSDK):
         response_data: Any = None
         if utils.match_response(http_res, "200", "application/x-ndjson"):
             return jsonl.JsonLStreamAsync(
-                http_res, lambda raw: utils.unmarshal_json(raw, models.SearchJobResults)
+                http_res,
+                lambda raw: utils.unmarshal_json(
+                    raw, models.GetSearchJobsResultsByIDResponseBody
+                ),
             )
         if utils.match_response(http_res, "500", "application/json"):
             http_res_text = await utils.stream_to_text_async(http_res)
