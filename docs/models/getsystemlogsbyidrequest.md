@@ -1,0 +1,13 @@
+# GetSystemLogsByIDRequest
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `id`                                                                          | *str*                                                                         | :heavy_check_mark:                                                            | Log ID                                                                        |
+| `limit`                                                                       | *Optional[int]*                                                               | :heavy_minus_sign:                                                            | Maximum number of log lines to retrieve starting from offset.                 |
+| `end_offset`                                                                  | *Optional[int]*                                                               | :heavy_minus_sign:                                                            | in the current log file to fetch the log events upto.                         |
+| `et`                                                                          | *Optional[int]*                                                               | :heavy_minus_sign:                                                            | Epoch timestamp of the earliest event (includes rolled files present on disk) |
+| `lt`                                                                          | *Optional[int]*                                                               | :heavy_minus_sign:                                                            | Epoch timestamp of the latest event (includes rolled files present on disk)   |
+| `filter_`                                                                     | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | Filter                                                                        |

@@ -1,0 +1,21 @@
+# StatusResponse
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `bytes_in`                                                       | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `bytes_skipped`                                                  | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `events_found`                                                   | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `events_in`                                                      | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `events_skipped`                                                 | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `objects_found`                                                  | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `objects_searched`                                               | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `objects_skipped`                                                | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `stage_details`                                                  | List[[models.StageDetail](../models/stagedetail.md)]             | :heavy_minus_sign:                                               | N/A                                                              |
+| `status`                                                         | [models.StatusResponseStatus](../models/statusresponsestatus.md) | :heavy_check_mark:                                               | N/A                                                              |
+| `time_completed`                                                 | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `time_created`                                                   | *float*                                                          | :heavy_check_mark:                                               | N/A                                                              |
+| `time_now`                                                       | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `time_started`                                                   | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |

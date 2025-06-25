@@ -1,0 +1,16 @@
+# ParserJSON
+
+
+## Fields
+
+| Field                                        | Type                                         | Required                                     | Description                                  |
+| -------------------------------------------- | -------------------------------------------- | -------------------------------------------- | -------------------------------------------- |
+| `clean_fields`                               | List[*str*]                                  | :heavy_minus_sign:                           | N/A                                          |
+| `dst_field`                                  | *Optional[str]*                              | :heavy_minus_sign:                           | N/A                                          |
+| `field_filter_expr`                          | *Optional[str]*                              | :heavy_minus_sign:                           | N/A                                          |
+| `fields`                                     | List[*str*]                                  | :heavy_minus_sign:                           | N/A                                          |
+| `keep`                                       | List[*str*]                                  | :heavy_minus_sign:                           | N/A                                          |
+| `mode`                                       | [models.ParserMode](../models/parsermode.md) | :heavy_check_mark:                           | N/A                                          |
+| `remove`                                     | List[*str*]                                  | :heavy_minus_sign:                           | N/A                                          |
+| `src_field`                                  | *str*                                        | :heavy_check_mark:                           | N/A                                          |
+| `type`                                       | [models.TypeJSON](../models/typejson.md)     | :heavy_check_mark:                           | N/A                                          |

@@ -1,0 +1,14 @@
+# GetSystemLogsSearchRequest
+
+
+## Fields
+
+| Field                                                                         | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `type`                                                                        | *str*                                                                         | :heavy_check_mark:                                                            | type of logs request single multi group                                       |
+| `group_id`                                                                    | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | id of the group to query                                                      |
+| `files`                                                                       | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | query string[] optional file or files to query                                |
+| `limit`                                                                       | *Optional[int]*                                                               | :heavy_minus_sign:                                                            | Maximum number of log lines to retrieve starting from offset.                 |
+| `et`                                                                          | *Optional[int]*                                                               | :heavy_minus_sign:                                                            | Epoch timestamp of the earliest event (includes rolled files present on disk) |
+| `lt`                                                                          | *Optional[int]*                                                               | :heavy_minus_sign:                                                            | Epoch timestamp of the latest event (includes rolled files present on disk)   |
+| `filter_`                                                                     | *Optional[str]*                                                               | :heavy_minus_sign:                                                            | Filter                                                                        |

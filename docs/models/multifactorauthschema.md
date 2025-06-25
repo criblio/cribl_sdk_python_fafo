@@ -1,0 +1,14 @@
+# MultiFactorAuthSchema
+
+
+## Fields
+
+| Field                                                                      | Type                                                                       | Required                                                                   | Description                                                                |
+| -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| `access_control_allow_origin`                                              | *str*                                                                      | :heavy_check_mark:                                                         | N/A                                                                        |
+| `allow_login`                                                              | *bool*                                                                     | :heavy_check_mark:                                                         | N/A                                                                        |
+| `api_server_url`                                                           | *str*                                                                      | :heavy_check_mark:                                                         | N/A                                                                        |
+| `disabled`                                                                 | *bool*                                                                     | :heavy_check_mark:                                                         | N/A                                                                        |
+| `type`                                                                     | [models.MultiFactorAuthSchemaType](../models/multifactorauthschematype.md) | :heavy_check_mark:                                                         | N/A                                                                        |
+| `username_field`                                                           | *str*                                                                      | :heavy_check_mark:                                                         | N/A                                                                        |
+| `username_regex`                                                           | *str*                                                                      | :heavy_check_mark:                                                         | N/A                                                                        |

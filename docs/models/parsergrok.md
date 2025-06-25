@@ -1,0 +1,14 @@
+# ParserGrok
+
+
+## Fields
+
+| Field                                                | Type                                                 | Required                                             | Description                                          |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `dst_field`                                          | *Optional[str]*                                      | :heavy_minus_sign:                                   | N/A                                                  |
+| `mode`                                               | [models.ParserMode](../models/parsermode.md)         | :heavy_check_mark:                                   | N/A                                                  |
+| `pattern`                                            | *Optional[str]*                                      | :heavy_minus_sign:                                   | N/A                                                  |
+| `pattern_list`                                       | List[[models.PatternList](../models/patternlist.md)] | :heavy_minus_sign:                                   | N/A                                                  |
+| `source`                                             | *Optional[str]*                                      | :heavy_minus_sign:                                   | N/A                                                  |
+| `src_field`                                          | *str*                                                | :heavy_check_mark:                                   | N/A                                                  |
+| `type`                                               | [models.TypeGrok](../models/typegrok.md)             | :heavy_check_mark:                                   | N/A                                                  |

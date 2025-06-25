@@ -1,0 +1,15 @@
+# TLSClientParams
+
+
+## Fields
+
+| Field                                                                    | Type                                                                     | Required                                                                 | Description                                                              |
+| ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| `ca_path`                                                                | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `cert_path`                                                              | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `check_server_identity`                                                  | [Optional[models.CheckServerIdentity]](../models/checkserveridentity.md) | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `disabled`                                                               | *bool*                                                                   | :heavy_check_mark:                                                       | N/A                                                                      |
+| `passphrase`                                                             | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `priv_key_path`                                                          | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `reject_unauthorized`                                                    | *Optional[bool]*                                                         | :heavy_minus_sign:                                                       | N/A                                                                      |
+| `servername`                                                             | *Optional[str]*                                                          | :heavy_minus_sign:                                                       | N/A                                                                      |

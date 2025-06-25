@@ -1,0 +1,17 @@
+# DashboardElementMarkdown
+
+
+## Fields
+
+| Field                                                            | Type                                                             | Required                                                         | Description                                                      |
+| ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- | ---------------------------------------------------------------- |
+| `description`                                                    | *Optional[str]*                                                  | :heavy_minus_sign:                                               | N/A                                                              |
+| `empty`                                                          | *Optional[bool]*                                                 | :heavy_minus_sign:                                               | N/A                                                              |
+| `hide_panel`                                                     | *Optional[bool]*                                                 | :heavy_minus_sign:                                               | N/A                                                              |
+| `horizontal_chart`                                               | *Optional[bool]*                                                 | :heavy_minus_sign:                                               | N/A                                                              |
+| `id`                                                             | *str*                                                            | :heavy_check_mark:                                               | N/A                                                              |
+| `index`                                                          | *Optional[float]*                                                | :heavy_minus_sign:                                               | N/A                                                              |
+| `layout`                                                         | [models.DashboardLayout](../models/dashboardlayout.md)           | :heavy_check_mark:                                               | N/A                                                              |
+| `title`                                                          | *Optional[str]*                                                  | :heavy_minus_sign:                                               | N/A                                                              |
+| `type`                                                           | [models.DashboardElementType](../models/dashboardelementtype.md) | :heavy_check_mark:                                               | N/A                                                              |
+| `variant`                                                        | [models.VariantMarkdown](../models/variantmarkdown.md)           | :heavy_check_mark:                                               | N/A                                                              |

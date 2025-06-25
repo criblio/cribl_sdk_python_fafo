@@ -1,0 +1,10 @@
+# ReferencingEntity
+
+
+## Fields
+
+| Field                                                          | Type                                                           | Required                                                       | Description                                                    |
+| -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| `id`                                                           | *str*                                                          | :heavy_check_mark:                                             | N/A                                                            |
+| `refs`                                                         | List[[models.ReferencedEntity](../models/referencedentity.md)] | :heavy_check_mark:                                             | N/A                                                            |
+| `type`                                                         | *str*                                                          | :heavy_check_mark:                                             | N/A                                                            |

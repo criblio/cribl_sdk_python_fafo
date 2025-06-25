@@ -1,0 +1,12 @@
+# PublishPackResponse
+
+
+## Fields
+
+| Field                                                                                  | Type                                                                                   | Required                                                                               | Description                                                                            |
+| -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| `git`                                                                                  | [Optional[models.PublishPackResponseGit]](../models/publishpackresponsegit.md)         | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `id`                                                                                   | *str*                                                                                  | :heavy_check_mark:                                                                     | N/A                                                                                    |
+| `message`                                                                              | *Optional[str]*                                                                        | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `source`                                                                               | *Optional[str]*                                                                        | :heavy_minus_sign:                                                                     | N/A                                                                                    |
+| `status`                                                                               | [Optional[models.PublishPackToGitStatusType]](../models/publishpacktogitstatustype.md) | :heavy_minus_sign:                                                                     | N/A                                                                                    |

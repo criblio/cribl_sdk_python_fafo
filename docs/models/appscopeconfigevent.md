@@ -1,0 +1,12 @@
+# AppscopeConfigEvent
+
+
+## Fields
+
+| Field                                                                        | Type                                                                         | Required                                                                     | Description                                                                  |
+| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `enable`                                                                     | *bool*                                                                       | :heavy_check_mark:                                                           | N/A                                                                          |
+| `format_`                                                                    | [models.AppscopeConfigFormatNdjson](../models/appscopeconfigformatndjson.md) | :heavy_check_mark:                                                           | N/A                                                                          |
+| `transport`                                                                  | [models.AppscopeTransport](../models/appscopetransport.md)                   | :heavy_check_mark:                                                           | N/A                                                                          |
+| `type`                                                                       | [models.AppscopeConfigType](../models/appscopeconfigtype.md)                 | :heavy_check_mark:                                                           | N/A                                                                          |
+| `watch`                                                                      | List[[models.AppscopeConfigWatch](../models/appscopeconfigwatch.md)]         | :heavy_check_mark:                                                           | N/A                                                                          |

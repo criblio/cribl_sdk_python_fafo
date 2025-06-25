@@ -1,0 +1,14 @@
+# AppscopeConfig
+
+
+## Fields
+
+| Field                                                                          | Type                                                                           | Required                                                                       | Description                                                                    |
+| ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
+| `cribl`                                                                        | [Optional[models.AppscopeConfigCribl]](../models/appscopeconfigcribl.md)       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `event`                                                                        | [Optional[models.AppscopeConfigEvent]](../models/appscopeconfigevent.md)       | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `libscope`                                                                     | [Optional[models.AppscopeConfigLibscope]](../models/appscopeconfiglibscope.md) | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `metric`                                                                       | [Optional[models.AppscopeConfigMetric]](../models/appscopeconfigmetric.md)     | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `payload`                                                                      | [Optional[models.AppscopeConfigPayload]](../models/appscopeconfigpayload.md)   | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `protocol`                                                                     | List[[models.AppscopeConfigProtocol](../models/appscopeconfigprotocol.md)]     | :heavy_minus_sign:                                                             | N/A                                                                            |
+| `tags`                                                                         | List[[models.AppscopeConfigTag](../models/appscopeconfigtag.md)]               | :heavy_minus_sign:                                                             | N/A                                                                            |
